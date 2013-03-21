@@ -1,0 +1,23 @@
+language: ruby
+
+rvm:
+  - 1.9.3
+
+services:
+  - mongodb
+
+bundler_args: --without development
+
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+
+before_script:
+  - mv config/app_config_example.yml config/app_config.yml
+  - mv config/mongoid_example.yml config/mongoid.yml
+
+branches:
+  only:
+    - master
+    - base
+    - staging

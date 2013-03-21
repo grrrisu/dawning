@@ -1,0 +1,23 @@
+- content_for(:visual) do
+  .galaxy
+    %h2 Dawning
+    %p
+      A Ruby Programming Game
+    - unless current_user
+      %p
+        = link_to 'Login', login_path, class: 'btn btn-large btn-wide btn-grey'
+  .headline
+    %h3 Code your Agent! Both as Intruder and Gate Keeper!
+
+
+
+/.hero-unit
+.introduction
+  %h1 Welcome to Dawning!
+  %p Some introductional text to get the visitor an idea what this project is about.
+  - unless current_user
+    = link_to 'Register', register_path, class: 'btn btn-primary btn-large'
+  %a.btn.btn-large Documentation
+
+- content_for(:second_section) do
+  = render 'home/steps'

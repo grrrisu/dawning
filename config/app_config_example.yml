@@ -1,0 +1,13 @@
+session_key: '_dawning_session'
+secret_token: '2ab1a75bd8d2112d2714b4359a2e0d821b52dcfae47049c7679b65c7a88a6823bbc16b345fba91bf9b6936279ef22339db185260c8d262e1f5f20d3c320466c8'
+github_client_id: fixme
+github_secret: fixme
+airbrake_api_key: fixme
+newrelic_key: fixme
+mail:
+  address: fixme
+  domain: fixme
+  user_name: fixme
+  password: fixme
+  port: fixme
+  authentication: fixme

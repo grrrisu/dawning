@@ -1,0 +1,121 @@
+/* navigation */
+
+.navbar {
+  @include box-shadow(0 1px 5px rgba(0,0,0,.75));
+  margin: 0px;
+  font-size: 18px;
+
+  .navbar-inner{
+    @include gradient-vertical(#444, #111);
+    padding-left: 25px;
+    padding-right: 25px;
+
+    .container {
+      margin-right: 0px;
+      margin-left: 0px;
+      width: auto;
+    }
+  }
+}
+
+/* pagination */
+
+.pagination {
+  text-align: center;
+  font-size: 14px;
+
+  ul {
+
+    li a {
+      background-color: #f5f5f5;
+    }
+
+    li.active a, li a:hover {
+      @include box-shadow(inset 0px 1px 1px #aaa);
+      background-color: #eee;
+    }
+  }
+
+
+}
+
+/* forms */
+
+legend {
+  border-bottom: 1px solid #ccc;
+  text-shadow: 1px 1px 0px #fff;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],
+input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"],
+input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{
+  padding: 7px;
+  border: 1px solid #CCC;
+  @include box-shadow(inset 2px 2px 2px #ededed);
+  @include box-shadow(1px 1px 2px rgba(0,0,0,.1));
+  width: 300px;
+}
+
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.form-horizontal .control-label {
+  width: 180px;
+}
+
+.form-horizontal .controls {
+  margin-left: 200px;
+}
+
+label {
+  font-weight: normal;
+  line-height: 18px;
+}
+
+abbr[title] {
+  border: none;
+}
+
+.help-block {
+  font-size: 14px;
+}
+
+/* buttons */
+
+.btn-large {
+  @include border-radius(12px);
+}
+
+.btn {
+  @include border-radius(8px);
+}
+
+.btn-grey {
+  @include buttonBackground(#fff, #999);
+  color: #333;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+
+.hero-unit {
+
+  @include box-shadow(inset 1px 1px 3px #aaa);
+
+  h1 {
+    font-size: 40px;
+    text-shadow: 2px 2px 1px #eee;
+    line-height: 76px;
+  }
+
+  p {
+    font-family: $secondFontFamily;
+    text-shadow: 0px 1px 0px #fff;
+    line-height: 15px;
+  }
+}
+
+/* icons */
+
+[class^="icon-"], [class*=" icon-"] {
+ vertical-align: baseline;
+}

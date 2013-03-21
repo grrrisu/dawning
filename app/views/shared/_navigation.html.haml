@@ -1,0 +1,17 @@
+.navbar.navbar-static-top.navbar-inverse
+  .navbar-inner
+    .container
+      %ul.nav
+        = navigation_item 'Home', root_path
+        = navigation_item 'Documentation', root_path
+        = navigation_item 'User Ranking', users_path
+        - unless current_user
+          = navigation_item 'Register', register_path, id: 'register'
+          = navigation_item 'Login', login_path, id: 'login'
+        - else
+          = navigation_item 'Account', edit_user_path(current_user)
+
+      %ul.nav.pull-right
+        -if current_user
+          %li
+            %a{:href => logout_path, :id => 'logout'} Logout

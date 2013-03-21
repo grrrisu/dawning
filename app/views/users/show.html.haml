@@ -1,0 +1,20 @@
+%legend
+  = @user.username
+  - if can? :edit, @user
+    = link_to(edit_user_path(@user), class: 'pull-right') do
+      %li.icon-pencil
+      Edit
+.row-fluid.detail
+  .span2
+    = gravatar_for @user, 120
+  .span5
+    .row-fluid.property
+      .span4 Name
+      .span8= @user.name
+    - if @user == current_user
+      .row-fluid.property
+        .span4
+          Email
+          %span.small
+            (not public)
+        .span8= @user.email

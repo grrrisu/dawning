@@ -1,0 +1,42 @@
+form div.gravatar {
+  margin-left: 200px;
+  margin-bottom: 30px;
+}
+
+img.gravatar {
+  margin-right: 20px;
+  @include border-radius(10px);
+  @include box-shadow(1px 1px 2px rgba(0,0,0,.1));
+  border: 1px solid #ddd;
+  vertical-align: bottom;
+}
+
+img.gravatar-list {
+  margin-right: 0px;
+}
+
+.detail {
+  margin-bottom: 30px;
+
+  .property {
+    margin-bottom: 5px;
+  }
+}
+
+table.users {
+  tbody tr, tbody td {
+    height: 52px;
+  }
+
+  thead th:first-child, tbody td:first-child {
+    width: 50px;
+  }
+
+  tbody tr.current:nth-child(odd) td {
+    background-color: #FfFfF5;
+  }
+
+  tbody tr.current:nth-child(even) td {
+    background-color: #FfFfF9;
+  }
+}

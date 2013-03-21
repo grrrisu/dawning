@@ -1,0 +1,7 @@
+= simple_form_for @user, url: password_resets_path, html: { class: 'form-horizontal' } do |f|
+  .fieldset
+    %legend
+      Forgot Password
+    = f.input :email
+    .form_actions
+      = f.submit 'Send Mail', class: 'btn btn-primary btn-large btn-wide'

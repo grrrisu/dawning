@@ -1,0 +1,12 @@
+Hello <%= @user.username %>
+
+You have successfully registered to Dawning.
+To confirm your registration and login to the site, just follow this link:
+
+<%= activate_user_url(@user.activation_token) %>
+
+Please be aware, that this link will expire in <%= 30.minutes.from_now %>
+
+
+Dawning
+http://dawning.zero-x.net

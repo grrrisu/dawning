@@ -1,0 +1,17 @@
+= simple_form_for :session, url: authenticate_path, html: { id: 'new_session', class: 'form-horizontal' } do |f|
+  .fieldset
+    %legend
+      Login
+    = f.input :username, hint: "Not yet registered? Click #{link_to 'here', register_path, tabindex: -1 } to become a member", hint_escape: false
+    = f.input :password, hint: "Forgot your password? Click #{link_to 'here', new_password_reset_path, tabindex: -1 } to reset it."
+    = f.input :remember_me, as: :boolean
+    .form_actions
+      = f.submit 'Login', id: 'login', class: 'btn btn-primary btn-large btn-wide'
+
+    or through a provider
+.external
+  %ul.thumbnails
+    %li.span4
+      = image_tag('Octocat.png', :size => '75x75')
+      = link_to 'Login with Github', auth_at_provider_path(:provider => :github), class: 'btn btn-primary'
+

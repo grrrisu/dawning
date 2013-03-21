@@ -1,0 +1,11 @@
+= simple_form_for @user, html: { class: 'form-horizontal' } do |f|
+  .fieldset
+    %legend
+      Register
+    = f.input :username
+    = f.input :password
+    = f.input :password_confirmation
+    = f.input :email, hint: 'not public visible'
+    .form_actions
+      = f.submit 'Register', class: 'btn btn-primary btn-large btn-wide', id: 'register'
+

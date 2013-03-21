@@ -1,0 +1,32 @@
+%legend
+  User Ranking
+%table.table.table-bordered.table-condensed.table-striped.users
+  %thead
+    %tr
+      %th
+      %th Username
+      %th State
+      %th{:colspan => 3} Actions
+  %tbody
+    - @users.each do |user|
+      %tr{:class => user == current_user && 'current'}
+        %td{:align => 'center'}
+          = gravatar_for user, 50, 'gravatar gravatar-list'
+        %td
+          = user.username
+        %td
+          = user.activation_state
+        %td{:colspan => 3}
+          = link_to(user_path(user)) do
+            %li.icon-search
+            Show
+          - if can? :edit, user
+            = link_to(edit_user_path(user), :class => 'list') do
+              %li.icon-pencil
+              Edit
+          - if can? :destroy, user
+            = link_to(user_path(user), data: {confirm: 'Are you sure?'}, method: :delete, :class => 'list') do
+              %li.icon-remove
+              Delete
+
+= paginate @users

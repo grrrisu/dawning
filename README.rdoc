@@ -1,0 +1,17 @@
+== Dawning
+
+A game about emergence
+
+== Requirements
+
+* Ruby 1.9
+
+* MongoDB[http://www.mongodb.org/] ~> 2.0.4
+
+== Code
+
+https://github.com/grrrisu/dawning
+
+== Credits
+
+* Icons from Glyphicons[http://glyphicons.com/] Free, licensed under CC BY 3.0[http://creativecommons.org/licenses/by/3.0/].

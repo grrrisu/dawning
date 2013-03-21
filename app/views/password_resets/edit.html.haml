@@ -1,0 +1,9 @@
+= simple_form_for @user, url: password_reset_path(@user), html: { class: 'form-horizontal', method: :put } do |f|
+  .fieldset
+    %legend
+      Reset your Password
+    = hidden_field_tag :token, @token
+    = f.input :password
+    = f.input :password_confirmation
+    .form_actions
+      = f.submit 'Reset Password', class: 'btn btn-primary btn-large btn-wide'
