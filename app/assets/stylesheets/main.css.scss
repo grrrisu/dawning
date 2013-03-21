@@ -2,6 +2,10 @@ body {
   @include background-pattern();
 }
 
+a:hover {
+  text-decoration: none;
+};
+
 .btn-wide {
   padding: 9px 36px;
 }
