@@ -1,3 +1,7 @@
+body {
+  @include background-pattern();
+}
+
 .btn-wide {
   padding: 9px 36px;
 }
@@ -32,11 +36,4 @@ table {
   td {
     vertical-align: middle !important;
   }
-}
-
-/* mixins */
-
-@mixin dark_inset() {
-  color: #222;
-  text-shadow: 0px 1px 1px #777;
 }

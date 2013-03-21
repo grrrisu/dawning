@@ -1,0 +1,8 @@
+@mixin dark_inset() {
+  color: #222;
+  text-shadow: 0px 1px 1px #777;
+}
+
+@mixin background-pattern() {
+  background-image: url("/assets/light_toast.png")
+}
