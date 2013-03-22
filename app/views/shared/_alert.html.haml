@@ -4,4 +4,8 @@
       - flash.each do |name, message|
         %div{:class => (name == :notice ? 'alert alert-success' : 'alert alert-error')}
           %a.close{'data-dismiss' => 'alert'}×
+          - if name == :notice
+            %i.icon-info-sign
+          - else
+            %i.icon-exclamation-sign
           = message
