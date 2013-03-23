@@ -1,19 +1,18 @@
 !!! html5
-%html
+%html{:lang => 'en'}
   %head
     %title Dawning
     %meta{ :charset => "utf-8" }
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
     %meta{ 'http-equiv' => "X-UA-Compatible", :content => "IE=edge,chrome=1" }
-    %meta{ :description => "Dawning a programming game"}
+    %meta{ :description => "Dawning a game of emeregence"}
     = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tag
   %body
     = render 'shared/navigation'
     = yield :visual
-    .container-fluid.main_section
-      = render 'shared/alert'
-      = yield
+    = render 'shared/alert'
+    = yield
     = yield :second_section
     = render 'shared/footer'
 
