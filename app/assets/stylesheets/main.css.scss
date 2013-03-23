@@ -1,5 +1,10 @@
 body {
   @include background-pattern();
+
+  @media (max-width: 767px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 
 a:hover {
