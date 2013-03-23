@@ -1,23 +1,36 @@
-/* Galaxy */
-.galaxy {
+/* Visual */
+.visual {
   background-image: url("/assets/dawning2b.jpg");
+  background-position: 30% -30px;
   background-repeat: no-repeat;
   background-color: #101116;
   height: 300px;
-  background-position: 30% -30px;
   color: #fff;
 
-  h2 {
-    margin-top: 0px;
-    font-size: 46px;
-    padding: 100px 0px 0px $headerGutterWidth;
-    line-height: 18px;
+  // Responsive: Landscape phone to desktop/tablet
+  @media (max-width: 767px) {
+    background-position: 50% -30px;
+  }
+  // Responsive: Tablet to desktop
+  @media (min-width: 768px) and (max-width: 979px) {
+    background-position: 40% -30px;
   }
 
-  p {
-    font-size: 26px;
-    line-height: 26px;
-    padding: 10px 0px 0px $headerGutterWidth;
+  .visual_title {
+
+    padding: 100px 0px 0px $headerGutterWidth;
+
+    h2 {
+      margin: 0px 0px 20px 0px;
+      font-size: 46px;
+      line-height: 18px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 26px;
+    }
+
   }
 }
 
@@ -37,10 +50,6 @@
     padding: 0px;
     margin: 0px;
   }
-}
-
-.main_section {
-  margin-top: 30px;
 }
 
 .introduction {
