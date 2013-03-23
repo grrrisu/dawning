@@ -12,7 +12,8 @@
     = render 'shared/navigation'
     = yield :visual
     = render 'shared/alert'
-    = yield
+    .container-fluid.main-section
+      = yield
     = yield :second_section
     = render 'shared/footer'
 
