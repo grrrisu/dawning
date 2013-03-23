@@ -19,6 +19,9 @@
   .visual_title {
 
     padding: 100px 0px 0px $headerGutterWidth;
+    @media (max-width: 767px) {
+      padding-left: $gridGutterWidth;
+    }
 
     h2 {
       margin: 0px 0px 20px 0px;
