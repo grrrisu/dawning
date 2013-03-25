@@ -13,10 +13,12 @@
 /.hero-unit
 .introduction
   %h1 Welcome to Dawning!
-  %p Some introductional text to get the visitor an idea what this project is about.
-  - unless current_user
-    = link_to 'Register', register_path, class: 'btn btn-primary btn-large'
-  %a.btn.btn-large Documentation
+  %p
+    Some introductional text to get the visitor an idea what this project is about.
+  %p
+    - unless current_user
+      = link_to 'Register', register_path, class: 'btn btn-primary btn-large btn-margin-top'
+    %a.btn.btn-large.btn-margin-top Documentation
 
 - content_for(:second_section) do
   = render 'home/steps'
