@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     if @user = User.load_from_activation_token(params[:id])
       @user.activate!
       auto_login(@user)
-      redirect_to edit_user_path(@user), :notice => "User #{@user.username} was successfully activated."
+      redirect_to edit_user_path(@user), :notice => "Welcome #{@user.username}! Your account has been activated."
     else
       not_authenticated
     end
