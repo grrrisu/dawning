@@ -23,7 +23,7 @@ describe "Register" do
     link = ActionMailer::Base.deliveries.first.body.match /http:\/\/.*?(\/.*?)$/
     visit link[1]
     within('.alert-success') do
-      page.should have_content('User Rocky was successfully activated.')
+      page.should have_content('Welcome Rocky! Your account has been activated.')
     end
     page.should have_content('Logout')
 
