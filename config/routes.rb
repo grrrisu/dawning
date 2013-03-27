@@ -12,4 +12,8 @@ Dawning::Application.routes.draw do
   resources :users do
     get :activate, on: :member
   end
+
+  namespace :admin do
+    resources :levels, only: :index
+  end
 end

@@ -1,0 +1,17 @@
+%legend
+  Levels
+.row-fluid
+  .span6
+    = simple_form_for :level, html: { id: 'level_form', style: 'display: none' } do |f|
+      = f.input :name
+      .row-fluid
+        .span6
+          %button{type: 'submit', class: 'btn btn-primary'}
+            %i.icon-cog
+            Create
+        .span6
+          = link_to_function 'Cancel', "$('#level_form').slideUp()"
+    = link_to '#', class: 'btn btn-large btn-primary', id: 'create_level_button' do
+      %i.icon-globe
+      Create Level
+
