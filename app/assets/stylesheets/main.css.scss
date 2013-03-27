@@ -2,6 +2,7 @@
 
 body {
   @include background-pattern();
+  margin-bottom: 180px;
 
   @media (max-width: 767px) {
     padding-left: 0px;
