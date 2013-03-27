@@ -7,9 +7,17 @@ html, body {
   height: auto !important;
   height: 100%;
   margin: 0 auto -162px; /* the bottom margin is the negative value of the footer's height */
+
+  @media (max-width: 767px){
+    margin: 0 auto -370px;
+  }
 }
 
 .footer, .push {
   height: 162px; /* .push must be the same height as .footer */
   clear: both;
+
+  @media (max-width: 767px){
+    height: 370px;
+  }
 }
