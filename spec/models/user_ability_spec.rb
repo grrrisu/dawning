@@ -41,11 +41,11 @@ describe Ability do
 
     it "should be able to register" do
       user = FactoryGirl.create :user
-      @member.should have_ability_to :read, User
-      @member.should have_ability_to :create, User
+      @guest.should have_ability_to :read, User
+      @guest.should have_ability_to :create, User
 
-      @member.should_not have_ability_to :update, user
-      @member.should_not have_ability_to :destroy, user
+      @guest.should_not have_ability_to :update, user
+      @guest.should_not have_ability_to :destroy, user
     end
 
   end
