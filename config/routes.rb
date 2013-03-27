@@ -14,6 +14,6 @@ Dawning::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :levels, only: :index
+    resources :levels, only: [:index, :create]
   end
 end
