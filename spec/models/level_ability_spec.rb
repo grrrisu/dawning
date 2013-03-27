@@ -9,7 +9,7 @@ describe Ability do
 
     it "should be able to manage levels" do
       @admin.should have_ability_to :index, Level
-      # @admin.should have_ability_to :create, User
+      @admin.should have_ability_to :create, Level
       # @admin.should have_ability_to :update, user
       # @admin.should have_ability_to :destroy, user
     end
@@ -22,6 +22,7 @@ describe Ability do
 
     it "should not be able to manage levels" do
       @member.should_not have_ability_to :index, Level
+      @member.should_not have_ability_to :create, Level
     end
   end
 
@@ -33,6 +34,7 @@ describe Ability do
 
     it "should not be able to manage levels" do
       @guest.should_not have_ability_to :index, Level
+      @guest.should_not have_ability_to :create, Level
     end
 
   end
