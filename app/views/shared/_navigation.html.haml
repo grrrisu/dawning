@@ -11,6 +11,13 @@
             = navigation_item 'Login', login_path, id: 'login'
           - else
             = navigation_item 'Account', edit_user_path(current_user)
+            - if current_user.admin?
+              %li.dropdown{class: navigation_active?(:admin) && 'active'}
+                = link_to '#', data: {toggle: 'dropdown'} do
+                  Admin
+                  %b.caret
+                %ul.dropdown-menu
+                  = navigation_item 'Levels', admin_levels_path
 
         %ul.nav.pull-right
           -if current_user
