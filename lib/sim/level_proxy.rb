@@ -10,7 +10,7 @@ class LevelProxy
   end
 
   def self.levels
-    @levels.values || []
+    @levels.try(:values) || []
   end
 
   attr_reader :name
