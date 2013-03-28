@@ -9,12 +9,14 @@
     = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tag
   %body
-    = render 'shared/navigation'
-    = yield :visual
-    .container-fluid.main-section
-      = render 'shared/alert'
-      = yield
-    = yield :second_section
+    .wrapper
+      = render 'shared/navigation'
+      = yield :visual
+      .container-fluid.main-section
+        = render 'shared/alert'
+        = yield
+      = yield :second_section
+      .push
     = render 'shared/footer'
 
   = javascript_include_tag "application"
