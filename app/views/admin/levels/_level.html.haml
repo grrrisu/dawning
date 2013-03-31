@@ -1,0 +1,22 @@
+.row-fluid{id: "level_#{level.id}"}
+  .span4
+    %i.icon-globe.icon-large
+    = level.name
+  .span4
+    - if level.state == :started
+      = link_to build_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-primary' do
+        %i.icon-cog
+        Build
+    - elsif level.state == :built
+      = link_to run_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-primary' do
+        %i.icon-play
+        Run
+    - elsif level.state == :running
+      = link_to stop_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-success' do
+        %i.icon-stop
+        Stop
+    - elsif level.state == :stopped
+      = link_to admin_level_path(level.id), method: :delete, remote: true, class: 'btn btn-danger' do
+        %i.icon-remove
+        Remove
+  .span4

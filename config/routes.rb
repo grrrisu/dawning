@@ -14,6 +14,12 @@ Dawning::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :levels, only: [:index, :create]
+    resources :levels, only: [:index, :create, :destroy] do
+      member do
+        put :build
+        put :run
+        put :stop
+      end
+    end
   end
 end

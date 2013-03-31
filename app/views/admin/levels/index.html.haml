@@ -1,19 +1,14 @@
 %legend
   Levels
-.row-fluid
-  - @levels.each do |level|
-    .span4
-      %i.icon-globe
-      = level.name
-    .span4
-    .span4
+- @levels.each do |level|
+  = render 'level',  level: level
 .row-fluid
   .span12
     = simple_form_for :level, html: { id: 'level_form', style: 'display: none' } do |f|
       = f.input :name
       %button{type: 'submit', class: 'btn btn-primary'}
-        %i.icon-cog
-        Create
+        %i.icon-asterisk
+        Start
       = link_to_function 'Cancel', "$('#level_form').slideUp()", class: 'cancel'
     = link_to '#', class: 'btn btn-large btn-primary', id: 'create_level_button' do
       %i.icon-globe
