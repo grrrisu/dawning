@@ -1,8 +1,8 @@
 - if flash.any?
-  .row-fluid
+  .row-fluid.alert-box
     .span12
       - flash.each do |name, message|
-        .alert{:class => (name == :notice ? 'alert alert-success' : 'alert alert-error')}
+        .alert{:class => (name == :notice ? 'alert-success' : 'alert-error')}
           %a.close{'data-dismiss' => 'alert'}×
           - if name == :notice
             %i.icon-info-sign

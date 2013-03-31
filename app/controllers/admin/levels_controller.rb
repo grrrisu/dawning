@@ -11,34 +11,38 @@ class Admin::LevelsController < ApplicationController
   def create
     authorize! :create, Level
     if params[:level].try(:[],:name)
-      LevelProxy.create params[:level][:name]
+      level = LevelProxy.create params[:level][:name]
     else
       raise ArgumentError, "no name passed"
     end
-    redirect_to admin_levels_path, flash: {notice: 'Level has been created'}
+    redirect_to admin_levels_path, flash: {notice: "Level #{level.name} has been started"}
   end
 
   def run
     @level.start
     authorize! :run, @level
+    flash[:notice] = "Level #{@level.name} is running"
     render action: :level
   end
 
   def build
     @level.create
     authorize! :build, @level
+    flash[:notice] = "Level #{@level.name} has been built"
     render action: :level
   end
 
   def stop
     @level.stop
     authorize! :stop, @level
+    flash[:notice] = "Level #{@level.name} has been stopped"
     render action: :level
   end
 
   def destroy
     @level.remove
     authorize! :destroy, @level
+    flash[:notice] = "Level #{@level.name} has been removed"
     render action: :destroy
   end
 
