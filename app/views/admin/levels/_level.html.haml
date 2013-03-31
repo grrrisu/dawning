@@ -4,19 +4,19 @@
     = level.name
   .span4
     - if level.state == :started
-      = link_to build_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-primary' do
+      = link_to build_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-primary spinner' do
         %i.icon-cog
         Build
     - elsif level.state == :built
-      = link_to run_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-primary' do
+      = link_to run_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-primary spinner' do
         %i.icon-play
         Run
     - elsif level.state == :running
-      = link_to stop_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-success' do
+      = link_to stop_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-success spinner' do
         %i.icon-stop
         Stop
     - elsif level.state == :stopped
-      = link_to admin_level_path(level.id), method: :delete, remote: true, class: 'btn btn-danger' do
+      = link_to admin_level_path(level.id), method: :delete, remote: true, class: 'btn btn-danger spinner' do
         %i.icon-remove
         Remove
   .span4
