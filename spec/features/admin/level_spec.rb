@@ -7,7 +7,7 @@ describe "Level" do
     login_with(user, 'secret')
   end
 
-  it "should create a new level" do
+  it "should create a new level", js: true do
     visit '/admin/levels'
     click_on 'create_level_button'
     fill_in 'level_name', with: 'level test'
