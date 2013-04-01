@@ -5,4 +5,3 @@ $ () ->
 
   $('.submit-once').on 'submit', (e) =>
     $(e.target).find("button[type='submit']").attr('disabled', true)
-d
