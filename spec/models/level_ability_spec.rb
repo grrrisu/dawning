@@ -2,41 +2,36 @@ require 'spec_helper'
 
 describe Ability do
 
-  describe 'role admin' do
-    before :each do
-      @admin = FactoryGirl.create :admin_user
-    end
+  let(:level) { LevelProxy.new(UUID.new.generate, 'test level') }
 
-    it "should be able to manage levels" do
-      @admin.should have_ability_to :index, Level
-      @admin.should have_ability_to :create, Level
-      # @admin.should have_ability_to :update, user
-      # @admin.should have_ability_to :destroy, user
-    end
+  describe 'role admin' do
+    subject { FactoryGirl.create :admin_user }
+    it { should have_ability_to :index, Level}
+    it { should have_ability_to :create, Level}
+    it { should have_ability_to :build, level }
+    it { should have_ability_to :run, level }
+    it { should have_ability_to :stop, level }
+    it { should have_ability_to :destory, level }
   end
 
   describe 'role member' do
-    before :each do
-      @member = FactoryGirl.create :user
-    end
-
-    it "should not be able to manage levels" do
-      @member.should_not have_ability_to :index, Level
-      @member.should_not have_ability_to :create, Level
-    end
+    subject { FactoryGirl.create :user }
+    it { should_not have_ability_to :index, Level }
+    it { should_not have_ability_to :create, Level }
+    it { should_not have_ability_to :build, level }
+    it { should_not have_ability_to :run, level }
+    it { should_not have_ability_to :stop, level }
+    it { should_not have_ability_to :destory, level }
   end
 
   describe 'role guest' do
-
-    before :each do
-      @guest = User.new
-    end
-
-    it "should not be able to manage levels" do
-      @guest.should_not have_ability_to :index, Level
-      @guest.should_not have_ability_to :create, Level
-    end
-
+    subject { User.new }
+    it { should_not have_ability_to :index, Level }
+    it { should_not have_ability_to :create, Level }
+    it { should_not have_ability_to :build, level }
+    it { should_not have_ability_to :run, level }
+    it { should_not have_ability_to :stop, level }
+    it { should_not have_ability_to :destory, level }
   end
 
 end
