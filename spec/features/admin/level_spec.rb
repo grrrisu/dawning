@@ -11,7 +11,7 @@ describe "Level" do
     visit '/admin/levels'
     click_on 'create_level_button'
     fill_in 'level_name', with: 'level test'
-    click_on 'Start'
+    click_on 'Launch'
     click_on 'Build'
     click_on 'Run'
     click_on 'Stop'

@@ -15,7 +15,7 @@ class Admin::LevelsController < ApplicationController
     else
       raise ArgumentError, "no name passed"
     end
-    redirect_to admin_levels_path, flash: {notice: "Level #{level.name} has been started"}
+    redirect_to admin_levels_path, flash: {notice: "Level #{level.name} has been launched"}
   end
 
   def run
@@ -26,7 +26,7 @@ class Admin::LevelsController < ApplicationController
   end
 
   def build
-    @level.create
+    @level.build
     authorize! :build, @level
     flash[:notice] = "Level #{@level.name} has been built"
     render action: :level

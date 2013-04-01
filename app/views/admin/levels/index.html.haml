@@ -1,14 +1,23 @@
 %legend
   Levels
-- @levels.each do |level|
-  = render 'level',  level: level
+- if @levels.any?
+  %table.table.table-bordered.table-condensed.table-striped.levels
+    %thead
+      %tr
+        %th{width: '50%'} Name
+        %th{width: '20%'} State
+        %th{widht: '30%', colspan: 3} Actions
+    %tbody
+      - @levels.each do |level|
+        = render 'level',  level: level
+
 .row-fluid
   .span12
     = simple_form_for :level, html: { id: 'level_form', style: 'display: none', class: 'submit-once' } do |f|
       = f.input :name
       %button{type: 'submit', class: 'btn btn-primary'}
-        %i.icon-asterisk
-        Start
+        %i.icon-plane
+        Launch
       = link_to_function 'Cancel', "$('#level_form').slideUp()", class: 'cancel'
     = link_to '#', class: 'btn btn-large btn-primary', id: 'create_level_button' do
       %i.icon-globe

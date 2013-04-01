@@ -1,22 +1,28 @@
-.row-fluid{id: "level_#{level.id}"}
-  .span4
+%tr{id: "level_#{level.id}"}
+  %td
     %i.icon-globe.icon-large
     = level.name
-  .span4
-    - if level.state == :started
+  %td
+    = level.state
+  %td
+    - unless level.state == :launched
+      = link_to '#', class: 'btn btn-success spinner' do
+        %i.icon-th
+        Enter
+  %td{:colspan => 2}
+    - if level.state == :launched
       = link_to build_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-primary spinner' do
         %i.icon-cog
         Build
-    - elsif level.state == :built
+    - elsif level.state == :ready
       = link_to run_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-primary spinner' do
         %i.icon-play
         Run
     - elsif level.state == :running
-      = link_to stop_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-success spinner' do
-        %i.icon-stop
+      = link_to stop_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-warning spinner' do
+        %i.icon-off
         Stop
     - elsif level.state == :stopped
       = link_to admin_level_path(level.id), method: :delete, remote: true, class: 'btn btn-danger spinner' do
         %i.icon-remove
         Remove
-  .span4

@@ -1,2 +1,2 @@
 $(".alert-box").html("<%=j render 'shared/alert' %>")
-$("#level_<%= @level.id %>").html("<%=j render partial: 'level', locals: {level: @level} %>")
+$("#level_<%= @level.id %>").replaceWith("<%=j render partial: 'level', locals: {level: @level} %>")
