@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/grrrisu/Simulator.git
-  revision: 96075cc5db41885fb5cd657fbc59fe59859996ff
+  revision: 1bb3ae5ddfd444dc75ab6f00cb339b95e3a66250
   specs:
     Simulator (0.0.1)
-      celluloid
+      celluloid (~> 0.13)
 
 GEM
   remote: https://rubygems.org/
