@@ -6,3 +6,4 @@ $ () ->
 
   $('.submit-once').on 'submit', (e) =>
     $(e.target).find("button[type='submit']").attr('disabled', true)
+    $(e.target).find('button i').addClass('icon-spinner icon-spin')
