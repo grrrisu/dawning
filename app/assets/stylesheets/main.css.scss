@@ -68,6 +68,37 @@ form.small {
   }
 }
 
+/* tableau */
+.tableau {
+  @include box-shadow(2px 2px 4px rgba(0,0,0,.1));
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  padding: 5px;
+  background-color: #F5F5F5;
+
+  .header {
+    font-weight: bold;
+  }
+
+  .row, .row-fluid {
+    padding: 5px 0px 5px 0px;
+    border-bottom: 1px solid #dddddd;
+
+    .text {
+      padding-top: 6px;
+    }
+  }
+
+  .row:first-child, .row-fluid:first-child {
+    text-align: center;
+  }
+
+  .row:last-child, .row-fluid:last-child {
+    border-bottom: none;
+  }
+}
+
 /* table */
 
 table {
