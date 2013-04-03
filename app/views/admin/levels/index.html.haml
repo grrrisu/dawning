@@ -4,9 +4,9 @@
   %table.table.table-bordered.table-condensed.table-striped.levels
     %thead
       %tr
-        %th{width: '50%'} Name
-        %th{width: '20%'} State
-        %th{widht: '30%', colspan: 3} Actions
+        %th{width: '30%'} Name
+        %th{width: '30%'} State
+        %th{widht: '40%', colspan: 3} Actions
     %tbody
       - @levels.each do |level|
         = render 'level',  level: level

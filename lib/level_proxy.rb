@@ -40,9 +40,9 @@ class LevelProxy
     self
   end
 
-  def build
+  def build config
     if @state == :launched
-      config_file = Rails.root.join('config', 'levels', 'default.yml').to_s
+      config_file = Rails.root.join('config', 'levels', config).to_s
       @connection.send_action :build, config_file: config_file
       @state = :ready
     else

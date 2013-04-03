@@ -1,0 +1,4 @@
+time_unit: 3600
+world:
+  width: 50
+  height: 100

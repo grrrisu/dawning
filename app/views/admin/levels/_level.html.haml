@@ -4,16 +4,17 @@
     = level.name
   %td
     = level.state
-  %td
+  %td{:colspan => 3}
     - unless level.state == :launched
       = link_to '#', class: 'btn btn-success spinner' do
         %i.icon-road
         Enter
-  %td{:colspan => 2}
     - if level.state == :launched
-      = link_to build_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-primary spinner' do
-        %i.icon-cog
-        Build
+      = form_for(:level, url: build_admin_level_path(level.id), method: :put, remote: true, html: {class: 'small submit-once'}) do |f|
+        = select_tag :config_file, options_for_select(level_configuration_files), include_blank: false
+        %button{type: 'submit', class: 'btn btn-primary spinner'}
+          %i.icon-cog
+          Build
     - elsif level.state == :ready
       = link_to run_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-primary spinner' do
         %i.icon-play
