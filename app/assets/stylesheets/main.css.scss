@@ -60,6 +60,14 @@ form .form_actions {
   margin-left: 168px;
 }
 
+form.small {
+  margin: 0px;
+
+  select {
+    margin: 0px;
+  }
+}
+
 /* table */
 
 table {
