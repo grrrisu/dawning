@@ -16,7 +16,7 @@ gem 'better_logging'
 gem 'newrelic_rpm'
 gem 'airbrake'
 
-gem 'Simulator', :require => 'sim', :github => 'grrrisu/Simulator'
+gem 'Simulator', :require => 'sim', :github => 'grrrisu/Simulator' #:path => '../Simulator'
 gem 'uuid'
 
 # Gems used only for assets and not required
