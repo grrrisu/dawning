@@ -41,7 +41,7 @@ describe LevelProxy do
     it "should build a level" do
       level.instance_variable_set('@state', :launched)
       connection.should_receive(:send_action).with(:build, config_file: an_instance_of(String))
-      level.build
+      level.build('default.yml')
       level.state.should == :ready
     end
 
