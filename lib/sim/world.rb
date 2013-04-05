@@ -1,4 +1,4 @@
-require_relative 'builders/world_builder'
+require_relative 'builder/world'
 
 class World < Sim::Matrix
   include Sim::Buildable
@@ -8,8 +8,8 @@ class World < Sim::Matrix
   end
 
   def build config
-    builder = WorldBuilder.new(self)
-    builder.create(config)
+    builder = Builder::World.new(self)
+    builder.create(config['builder'])
   end
 
 end
