@@ -12,6 +12,7 @@ describe "Level" do
     click_on 'create_level_button'
     fill_in 'level_name', with: 'level test'
     click_on 'Launch'
+    select "test.yml", from: 'config_file'
     click_on 'Build'
     click_on 'Run'
     click_on 'Stop'
