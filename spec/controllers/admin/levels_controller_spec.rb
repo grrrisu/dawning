@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Admin::LevelsController do
 
   before :each do
-    user = FactoryGirl.create(:admin_user)
+    user = create(:admin_user)
     controller.auto_login(user)
   end
 

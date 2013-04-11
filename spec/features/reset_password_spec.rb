@@ -3,7 +3,7 @@ require "spec_helper"
 describe "Reset password" do
 
   before :each do
-    FactoryGirl.create :user, username: 'Rocky', email: 'rocky@balboa.com'
+    create :user, username: 'Rocky', email: 'rocky@balboa.com'
   end
 
   it "through login form" do

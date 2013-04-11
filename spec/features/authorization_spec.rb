@@ -8,13 +8,13 @@ describe "Authorization" do
   end
 
   it "a guest should not have access" do
-    user = FactoryGirl.create :user
+    user = create :user
     visit edit_user_path(user)
     page.should have_content("Please login first")
   end
 
   it "a member should have access" do
-    user = FactoryGirl.create :user, password: 'secret'
+    user = create :user, password: 'secret'
     login_with(user, 'secret')
     click_link 'Account'
     page.should have_content(user.username)

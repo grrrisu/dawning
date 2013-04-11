@@ -5,7 +5,7 @@ describe Ability do
   let(:level) { LevelProxy.new(UUID.new.generate, 'test level') }
 
   describe 'role admin' do
-    subject { FactoryGirl.create :admin_user }
+    subject { create :admin_user }
     it { should have_ability_to :index, Level}
     it { should have_ability_to :create, Level}
     it { should have_ability_to :build, level }
@@ -15,7 +15,7 @@ describe Ability do
   end
 
   describe 'role member' do
-    subject { FactoryGirl.create :user }
+    subject { create :user }
     it { should_not have_ability_to :index, Level }
     it { should_not have_ability_to :create, Level }
     it { should_not have_ability_to :build, level }

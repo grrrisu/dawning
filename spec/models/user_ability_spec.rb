@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Ability do
 
-  let(:user) { FactoryGirl.create :user }
+  let(:user) { create :user }
 
   describe 'role admin' do
-    subject(:admin) { FactoryGirl.create :admin_user }
+    subject(:admin) { create :admin_user }
     it { should have_ability_to :read, user }
     it { should have_ability_to :create, User }
     it { should have_ability_to :update, user }
@@ -13,7 +13,7 @@ describe Ability do
   end
 
   describe 'role member' do
-    subject(:member) { FactoryGirl.create :user }
+    subject(:member) { create :user }
     it { should have_ability_to :read, user }
     it { should have_ability_to :update, member }
     it { should_not have_ability_to :create, User }

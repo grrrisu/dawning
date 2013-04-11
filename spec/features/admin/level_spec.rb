@@ -3,7 +3,7 @@ require "spec_helper"
 describe "Level" do
 
   before :each do
-    user = FactoryGirl.create :admin_user, password: 'secret'
+    user = create :admin_user, password: 'secret'
     login_with(user, 'secret')
   end
 
