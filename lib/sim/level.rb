@@ -4,7 +4,7 @@ require 'sim'
 
 class Level < Sim::Level
 
-  def create
+  def create(config)
     $stderr.puts '******* CREATING *********'
     true
   end
