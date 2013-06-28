@@ -3,7 +3,7 @@ require "spec_helper"
 describe "Login" do
 
   before :each do
-    user = FactoryGirl.create :user, username: 'Rocky', password: 'Balboa'
+    user = create :user, username: 'Rocky', password: 'Balboa'
     user.activate!
   end
 
