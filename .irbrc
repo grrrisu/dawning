@@ -13,4 +13,4 @@ extend Hirb::Console
 # Wirble
 require 'wirble'
 Wirble.init
-Wirble.colorize†
+Wirble.colorize
