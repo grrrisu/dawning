@@ -5,8 +5,8 @@ Dawning::Application.routes.draw do
   post '/authenticate', to: 'sessions#create', as: :authenticate
   get '/logout', to: 'sessions#destroy', as: :logout
   get '/register', to: 'users#new', as: :register
-  match "oauth/callback" => "oauths#callback"
-  match "oauth/:provider" => "oauths#oauth", as: :auth_at_provider
+  get "oauth/callback" => "oauths#callback"
+  get "oauth/:provider" => "oauths#oauth", as: :auth_at_provider
   resources :password_resets
 
   resources :users do

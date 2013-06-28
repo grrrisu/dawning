@@ -1,17 +1,17 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0'
 gem 'jquery-rails'
 gem 'haml-rails'
-gem 'simple_form'
+gem 'simple_form', :github => 'plataformatec/simple_form'
 
-gem "mongoid"
+gem "mongoid", :github => "mongoid/mongoid" # wait until ready for activerecord 4.0
 
-gem 'sorcery'
+gem 'sorcery', :github => "NoamB/sorcery" # wait until ready for rails4
 gem 'cancan'
 gem 'gravtastic'
 gem 'kaminari'
-gem 'better_logging'
+gem 'better_logging', github: 'snow/better_logging' # patch until ready for rails 4 see https://github.com/pauldowman/better_logging/issues/11
 
 gem 'newrelic_rpm'
 gem 'airbrake'
@@ -19,18 +19,14 @@ gem 'airbrake'
 gem 'Simulator', :require => 'sim', :github => 'grrrisu/Simulator' #:path => '../Simulator'
 gem 'uuid'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+gem 'sass-rails',   '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platform => :ruby
-  gem 'uglifier', '>= 1.0.3'
-  gem 'bootstrap-sass'
-  gem "font-awesome-rails"
-end
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'therubyracer', :platform => :ruby
+gem 'uglifier', '>= 1.3.0'
+gem 'bootstrap-sass'
+gem "font-awesome-rails"
 
 group :development do
   gem 'thin'
@@ -60,8 +56,8 @@ end
 
 group :test, :development do
   gem "rspec-rails"
-  gem "jasminerice"
-  gem "spork", :require => false
+  gem "jasminerice", :github => 'bradphelan/jasminerice' # wait until ready for rails4
+  gem "spork", :require => false, :github => 'sporkrb/spork' # until ready for rails4
   gem "guard-spork", :require => false
   gem "better_errors"
   gem "binding_of_caller"
