@@ -1,11 +1,19 @@
 require 'bundler'
 Bundler.setup(:default)
 require 'sim'
+require_relative 'world'
 
 class Level < Sim::Level
 
-  def create(config)
-    $stderr.puts '******* CREATING *********'
+  attr_reader :world
+
+  def create config
+    $stderr.puts '******* BEGIN CREATING *********'
+
+    $stderr.puts config
+    @world = World.build(config['world'])
+
+    $stderr.puts '******* END CREATING *********'
     true
   end
 

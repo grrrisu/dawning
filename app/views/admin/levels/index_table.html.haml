@@ -1,15 +1,13 @@
 %legend
   Levels
 - if @levels.any?
-  .row-fluid.tableau
-    .span12
-      .row-fluid.header.levels
-        .span3
-          Name
-        .span3
-          State
-        .span6
-          Actions
+  %table.table.table-bordered.table-condensed.table-striped.levels
+    %thead
+      %tr
+        %th{width: '30%'} Name
+        %th{width: '30%'} State
+        %th{widht: '40%', colspan: 3} Actions
+    %tbody
       - @levels.each do |level|
         = render 'level',  level: level
 

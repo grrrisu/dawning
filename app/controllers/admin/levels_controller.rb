@@ -19,29 +19,29 @@ class Admin::LevelsController < ApplicationController
   end
 
   def run
-    @level.start
     authorize! :run, @level
+    @level.start
     flash[:notice] = "Level #{@level.name} is running"
     render action: :level
   end
 
   def build
-    @level.build
     authorize! :build, @level
+    @level.build params[:config_file]
     flash[:notice] = "Level #{@level.name} has been built"
     render action: :level
   end
 
   def stop
-    @level.stop
     authorize! :stop, @level
+    @level.stop
     flash[:notice] = "Level #{@level.name} has been stopped"
     render action: :level
   end
 
   def destroy
-    @level.remove
     authorize! :destroy, @level
+    @level.remove
     flash[:notice] = "Level #{@level.name} has been removed"
     render action: :destroy
   end
