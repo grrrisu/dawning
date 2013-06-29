@@ -7,13 +7,6 @@ class User
   field :role, type: String
   field :notification, type: Boolean, default: true
 
-  # attr_accessible :username,
-  #                 :password,
-  #                 :password_confirmation,
-  #                 :email,
-  #                 :name,
-  #                 :authentications_attributes
-
   has_many :authentications, dependent: :delete
 
   authenticates_with_sorcery!do |config|
