@@ -8,6 +8,8 @@
     %meta{ :description => "Dawning a game of emeregence"}
     = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tag
+    = javascript_include_tag "application"
+    = yield :javascript
   %body
     .wrapper
       = render 'shared/navigation'
@@ -19,5 +21,4 @@
       .push
     = render 'shared/footer'
 
-  = javascript_include_tag "application"
-  = yield :javascript
+

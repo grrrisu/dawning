@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'haml-rails'
 gem 'simple_form', :github => 'plataformatec/simple_form'
 
