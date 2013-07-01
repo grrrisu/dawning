@@ -13,7 +13,7 @@ gem 'sorcery', :github => "NoamB/sorcery" # wait until ready for rails4
 gem 'cancan'
 gem 'gravtastic'
 gem 'kaminari'
-gem 'better_logging', github: 'snow/better_logging' # patch until ready for rails 4 see https://github.com/pauldowman/better_logging/issues/11
+gem 'pretty_formatter'
 
 gem 'newrelic_rpm'
 gem 'airbrake'

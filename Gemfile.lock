@@ -40,12 +40,6 @@ GIT
       activemodel (>= 4.0.0, < 4.1)
 
 GIT
-  remote: git://github.com/snow/better_logging.git
-  revision: ac2a741fe1747e9d833e09656fcfb250c0777575
-  specs:
-    better_logging (1.0.3)
-
-GIT
   remote: git://github.com/sporkrb/spork.git
   revision: 8ac98544869c3b4c5cf1f664b2d9281bb75c7e3e
   specs:
@@ -250,6 +244,8 @@ GEM
       rack (~> 1.2)
     origin (1.1.0)
     polyglot (0.3.3)
+    pretty_formatter (0.0.1)
+      activesupport (>= 3.2)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -373,7 +369,6 @@ DEPENDENCIES
   Simulator!
   airbrake
   better_errors
-  better_logging!
   binding_of_caller
   bootstrap-sass
   brakeman
@@ -403,6 +398,7 @@ DEPENDENCIES
   launchy
   mongoid!
   newrelic_rpm
+  pretty_formatter
   quiet_assets
   rack-mini-profiler
   rails (= 4.0.0)
