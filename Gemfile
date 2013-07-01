@@ -32,7 +32,6 @@ gem "font-awesome-rails"
 
 group :development do
   gem 'thin'
-  gem 'quiet_assets'
   gem 'debugger'
 
   gem 'rb-readline', :require => false
