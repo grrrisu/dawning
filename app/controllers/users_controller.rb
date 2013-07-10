@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new params[:user]
+    @user = User.new user_params
     if @user.save
       redirect_to root_path, :notice => "Successfully registered as #{@user.username}. Check your email to activate your account."
     else
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find params[:id]
     authorize! :update, @user
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params)
       redirect_to user_path(@user), :notice => "User has been updated"
     else
       render :edit, :error => "Updating user failed"
@@ -57,5 +57,15 @@ class UsersController < ApplicationController
       not_authenticated
     end
   end
+
+  private
+
+    def user_params
+      if current_user && current_user.admin?
+        params.require(:user).permit! # all
+      else
+        params.require(:user).permit(:username, :password, :password_confirmation, :email, :name, :authentications_attributes)
+      end
+    end
 
 end

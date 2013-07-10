@@ -7,13 +7,6 @@ class User
   field :role, type: String
   field :notification, type: Boolean, default: true
 
-  attr_accessible :username, 
-                  :password, 
-                  :password_confirmation, 
-                  :email, 
-                  :name, 
-                  :authentications_attributes
-
   has_many :authentications, dependent: :delete
 
   authenticates_with_sorcery!do |config|
@@ -28,11 +21,11 @@ class User
   before_create :set_default_role
 
   has_gravatar default: :retro
-  
+
   scope :active, where(activation_state: 'active').excludes(username: 'admin')
-  
+
   scope :to_be_notified, active.excludes(notification: false)
-  
+
   def notification_needs_email
     unless new_record?
       errors.add :email, "is required to receive notifications" if email.blank? && notification
@@ -42,7 +35,7 @@ class User
   def password_present?
     password.present?
   end
-  
+
   def email_present?
     email.present?
   end

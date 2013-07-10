@@ -21,7 +21,7 @@ describe UsersController do
   end
 
   it "should rerender register form" do
-    post :create
+    post :create, :user => {:username => 'foo'}
     response.should be_success
     response.should render_template('new')
   end
