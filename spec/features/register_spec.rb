@@ -6,7 +6,7 @@ describe "Register" do
     visit '/'
     click_link 'register'
 
-    page.should have_content('Register')
+    expect(page).to have_content('Register')
     within('#new_user') do
       fill_in 'user_username', with: 'Rocky'
       fill_in 'user_password', with: 'Balboa'
@@ -16,16 +16,16 @@ describe "Register" do
     end
 
     within('.alert-success') do
-      page.should have_content('Successfully registered as Rocky')
+      expect(page).to have_content('Successfully registered as Rocky')
     end
 
-    ActionMailer::Base.deliveries.should have(1).item
+    expect(ActionMailer::Base.deliveries).to have(1).item
     link = ActionMailer::Base.deliveries.first.body.match /http:\/\/.*?(\/.*?)$/
     visit link[1]
     within('.alert-success') do
-      page.should have_content('Welcome Rocky! Your account has been activated.')
+      expect(page).to have_content('Welcome Rocky! Your account has been activated.')
     end
-    page.should have_content('Logout')
+    expect(page).to have_content('Logout')
 
   end
 

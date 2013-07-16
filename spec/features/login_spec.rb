@@ -11,7 +11,7 @@ describe "Login" do
     visit '/'
     click_link 'login'
 
-    page.should have_content('Login')
+    expect(page).to have_content('Login')
     within('#new_session') do
       fill_in 'Username', with: 'Rocky'
       fill_in 'Password', with: 'Balboa'
@@ -20,12 +20,12 @@ describe "Login" do
     end
 
     within('.alert-success') do
-      page.should have_content('Welcome back Rocky')
+      expect(page).to have_content('Welcome back Rocky')
     end
 
     click_link 'logout'
     within('.alert-success') do
-      page.should have_content('Goodbye Rocky')
+      expect(page).to have_content('Goodbye Rocky')
     end
   end
 

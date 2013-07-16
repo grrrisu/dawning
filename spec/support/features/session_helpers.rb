@@ -5,7 +5,7 @@ module Features
       visit '/'
       click_link 'login'
 
-      page.should have_content('Login')
+      expect(page).to have_content('Login')
       within('#new_session') do
         fill_in 'session_username', with: user.username
         fill_in 'session_password', with: password

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe LevelProxy do
 
-  let (:connection) { mock(Sim::Popen::ParentConnection) }
+  let (:connection) { double(Sim::Popen::ParentConnection) }
   let (:level) { LevelProxy.new('123', 'test') }
 
   describe 'without connection' do
@@ -20,9 +20,9 @@ describe LevelProxy do
 
     it "should launch level" do
       level.launch
-      level.name.should == 'test'
-      level.id.should == '123'
-      level.state.should == :launched
+      expect(level.name).to eq('test')
+      expect(level.id).to eq('123')
+      expect(level.state).to eq(:launched)
     end
 
   end
@@ -35,50 +35,50 @@ describe LevelProxy do
     end
 
     it "should find level" do
-      LevelProxy.find(level.id).should == level
+      expect(LevelProxy.find(level.id)).to eq(level)
     end
 
     it "should build a level" do
       level.instance_variable_set('@state', :launched)
       connection.should_receive(:send_action).with(:build, config_file: an_instance_of(String))
       level.build('default.yml')
-      level.state.should == :ready
+      expect(level.state).to eq(:ready)
     end
 
     it "should not build level" do
       [:ready, :running, :stopped].each do |state|
         level.instance_variable_set('@state', state)
-        connection.should_receive(:send_action).never
+        expect(connection).to receive(:send_action).never
         expect { level.build }.to raise_error(ArgumentError)
       end
     end
 
     it "should start a level" do
       level.instance_variable_set('@state', :ready)
-      connection.should_receive(:send_action).with(:start)
+      expect(connection).to receive(:send_action).with(:start)
       level.start
-      level.state.should == :running
+      expect(level.state).to eq(:running)
     end
 
     it "should not start level" do
       [:launched, :running, :stopped].each do |state|
         level.instance_variable_set('@state', state)
-        connection.should_receive(:send_action).never
+        expect(connection).to receive(:send_action).never
         expect { level.start }.to raise_error(ArgumentError)
       end
     end
 
     it "should stop a level" do
       level.instance_variable_set('@state', :running)
-      connection.should_receive(:send_action).with(:stop)
+      expect(connection).to receive(:send_action).with(:stop)
       level.stop
-      level.state.should == :stopped
+      expect(level.state).to eq(:stopped)
     end
 
     it "should not stop level" do
       [:launched, :ready, :stopped].each do |state|
         level.instance_variable_set('@state', state)
-        connection.should_receive(:send_action).never
+        expect(connection).to receive(:send_action).never
         expect { level.stop }.to raise_error(ArgumentError)
       end
     end
@@ -88,7 +88,7 @@ describe LevelProxy do
       expect {
         level.remove
       }.to change{LevelProxy.levels.size}.by(-1)
-      level.state.should == :destroyed
+      expect(level.state).to eq(:destroyed)
     end
 
     it "should not remove level" do
