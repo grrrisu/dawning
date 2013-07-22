@@ -14,4 +14,4 @@ https://github.com/grrrisu/dawning
 
 == Credits
 
-* Icons from Glyphicons[http://glyphicons.com/] Free, licensed under CC BY 3.0[http://creativecommons.org/licenses/by/3.0/].
+* Font Awesome by Dave Gandy - http://fontawesome.io[http://fontawesome.io]
