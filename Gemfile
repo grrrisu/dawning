@@ -9,7 +9,7 @@ gem 'simple_form', :github => 'plataformatec/simple_form'
 
 gem "mongoid", :github => "mongoid/mongoid" # wait until ready for activerecord 4.0
 
-gem 'sorcery', :github => "NoamB/sorcery" # wait until ready for rails4
+gem 'sorcery'
 gem 'cancan'
 gem 'gravtastic'
 gem 'kaminari'
