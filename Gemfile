@@ -53,6 +53,7 @@ group :development do
   gem 'brakeman', :require => false
   gem 'rack-mini-profiler', :require => false # set to true to enable mini profiler
   gem 'bullet'
+  gem 'rails_best_practices'
 end
 
 group :test, :development do
