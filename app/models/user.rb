@@ -14,7 +14,7 @@ class User
   end
 
   validates :username, presence: true, uniqueness: true
-  validates :email, presence: {on: :create}, email: {if: :email_present?}
+  validates :email, presence: {on: :create}, email: true
   validates :password, presence: {on: :create}, confirmation: true, length: {minimum: 4, if: :password_present?}
   validate :notification_needs_email
 
@@ -34,10 +34,6 @@ class User
 
   def password_present?
     password.present?
-  end
-
-  def email_present?
-    email.present?
   end
 
   def admin?
