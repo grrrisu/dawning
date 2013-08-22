@@ -54,6 +54,7 @@ group :development do
   gem 'rack-mini-profiler', :require => false # set to true to enable mini profiler
   gem 'bullet'
   gem 'rails_best_practices'
+  gem 'smusher', :require => false
 end
 
 group :test, :development do
