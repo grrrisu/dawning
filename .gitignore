@@ -6,6 +6,7 @@
 
 # Ignore bundler config
 /brakeman.html
+/rails_best_practices_output.html
 /.bundle
 /config/mongoid.yml
 /config/mongoid_production.yml
