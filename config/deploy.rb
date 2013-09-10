@@ -37,7 +37,7 @@ set :keep_releases, 5
 after 'deploy:setup', 'deploy:setup_shared_dirs'
 before 'deploy:assets:precompile', 'deploy:symlink_configs'
 #after "deploy:create_symlink",  "deploy:migrate"
-#before 'deploy:migrate', 'deploy:create_db'
+#after 'deploy:symlink_configs', 'deploy:create_db'
 after "deploy", "deploy:cleanup"
 
 namespace :deploy do
