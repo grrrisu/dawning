@@ -15,7 +15,7 @@ gem 'gravtastic'
 gem 'kaminari'
 gem 'pretty_formatter'
 
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', :require => false
 gem 'airbrake'
 
 gem 'Simulator', :require => 'sim', :github => 'grrrisu/Simulator' #:path => '../Simulator'
