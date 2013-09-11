@@ -112,9 +112,10 @@ quiet false
 #
 # This can be called multiple times to add hooks.
 #
-# on_worker_boot do
-#   puts 'On worker boot...'
-# end
+on_worker_boot do
+  require 'newrelic_rpm'
+  NewRelic::Agent.manual_start
+end
 
 # === Puma control rack application ===
 
