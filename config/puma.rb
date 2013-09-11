@@ -60,6 +60,7 @@ stdout_redirect "#{shared_path}/log/stdout", "#{shared_path}/log/stderr", true
 # The default is “false”.
 #
 # quiet
+quiet false
 
 # Configure “min” to be the minimum number of threads to use to answer
 # requests and “max” the maximum.
