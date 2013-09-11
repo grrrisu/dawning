@@ -36,9 +36,18 @@ set :keep_releases, 5
 
 after 'deploy:setup', 'deploy:setup_shared_dirs'
 before 'deploy:assets:precompile', 'deploy:symlink_configs'
+before 'deploy:symlink_configs', 'upload_configs'
 #after "deploy:create_symlink",  "deploy:migrate"
 #after 'deploy:symlink_configs', 'deploy:create_db'
 after "deploy", "deploy:cleanup"
+
+task :upload_configs do
+  {'mongoid_production.yml' => 'mongoid.yml',
+   'app_config_production.yml' => 'app_config.yml',
+   'newrelic.yml' => 'newrelic.yml'}.each do |local_file, remote_file|
+    upload File.expand_path("../#{local_file}", __FILE__), "#{shared_path}/config/#{remote_file}", :via => :scp
+  end
+end
 
 # puma
 require 'puma/capistrano'
