@@ -8,7 +8,7 @@ require 'bundler/capistrano'
 set :bundle_without, %w(development test)
 
 # setup multistage
-set :stages, %w(production)
+set :stages, %w(production helium)
 set :default_stage, "production"
 require 'capistrano/ext/multistage'
 
@@ -18,7 +18,7 @@ require 'airbrake/capistrano'
 
 # main details
 set :application, "dawning"
-set :number_of_workers, 1
+#set :number_of_workers, 1
 
 # deployment details
 default_run_options[:pty] = true
@@ -40,18 +40,21 @@ before 'deploy:assets:precompile', 'deploy:symlink_configs'
 #after 'deploy:symlink_configs', 'deploy:create_db'
 after "deploy", "deploy:cleanup"
 
+# puma
+require 'puma/capistrano'
+
 namespace :deploy do
-  task :start do
-    top.unicorn.start
-  end
+  # task :start do
+  #   top.puma.start
+  # end
 
-  task :stop do
-    top.unicorn.stop
-  end
+  # task :stop do
+  #   top.puma.stop
+  # end
 
-  task :restart do
-    unicorn.restart
-  end
+  # task :restart do
+  #   top.puma.restart
+  # end
 
   desc "setup additional shared directories "
   task :setup_shared_dirs do
@@ -71,29 +74,5 @@ namespace :deploy do
     %w{mongoid.yml app_config.yml newrelic.yml}.each do |yml_file|
       run "ln -s #{shared_path}/config/#{yml_file} #{release_path}/config/#{yml_file}"
     end
-  end
-end
-
-namespace :unicorn do
-  set :unicorn_pid do
-    "#{shared_path}/pids/unicorn.pid"
-  end
-
-  # starts unicorn on deploy:cold in release path as current path doesn't yet exist
-  desc "start unicorn"
-  task :start, :roles => :app do
-    run "if [[ -d #{current_path} ]]; then cd #{current_path} && bundle exec unicorn_rails --daemonize --config-file #{current_path}/config/#{unicorn_config_file} --env #{rails_env}; else cd #{release_path} && bundle exec unicorn_rails --daemonize --config-file #{release_path}/config/#{unicorn_config_file} --env #{rails_env}; fi"
-  end
-
-  desc "stop unicorn"
-  task :stop, :roles => :app do
-    puts "Gracefully terminating unicorn master..."
-    run "#{try_sudo} kill -s QUIT `cat #{unicorn_pid}`"
-  end
-
-  desc "restart unicorn"
-  task :restart, :roles => :app do
-    puts "Gracefully restarting master and workers without service interruption..."
-    run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}`"
   end
 end
