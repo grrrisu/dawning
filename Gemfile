@@ -32,7 +32,7 @@ gem "font-awesome-rails"
 
 group :development do
   gem 'thin'
-  gem 'debugger'
+  gem 'pry-rails'
 
   gem 'rb-readline', :require => false
   gem 'guard', :require => false

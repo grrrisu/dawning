@@ -127,16 +127,9 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     colored (1.2)
-    columnize (0.3.6)
     daemons (1.1.9)
     database_cleaner (1.0.1)
     debug_inspector (0.0.2)
-    debugger (1.6.0)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.1)
-    debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     eventmachine (1.0.3)
@@ -245,6 +238,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
     puma (2.3.2)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
@@ -389,7 +384,6 @@ DEPENDENCIES
   capybara-webkit (~> 0.14.2)
   coffee-rails (~> 4.0.0)
   database_cleaner
-  debugger
   factory_girl_rails (~> 4.0)
   font-awesome-rails
   gravtastic
@@ -408,6 +402,7 @@ DEPENDENCIES
   mongoid!
   newrelic_rpm
   pretty_formatter
+  pry-rails
   puma
   rack-mini-profiler
   rails (= 4.0.0)
