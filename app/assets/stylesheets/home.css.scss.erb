@@ -1,6 +1,6 @@
 /* Visual */
 .visual {
-  background-image: url("/assets/dawning2b.jpg");
+  background-image: url(<%=asset_path "dawning2b.jpg"%>);
   background-position: 30% -30px;
   background-repeat: no-repeat;
   background-color: #101116;
@@ -125,7 +125,7 @@
 /* Footer */
 
 .footer {
-  background-image: url("/assets/footer_pattern.gif");
+  background-image: url(<%=asset_path "footer_pattern.gif"%>);
   @include box-shadow(0 1px 5px rgba(0,0,0,.75));
   padding-top: 30px;
   font-size: 16px;

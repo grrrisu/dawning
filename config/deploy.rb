@@ -53,17 +53,6 @@ end
 require 'puma/capistrano'
 
 namespace :deploy do
-  # task :start do
-  #   top.puma.start
-  # end
-
-  # task :stop do
-  #   top.puma.stop
-  # end
-
-  # task :restart do
-  #   top.puma.restart
-  # end
 
   desc "setup additional shared directories "
   task :setup_shared_dirs do
