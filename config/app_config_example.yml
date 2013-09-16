@@ -11,3 +11,4 @@ mail:
   password: fixme
   port: fixme
   authentication: fixme
+  enable_starttls_auto: true

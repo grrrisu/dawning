@@ -4,5 +4,5 @@
 }
 
 @mixin background-pattern() {
-  background-image: url(<%=asset_path "light_toast.png"%>)
+  background-image: url(asset-path("light_toast.png", image));
 }
