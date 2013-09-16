@@ -1,8 +1,7 @@
-server "xenon", :app, :web, :db, :primary => true
+server "neon", :app, :web, :db, :primary => true
 set :branch,  "master"
 set :rails_env, "production"
 
-set :deploy_to,   "/m42/sites/dawning"
+set :deploy_to,   "/srv/sites/dawning.zero-x.net"
 
-set :unicorn_pid_file,     "#{shared_path}/pids/unicorn.pid"
-set :unicorn_config_file,  "unicorn.rb"
+set :puma_config_file, "puma.rb"
