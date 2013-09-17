@@ -15,9 +15,6 @@ gem 'gravtastic'
 gem 'kaminari'
 gem 'pretty_formatter'
 
-gem 'newrelic_rpm', :require => false
-gem 'airbrake'
-
 gem 'Simulator', :require => 'sim', :github => 'grrrisu/Simulator' #:path => '../Simulator'
 gem 'uuid'
 
@@ -74,6 +71,8 @@ group :test do
   gem 'launchy'
 end
 
-group :production do
+group :staging, :production do
   gem 'puma'
+  gem 'newrelic_rpm'
+  gem 'airbrake'
 end
