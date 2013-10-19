@@ -2,7 +2,7 @@
 application = "dawning"
 
 # environment specific stuff
-case ENV["RACK_ENV"]
+case ENV["RAILS_ENV"]
 when "production"
   worker_processes 1
 else
