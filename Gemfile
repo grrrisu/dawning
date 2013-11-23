@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.0'
+gem 'rails', '~> 4.0.1'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'haml-rails'
-gem 'simple_form', :github => 'plataformatec/simple_form'
+gem 'simple_form', '~> 3.0.0'
 
 gem "mongoid", :github => "mongoid/mongoid" # wait until ready for activerecord 4.0
 
@@ -21,14 +21,14 @@ gem 'airbrake'
 gem 'Simulator', :require => 'sim', :github => 'grrrisu/Simulator' #:path => '../Simulator'
 gem 'uuid'
 
-gem 'sass-rails',   '~> 4.0.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails',   '~> 4.0.1'
+gem 'coffee-rails', '~> 4.0.1'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', :platform => :ruby
 gem 'uglifier', '>= 1.3.0'
-gem 'bootstrap-sass'
-gem "font-awesome-rails"
+gem 'bootstrap-sass', "~> 2.3.2.2"
+gem "font-awesome-rails", "~> 3.2.1.3"
 
 group :development do
   gem 'thin'
