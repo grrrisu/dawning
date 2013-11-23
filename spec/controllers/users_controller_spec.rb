@@ -21,7 +21,7 @@ describe UsersController do
   end
 
   it "should rerender register form" do
-    post :create, :user => {:username => 'foo'}
+    post :create, :user => {username: 'foo'}
     expect(response).to be_success
     expect(response).to render_template('new')
   end
@@ -33,7 +33,7 @@ describe UsersController do
   end
 
   it "should not accept params without password" do
-    post :create, user: {:username=>"Alibaba", :email=>"Alibaba@example.com"}
+    post :create, user: {username: "Alibaba", email: "Alibaba@example.com"}
     expect(response).to be_success
     expect(response).to render_template('new')
   end
@@ -41,7 +41,7 @@ describe UsersController do
   it "should accept params without password" do
     user = create(:user)
     controller.auto_login(user)
-    put :update, id: user.id, user: {:username=>"Alibaba", :email=>"Alibaba@example.com"}
+    put :update, id: user.id, user: {username: "Alibaba", email: "Alibaba@example.com"}
     expect(response).to redirect_to(user_path(user))
   end
 

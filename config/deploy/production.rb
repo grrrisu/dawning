@@ -1,4 +1,4 @@
-server "neon", :app, :web, :db, :primary => true
+server "neon", :app, :web, :db, primary: true
 set :branch,  "master"
 set :rails_env, "production"
 

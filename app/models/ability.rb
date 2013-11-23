@@ -9,7 +9,7 @@ class Ability
     elsif !user.new_record? # logged in user
       # user
       can :read, User
-      can :update, User, :id => user.id
+      can :update, User, id: user.id
     else # guest
       # user
       can [:read, :create], User
