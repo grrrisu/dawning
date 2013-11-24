@@ -24,7 +24,6 @@
             %ul.dropdown-menu
               = navigation_item 'Levels', admin_levels_path
 
-    %ul.nav.pull-right
+    .navbar-text.navbar-right
       -if current_user
-        %li
-          %a{:href => logout_path, :id => 'logout'} Logout
+        = link_to 'Logout', logout_path, id: 'logout', class: 'navbar-link'
