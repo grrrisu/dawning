@@ -76,15 +76,15 @@ abbr[title] {
 /* buttons */
 
 .btn-large {
-  @include border-radius(12px);
+  //@include border-radius(12px);
 }
 
 .btn {
-  @include border-radius(8px);
+  //@include border-radius(8px);
 }
 
 .btn-grey {
-  @include buttonBackground(#fff, #999);
+  //@include buttonBackground(#fff, #999);
   color: #333;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
 }
