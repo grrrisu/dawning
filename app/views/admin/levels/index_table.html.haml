@@ -11,8 +11,8 @@
       - @levels.each do |level|
         = render 'level',  level: level
 
-.row-fluid
-  .span12
+.row
+  .col-md-12
     = simple_form_for :level, html: { id: 'level_form', style: 'display: none', class: 'submit-once' } do |f|
       = f.input :name
       %button{type: 'submit', class: 'btn btn-primary'}

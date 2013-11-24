@@ -9,7 +9,7 @@ body {
   }
 }
 
-.container-fluid {
+.container {
   @media (max-width: 767px){
     padding: 16px;
   }
@@ -81,7 +81,7 @@ form.small {
     font-weight: bold;
   }
 
-  .row, .row-fluid {
+  .row {
     padding: 5px 0px 5px 0px;
     border-bottom: 1px solid #dddddd;
 
@@ -90,11 +90,11 @@ form.small {
     }
   }
 
-  .row:first-child, .row-fluid:first-child {
+  .row:first-child {
     text-align: center;
   }
 
-  .row:last-child, .row-fluid:last-child {
+  .row:last-child {
     border-bottom: none;
   }
 }

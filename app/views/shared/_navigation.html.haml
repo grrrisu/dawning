@@ -1,7 +1,7 @@
 .navbar.navbar-static-top.navbar-inverse
   .navbar-inner
     .container
-      .nav-collapse.collapse
+      .navbar-collapse.collapse
         %ul.nav
           = navigation_item 'Home', root_path
           = navigation_item 'Documentation', root_path
@@ -24,7 +24,7 @@
             %li
               %a{:href => logout_path, :id => 'logout'} Logout
 
-      %a.btn.btn-navbar{'data-toggle' => 'collapse', 'data-target' => '.nav-collapse'}
+      %a.btn.navbar-btn{'data-toggle' => 'collapse', 'data-target' => '.nav-collapse'}
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar

@@ -1,12 +1,12 @@
-.row-fluid{id: "level_#{level.id}"}
-  .span3
+.row{id: "level_#{level.id}"}
+  .col-md-3
     .text
       %i.icon-globe.icon-large
       = level.name
-  .span3
+  .col-md-3
     .text
       = level.state
-  .span6
+  .col-md-6
     - unless level.state == :launched
       = link_to '#', class: 'btn btn-success spinner' do
         %i.icon-road

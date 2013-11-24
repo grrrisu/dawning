@@ -89,23 +89,6 @@ abbr[title] {
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
 }
 
-.hero-unit {
-
-  @include box-shadow(inset 1px 1px 3px #aaa);
-
-  h1 {
-    font-size: 40px;
-    text-shadow: 2px 2px 1px #eee;
-    line-height: 76px;
-  }
-
-  p {
-    font-family: $secondFontFamily;
-    text-shadow: 0px 1px 0px #fff;
-    line-height: 15px;
-  }
-}
-
 /* icons */
 
 [class^="icon-"], [class*=" icon-"] {

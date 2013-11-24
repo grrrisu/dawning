@@ -10,7 +10,6 @@
   .headline
     %h3 Big things have small beginnings!
 
-/.hero-unit
 .introduction
   %h1 Welcome to Dawning!
   %p
@@ -18,7 +17,7 @@
   %p
     - unless current_user
       = link_to 'Register', register_path, class: 'btn btn-primary btn-large btn-margin-top'
-    %a.btn.btn-large.btn-margin-top Documentation
+    %a.btn.btn-default.btn-large.btn-margin-top Documentation
 
 - content_for(:second_section) do
   = render 'home/steps'

@@ -4,17 +4,17 @@
     = link_to(edit_user_path(@user), class: 'pull-right') do
       %li.icon-pencil
       Edit
-.row-fluid.detail
-  .span2
+.row.detail
+  .col-md-2
     = gravatar_for @user, 120
-  .span5
-    .row-fluid.property
-      .span4 Name
-      .span8= @user.name
+  .col-md-5
+    .row.property
+      .col-md-4 Name
+      .col-md-8= @user.name
     - if @user == current_user
-      .row-fluid.property
-        .span4
+      .row.property
+        .col-md-4
           Email
           %span.small
             (not public)
-        .span8= @user.email
+        .col-md-8= @user.email

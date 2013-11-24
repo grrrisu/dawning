@@ -1,7 +1,7 @@
 .footer
-  .container-fluid
-    .row-fluid
-      .span8
+  .container
+    .row
+      .col-md-8
         %ul.thumbnails
           %li.social
             = link_to('https://github.com/grrrisu/dawning', :target => '_blank') do
@@ -20,7 +20,7 @@
               = image_tag('rss.png', :size => '40x40', :class => 'icon', :target => '_blank')
               RSS Feed
 
-      .span4{:style => 'text-align: right'}
+      .col-md-4{:style => 'text-align: right'}
         = link_to "About", "#"
         %br
         %br

@@ -1,20 +1,20 @@
 %legend
   Levels
 - if @levels.any?
-  .row-fluid.tableau
-    .span12
-      .row-fluid.header.levels
-        .span3
+  .row.tableau
+    .col-md-12
+      .row.header.levels
+        .col-md-3
           Name
-        .span3
+        .col-md-3
           State
-        .span6
+        .col-md-6
           Actions
       - @levels.each do |level|
         = render 'level',  level: level
 
-.row-fluid
-  .span12
+.row
+  .col-md-12
     = simple_form_for :level, html: { id: 'level_form', style: 'display: none', class: 'submit-once' } do |f|
       = f.input :name
       %button{type: 'submit', class: 'btn btn-primary'}
