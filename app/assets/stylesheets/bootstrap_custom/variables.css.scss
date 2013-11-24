@@ -1,0 +1,36 @@
+/* define global variables before importing bootstrap (see bootstrap/_variables) */
+
+// Color system
+// -------------------------
+$bright-brand-primary:               #9AB2BE;
+$brand-primary:                     darken($bright-brand-primary, 20%) ;
+
+// Scaffolding
+// -------------------------
+$body-bg:                           #eee;
+
+// Typography
+// -------------------------
+$font-family-sans-serif:            $baseFontFamily;
+$font-size-base:                    16px !default;
+
+// Buttons
+// -------------------------
+$border-radius-base:                8px;
+$border-radius-large:               12px;
+$border-radius-small:               6px;
+
+// Navbar
+// -------------------------
+$navbar-inverse-link-color:         $bright-brand-primary !default;
+$navbar-inverse-link-hover-bg:      #000000;
+
+// Tables
+// -------------------------
+$table-bg:                          #f1f1f1 !default; // overall background-color
+$table-bg-accent:                   #f5f5f5 !default; // for striping
+$table-bg-hover:                    #f9f9f9 !default; // for hover
+$table-border-color:                #ddd !default; // table and cell border
+
+// Grid
+$grid-gutter-width:                 40px !default;

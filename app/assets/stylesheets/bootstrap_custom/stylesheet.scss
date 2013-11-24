@@ -73,22 +73,6 @@ abbr[title] {
   font-size: 14px;
 }
 
-/* buttons */
-
-.btn-large {
-  //@include border-radius(12px);
-}
-
-.btn {
-  //@include border-radius(8px);
-}
-
-.btn-grey {
-  //@include buttonBackground(#fff, #999);
-  color: #333;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-}
-
 /* icons */
 
 [class^="icon-"], [class*=" icon-"] {
