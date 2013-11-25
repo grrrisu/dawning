@@ -18,10 +18,10 @@
     = simple_form_for :level, html: { id: 'level_form', style: 'display: none', class: 'submit-once' } do |f|
       = f.input :name
       %button{type: 'submit', class: 'btn btn-primary'}
-        %i.icon-rocket
+        %i.fa.fa-rocket
         Launch
       = link_to 'Cancel', '#', class: 'cancel', id: 'cancel_launch_level'
     = link_to '#', class: 'btn btn-large btn-primary', id: 'create_level_button' do
-      %i.icon-globe
+      %i.fa.fa-globe
       Create Level
 

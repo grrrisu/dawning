@@ -5,7 +5,7 @@
         .alert{:class => (name == :notice ? 'alert-success' : 'alert-error')}
           %a.close{'data-dismiss' => 'alert'}×
           - if name == :notice
-            %i.icon-info-sign
+            %i.icon-info-circle
           - else
-            %i.icon-exclamation-sign
+            %i.icon-exclamation-circle
           = message

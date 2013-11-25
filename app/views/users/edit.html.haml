@@ -3,7 +3,7 @@
     %legend
       = @user.username
       = link_to user_path(@user), class: 'pull-right' do
-        %li.icon-search
+        %li.fa.fa-caret-square-o-right
         Show
     = f.input :name
     = f.input :email, hint: 'not public visible'
