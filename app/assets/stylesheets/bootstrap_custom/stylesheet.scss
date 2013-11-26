@@ -2,20 +2,9 @@
 
 .navbar {
   @include box-shadow(0 1px 5px rgba(0,0,0,.75));
+  @include gradient-vertical(#444, #111);
   margin: 0px;
   font-size: 18px;
-
-  .navbar-inner{
-    @include gradient-vertical(#444, #111);
-    padding-left: 25px;
-    padding-right: 25px;
-
-    .container {
-      margin-right: 0px;
-      margin-left: 0px;
-      width: auto;
-    }
-  }
 }
 
 /* pagination */
