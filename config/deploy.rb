@@ -1,6 +1,6 @@
 # setup rvm
 require 'rvm/capistrano'
-set :rvm_ruby_string, '1.9.3'
+set :rvm_ruby_string, '2.0.0'
 set :rvm_type, :system
 
 # setup bundler
@@ -45,7 +45,7 @@ task :upload_configs do
   {'mongoid_production.yml' => 'mongoid.yml',
    'app_config_production.yml' => 'app_config.yml',
    'newrelic.yml' => 'newrelic.yml'}.each do |local_file, remote_file|
-    upload File.expand_path("../#{local_file}", __FILE__), "#{shared_path}/config/#{remote_file}", :via => :scp
+    upload File.expand_path("../#{local_file}", __FILE__), "#{shared_path}/config/#{remote_file}", via: :scp
   end
 end
 
@@ -60,7 +60,7 @@ namespace :deploy do
     run "#{try_sudo} mkdir -p #{dirs.join(' ')} && #{try_sudo} chmod g+w #{dirs.join(' ')}"
   end
 
-  task :create_db, :roles => :db, :only => { :primary => true } do
+  task :create_db, roles: :db, :only => { primary: true } do
     rake = fetch(:rake, "rake")
     rails_env = fetch(:rails_env, "production")
     migrate_env = fetch(:migrate_env, "")

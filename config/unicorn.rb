@@ -2,7 +2,7 @@
 application = "dawning"
 
 # environment specific stuff
-case ENV["RACK_ENV"]
+case ENV["RAILS_ENV"]
 when "production"
   worker_processes 1
 else
@@ -19,7 +19,7 @@ working_directory base_dir
 timeout 60
 
 # multiple listen directives are allowed
-listen "#{shared_path}/unicorn.sock", :backlog => 64
+listen "#{shared_path}/unicorn.sock", backlog: 64
 
 # location of pid file
 pid "#{shared_path}/pids/unicorn.pid"
