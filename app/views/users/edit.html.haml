@@ -11,7 +11,7 @@
     = f.input :password_confirmation, label: 'Repeat pasword'
     = f.input :notification, label: 'Email Notification', as: :boolean, hint: 'Stay informed about your agents and the games'
     .form_actions
-      = f.submit 'Update', class: 'btn btn-primary btn-large btn-wide'
+      = f.submit 'Update', class: 'btn btn-primary btn-lg btn-wide'
 
     .gravatar
       = gravatar_for @user, 120
