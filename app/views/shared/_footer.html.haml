@@ -1,28 +1,27 @@
 .footer
-  .container
-    .row
-      .col-sm-8
-        %ul.list-unstyled
-          %li.social
-            = link_to('https://github.com/grrrisu/dawning', :target => '_blank') do
-              = image_tag('github.png', :size => '40x40', :class => 'icon')
-              Github
-          %li.social
-            = link_to('http://lost-in-code.blogspot.com', :target => '_blank') do
-              = image_tag('blog.png', :size => '40x40', :class => 'icon', :target => '_blank')
-              Blog
-          %li.social
-            = link_to('http://twitter.com/#!/grrrisu', :target => '_blank') do
-              = image_tag('twitter.png', :size => '40x40', :class => 'icon', :target => '_blank')
-              Twitter
-          %li.social
-            = link_to('#', :target => '_blank') do
-              = image_tag('rss.png', :size => '40x40', :class => 'icon', :target => '_blank')
-              RSS Feed
-
-      .col-sm-4{:style => 'text-align: right'}
-        = link_to "About", "#"
-        %br
-        %br
-        Copyright &copy; 2012 by
-        = link_to "M42", "http://www.m42.ch", :target => "_blank"
+  .row
+    .col-sm-8
+      .row
+        .col-md-6.social
+          = link_to('https://github.com/grrrisu/dawning', :target => '_blank') do
+            = image_tag('github.png', :size => '40x40', :class => 'icon')
+            Github
+        .col-md-6.social
+          = link_to('http://lost-in-code.blogspot.com', :target => '_blank') do
+            = image_tag('blog.png', :size => '40x40', :class => 'icon', :target => '_blank')
+            Blog
+      .row
+        .col-md-6.social
+          = link_to('http://twitter.com/#!/grrrisu', :target => '_blank') do
+            = image_tag('twitter.png', :size => '40x40', :class => 'icon', :target => '_blank')
+            Twitter
+        .col-md-6.social
+          = link_to('#', :target => '_blank') do
+            = image_tag('rss.png', :size => '40x40', :class => 'icon', :target => '_blank')
+            RSS Feed
+    .col-sm-4{:style => 'text-align: right'}
+      = link_to "About", "#"
+      %br
+      %br
+      Copyright &copy; 2012 by
+      = link_to "M42", "http://www.m42.ch", :target => "_blank"
