@@ -8,6 +8,9 @@ body {
     padding-right: 0px;
   }
 }
+h1, h2, h3 {
+  font-weight: bold;
+}
 
 .container {
   @media (max-width: 767px){
