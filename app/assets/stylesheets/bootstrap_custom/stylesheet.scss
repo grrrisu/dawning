@@ -81,3 +81,10 @@ abbr[title] {
 .btn-lg {
   padding: 6px 20px;
 }
+
+/* table */
+.table-bordered {
+  & > thead > tr > th, .table-bordered > thead > tr > td {
+    border-bottom-width: 1px;
+  }
+}
