@@ -15,9 +15,6 @@ gem 'gravtastic'
 gem 'kaminari'
 gem 'pretty_formatter'
 
-gem 'newrelic_rpm', :require => false
-gem 'airbrake'
-
 gem 'Simulator', :require => 'sim', :github => 'grrrisu/Simulator' #:path => '../Simulator'
 gem 'uuid'
 
@@ -60,7 +57,7 @@ end
 group :test, :development do
   gem "rspec-rails"
   gem "jasminerice", :github => 'bradphelan/jasminerice' # wait until ready for rails4
-  gem "spork", :require => false, :github => 'sporkrb/spork' # until ready for rails4
+  gem "spork", '~> 1.0rc', :require => false
   gem "guard-spork", :require => false
   gem "better_errors"
   gem "binding_of_caller"
@@ -74,6 +71,8 @@ group :test do
   gem 'launchy'
 end
 
-group :production do
+group :staging, :production do
   gem 'puma'
+  gem 'newrelic_rpm'
+  gem 'airbrake'
 end
