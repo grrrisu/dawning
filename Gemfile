@@ -57,7 +57,7 @@ end
 group :test, :development do
   gem "rspec-rails"
   gem "jasminerice", :github => 'bradphelan/jasminerice' # wait until ready for rails4
-  gem "spork", :require => false, :github => 'sporkrb/spork' # until ready for rails4
+  gem "spork", '~> 1.0rc', :require => false
   gem "guard-spork", :require => false
   gem "better_errors"
   gem "binding_of_caller"

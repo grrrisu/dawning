@@ -22,12 +22,6 @@ GIT
       origin (~> 1.0)
       tzinfo (~> 0.3.22)
 
-GIT
-  remote: git://github.com/sporkrb/spork.git
-  revision: a94412c9493a07b7a000e35777b0f76b94de9061
-  specs:
-    spork (1.0.0rc4)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -317,6 +311,7 @@ GEM
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
       oauth2 (~> 0.8.0)
+    spork (1.0.0rc4)
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -407,7 +402,7 @@ DEPENDENCIES
   simple_form (~> 3.0.0)
   smusher
   sorcery
-  spork!
+  spork (~> 1.0rc)
   therubyracer
   thin
   turbolinks
