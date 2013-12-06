@@ -28,40 +28,6 @@
 
 }
 
-/* forms */
-
-legend {
-  border-bottom: 1px solid #ccc;
-  text-shadow: 1px 1px 0px #fff;
-}
-
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],
-input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"],
-input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{
-  padding: 7px;
-  border: 1px solid #CCC;
-  @include box-shadow(inset 2px 2px 2px #ededed);
-  @include box-shadow(1px 1px 2px rgba(0,0,0,.1));
-  width: 300px;
-}
-
-.radio input[type="radio"], .checkbox input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-label {
-  font-weight: normal;
-  line-height: 18px;
-}
-
-abbr[title] {
-  border: none;
-}
-
-.help-block {
-  font-size: 14px;
-}
-
 /* icons */
 
 [class^="icon-"], [class*=" icon-"] {
