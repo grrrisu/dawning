@@ -8,18 +8,18 @@
   color: #fff;
 
   // Responsive: Landscape phone to desktop/tablet
-  @media (max-width: 767px) {
+  @media (max-width: $screen-sm-min) {
     background-position: 60% -30px;
   }
   // Responsive: Tablet to desktop
-  @media (min-width: 768px) and (max-width: 979px) {
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
     background-position: 50% -30px;
   }
 
   .visual_title {
 
     padding: 100px 0px 0px $header-gutter-width;
-    @media (max-width: 767px) {
+    @media (max-width: $screen-sm-max) {
       padding-left: $grid-gutter-width;
     }
 
@@ -134,7 +134,6 @@
   color: #ddd;
 
   .social {
-    width: 40%;
     margin-bottom: 18px;
   }
 
