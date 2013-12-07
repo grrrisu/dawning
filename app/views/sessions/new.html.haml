@@ -8,10 +8,5 @@
     .form_actions
       = f.submit 'Login', id: 'login', class: 'btn btn-primary btn-lg btn-wide'
 
-    or through a provider
-.external
-  %ul.list-unstyled
-    %li.col-md-4
-      = image_tag('Octocat.png', :size => '75x75')
-      = link_to 'Login with Github', auth_at_provider_path(:provider => :github), class: 'btn btn-primary'
+= render 'auth_provider'
 
