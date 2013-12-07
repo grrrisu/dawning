@@ -62,6 +62,11 @@
   padding-left: $header-gutter-width - 40px;
   padding-right: $header-gutter-width - 40px;
 
+  @media (max-width: $screen-sm-min) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   h1 {
     font-size: 40px;
     text-shadow: 2px 2px 1px #fff;
@@ -99,6 +104,7 @@
 
     @media (max-width: 767px) {
       width: 100%;
+      margin-bottom: 15px;
     }
 
     h2 {
