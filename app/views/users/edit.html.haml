@@ -13,6 +13,7 @@
     .form_actions
       = f.submit 'Update', class: 'btn btn-primary btn-lg btn-wide'
 
-    .gravatar
+  .row
+    .col-md-offset-2.col-md-10
       = gravatar_for @user, 120
       = link_to "Change your avatar at Gravatar.com", "http://gravatar.com", target: '_blank'
