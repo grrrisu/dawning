@@ -5,16 +5,19 @@
       %li.fa.fa-pencil
       Edit
 .row.detail
-  .col-md-2
-    = gravatar_for @user, 120
-  .col-md-5
+  .col-md-2.col-sm-3.col-xs-4
+    = gravatar_for @user, 120, 'gravatar img-responsive'
+  .col-md-10.col-sm-9.col-xs-8
     .row.property
-      .col-md-4 Name
-      .col-md-8= @user.name
+      .col-md-2.col-sm-4
+        Name
+      .col-md-10.col-sm-8
+        = @user.name
     - if @user == current_user
       .row.property
-        .col-md-4
+        .col-md-2.col-sm-4
           Email
           %span.small
             (not public)
-        .col-md-8= @user.email
+        .col-md-10.col-sm-8
+          = @user.email
