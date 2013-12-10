@@ -1,0 +1,17 @@
+.pagination-container {
+  text-align: center;
+}
+
+ul.pagination {
+  font-size: 14px;
+  @include box-shadow(2px 2px 4px rgba(0,0,0,.1));
+
+  li a {
+    background-color: #f5f5f5;
+  }
+
+  li.active a, li a:hover {
+    @include box-shadow(inset 0px 1px 1px #aaa);
+    //background-color: #eee;
+  }
+}
