@@ -1,12 +1,10 @@
-.row{id: "level_#{level.id}"}
-  .col-md-3
-    .text
-      %i.fa.fa-globe.icon-lg
-      = level.name
-  .col-md-3
-    .text
-      = level.state
-  .col-md-6
+%tr{id: "level_#{level.id}"}
+  %td
+    %i.fa.fa-globe.icon-lg
+    = level.name
+  %td
+    = level.state
+  %td{:colspan => 3}
     - unless level.state == :launched
       = link_to '#', class: 'btn btn-success spinner' do
         %i.fa.fa-road
