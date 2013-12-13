@@ -6,19 +6,18 @@
         A Game of Emergence
       - unless current_user
         %p
-          = link_to 'Login', login_path, class: 'btn btn-large btn-wide btn-grey'
+          = link_to 'Login', login_path, class: 'btn btn-lg btn-wide btn-default'
   .headline
     %h3 Big things have small beginnings!
 
-/.hero-unit
 .introduction
   %h1 Welcome to Dawning!
   %p
     Some introductional text to get the visitor an idea what this project is about.
   %p
     - unless current_user
-      = link_to 'Register', register_path, class: 'btn btn-primary btn-large btn-margin-top'
-    %a.btn.btn-large.btn-margin-top Documentation
+      = link_to 'Register', register_path, class: 'btn btn-primary btn-lg btn-margin-top'
+    %a.btn.btn-default.btn-lg.btn-margin-top Documentation
 
 - content_for(:second_section) do
   = render 'home/steps'

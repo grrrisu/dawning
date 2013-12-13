@@ -8,19 +8,19 @@
   color: #fff;
 
   // Responsive: Landscape phone to desktop/tablet
-  @media (max-width: 767px) {
+  @media (max-width: $screen-sm-min) {
     background-position: 60% -30px;
   }
   // Responsive: Tablet to desktop
-  @media (min-width: 768px) and (max-width: 979px) {
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
     background-position: 50% -30px;
   }
 
   .visual_title {
 
-    padding: 100px 0px 0px $headerGutterWidth;
-    @media (max-width: 767px) {
-      padding-left: $gridGutterWidth;
+    padding: 100px 0px 0px $header-gutter-width;
+    @media (max-width: $screen-sm-max) {
+      padding-left: $grid-gutter-width;
     }
 
     h2 {
@@ -43,7 +43,7 @@
   @include gradient-vertical(#444, #111);
   @include box-shadow(0 1px 5px rgba(0,0,0,.75));
   border-top: 1px solid #333;
-  padding: 3px $gridGutterWidth 3px $gridGutterWidth;
+  padding: 3px $grid-gutter-width 3px $grid-gutter-width;
   color: #ddd;
 
   h3 {
@@ -52,14 +52,20 @@
     font-size: 18px;
     padding: 0px;
     margin: 0px;
+    line-height: 36px;
   }
 }
 
 .introduction {
   margin-bottom: 30px;
   margin-bottom: 50px;
-  padding-left: $headerGutterWidth - 40px;
-  padding-right: $headerGutterWidth - 40px;
+  padding-left: $header-gutter-width - 40px;
+  padding-right: $header-gutter-width - 40px;
+
+  @media (max-width: $screen-sm-min) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 
   h1 {
     font-size: 40px;
@@ -84,24 +90,26 @@
   @include box-shadow(0 1px 5px rgba(0,0,0,.75));
   border-top: 1px solid #333;
   border-bottom: 1px solid #555;
-  padding: 10px 40px 10px 40px;
+  padding: 10px 35px 10px 35px;
   margin-bottom: 30px;
 
   .step {
     @include box-shadow(0 1px 10px rgba(0,0,0,.75));
     color: #ddd;
-    margin-left: 10px;
-    width: 25.333%;
-    min-width: 150px;
+    width: 31.333%;
     margin-left: 1%;
     margin-right: 1%;
     min-height: 200px;
     padding: 1% 3% 1% 3%;
-    float: left;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      margin-bottom: 15px;
+    }
 
     h2 {
       text-shadow: 1px 2px #000, -1px -2px #444;
-      /* @include dark-inset(); */
+      margin-top: 10px;
     }
 
     p {
@@ -112,7 +120,7 @@
 
 .footer, .steps {
   a, &:visited {
-    color: $brightLinkColor;
+    color: $bright-brand-primary;
     text-decoration: none;
 
     &:hover {
@@ -127,17 +135,17 @@
 .footer {
   background-image: url(asset-path("footer_pattern.gif"));
   @include box-shadow(0 1px 5px rgba(0,0,0,.75));
-  padding-top: 30px;
+  padding: 30px $container-padding+5 0px $container-padding+5;
   font-size: 16px;
   color: #ddd;
 
-  li.social {
-    width: 40%;
+  .social {
+    margin-bottom: 18px;
   }
 
   .icon {
     border: 1px solid #888888;
-    @include border-radius(10px);
+    border-radius: 10px;
   }
 
 }

@@ -1,27 +1,27 @@
 %legend
   Levels
 - if @levels.any?
-  .row-fluid.tableau
-    .span12
-      .row-fluid.header.levels
-        .span3
-          Name
-        .span3
-          State
-        .span6
-          Actions
-      - @levels.each do |level|
-        = render 'level',  level: level
+  .table-responsive
+    %table.table.table-bordered.table-condensed.table-striped.levels
+      %thead
+        %tr
+          %th{width: '30%'} Name
+          %th{width: '30%'} State
+          %th{widht: '40%', colspan: 3} Actions
+      %tbody
+        - @levels.each do |level|
+          = render 'level',  level: level
 
-.row-fluid
-  .span12
-    = simple_form_for :level, html: { id: 'level_form', style: 'display: none', class: 'submit-once' } do |f|
+.row
+  .col-md-7
+    = simple_form_for :level, wrapper: :horizontal, html: { id: 'level_form', style: 'display: none', class: 'submit-once form-horizontal' } do |f|
       = f.input :name
       %button{type: 'submit', class: 'btn btn-primary'}
-        %i.icon-rocket
+        %i.fa.fa-rocket
         Launch
-      = link_to 'Cancel', '#', class: 'cancel', id: 'cancel_launch_level'
-    = link_to '#', class: 'btn btn-large btn-primary', id: 'create_level_button' do
-      %i.icon-globe
-      Create Level
+      = link_to 'Cancel', "#", class: 'cancel', id: 'cancel_launch_level'
+
+= link_to '#', class: 'btn btn-lg btn-primary', id: 'create_level_button' do
+  %i.fa.fa-globe
+  Create Level
 

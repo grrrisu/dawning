@@ -1,5 +1,5 @@
 @import "main_variables";
-@import "bootstrap_override";
+@import "bootstrap_custom/override";
 @import "font-awesome";
 
 @import "mixins";
@@ -7,4 +7,4 @@
 @import "sticky_footer";
 @import "home";
 @import "sessions";
-@import "users"
+@import "users";

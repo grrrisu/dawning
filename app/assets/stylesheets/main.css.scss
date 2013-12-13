@@ -8,8 +8,11 @@ body {
     padding-right: 0px;
   }
 }
+h1, h2, h3 {
+  font-weight: bold;
+}
 
-.container-fluid {
+.container {
   @media (max-width: 767px){
     padding: 16px;
   }
@@ -17,13 +20,16 @@ body {
 
 // end responsive
 
+.right {
+  text-align: right;
+}
+
 .alert{
   @include box-shadow(0 1px 2px rgba(0,0,0,.5));
 }
 
 .main-section {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding: $container-padding 35px;
 }
 
 a:hover {
@@ -31,7 +37,7 @@ a:hover {
 };
 
 .btn-wide {
-  padding: 9px 36px;
+  padding: 6px 36px;
 }
 
 .btn-margin-top {
@@ -52,12 +58,14 @@ a.list {
 
 /* forms */
 
-form .form_actions {
-  margin: 30px 0px 0px 200px;
+.cancel {
+  padding: 3px 28px;
 }
 
-.cancel {
-  margin-left: 168px;
+form .form_actions {
+  margin-left: 16.6667%;
+  margin-bottom: 30px;
+  padding-left: 8px;
 }
 
 form.small {
@@ -81,7 +89,7 @@ form.small {
     font-weight: bold;
   }
 
-  .row, .row-fluid {
+  .row {
     padding: 5px 0px 5px 0px;
     border-bottom: 1px solid #dddddd;
 
@@ -90,11 +98,11 @@ form.small {
     }
   }
 
-  .row:first-child, .row-fluid:first-child {
+  .row:first-child {
     text-align: center;
   }
 
-  .row:last-child, .row-fluid:last-child {
+  .row:last-child {
     border-bottom: none;
   }
 }
@@ -102,7 +110,9 @@ form.small {
 /* table */
 
 table {
-  @include box-shadow(2px 2px 4px rgba(0,0,0,.1));
+  @include box-shadow(2px 1px 8px rgba(0,0,0,.2));
+  border: none;
+  border-radius: 6px;
 
   th {
     text-align: center !important;

@@ -8,7 +8,11 @@ html, body {
   height: 100%;
   margin: 0 auto -162px; /* the bottom margin is the negative value of the footer's height */
 
-  @media (max-width: 767px){
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    margin: 0 auto -270px;
+  }
+
+  @media (max-width: $screen-sm-min) {
     margin: 0 auto -370px;
   }
 }
@@ -17,7 +21,11 @@ html, body {
   height: 162px; /* .push must be the same height as .footer */
   clear: both;
 
-  @media (max-width: 767px){
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    height: 270px;
+  }
+
+  @media (max-width: $screen-sm-min) {
     height: 370px;
   }
 }

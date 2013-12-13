@@ -1,31 +1,29 @@
-.row-fluid{id: "level_#{level.id}"}
-  .span3
-    .text
-      %i.icon-globe.icon-large
-      = level.name
-  .span3
-    .text
-      = level.state
-  .span6
+%tr{id: "level_#{level.id}"}
+  %td
+    %i.fa.fa-globe.icon-lg
+    = level.name
+  %td
+    = level.state
+  %td{:colspan => 3}
     - unless level.state == :launched
       = link_to '#', class: 'btn btn-success spinner' do
-        %i.icon-road
+        %i.fa.fa-road
         Enter
     - if level.state == :launched
       = form_for(:level, url: build_admin_level_path(level.id), method: :put, remote: true, html: {class: 'small submit-once'}) do |f|
         = select_tag :config_file, options_for_select(level_configuration_files), include_blank: false
         %button{type: 'submit', class: 'btn btn-primary spinner'}
-          %i.icon-cog
+          %i.fa.fa-cog
           Build
     - elsif level.state == :ready
       = link_to run_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-primary spinner' do
-        %i.icon-play
+        %i.fa.fa-play
         Run
     - elsif level.state == :running
       = link_to stop_admin_level_path(level.id), method: :put, remote: true, class: 'btn btn-warning spinner' do
-        %i.icon-off
+        %i.fa.fa-power-off
         Stop
     - elsif level.state == :stopped
       = link_to admin_level_path(level.id), method: :delete, remote: true, class: 'btn btn-danger spinner' do
-        %i.icon-remove
+        %i.fa.fa-times
         Remove

@@ -1,0 +1,26 @@
+/* navigation */
+
+.navbar {
+  @include box-shadow(0 1px 5px rgba(0,0,0,.75));
+  @include gradient-vertical(#444, #111);
+  margin: 0px;
+  font-size: 18px;
+}
+
+/* icons */
+
+[class^="icon-"], [class*=" icon-"] {
+ vertical-align: baseline;
+}
+
+/* alert */
+.alert {
+  padding-left: 16px;
+}
+
+/* table */
+.table-bordered {
+  & > thead > tr > th, .table-bordered > thead > tr > td {
+    border-bottom-width: 1px;
+  }
+}

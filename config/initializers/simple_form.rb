@@ -45,22 +45,36 @@ SimpleForm.setup do |config|
     b.use :error, :wrap_with => { :tag => :span, :class => :error }
   end
 
-  config.wrappers :bootstrap, :tag => 'div', :class => 'control-group', :error_class => 'error' do |b|
+  # You can define the class to use on all labels. Default is nil.
+  config.label_class = 'control-label col-sm-2'
+
+  #config.input_class = 'form-control col-sm-10'
+
+  config.wrappers :bootstrap, tag: 'div', class: 'form-group', error_class: 'error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.wrapper :tag => 'div', :class => 'controls' do |ba|
+    b.use :input
+    b.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+  end
+
+  config.wrappers :horizontal, :tag => 'div', :class => 'form-group', :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label
+    b.wrapper :tag => 'div', :class => 'col-sm-10' do |ba|
       ba.use :input
       ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
       ba.use :hint,  :wrap_with => { :tag => 'p', :class => 'help-block' }
     end
   end
 
-  config.wrappers :prepend, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+  config.wrappers :prepend, :tag => 'div', :class => "form-group", :error_class => 'error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.wrapper :tag => 'div', :class => 'controls' do |input|
+    b.wrapper :tag => 'div', :class => '' do |input|
       input.wrapper :tag => 'div', :class => 'input-prepend' do |prepend|
         prepend.use :input
       end
@@ -69,11 +83,11 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :append, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+  config.wrappers :append, :tag => 'div', :class => "form-group", :error_class => 'error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.wrapper :tag => 'div', :class => 'controls' do |input|
+    b.wrapper :tag => 'div', :class => '' do |input|
       input.wrapper :tag => 'div', :class => 'input-append' do |append|
         append.use :input
       end
@@ -131,9 +145,6 @@ SimpleForm.setup do |config|
 
   # How the label text should be generated altogether with the required text.
   config.label_text = lambda { |label, required| "#{label} #{required}" }
-
-  # You can define the class to use on all labels. Default is nil.
-  config.label_class = 'control-label'
 
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form

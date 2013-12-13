@@ -1,11 +1,11 @@
 - if flash.any?
-  .row-fluid.alert-box
-    .span12
+  .row.alert-box
+    .col-md-12
       - flash.each do |name, message|
-        .alert{:class => (name == :notice ? 'alert-success' : 'alert-error')}
-          %a.close{'data-dismiss' => 'alert'}×
+        .alert.alert-dismissable{:class => (name == :notice ? 'alert-success' : 'alert-danger')}
+          %button.close{"type" => "button", "data-dismiss" => "alert", "aria-hidden" => "true"} &times
           - if name == :notice
-            %i.icon-info-sign
+            %i.fa.fa-info-circle
           - else
-            %i.icon-exclamation-sign
+            %i.fa.fa-exclamation-circle
           = message

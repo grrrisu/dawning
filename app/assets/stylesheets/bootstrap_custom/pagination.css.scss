@@ -1,0 +1,33 @@
+$pagination-border-radius: 4px;
+
+.pagination-container {
+  text-align: center;
+}
+
+ul.pagination {
+  font-size: 14px;
+  border-radius: $pagination-border-radius;
+  @include box-shadow(1px 1px 1px rgba(0,0,0,.1));
+
+  li.active a, li a:hover, li.active a:hover {
+    @include box-shadow(inset 0px 1px 1px #aaa);
+    border: 1px solid #ddd;
+    color: $brand-primary;
+    background-color: #eee;
+  }
+
+  li > a, li > span {
+    background-color: #f5f5f5;
+    padding: 4px 12px;
+  }
+
+  li:first-child > a, li:first-child > span {
+    border-bottom-left-radius: $pagination-border-radius;
+    border-top-left-radius: $pagination-border-radius;
+  }
+
+  li:last-child > a, li:last-child > span {
+    border-bottom-right-radius: $pagination-border-radius;
+    border-top-right-radius: $pagination-border-radius;
+  }
+}
