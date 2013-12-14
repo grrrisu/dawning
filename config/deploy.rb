@@ -60,7 +60,7 @@ namespace :deploy do
     run "#{try_sudo} mkdir -p #{dirs.join(' ')} && #{try_sudo} chmod g+w #{dirs.join(' ')}"
   end
 
-  task :create_db, roles: :db, :only => { primary: true } do
+  task :create_db, roles: :db, only: { primary: true } do
     rake = fetch(:rake, "rake")
     rails_env = fetch(:rails_env, "production")
     migrate_env = fetch(:migrate_env, "")

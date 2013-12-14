@@ -105,7 +105,7 @@ Rails.application.config.sorcery.configure do |config|
   else
     config.github.callback_url = "http://dawning.zero-x.net/oauth/callback?provider=github"
   end
-  config.github.user_info_mapping = {:email => "email", :username => "login", :name => "name"}
+  config.github.user_info_mapping = {email: "email", username: "login", name: "name"}
 
 
   # config.google.key = ""
