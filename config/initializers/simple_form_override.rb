@@ -1,7 +1,7 @@
-# reopen the SimpleForm to rewrite the hint method 
-module SimpleForm 
-  module Components 
-    module Hints 
+# reopen the SimpleForm to rewrite the hint method
+module SimpleForm
+  module Components
+    module Hints
       def hint
         @hint ||= begin
           hint = options[:hint]
@@ -9,6 +9,6 @@ module SimpleForm
           hint_content.html_safe if hint_content && !options[:hint_escape]
         end
       end
-    end 
-  end 
+    end
+  end
 end
