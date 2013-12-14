@@ -20,7 +20,7 @@ class PasswordResetsController < ApplicationController
     else
       @user = User.new
       flash[:error] = "No user found with email #{params[:user][:email]}"
-      render action: 'new'
+      render 'new'
     end
   end
 
@@ -43,7 +43,7 @@ class PasswordResetsController < ApplicationController
       auto_login(@user) unless current_user
       redirect_to(root_path, notice: 'Password was successfully updated.')
     else
-      render action: "edit"
+      render "edit"
     end
   end
 end

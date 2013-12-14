@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_back_or_to root_url, notice: "Welcome back #{user.username}"
     else
       flash[:error] = "Login failed"
-      render action: 'new'
+      render 'new'
     end
   end
 
