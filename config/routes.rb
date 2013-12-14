@@ -7,7 +7,7 @@ Dawning::Application.routes.draw do
   get '/register', to: 'users#new', as: :register
   get "oauth/callback" => "oauths#callback"
   get "oauth/:provider" => "oauths#oauth", as: :auth_at_provider
-  resources :password_resets
+  resources :password_resets, except: [:index, :destroy]
 
   resources :users do
     get :activate, on: :member
