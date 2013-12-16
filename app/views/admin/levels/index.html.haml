@@ -14,7 +14,7 @@
 
 .row
   .col-md-7
-    = simple_form_for :level, wrapper: :horizontal, html: { id: 'level_form', style: 'display: none', class: 'submit-once form-horizontal' } do |f|
+    = simple_form_for :level, html: { id: 'level_form', style: 'display: none', class: 'submit-once form-horizontal' } do |f|
       = f.input :name
       %button{type: 'submit', class: 'btn btn-primary'}
         %i.fa.fa-rocket

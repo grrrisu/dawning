@@ -100,7 +100,7 @@ SimpleForm.setup do |config|
   # Check the Bootstrap docs (http://twitter.github.com/bootstrap)
   # to learn about the different styles for forms and inputs,
   # buttons and other elements.
-  config.default_wrapper = :bootstrap
+  config.default_wrapper = :horizontal
 
   # Define the way to render check boxes / radio buttons with labels.
   # Defaults to :nested for bootstrap config.
