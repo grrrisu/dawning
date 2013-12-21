@@ -77,6 +77,7 @@ stdout_redirect "#{shared_path}/log/stdout", "#{shared_path}/log/stderr", true
 # bind 'unix:///var/run/puma.sock'
 # bind 'unix:///var/run/puma.sock?umask=0777'
 # bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'
+bind "unix:///#{shared_path}/sockets/puma.sock"
 
 # Instead of “bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'” you
 # can also use the “ssl_bind” option.
