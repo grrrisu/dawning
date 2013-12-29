@@ -1,17 +1,21 @@
-== Dawning
+Dawning
+==
 
 A game about emergence
 
-== Requirements
+Requirements
+--
 
 * Ruby 1.9
 
 * MongoDB[http://www.mongodb.org/] ~> 2.0.4
 
-== Code
+Code
+--
 
 https://github.com/grrrisu/dawning
 
-== Credits
+Credits
+--
 
 * Font Awesome by Dave Gandy - http://fontawesome.io
