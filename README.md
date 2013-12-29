@@ -14,4 +14,4 @@ https://github.com/grrrisu/dawning
 
 == Credits
 
-* Font Awesome by Dave Gandy - http://fontawesome.io[http://fontawesome.io]
+* Font Awesome by Dave Gandy - http://fontawesome.io
