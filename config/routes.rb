@@ -13,6 +13,10 @@ Dawning::Application.routes.draw do
     get :activate, on: :member
   end
 
+  resources :players do
+    resource :map, only: [:create, :show]
+  end
+
   namespace :admin do
     resources :levels, only: [:index, :create, :destroy] do
       member do

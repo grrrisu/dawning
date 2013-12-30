@@ -14,13 +14,13 @@ class @Client
 
   constructor: (width) ->
     fieldsVisible = 11
-    @api          = new ApiCaller(window.location.host)
+    @api          = new ApiCaller()
     @map          = new Map(@viewport)
     @viewport     = new Viewport(width, fieldsVisible, @map)
     @presenter    = new StagePresenter(@viewport)
 
   fetch: (callback) =>
-    @api.post '/init', null, (data) =>
+    @api.post '/players/0/map.json', null, (data) =>
       callback(data)
 
   preload_images: (sources, callback) =>

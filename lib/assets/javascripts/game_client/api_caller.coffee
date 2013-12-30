@@ -1,6 +1,7 @@
 class @ApiCaller
 
   constructor: (@base_url) ->
+    @base_url ?= window.location.protocol + '//' + window.location.host
 
   get: (path, onsuccess) =>
     @request(path, 'GET', null, onsuccess)
