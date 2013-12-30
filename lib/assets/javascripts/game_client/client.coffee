@@ -14,7 +14,7 @@ class @Client
 
   constructor: (width) ->
     fieldsVisible = 11
-    @api          = new ApiCaller('http://localhost:3000')
+    @api          = new ApiCaller(window.location.host)
     @map          = new Map(@viewport)
     @viewport     = new Viewport(width, fieldsVisible, @map)
     @presenter    = new StagePresenter(@viewport)
