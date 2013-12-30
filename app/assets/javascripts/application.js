@@ -16,7 +16,6 @@
 //= require turbolinks
 //= require bootstrap
 
-//= require sugar
-//= require kinetic
+//= require game_client
 
 //= require_tree .
