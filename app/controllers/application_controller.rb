@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :require_login, except: [:not_authenticated]
 
+  helper_method :show_map?
+
   check_authorization
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -21,6 +23,10 @@ private
 
   def not_authenticated
     redirect_to login_path, alert: "Please login first."
+  end
+
+  def show_map?
+    true
   end
 
 end

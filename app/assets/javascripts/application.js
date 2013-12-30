@@ -16,6 +16,4 @@
 //= require turbolinks
 //= require bootstrap
 
-//= require game_client
-
 //= require_tree .
