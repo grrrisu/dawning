@@ -22,11 +22,15 @@ private
   end
 
   def not_authenticated
-    redirect_to login_path, alert: "Please login first."
+    respond_to do |format|
+      format.html { redirect_to login_path, alert: "Please login first." }
+      format.json { render json: { location: login_path, alert: "Please login first." }, status: 403}
+    end
   end
 
   def show_map?
-    true
+    # FIXME for testing only
+    controller_name == 'home'
   end
 
 end

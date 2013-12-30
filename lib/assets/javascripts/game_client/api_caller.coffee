@@ -16,7 +16,10 @@ class @ApiCaller
     @request(path, 'DELETE', null, onsuccess);
 
   handle_error: (jqXHR, textStatus, errorThrown) =>
-    console.log("XHR ERROR: " + errorThrown + ', ' + textStatus);
+    if(jqXHR.status == 403)
+      window.location.href = jqXHR.responseJSON.location
+    else
+      console.log("XHR ERROR: " + errorThrown + ', ' + textStatus);
 
   request: (path, type, data, onsuccess) =>
     $.ajax
