@@ -14,7 +14,7 @@ Dawning::Application.routes.draw do
   end
 
   resources :players do
-    resource :map, only: [:create, :show]
+    resources :maps, only: [:create, :show]
   end
 
   namespace :admin do

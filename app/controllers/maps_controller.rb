@@ -1,6 +1,10 @@
 class MapsController < ApplicationController
+  navigation :map
+
+  before_filter :get_running_level
 
   def show
+    authorize! :show, @level
     respond_to do |format|
       format.html # setup html
       format.json # send map data
@@ -26,6 +30,17 @@ class MapsController < ApplicationController
         ]
       }
     }.to_json
+  end
+
+private
+
+  def get_running_level
+    @level =  LevelProxy.find params[:id]
+    if current_user.admin?
+      raise Exception, "level #{params[:id]} is not yet build" if @level.state == :launched
+    else
+      raise Exception, "level #{params[:id]} is not running" unless @level.state == :running
+    end
   end
 
 end

@@ -29,8 +29,7 @@ private
   end
 
   def show_map?
-    # FIXME for testing only
-    controller_name == 'home'
+    navigation_active? :map
   end
 
 end
