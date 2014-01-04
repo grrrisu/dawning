@@ -20,8 +20,7 @@ class @Client
     @presenter    = new StagePresenter(@viewport)
 
   fetch: (callback) =>
-    initPath = window.location.pathname + '/init'
-    @api.get initPath, (data) =>
+    @api.get '/init', (data) =>
       callback(data)
 
   preload_images: (sources, callback) =>
