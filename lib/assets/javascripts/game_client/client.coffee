@@ -21,7 +21,7 @@ class @Client
 
   fetch: (callback) =>
     initPath = window.location.pathname + '/init'
-    @api.get initPath, null, (data) =>
+    @api.get initPath, (data) =>
       callback(data)
 
   preload_images: (sources, callback) =>
