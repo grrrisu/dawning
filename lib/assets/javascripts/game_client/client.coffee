@@ -1,16 +1,16 @@
 class @Client
 
   image_sources =
-    'fog': 'assets/map/fog3.png'
-    '0_desert': 'assets/map/0_desert4.png'
-    '1_grass': 'assets/map/1_grass4.png'
-    '2_grass': 'assets/map/2_grass4.png'
-    '3_grass': 'assets/map/3_grass4.png'
-    '5_grass': 'assets/map/5_grass4.png'
-    '8_forest': 'assets/map/8_forest4.png'
-    '13_forest': 'assets/map/13_forest4.png'
-    'headquarter': 'assets/map/Raratonga_Mask.gif'
-    'man': 'assets/map/caveman.png'
+    'fog': '/assets/map/fog3.png'
+    '0_desert': '/assets/map/0_desert4.png'
+    '1_grass': '/assets/map/1_grass4.png'
+    '2_grass': '/assets/map/2_grass4.png'
+    '3_grass': '/assets/map/3_grass4.png'
+    '5_grass': '/assets/map/5_grass4.png'
+    '8_forest': '/assets/map/8_forest4.png'
+    '13_forest': '/assets/map/13_forest4.png'
+    'headquarter': '/assets/map/Raratonga_Mask.gif'
+    'man': '/assets/map/caveman.png'
 
   constructor: (width) ->
     fieldsVisible = 11

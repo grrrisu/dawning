@@ -1,10 +1,14 @@
-%h3 Emergence
-#matrix{:style => "border: 1px solid #000"}
-  #prawns
-#controls
-  %h1 Controls
-  %ul
-    %li
-      = link_to "/world", "create a new world", id: "create_new_world"
-    %li
-      = link_to "#", "center_view", id: "center_view"
+%legend
+  Map
+.row
+  .col-md-6
+    #matrix{:style => "border: 1px solid #000"}
+      #prawns
+  .col-md-6
+    #controls
+      %h4 Controls
+      %ul
+        %li
+          = link_to "create a new world", "/world", id: "create_new_world"
+        %li
+          = link_to "center view", "#", id: "center_view"
