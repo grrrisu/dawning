@@ -20,7 +20,8 @@ class @Client
     @presenter    = new StagePresenter(@viewport)
 
   fetch: (callback) =>
-    @api.post '/players/0/map.json', null, (data) =>
+    initPath = window.location.pathname + '/init'
+    @api.get initPath, null, (data) =>
       callback(data)
 
   preload_images: (sources, callback) =>

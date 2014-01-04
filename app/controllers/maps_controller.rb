@@ -12,7 +12,8 @@ class MapsController < ApplicationController
 
   end
 
-  def create
+  def init
+    authorize! :init, @level
     render json: { world:
       {
         width: 100, #settings.world.width,
