@@ -32,6 +32,14 @@ class LevelProxy
     @connection = Sim::Popen::ParentConnection.new
   end
 
+  def action action, params
+    @connection.send_action action, params
+  end
+
+  def player_action player_id, action, params
+    @connection.send_player_action player_id, action, params
+  end
+
   def launch
     sim_library = Rails.root.join('lib', 'sim', 'level.rb')
     level_class = 'Level'

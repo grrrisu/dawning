@@ -43,8 +43,10 @@ class @Client
         @presenter.render()
         @map.setWorldSize(data.world)
         @map.render(@presenter.map_layer)
-        @headquarter  = new Headquarter(data.headquarter)
-        @headquarter.render(@presenter.pawn_layer)
-        @headquarter.pawns.each (pawn) =>
-          pawn.render(@presenter.pawn_layer)
+        # admin view has no headquarter
+        if data.headquarter?
+          @headquarter  = new Headquarter(data.headquarter)
+          @headquarter.render(@presenter.pawn_layer)
+          @headquarter.pawns.each (pawn) =>
+            pawn.render(@presenter.pawn_layer)
         @viewport.center()

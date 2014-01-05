@@ -32,11 +32,25 @@ class @Viewport
     { x: x, y: y }
 
   center: () =>
+    if client.headquarter?
+      @center_to_headquarter()
+    else
+      @center_to_middle_of_world()
+
+  center_to_headquarter: () =>
     @ax = client.headquarter.ax - @width * @zoom / 2;
     @ay = client.headquarter.ay - @height * @zoom / 2;
     @move_stage(@ax, @ay)
     @rx = client.headquarter.rx - Math.floor(@fieldsVisible * @zoom / 2)
     @ry = client.headquarter.ry - Math.floor(@fieldsVisible * @zoom / 2)
+    @update_map()
+
+  center_to_middle_of_world: () =>
+    @ax = @map.width / 2
+    @ay = @map.height / 2
+    @move_stage(@ax, @ay)
+    @rx = @map.width / (@map.fieldWidth * 2)
+    @ry = @map.height / (@map.fieldWidth * 2)
     @update_map()
 
   move_stage: =>

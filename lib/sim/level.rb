@@ -17,6 +17,26 @@ class Level < Sim::Level
     true
   end
 
+  def process_message message
+    case message['action']
+      when 'view'
+        require 'pp'
+        params = message['params']
+        # TODO ??? use view and filter_slice
+        x, y, width, height = params['x'], params['y'], params['width'], params['height']
+        w = Sim::Matrix.new(width, height)
+        w.set_each_field_with_index do |i, j|
+          #$stderr.puts x, y, i, j
+          #$stderr.puts @world.size
+          #$stderr.puts @world[0 + x + i, 0 + y + j]
+          @world[0 + x + i, 0 + y + j]
+        end
+        w
+    else
+      super
+    end
+  end
+
   def load
     raise "implement in subclass"
   end
