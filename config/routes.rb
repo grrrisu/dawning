@@ -16,6 +16,7 @@ Dawning::Application.routes.draw do
   resources :players do
     resources :maps, only: [:show] do
       get :init, on: :member
+      post :view, on: :member
     end
   end
 
