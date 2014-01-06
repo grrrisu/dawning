@@ -1,0 +1,62 @@
+describe 'Viewport', ->
+
+  beforeEach ->
+    @map = new Map()
+    @map.setFieldWidth(5)
+    @map.setWorldSize({width: 50, height: 100})
+    @map.mapWidth()
+    @map.mapHeight()
+    @viewport = new Viewport(55, 11, @map)
+    spyOn(@viewport, 'update_map')
+
+  describe 'checkBoundaries', ->
+
+    it "within boundaries", ->
+      pos = @viewport.checkBoundaries({x: -20, y: -50})
+      expect(pos.x).toEqual(-20)
+      expect(pos.y).toEqual(-50)
+      expect(@viewport.rx).toEqual(4)
+      expect(@viewport.ry).toEqual(10)
+
+
+    it "exiting on the left bottom", ->
+      pos = @viewport.checkBoundaries({x: 7, y: 7})
+      expect(pos.x).toEqual(0)
+      expect(pos.y).toEqual(0)
+      expect(@viewport.rx).toEqual(0)
+      expect(@viewport.ry).toEqual(0)
+
+    it "exiting on the right top", ->
+      pos = @viewport.checkBoundaries({x: - 5 * 50, y: - 5 * 100})
+      expect(pos.x).toEqual(-5 * 50 + 55 + 5) # = -190 : map.width - viewport.width - field.width
+      expect(pos.y).toEqual(-5 * 100 + 55 + 5) # = -440
+      expect(@viewport.rx).toEqual(50 - 11 -1)
+      expect(@viewport.ry).toEqual(100 -11 -1)
+
+
+    describe 'with zoom 2', ->
+
+      beforeEach ->
+        client.presenter.stage = jasmine.createSpyObj('stage', ['setAttrs'])
+        @viewport.setZoom(2)
+
+      it "within boundaries", ->
+        pos = @viewport.checkBoundaries({x: -10, y: -25})
+        expect(pos.x).toEqual(-10)
+        expect(pos.y).toEqual(-25)
+        expect(@viewport.rx).toEqual(4)
+        expect(@viewport.ry).toEqual(10)
+
+      it "exiting on the left bottom", ->
+        pos = @viewport.checkBoundaries({x: 7, y: 7})
+        expect(pos.x).toEqual(0)
+        expect(pos.y).toEqual(0)
+        expect(@viewport.rx).toEqual(0)
+        expect(@viewport.ry).toEqual(0)
+
+      it "exiting on the right top", ->
+        pos = @viewport.checkBoundaries({x: - 2.5 * 50, y: - 2.5 * 100})
+        expect(pos.x).toEqual(-2.5 * 50 + 55 + 2.5.round()) # map.width/z - viewport.width - field.width/z
+        expect(pos.y).toEqual(-2.5 * 100 + 55 + 2.5.round())
+        expect(@viewport.rx).toEqual(50 - 22 -2)
+        expect(@viewport.ry).toEqual(100 - 22 -2)
