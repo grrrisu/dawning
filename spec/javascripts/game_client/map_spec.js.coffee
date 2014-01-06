@@ -3,7 +3,6 @@ describe 'Map', ->
   beforeEach ->
     @map = new Map()
     @map.setFieldWidth(5)
-    #@map.setWorldSize(100)
 
   describe 'should calculate relative position', ->
 
