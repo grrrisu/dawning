@@ -13,8 +13,23 @@ module Builder
       config['clusters'].each do |cluster_config|
         draw_clusters cluster_config['times'], cluster_config['vegetation'], cluster_config['count']
       end
+
+      border
+
       $stderr.puts "world created after #{Time.now - start_time}"
       @world
+    end
+
+    def border
+      @world.width.times do |i|
+        @world[i,0] = {vegetation: 1}
+        @world[i,@world.height-1] = {vegetation: 0}
+      end
+
+      @world.height.times do |i|
+        @world[0,i] = {vegetation: 1}
+        @world[@world.width-1, i] = {vegetation: 0}
+      end
     end
 
     def grounding grounding
