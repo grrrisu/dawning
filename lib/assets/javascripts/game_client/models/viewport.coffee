@@ -16,12 +16,12 @@ class @Viewport
     if x > 0
       x = 0;
     else if x < -@map.width / @zoom + @width
-      x = -@map.width / @zoom + @width + (@map.fieldWidth / @zoom).round()
+      x = -@map.width / @zoom + @width + 1
 
     if y > 0
       y = 0
     else if y < -@map.height / @zoom + @height
-      y = -@map.height / @zoom + @height + (@map.fieldWidth / @zoom).round()
+      y = -@map.height / @zoom + @height + 1
 
     @ax = -x
     @ay = -y

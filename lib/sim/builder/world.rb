@@ -51,7 +51,6 @@ module Builder
       stop_count = options[:count] || 5
       count = 0
 
-      #puts "x y #{x} #{y}"
       begin
         cx, cy = cx + rand(3) -1, cy + rand(3) -1
 
@@ -65,7 +64,6 @@ module Builder
         @world[cx, cy] = property
 
       end until count == stop_count
-      #puts 'end draw cluster'
     end
 
   end
