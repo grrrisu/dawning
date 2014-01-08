@@ -27,6 +27,10 @@ module Builder
       end
       # FIXME remove
       border
+
+      @world.set_each_field_with_index do |x, y|
+        { vegetation: @world[x, y] }
+      end
     end
 
     def border
@@ -50,7 +54,7 @@ module Builder
     def draw_clusters number, vegetation, count
       number.times do
         x, y = rand(@world.width), rand(@world.height)
-        draw_cluster x, y, {vegetation: vegetation}, {count: count}
+        draw_cluster x, y, vegetation, {count: count}
       end
     end
 
@@ -89,14 +93,13 @@ module Builder
     end
 
     def create_flora_fauna config
-      $stderr.puts config.inspect
-      per_fields = config['per_fields']
+      per_fields = config['per_fields'].to_f
       config['types'].each do |type_config|
         type = type_config['type']
         type_config['spread'].each do |spread|
           fields = @world.find_all {|field| field[:vegetation] == spread['vegetation'] && field[:flora].nil? }
           raise "spread amount #{spread['amount']} is bigger than available fields #{fields.size}" if spread['amount'] > fields.size
-          size = spread['amount'] * fields.size / per_fields
+          size = (spread['amount'] * fields.size / per_fields).round
           $stderr.puts type, fields.size, size
           fields.shuffle.slice(0, size).each do |field|
             yield field, type
