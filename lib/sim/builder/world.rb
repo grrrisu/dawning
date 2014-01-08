@@ -35,19 +35,19 @@ module Builder
 
     def border
       @world.width.times do |i|
-        @world[i,0] = {vegetation: 1}
-        @world[i,@world.height-1] = {vegetation: 0}
+        @world[i,0] = 0
+        @world[i,@world.height-1] = 0
       end
 
       @world.height.times do |i|
-        @world[0,i] = {vegetation: 1}
-        @world[@world.width-1, i] = {vegetation: 0}
+        @world[0,i] = 0
+        @world[@world.width-1, i] = 0
       end
     end
 
     def grounding grounding
       @world.set_each_field do |field|
-        {vegetation: grounding}
+        grounding
       end
     end
 
