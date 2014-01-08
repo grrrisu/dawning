@@ -3,21 +3,87 @@ world:
   width: 50
   height: 100
   builder:
-    grounding: 5
-    clusters:
-      -
-        times: 10
-        vegetation: 2
-        count: 10
-      -
-        times: 20
-        vegetation: 3
-        count: 30
-      -
-        times: 50
-        vegetation: 8
-        count: 80
-      -
-        times: 50
-        vegetation: 13
-        count: 40
+    vegetation:
+      grounding: 5
+      clusters:
+        -
+          times: 10
+          vegetation: 2
+          count: 10
+        -
+          times: 20
+          vegetation: 3
+          count: 30
+        -
+          times: 50
+          vegetation: 8
+          count: 80
+        -
+          times: 50
+          vegetation: 13
+          count: 40
+    flora:
+      # type_1, type_2, type_3 -> 9, 6, 3 / per 200 fields
+      per_fields: 200
+      types:
+        -
+          type: 'banana 1'
+          spread:
+            -
+              vegetation: 13
+              amount: 5
+            -
+              vegetation: 8
+              amount: 3
+            -
+              vegetation: 3
+              amount: 1
+        -
+          type: 'banana 2'
+          spread:
+            -
+              vegetation: 13
+              amount: 3
+            -
+              vegetation: 8
+              amount: 3
+        -
+          type: 'banana 3'
+          spread:
+            -
+              vegetation: 13
+              amount: 2
+            -
+              vegetation: 8
+              amount: 1
+    fauna:
+      # type_1, type_2, type_3 -> 8, 4, 2 / per 200 fields
+      per_fields: 200
+      types:
+        -
+          type: 'rabbit'
+          spread:
+            -
+              vegetation: 13
+              amount: 4
+            -
+              vegetation: 8
+              amount: 3
+            -
+              vegetation: 3
+              amount: 1
+        -
+          type: 'gazelle'
+          spread:
+            -
+              vegetation: 13
+              amount: 2
+            -
+              vegetation: 8
+              amount: 2
+        -
+          type: 'mammoth'
+          spread:
+            -
+              vegetation: 13
+              amount: 2

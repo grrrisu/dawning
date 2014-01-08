@@ -31,7 +31,7 @@ describe 'Viewport', ->
       expect(pos.x).toEqual(-5 * 50 + 55 + 1) # = -194 : map.width - viewport.width - 1
       expect(pos.y).toEqual(-5 * 100 + 55 + 1) # = -444
       expect(@viewport.rx).toEqual(50 - 11 -1) # 38
-      expect(@viewport.ry).toEqual(100 -11 -1) # 88
+      expect(@viewport.ry).toEqual(100 - 11 -1) # 88
 
 
     describe 'with zoom 2', ->
