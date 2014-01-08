@@ -1,19 +1,12 @@
-class @Pawn
+class @Pawn extends Figure
 
   constructor: (data) ->
     @id        = data.id
-    @rx        = data.x
-    @ry        = data.y
-    apos = client.map.absolutePosition(@rx, @ry)
-    @ax        = apos.x
-    @ay        = apos.y
     @draggable = true
+    super(data)
 
   checkBoundaries: (pos) =>
     pos
-
-  render: (layer) =>
-    @getPresenter().render(layer)
 
   drop: (ax, ay) =>
     apos = client.map.snapToGrid(ax, ay)

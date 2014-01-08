@@ -36,6 +36,11 @@ class @Map
           field = @presenter.render_field(field_data, (rx + i) , (ry + j))
           @fields.push(field) if field?
 
+          if field_data.flora?
+            @flora  = new Banana(field_data.flora)
+            @flora.setPosition(rx + i , ry + j)
+            @flora.render(@presenter.layer)
+
       @presenter.layer.draw()
 
 
