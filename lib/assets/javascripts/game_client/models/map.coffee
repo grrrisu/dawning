@@ -41,6 +41,12 @@ class @Map
             @flora.setPosition(rx + i , ry + j)
             @flora.render(@presenter.layer)
 
+          if field_data.fauna?
+            @fauna  = new Animal(field_data.fauna)
+            fauna_shape = @fauna.setPosition(rx + i , ry + j)
+            @fauna.render(@presenter.layer)
+            #@shapes.push(fauna_shape) if fauna_shape?
+
       @presenter.layer.draw()
 
 

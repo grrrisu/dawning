@@ -12,6 +12,9 @@ class @Client
     'banana_1': '/assets/map/banana-1.png'
     'banana_2': '/assets/map/banana-2.png'
     'banana_3': '/assets/map/banana-3.png'
+    'rabbit': '/assets/map/rabbit.png'
+    'gazelle': '/assets/map/gazelle.png'
+    'mammoth': '/assets/map/meat.png'
     'headquarter': '/assets/map/Raratonga_Mask.gif'
     'man': '/assets/map/caveman.png'
 
