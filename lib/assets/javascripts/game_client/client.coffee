@@ -9,9 +9,9 @@ class @Client
     '5_grass': '/assets/map/5_grass4.png'
     '8_forest': '/assets/map/8_forest4.png'
     '13_forest': '/assets/map/13_forest4.png'
-    'banana_1': '/assets/map/banana.png'
-    'banana_2': '/assets/map/banana.png'
-    'banana_3': '/assets/map/banana.png'
+    'banana_1': '/assets/map/banana-1.png'
+    'banana_2': '/assets/map/banana-2.png'
+    'banana_3': '/assets/map/banana-3.png'
     'headquarter': '/assets/map/Raratonga_Mask.gif'
     'man': '/assets/map/caveman.png'
 
