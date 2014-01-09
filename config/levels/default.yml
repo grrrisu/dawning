@@ -36,7 +36,7 @@ world:
               vegetation: 8
               amount: 3
             -
-              vegetation: 3
+              vegetation: 5
               amount: 1
         -
           type: 'banana 2'
@@ -70,7 +70,7 @@ world:
               vegetation: 8
               amount: 3
             -
-              vegetation: 3
+              vegetation: 5
               amount: 1
         -
           type: 'gazelle'

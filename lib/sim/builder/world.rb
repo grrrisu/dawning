@@ -93,14 +93,14 @@ module Builder
     end
 
     def create_flora_fauna config
-      per_fields = config['per_fields'].to_f
+      spread_ratio = @world.height * @world.width / config['per_fields'].to_f
       config['types'].each do |type_config|
         type = type_config['type']
         type_config['spread'].each do |spread|
           fields = @world.find_all {|field| field[:vegetation] == spread['vegetation'] && field[:flora].nil? }
           raise "spread amount #{spread['amount']} is bigger than available fields #{fields.size}" if spread['amount'] > fields.size
-          size = (spread['amount'] * fields.size / per_fields).round
-          $stderr.puts type, fields.size, size
+          size = (spread['amount'] * spread_ratio).round
+          $stderr.puts type, size
           fields.shuffle.slice(0, size).each do |field|
             yield field, type
           end
