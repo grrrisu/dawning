@@ -15,6 +15,7 @@ class @Client
     'rabbit': '/assets/map/rabbit.png'
     'gazelle': '/assets/map/gazelle.png'
     'mammoth': '/assets/map/meat.png'
+    'leopard': '/assets/map/leopard3.png'
     'headquarter': '/assets/map/Raratonga_Mask.gif'
     'man': '/assets/map/caveman.png'
 

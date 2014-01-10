@@ -13,3 +13,4 @@ class @Animal extends Figure
       when "rabbit" then client.images['rabbit']
       when "gazelle" then client.images['gazelle']
       when "mammoth" then client.images['mammoth']
+      when "leopard" then client.images['leopard']

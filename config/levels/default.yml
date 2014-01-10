@@ -87,3 +87,15 @@ world:
             -
               vegetation: 13
               amount: 2
+        # just guessing
+        - type: 'leopard'
+          spread:
+            -
+              vegetation: 13
+              amount: 4
+            -
+              vegetation: 8
+              amount: 2
+            -
+              vegetation: 5
+              amount: 1
