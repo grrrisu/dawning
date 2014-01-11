@@ -11,19 +11,19 @@ class Level < Sim::Level
     $stderr.puts '******* BEGIN CREATING *********'
 
     $stderr.puts config
-    @world = World.build(config['world'])
+    @world = World.build(config[:world])
 
     $stderr.puts '******* END CREATING *********'
     true
   end
 
   def process_message message
-    case message['action']
+    case message[:action]
       when 'view'
         require 'pp'
-        params = message['params']
+        params = message[:params]
         # TODO ??? use view and filter_slice
-        x, y, width, height = params['x'], params['y'], params['width'], params['height']
+        x, y, width, height = params[:x], params[:y], params[:width], params[:height]
         w = Sim::Matrix.new(width, height)
         w.set_each_field_with_index do |i, j|
           #$stderr.puts x, y, i, j

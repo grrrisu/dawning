@@ -9,7 +9,7 @@ class World < Sim::Matrix
 
   def build config
     builder = Builder::World.new(self)
-    builder.create(config['builder'])
+    builder.create(config[:builder])
   end
 
 end

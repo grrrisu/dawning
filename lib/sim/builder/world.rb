@@ -10,9 +10,9 @@ module Builder
     def create config
       start_time = Time.now
 
-      create_vegetation config['vegetation']
-      create_flora config['flora']
-      create_fauna config['fauna']
+      create_vegetation config[:vegetation]
+      create_flora config[:flora]
+      create_fauna config[:fauna]
 
       $stderr.puts "world created after #{Time.now - start_time}"
       @world
@@ -21,9 +21,9 @@ module Builder
     # --- create vegetation ---
 
     def create_vegetation config
-      grounding config['grounding']
-      config['clusters'].each do |cluster_config|
-        draw_clusters cluster_config['times'], cluster_config['vegetation'], cluster_config['count']
+      grounding config[:grounding]
+      config[:clusters].each do |cluster_config|
+        draw_clusters cluster_config[:times], cluster_config[:vegetation], cluster_config[:count]
       end
       # FIXME remove
       border
@@ -93,13 +93,12 @@ module Builder
     end
 
     def create_flora_fauna config
-      spread_ratio = @world.height * @world.width / config['per_fields'].to_f
-      config['types'].each do |type_config|
-        type = type_config['type']
-        type_config['spread'].each do |spread|
-          fields = @world.find_all {|field| field[:vegetation] == spread['vegetation'] && field[:flora].nil? }
-          raise "spread amount #{spread['amount']} is bigger than available fields #{fields.size}" if spread['amount'] > fields.size
-          size = (spread['amount'] * spread_ratio).round
+      spread_ratio = @world.height * @world.width / config[:per_fields].to_f
+      config[:types].each do |type_config|
+        type = type_config[:type]
+        type_config[:spread].each do |spread|
+          fields = @world.find_all {|field| field[:vegetation] == spread[:vegetation] && field[:flora].nil? }
+          size = (spread[:amount] * spread_ratio).round
           $stderr.puts type, size
           fields.shuffle.slice(0, size).each do |field|
             yield field, type
