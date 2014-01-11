@@ -1,0 +1,21 @@
+// Place all the styles related to the Levels controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.levels {
+
+  .level {
+    padding: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 1px 1px 0px #fff;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    @include gradient-vertical(#dce3e8, darken(#dce3e8, 10));
+    @include box-shadow(2px 2px 3px rgba(0,0,0,.1));
+
+    i.fa-globe {
+      text-shadow: 2px 2px 4px #fff
+    }
+  }
+
+}

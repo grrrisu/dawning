@@ -13,6 +13,8 @@ Dawning::Application.routes.draw do
     get :activate, on: :member
   end
 
+  resources :levels, only: :index
+
   resources :players do
     resources :maps, only: [:show] do
       get :init, on: :member

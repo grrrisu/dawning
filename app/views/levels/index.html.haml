@@ -1,0 +1,19 @@
+%legend
+  Levels
+- if @levels.any?
+  .levels
+    %ul.list-unstyled
+      - @levels.each do |level|
+        %li.col-md-3
+          .level
+            %h4= level.name.titleize
+            %i.fa.fa-globe.fa-5x
+            %br
+            = level.state
+            %br
+            %br
+            %button.btn.btn-primary
+              %i.fa.fa-sign-in
+              Join
+- else
+  No levels available
