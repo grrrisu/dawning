@@ -10,7 +10,9 @@
     text-shadow: 1px 1px 0px #fff;
     border: 1px solid #aaa;
     border-radius: 10px;
-    @include gradient-vertical(#dce3e8, darken(#dce3e8, 10));
+    background-color: #eee;
+    @include gradient-vertical(#eef0f3, darken(#eef0f3, 8));
+    //@include gradient-vertical(#dce3e8, darken(#dce3e8, 10));
     @include box-shadow(2px 2px 3px rgba(0,0,0,.1));
 
     i.fa-globe {
