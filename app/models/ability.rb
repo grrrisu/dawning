@@ -10,6 +10,8 @@ class Ability
       # user
       can :read, User
       can :update, User, id: user.id
+      # levels
+      can :read, Level
     else # guest
       # user
       can [:read, :create], User
