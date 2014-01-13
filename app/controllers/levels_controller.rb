@@ -5,7 +5,7 @@ class LevelsController < ApplicationController
 
   def index
     authorize! :index, LevelProxy
-    @levels = LevelProxy.levels
+    @levels = LevelProxy.active
   end
 
   def join

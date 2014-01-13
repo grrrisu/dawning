@@ -16,6 +16,10 @@ class LevelProxy
     @levels.try(:values) || []
   end
 
+  def self.active
+    levels.reject {|level| [:launched, :destroyed].include? level.state}
+  end
+
   def self.find id
     @levels[id] or raise ArgumentError, "level with id #{id} not found!"
   end
@@ -23,6 +27,8 @@ class LevelProxy
   def self.delete id
     @levels.delete id
   end
+
+  # --- Instance Methods ----
 
   attr_reader :id, :name, :state, :players
 
@@ -33,10 +39,16 @@ class LevelProxy
     @players    = {}
   end
 
+  # --- players ---
+
   def add_player user_id
-    player_id = UUID.new.generate
-    @connection.send_action :add_player, id: player_id
-    @players[user_id] = player_id
+    unless find_player(user_id)
+      player_id = UUID.new.generate
+      @connection.send_action :add_player, id: player_id
+      @players[user_id] = player_id
+    else
+      raise ArgumentError, "user [#{user_id}] has already been added to this level [#{id}]"
+    end
   end
 
   def remove_player user_id
@@ -56,6 +68,8 @@ class LevelProxy
   def player_action player_id, action, params
     @connection.send_player_action player_id, action, params
   end
+
+  # --- states ---
 
   def launch
     sim_library = Rails.root.join('lib', 'sim', 'level.rb')
