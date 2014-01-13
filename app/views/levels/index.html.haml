@@ -21,7 +21,7 @@
                 %i.fa.fa-arrow-right
                 Join
             - else
-              = link_to player_map_path(level.id, player_id: player_id), class: 'btn btn-wide btn-warning' do
+              = link_to player_map_path(level.id, player_id: player_id), class: 'btn btn-wide btn-warning', data: {'no-turbolink' => true} do
                 %i.fa.fa-sign-in
                 Enter
 - else
