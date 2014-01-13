@@ -43,11 +43,13 @@ class Level < Sim::Level
 
   def add_player id
     # player_supervisors_as << Sim::Player.supervise_as "player_#{id}"
-    raise "implement in subclass"
+    # raise "implement in subclass"
+    $stderr.puts "add_player #{id.inspect}"
+    id
   end
 
   def remove_player id
-    raise "implement in subclass"
+    # raise "implement in subclass"
   end
 
 end

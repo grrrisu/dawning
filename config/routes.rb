@@ -13,7 +13,13 @@ Dawning::Application.routes.draw do
     get :activate, on: :member
   end
 
-  resources :levels, only: :index
+  resources :levels, only: :index do
+    member do
+      patch :join
+      patch :continue
+      delete :leave
+    end
+  end
 
   resources :players do
     resources :maps, only: [:show] do

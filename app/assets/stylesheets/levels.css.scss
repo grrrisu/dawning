@@ -11,9 +11,16 @@
     border: 1px solid #aaa;
     border-radius: 10px;
     background-color: #eee;
-    @include gradient-vertical(#eef0f3, darken(#eef0f3, 8));
-    //@include gradient-vertical(#dce3e8, darken(#dce3e8, 10));
     @include box-shadow(2px 2px 3px rgba(0,0,0,.1));
+
+    &.participation {
+      @include gradient-vertical(#f6f2e6, darken(#f6f2e6, 8));
+    }
+
+    &.no-participation {
+      @include gradient-vertical(#eef0f3, darken(#eef0f3, 8));
+      //@include gradient-vertical(#dce3e8, darken(#dce3e8, 10));
+    }
 
     i.fa-globe {
       text-shadow: 2px 2px 4px #fff

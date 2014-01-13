@@ -6,32 +6,35 @@ describe Ability do
 
   describe 'role admin' do
     subject { create :admin_user }
-    it { should have_ability_to :index, Level}
-    it { should have_ability_to :create, Level}
+    it { should have_ability_to :index, LevelProxy}
+    it { should have_ability_to :create, LevelProxy}
     it { should have_ability_to :build, level }
     it { should have_ability_to :run, level }
     it { should have_ability_to :stop, level }
     it { should have_ability_to :destory, level }
+    it { should have_ability_to :join, level }
   end
 
   describe 'role member' do
     subject { create :user }
-    it { should have_ability_to :index, Level }
-    it { should_not have_ability_to :create, Level }
+    it { should have_ability_to :index, LevelProxy }
+    it { should_not have_ability_to :create, LevelProxy }
     it { should_not have_ability_to :build, level }
     it { should_not have_ability_to :run, level }
     it { should_not have_ability_to :stop, level }
     it { should_not have_ability_to :destory, level }
+    it { should have_ability_to :join, level }
   end
 
   describe 'role guest' do
     subject { User.new }
-    it { should_not have_ability_to :index, Level }
-    it { should_not have_ability_to :create, Level }
+    it { should_not have_ability_to :index, LevelProxy }
+    it { should_not have_ability_to :create, LevelProxy }
     it { should_not have_ability_to :build, level }
     it { should_not have_ability_to :run, level }
     it { should_not have_ability_to :stop, level }
     it { should_not have_ability_to :destory, level }
+    it { should_not have_ability_to :join, level }
   end
 
 end

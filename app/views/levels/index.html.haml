@@ -1,19 +1,28 @@
 %legend
   Levels
 - if @levels.any?
-  .levels
+  .levels.row
     %ul.list-unstyled
       - @levels.each do |level|
         %li.col-md-3.col-sm-6
-          .level
+          .level{class: level.find_player(current_user.id) ? 'participation' : 'no-participation'}
             %h4= level.name.titleize
             %i.fa.fa-globe.fa-5x
             %br
             = level.state
             %br
+            players:
+            = level.players.size
             %br
-            %button.btn.btn-primary
-              %i.fa.fa-sign-in
-              Join
+            %br
+            - unless player_id = level.find_player(current_user.id)
+              = link_to join_level_path(level.id), method: :patch, class: 'btn btn-wide btn-primary' do
+                %i.fa.fa-user
+                %i.fa.fa-arrow-right
+                Join
+            - else
+              = link_to player_map_path(level.id, player_id: player_id), class: 'btn btn-wide btn-warning' do
+                %i.fa.fa-sign-in
+                Enter
 - else
   No levels available

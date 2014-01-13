@@ -11,7 +11,8 @@ class Ability
       can :read, User
       can :update, User, id: user.id
       # levels
-      can :read, Level
+      can :read, LevelProxy
+      can :join, LevelProxy
     else # guest
       # user
       can [:read, :create], User

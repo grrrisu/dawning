@@ -24,12 +24,29 @@ class LevelProxy
     @levels.delete id
   end
 
-  attr_reader :id, :name, :state
+  attr_reader :id, :name, :state, :players
 
   def initialize id, name
     @id         = id
     @name       = name
     @connection = Sim::Popen::ParentConnection.new
+    @players    = {}
+  end
+
+  def add_player user_id
+    player_id = UUID.new.generate
+    @connection.send_action :add_player, id: player_id
+    @players[user_id] = player_id
+  end
+
+  def remove_player user_id
+    if player_id = find_player(user_id)
+      @connection.send_action :remove_player, id: player_id
+    end
+  end
+
+  def find_player user_id
+    @players[user_id]
   end
 
   def action action, params
