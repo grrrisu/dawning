@@ -44,11 +44,18 @@ class MapsController < ApplicationController
 private
 
   def get_running_level
-    @level =  LevelProxy.find params[:id]
-    if current_user.admin?
-      raise Exception, "level #{params[:id]} is not yet build" if @level.state == :launched
+    if @level =  LevelProxy.find(params[:id])
+      if current_user.admin?
+        raise Exception, "level #{params[:id]} is not yet build" if @level.state == :launched
+      else
+        raise Exception, "level #{params[:id]} is not running" unless @level.state == :running
+      end
     else
-      raise Exception, "level #{params[:id]} is not running" unless @level.state == :running
+      if current_user.admin?
+        redirect_to admin_levels_path
+      else
+        redirect_to levels_path
+      end
     end
   end
 

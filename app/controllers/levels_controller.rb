@@ -26,6 +26,7 @@ private
 
   def find_level
     @level =  LevelProxy.find params[:id]
+    redirect_to levels_path unless @level
   end
 
 end
