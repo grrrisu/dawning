@@ -1,6 +1,8 @@
 Dawning
 ==
 
+[![Code Climate](https://codeclimate.com/github/grrrisu/dawning.png)](https://codeclimate.com/github/grrrisu/dawning)
+
 A game about emergence
 
 Requirements
