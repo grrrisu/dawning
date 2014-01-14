@@ -32,6 +32,12 @@ class Level < Sim::Level
           @world[0 + x + i, 0 + y + j]
         end
         w
+      when 'init_map'
+        if @world
+          { world: { width: @world.width, height: @world.height } }
+        else
+          false
+        end
     else
       super
     end

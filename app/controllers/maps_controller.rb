@@ -22,23 +22,7 @@ class MapsController < ApplicationController
   # data to setup game client
   def init
     authorize! :init, @level
-    render json: { world:
-      {
-        width: 50, #settings.world.width,
-        height: 100, #settings.world.height
-      }#,
-      # headquarter:
-      # {
-      #   x: 50, #hq.x,
-      #   y: 50, #hq.y,
-      #   id: 'abc123', #hq.id,
-      #   pawns:
-      #   [
-      #     #{id: hq.pawns[0].id, type: 'base', x: hq.pawns[0].x, y: hq.pawns[0].y},
-      #     #{id: hq.pawns[1].id, type: 'base', x: hq.pawns[1].x, y: hq.pawns[1].y}
-      #   ]
-      # }
-    }.to_json
+    render json: @level.init_map.to_json
   end
 
 private

@@ -21,7 +21,9 @@ class LevelProxy
   end
 
   def self.find id
-    @levels[id] or raise ArgumentError, "level with id #{id} not found!"
+    if @levels
+      @levels[id] or raise ArgumentError, "level with id #{id} not found!"
+    end
   end
 
   def self.delete id
@@ -37,6 +39,15 @@ class LevelProxy
     @name       = name
     @connection = Sim::Popen::ParentConnection.new
     @players    = {}
+  end
+
+  def method_missing method, *args, &block
+    Rails.logger.debug "send action #{method} with #{args.first.inspect}"
+    if args.first
+      @connection.send_action method, args.first
+    else
+      @connection.send_action method
+    end
   end
 
   # --- players ---
