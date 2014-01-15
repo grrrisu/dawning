@@ -3,13 +3,14 @@ world:
   width: 15
   height: 15
   builder:
-    grounding: 5
-    clusters:
-      -
-        times: 1
-        vegetation: 8
-        count: 10
-      -
-        times: 2
-        vegetation: 13
-        count: 4
+    vegetation:
+      grounding: 5
+      clusters:
+        -
+          times: 1
+          vegetation: 8
+          count: 10
+        -
+          times: 2
+          vegetation: 13
+          count: 4

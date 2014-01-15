@@ -11,8 +11,8 @@ module Builder
       start_time = Time.now
 
       create_vegetation config[:vegetation]
-      create_flora config[:flora]
-      create_fauna config[:fauna]
+      create_flora config[:flora] if config[:flora]
+      create_fauna config[:fauna] if config[:fauna]
 
       $stderr.puts "world created after #{Time.now - start_time}"
       @world
