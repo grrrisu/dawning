@@ -13,9 +13,10 @@ describe Ability do
     it { should have_ability_to :stop, level }
     it { should have_ability_to :destory, level }
     it { should have_ability_to :join, level }
+    it { should have_ability_to :init, level }
   end
 
-  describe 'role member' do
+  describe 'role member', focus: true do
     subject { create :user }
     it { should have_ability_to :index, LevelProxy }
     it { should_not have_ability_to :create, LevelProxy }
@@ -24,6 +25,13 @@ describe Ability do
     it { should_not have_ability_to :stop, level }
     it { should_not have_ability_to :destory, level }
     it { should have_ability_to :join, level }
+    it { should_not have_ability_to :init, level }
+
+    describe 'has joined a level' do
+      before(:each) { level.players[subject.id] = 123 }
+      it { should have_ability_to :init, level }
+      it { should have_ability_to :view, level }
+    end
   end
 
   describe 'role guest' do
@@ -35,6 +43,7 @@ describe Ability do
     it { should_not have_ability_to :stop, level }
     it { should_not have_ability_to :destory, level }
     it { should_not have_ability_to :join, level }
+    it { should_not have_ability_to :init, level }
   end
 
 end

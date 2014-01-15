@@ -11,8 +11,10 @@ class Ability
       can :read, User
       can :update, User, id: user.id
       # levels
-      can :read, LevelProxy
-      can :join, LevelProxy
+      can [:read, :join], LevelProxy
+      can [:init, :view], LevelProxy do |level|
+        level.find_player user.id
+      end
     else # guest
       # user
       can [:read, :create], User
