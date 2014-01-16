@@ -16,7 +16,7 @@ describe Ability do
     it { should have_ability_to :init, level }
   end
 
-  describe 'role member', focus: true do
+  describe 'role member' do
     subject { create :user }
     it { should have_ability_to :index, LevelProxy }
     it { should_not have_ability_to :create, LevelProxy }
