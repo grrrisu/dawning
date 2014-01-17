@@ -41,15 +41,6 @@ class LevelProxy
     @players    = {}
   end
 
-  def method_missing method, *args, &block
-    Rails.logger.debug "send action #{method} with #{args.first.inspect}"
-    if args.first
-      @connection.send_action method, args.first
-    else
-      @connection.send_action method
-    end
-  end
-
   # --- players ---
 
   def add_player user_id
@@ -72,8 +63,13 @@ class LevelProxy
     @players[user_id]
   end
 
-  def action action, params
-    @connection.send_action action, params
+  def action action, params = nil
+    Rails.logger.debug "send action #{action} with #{params.inspect}"
+    if params.nil?
+      @connection.send_action action
+    else
+      @connection.send_action action, params
+    end
   end
 
   def player_action player_id, action, params
