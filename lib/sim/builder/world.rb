@@ -10,7 +10,7 @@ module Builder
     def create config
       start_time = Time.now
 
-      create_vegetation config[:vegetation]
+      create_vegetation config[:vegetation] if config[:vegetation]
       create_flora config[:flora] if config[:flora]
       create_fauna config[:fauna] if config[:fauna]
 
