@@ -24,7 +24,7 @@ class View < Sim::Matrix
   end
 
   def filter
-    @w ||= Ludo::Matrix.new(width, height)
+    @w ||= Sim::Matrix.new(width, height)
     @w.set_each_field_with_index do |x, y|
       visible?(x,y) ? @world[@x + x, @y + y] : nil
     end
@@ -34,7 +34,7 @@ class View < Sim::Matrix
   def filter_slice(x, y, width, height)
     width  = x + width  > self.width ? self.width - x : width
     height = y + height > self.height ? self.height - y : height
-    w = Ludo::Matrix.new(width, height)
+    w = Sim::Matrix.new(width, height)
     w.set_each_field_with_index do |i, j|
       visible?(x + i, y + j) ? @world[@x + x + i, @y + y + j] : nil
     end

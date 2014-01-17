@@ -2,7 +2,7 @@ class @Map
 
   constructor: () ->
     @presenter  = new MapPresenter(this)
-    @fields     = []
+    @shapes     = []
 
   setFieldWidth: (width) =>
     @fieldWidth = width
@@ -28,24 +28,27 @@ class @Map
   render_fields: (rx, ry, width, height) =>
     request_data = {x: rx, y: ry, width: width, height: height};
     @fetch request_data, (data) =>
-      while (@fields.length > 0)
-        @fields.pop().remove()
+      while (@shapes.length > 0)
+        @shapes.pop().remove()
 
       data.each (row, j) =>
         row.each (field_data, i) =>
-          field = @presenter.render_field(field_data, (rx + i) , (ry + j))
-          @fields.push(field) if field?
+          field_shape = @presenter.render_field(field_data, (rx + i) , (ry + j))
+          @shapes.push(field_shape) if field_shape?
 
-          if field_data.flora?
-            @flora  = new Banana(field_data.flora)
-            @flora.setPosition(rx + i , ry + j)
-            @flora.render(@presenter.layer)
+          if field_data?
 
-          if field_data.fauna?
-            @fauna  = new Animal(field_data.fauna)
-            fauna_shape = @fauna.setPosition(rx + i , ry + j)
-            @fauna.render(@presenter.layer)
-            #@shapes.push(fauna_shape) if fauna_shape?
+            if field_data.flora?
+              @flora  = new Banana(field_data.flora)
+              flora_shape = @flora.setPosition(rx + i , ry + j)
+              @flora.render(@presenter.layer)
+              #@shapes.push(flora_shape) if flora_shape?
+
+            if field_data.fauna?
+              @fauna  = new Animal(field_data.fauna)
+              fauna_shape = @fauna.setPosition(rx + i , ry + j)
+              @fauna.render(@presenter.layer)
+              #@shapes.push(fauna_shape) if fauna_shape?
 
       @presenter.layer.draw()
 

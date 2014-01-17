@@ -20,7 +20,11 @@ class MapsController < ApplicationController
     if current_user.admin?
       view = @level.action :admin_view, options
     else
-      view = @level.player_action :view, options
+      if player_id = @level.find_player(current_user.id)
+        view = @level.player_action player_id, :view, options
+      else
+        render json: "no player found", status: 403
+      end
     end
     render json: view
   end
@@ -28,7 +32,16 @@ class MapsController < ApplicationController
   # data to setup game client
   def init
     authorize! :init, @level
-    render json: @level.action(:init_map).to_json
+    if current_user.admin?
+      init_info = @level.action :init_map
+    else
+      if player_id = @level.find_player(current_user.id)
+        init_info = @level.player_action player_id, :init_map
+      else
+        render json: "no player found", status: 403
+      end
+    end
+    render json: init_info.to_json
   end
 
 private

@@ -38,7 +38,7 @@ class LevelProxy
     @id         = id
     @name       = name
     @connection = Sim::Popen::ParentConnection.new
-    @players    = {}
+    @players    = {}    # maps user_id to player_id
   end
 
   # --- players ---
@@ -65,14 +65,11 @@ class LevelProxy
 
   def action action, params = nil
     Rails.logger.debug "send action #{action} with #{params.inspect}"
-    if params.nil?
-      @connection.send_action action
-    else
-      @connection.send_action action, params
-    end
+    @connection.send_action action, params
   end
 
-  def player_action player_id, action, params
+  def player_action player_id, action, params = nil
+    Rails.logger.debug "send player action #{action} with #{params.inspect}"
     @connection.send_player_action player_id, action, params
   end
 

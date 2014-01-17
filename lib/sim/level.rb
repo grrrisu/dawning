@@ -3,6 +3,9 @@ Bundler.setup(:default)
 require 'sim'
 
 require_relative 'world'
+require_relative 'player'
+require_relative 'admin_view'
+require_relative 'view'
 
 
 # Level 1.0
@@ -21,7 +24,7 @@ class Level < Sim::Level
     $stderr.puts '******* BEGIN CREATING *********'
 
     @config  = config
-    @players = {}
+    @players = {}       # maps player_id to player obj
     $stderr.puts config
     @world = World.build(config[:world])
 
@@ -30,17 +33,25 @@ class Level < Sim::Level
   end
 
   def process_message message
-    case message[:action]
-      when 'admin_view'
-        AdminView.view @world, message[:params]
-      when 'init_map'
-        if @world
-          { world: { width: @world.width, height: @world.height } }
-        else
-          false
-        end
+    if message.key? :player
+      if player = find_player(message[:player])
+        player.process_message message
+      else
+        raise ArgumentError, "no player[#{message[:player]} found in this level"
+      end
     else
-      super
+      case message[:action]
+        when 'admin_view'
+          AdminView.view @world, message[:params]
+        when 'init_map'
+          if @world
+            { world: { width: @world.width, height: @world.height } }
+          else
+            false
+          end
+      else
+        super
+      end
     end
   end
 
@@ -53,9 +64,13 @@ class Level < Sim::Level
     # raise "implement in subclass"
     $stderr.puts "add_player #{id.inspect}"
     view = View.new(@world, 0, 0, @world.width, @world.height)
-    @players[id] = Player.create view, config[:player]
+    @players[id] = Player.new(view).create config[:player]
 
     id
+  end
+
+  def find_player player_id
+    @players[player_id]
   end
 
   def remove_player id
