@@ -19,10 +19,7 @@ Dawning::Application.routes.draw do
       patch :continue
       delete :leave
     end
-  end
-
-  resources :players do
-    resources :maps, only: [:show] do
+    resource :map, only: [:show] do
       get :init, on: :member
       post :view, on: :member
     end
