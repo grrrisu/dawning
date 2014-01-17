@@ -1,6 +1,6 @@
 class AdminView
 
-  def view world, params
+  def self.view world, params
     x, y, width, height = params[:x], params[:y], params[:width], params[:height]
     w = Sim::Matrix.new(width, height)
     w.set_each_field_with_index do |i, j|
