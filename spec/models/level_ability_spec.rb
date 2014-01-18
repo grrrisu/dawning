@@ -26,11 +26,14 @@ describe Ability do
     it { should_not have_ability_to :destory, level }
     it { should have_ability_to :join, level }
     it { should_not have_ability_to :init, level }
+    it { should_not have_ability_to :view, level }
+    it { should_not have_ability_to :move, level }
 
     describe 'has joined a level' do
       before(:each) { level.players[subject.id] = 123 }
       it { should have_ability_to :init, level }
       it { should have_ability_to :view, level }
+      it { should have_ability_to :move, level }
     end
   end
 

@@ -21,23 +21,13 @@ class Headquarter < Pawn
     if View.within_radius(dx, dy, view_radius)
       yield
     else
-      puts "movement[#{dx},#{dy}] not within influence area[#{view_radius}, #{x}, #{y}] "
+      $stderr.puts "movement[#{dx},#{dy}] not within influence area[#{view_radius}, #{x}, #{y}] "
     end
   end
 
   def create_pawns
     @pawns << Pawn.new(x+1, y)
     @pawns << Pawn.new(x-1, y)
-  end
-
-  def move id, x, y
-    pawn = Pawn.find(id) # TODO check owner
-    within_influence_area(x,y) do
-      view.fog(pawn)
-      pawn.x, pawn.y = x, y
-      view.unfog(pawn)
-    end
-    return {x: pawn.x, y:pawn.y}
   end
 
 end

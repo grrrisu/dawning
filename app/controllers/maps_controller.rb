@@ -2,6 +2,7 @@ class MapsController < ApplicationController
   navigation :map
 
   before_filter :get_running_level
+  before_filter :find_player_id, except: :show
 
   # setup html for map
   def show
@@ -20,11 +21,7 @@ class MapsController < ApplicationController
     if current_user.admin?
       view = @level.action :admin_view, options
     else
-      if player_id = @level.find_player(current_user.id)
-        view = @level.player_action player_id, :view, options
-      else
-        render json: "no player found", status: 403
-      end
+      view = @level.player_action @player_id, :view, options
     end
     render json: view
   end
@@ -35,13 +32,15 @@ class MapsController < ApplicationController
     if current_user.admin?
       init_info = @level.action :init_map
     else
-      if player_id = @level.find_player(current_user.id)
-        init_info = @level.player_action player_id, :init_map
-      else
-        render json: "no player found", status: 403
-      end
+      init_info = @level.player_action @player_id, :init_map
     end
-    render json: init_info.to_json
+    render json: init_info
+  end
+
+  def move
+    authorize! :move, @level
+    result = @level.player_action @player_id, :move, id: params[:id], x: params[:x].to_i, y: params[:y].to_i
+    render json: result
   end
 
 private
@@ -58,6 +57,14 @@ private
         redirect_to admin_levels_path
       else
         redirect_to levels_path
+      end
+    end
+  end
+
+  def find_player_id
+    unless current_user.admin?
+      unless @player_id = @level.find_player(current_user.id)
+        render json: "no player found", status: 403
       end
     end
   end

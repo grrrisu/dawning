@@ -20,8 +20,11 @@ Dawning::Application.routes.draw do
       delete :leave
     end
     resource :map, only: [:show] do
-      get :init, on: :member
-      post :view, on: :member
+      member do
+        get :init
+        post :view
+        post :move
+      end
     end
   end
 

@@ -12,7 +12,7 @@ class Ability
       can :update, User, id: user.id
       # levels
       can [:read, :join], LevelProxy
-      can [:init, :view], LevelProxy do |level|
+      can [:init, :view, :move], LevelProxy do |level|
         level.find_player user.id
       end
     else # guest
