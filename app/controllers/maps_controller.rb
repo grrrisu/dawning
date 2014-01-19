@@ -18,32 +18,29 @@ class MapsController < ApplicationController
                 width: params[:width].to_i,
                 height: params[:height].to_i
               }
-    if current_user.admin?
-      view = @level.action :admin_view, options
-    else
-      view = @level.player_action @player_id, :view, options
-    end
-    render json: view
+    render json: level_action(current_user.admin? ? :admin_view : :view, options)
   end
 
   # data to setup game client
   def init
     authorize! :init, @level
-    if current_user.admin?
-      init_info = @level.action :init_map
-    else
-      init_info = @level.player_action @player_id, :init_map
-    end
-    render json: init_info
+    render json: level_action(:init_map)
   end
 
   def move
     authorize! :move, @level
-    result = @level.player_action @player_id, :move, id: params[:id], x: params[:x].to_i, y: params[:y].to_i
-    render json: result
+    render json: level_action(:move, id: params[:id], x: params[:x].to_i, y: params[:y].to_i)
   end
 
 private
+
+  def level_action action, params = nil
+    if current_user.admin?
+      @level.action action, params
+    else
+      @level.player_action @player_id, action, params
+    end
+  end
 
   def get_running_level
     if @level =  LevelProxy.find(params[:level_id])
