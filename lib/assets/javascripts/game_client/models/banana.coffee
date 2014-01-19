@@ -8,7 +8,6 @@ class @Banana extends Figure
     @presenter
 
   setImage: (data) =>
-    console.log(data)
     switch data
       when "banana 1" then client.images['banana_1']
       when "banana 2" then client.images['banana_2']

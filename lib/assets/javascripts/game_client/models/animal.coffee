@@ -8,7 +8,6 @@ class @Animal extends Figure
     @presenter
 
   setImage: (data) =>
-    console.log(data)
     switch data
       when "rabbit" then client.images['rabbit']
       when "gazelle" then client.images['gazelle']
