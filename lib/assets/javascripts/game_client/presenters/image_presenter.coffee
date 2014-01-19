@@ -26,6 +26,8 @@ class @ImagePresenter
     @node.moveToTop()
     layer.draw
 
+    @node
+
   move: (ax, ay) =>
     @node.setAttrs
       x: ax - @node.getWidth() / 2

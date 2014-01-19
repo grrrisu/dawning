@@ -18,17 +18,16 @@ class @MapPresenter
     @fog
 
   render_field: (data, rx, ry) =>
-    if data?
-      ground = new Kinetic.Rect
-        x: rx * @model.fieldWidth
-        y: ry * @model.fieldWidth
-        width: @model.fieldWidth
-        height: @model.fieldWidth
-        fillPatternImage: client.images[@field_pattern(data)]
-        stroke: 'black'
-        strokeWidth: 1
+    ground = new Kinetic.Rect
+      x: rx * @model.fieldWidth
+      y: ry * @model.fieldWidth
+      width: @model.fieldWidth
+      height: @model.fieldWidth
+      fillPatternImage: client.images[@field_pattern(data)]
+      stroke: 'black'
+      strokeWidth: 1
 
-      @layer.add(ground);
+    @layer.add(ground);
     ground
 
   field_pattern: (data) =>

@@ -33,22 +33,21 @@ class @Map
 
       data.each (row, j) =>
         row.each (field_data, i) =>
-          field_shape = @presenter.render_field(field_data, (rx + i) , (ry + j))
-          @shapes.push(field_shape) if field_shape?
-
           if field_data?
+            field_shape = @presenter.render_field(field_data, (rx + i) , (ry + j))
+            @shapes.push(field_shape) if field_shape?
 
             if field_data.flora?
               @flora  = new Banana(field_data.flora)
-              flora_shape = @flora.setPosition(rx + i , ry + j)
-              @flora.render(@presenter.layer)
-              #@shapes.push(flora_shape) if flora_shape?
+              @flora.setPosition(rx + i , ry + j)
+              flora_shape = @flora.render(@presenter.layer)
+              @shapes.push(flora_shape) if flora_shape?
 
             if field_data.fauna?
               @fauna  = new Animal(field_data.fauna)
-              fauna_shape = @fauna.setPosition(rx + i , ry + j)
-              @fauna.render(@presenter.layer)
-              #@shapes.push(fauna_shape) if fauna_shape?
+              @fauna.setPosition(rx + i , ry + j)
+              fauna_shape = @fauna.render(@presenter.layer)
+              @shapes.push(fauna_shape) if fauna_shape?
 
       @presenter.layer.draw()
 
