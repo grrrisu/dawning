@@ -17,3 +17,8 @@ class @Headquarter extends Pawn
     @pawns = []
     data.pawns.each (pawn_data) =>
       @pawns.push new Human(pawn_data)
+
+
+  findPawn: (rx, ry) =>
+    @pawns.find (pawn) =>
+      pawn.rx == rx && pawn.ry == ry

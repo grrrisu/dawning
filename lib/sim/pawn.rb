@@ -23,4 +23,9 @@ class Pawn
     @x, @y       = x, y
   end
 
+  # the value that is returned to the view
+  def view_value
+    self.class.name.underscore
+  end
+
 end

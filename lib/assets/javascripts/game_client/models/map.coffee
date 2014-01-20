@@ -17,6 +17,14 @@ class @Map
   mapHeight: =>
     @height = @worldHeight * @fieldWidth
 
+  remove_shapes: =>
+    console.log(@shapes.length)
+    while (@shapes.length > 0)
+      @shapes.pop().remove()
+
+  add_shape: (shape) =>
+    @shapes.push(shape) if shape?
+
   fetch: (request_data, callback) =>
     client.api.post '/view', request_data, (data, status, xhr) ->
       callback(data)
@@ -28,14 +36,13 @@ class @Map
   render_fields: (rx, ry, width, height) =>
     request_data = {x: rx, y: ry, width: width, height: height};
     @fetch request_data, (data) =>
-      while (@shapes.length > 0)
-        @shapes.pop().remove()
+      @remove_shapes()
 
       data.each (row, j) =>
         row.each (field_data, i) =>
           if field_data?
             field_shape = @presenter.render_field(field_data, (rx + i) , (ry + j))
-            @shapes.push(field_shape) if field_shape?
+            @add_shape(field_shape)
 
             if field_data.flora?
               @render_figure(new Banana(field_data.flora), rx + i, ry + j)
@@ -44,21 +51,23 @@ class @Map
               @render_figure(new Animal(field_data.fauna), rx + i, ry + j)
 
             if field_data.pawn?
-              @render_pawn(field_data.pawn, rx +i, ry + j)
+              @render_pawn(field_data.pawn, (rx + i), (ry + j))
 
       @presenter.layer.draw()
 
   render_figure: (figure, rx, ry) =>
     figure.setPosition(rx, ry)
     shape = figure.render(@presenter.layer)
-    @shapes.push(shape) if shape?
+    @add_shape(shape)
 
   # TODO
   render_pawn: (data, rx, ry) =>
-    @headquarter  = new Headquarter(data.headquarter)
-    @headquarter.render(@presenter.layer)
-    @headquarter.pawns.each (pawn) =>
-      pawn.render(@presenter.layer)
+    if data == 'headquarter'
+      shape = client.headquarter.render(@presenter.layer)
+    else if data == 'pawn'
+      shape = client.headquarter.findPawn(rx, ry).render(@presenter.layer)
+
+    @add_shape(shape)
 
 
   # --- position helpers ---

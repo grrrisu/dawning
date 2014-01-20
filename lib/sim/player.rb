@@ -3,16 +3,22 @@ require_relative 'headquarter'
 class Player
 
   attr_accessor :headquarter, :view
+  attr_reader   :world
 
   def initialize view
-    @view = view
+    @view   = view
+    @world  = view.world
   end
 
   def create config
     @headquarter = Headquarter.new(24, 70)
+    world[24, 70].merge!(pawn: @headquarter)
     @headquarter.create_pawns
     view.unfog(@headquarter)
-    @headquarter.pawns.each {|pawn| view.unfog(pawn) }
+    @headquarter.pawns.each do |pawn|
+      view.unfog(pawn)
+      world[pawn.x, pawn.y].merge!(pawn: pawn)
+    end
     self
   end
 
@@ -51,7 +57,9 @@ class Player
     pawn = Pawn.find(id) # TODO check owner
     @headquarter.within_influence_area(x,y) do
       view.fog(pawn)
+      world[pawn.x, pawn.y].delete(:pawn)
       pawn.x, pawn.y = x, y
+      world[x, y].merge!(pawn: pawn)
       view.unfog(pawn)
     end
     return {x: pawn.x, y:pawn.y}

@@ -53,7 +53,4 @@ class @Client
         # admin view has no headquarter
         if data.headquarter?
           @headquarter  = new Headquarter(data.headquarter)
-          @headquarter.render(@presenter.pawn_layer)
-          @headquarter.pawns.each (pawn) =>
-            pawn.render(@presenter.pawn_layer)
         @viewport.center()
