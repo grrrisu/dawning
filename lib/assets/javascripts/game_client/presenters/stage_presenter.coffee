@@ -4,7 +4,7 @@ class @StagePresenter
 
   render: =>
     @stage = new Kinetic.Stage
-      container: 'prawns'
+      container: 'pawns'
       width: @viewport.width
       height: @viewport.height
       fill: 'red'
