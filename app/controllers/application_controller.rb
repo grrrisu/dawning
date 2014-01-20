@@ -22,9 +22,10 @@ private
   end
 
   def not_authenticated
-    respond_to do |format|
-      format.html { redirect_to login_path, alert: "Please login first." }
-      format.json { render json: { location: login_path, alert: "Please login first." }, status: 403}
+    unless request.xhr?
+      redirect_to login_path, alert: "Please login first."
+    else
+      render json: { location: login_path, alert: "Please login first." }, status: 403
     end
   end
 
