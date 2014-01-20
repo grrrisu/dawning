@@ -38,18 +38,27 @@ class @Map
             @shapes.push(field_shape) if field_shape?
 
             if field_data.flora?
-              @flora  = new Banana(field_data.flora)
-              @flora.setPosition(rx + i , ry + j)
-              flora_shape = @flora.render(@presenter.layer)
-              @shapes.push(flora_shape) if flora_shape?
+              @render_figure(new Banana(field_data.flora), rx + i, ry + j)
 
             if field_data.fauna?
-              @fauna  = new Animal(field_data.fauna)
-              @fauna.setPosition(rx + i , ry + j)
-              fauna_shape = @fauna.render(@presenter.layer)
-              @shapes.push(fauna_shape) if fauna_shape?
+              @render_figure(new Animal(field_data.fauna), rx + i, ry + j)
+
+            if field_data.pawn?
+              @render_pawn(field_data.pawn, rx +i, ry + j)
 
       @presenter.layer.draw()
+
+  render_figure: (figure, rx, ry) =>
+    figure.setPosition(rx, ry)
+    shape = figure.render(@presenter.layer)
+    @shapes.push(shape) if shape?
+
+  # TODO
+  render_pawn: (data, rx, ry) =>
+    @headquarter  = new Headquarter(data.headquarter)
+    @headquarter.render(@presenter.layer)
+    @headquarter.pawns.each (pawn) =>
+      pawn.render(@presenter.layer)
 
 
   # --- position helpers ---
