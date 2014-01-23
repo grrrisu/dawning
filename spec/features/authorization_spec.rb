@@ -19,10 +19,5 @@ describe "Authorization" do
     click_link 'Account'
     expect(page).to have_content(user.username)
   end
-  #
-  # it "an admin should have access" do
-  #   pending
-  # end
-
 
 end

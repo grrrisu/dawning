@@ -5,7 +5,7 @@
     %ul.list-unstyled
       - @levels.each do |level|
         %li.col-md-3.col-sm-6
-          .level{class: level.find_player(current_user.id) ? 'participation' : 'no-participation'}
+          .level{id: "level_#{level.id}", class: level.find_player(current_user.id) ? 'participation' : 'no-participation'}
             %h4= level.name.titleize
             %i.fa.fa-globe.fa-5x
             %br
@@ -16,13 +16,13 @@
             %br
             %br
             - unless player_id = level.find_player(current_user.id)
-              = link_to join_level_path(level.id), method: :patch, class: 'btn btn-wide btn-primary' do
+              = link_to join_level_path(level.id), method: :patch, class: 'btn btn-wide btn-primary', id: "join_#{level.id}" do
                 %i.fa.fa-user
                 %i.fa.fa-arrow-right
                 Join
             - else
               - if level.state == :running
-                = link_to level_map_path(level.id), class: 'btn btn-wide btn-warning', data: {'no-turbolink' => true} do
+                = link_to level_map_path(level.id), class: 'btn btn-wide btn-warning', id: "enter_#{level.id}", data: {'no-turbolink' => true} do
                   %i.fa.fa-sign-in
                   Enter
 - else
