@@ -17,11 +17,13 @@ module Features
     def logged_in_user
       user = create :user, password: 'secret'
       login_with(user, 'secret')
+      user
     end
 
     def logged_in_admin
       user = create :admin_user, password: 'secret'
       login_with(user, 'secret')
+      user
     end
 
   end

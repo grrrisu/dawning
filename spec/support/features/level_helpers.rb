@@ -19,5 +19,9 @@ module Features
       level
     end
 
+    def user_joined_level user, level
+      level.add_player user.id
+    end
+
   end
 end

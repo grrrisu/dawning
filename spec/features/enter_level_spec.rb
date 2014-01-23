@@ -2,12 +2,8 @@ require "spec_helper"
 
 describe "enter level" do
 
-  before :each do
-    user = create :user, password: 'secret'
-    login_with(user, 'secret')
-  end
-
   let!(:level) { running_level }
+  let!(:user) { logged_in_user }
 
   it "user joins a level and enters it" do
     visit '/levels'
