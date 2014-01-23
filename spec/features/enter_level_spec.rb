@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "enter level", focus: true do
+describe "enter level" do
 
   before :each do
     user = create :user, password: 'secret'

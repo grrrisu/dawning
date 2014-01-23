@@ -1,18 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-module Sim
-  class Matrix
-
-
-
-  end
-end
-
 describe View do
 
   before(:each) do
     world = World.new(8, 8)
-    world.set_each_field { 'w' }
+    @w = {w: @w}
+    world.set_each_field { @w.clone }
     @view = View.new(world, 0, 0, 5)
   end
 
@@ -36,7 +29,7 @@ describe View do
     end
 
     it "should filter pawns visibility to world" do
-      expected = [['w', 'w', 'w', nil, nil], ['w', 'w', 'w', nil, nil], ['w', 'w', 'w', nil, nil], [nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil]]
+      expected = [[@w, @w, @w, nil, nil], [@w, @w, @w, nil, nil], [@w, @w, @w, nil, nil], [nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil]]
       expect(@view.filter.fields).to be == expected
     end
 
