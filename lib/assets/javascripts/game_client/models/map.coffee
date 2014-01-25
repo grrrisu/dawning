@@ -18,7 +18,6 @@ class @Map
     @height = @worldHeight * @fieldWidth
 
   remove_shapes: =>
-    console.log(@shapes.length)
     while (@shapes.length > 0)
       @shapes.pop().remove()
 

@@ -8,7 +8,7 @@ module Features
 
     def built_level name = nil, config = nil
       level = launched_level(name)
-      config = "default.yml" if config.blank?
+      config = "test.yml" if config.blank?
       level.build(config)
       level
     end
