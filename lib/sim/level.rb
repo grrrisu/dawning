@@ -6,6 +6,7 @@ require_relative 'world'
 require_relative 'player'
 require_relative 'admin_view'
 require_relative 'view'
+require_relative 'builder/dropzone'
 
 
 # Level 1.0
@@ -18,7 +19,7 @@ require_relative 'view'
 # * bot dropzone 1    (80 - 99)
 class Level < Sim::Level
 
-  attr_reader :world, :config
+  attr_reader :world, :dropzone, :config
 
   def create config
     $stderr.puts '******* BEGIN CREATING *********'
@@ -26,7 +27,9 @@ class Level < Sim::Level
     @config  = config
     @players = {}       # maps player_id to player obj
     $stderr.puts config
-    @world = World.build(config[:world])
+
+    @world =    World.build(config[:world])
+    @dropzone = Builder::Dropzone.new(@world, config[:dropzones])
 
     $stderr.puts '******* END CREATING *********'
     true
@@ -63,8 +66,10 @@ class Level < Sim::Level
     # player_supervisors_as << Sim::Player.supervise_as "player_#{id}"
     # raise "implement in subclass"
     $stderr.puts "add_player #{id.inspect}"
-    view = View.new(@world, 0, 0, @world.width, @world.height)
-    @players[id] = Player.new(view).create config[:player]
+
+    player = dropzone.place_player
+    @players[id] = player
+    player.create config[:player]
 
     id
   end

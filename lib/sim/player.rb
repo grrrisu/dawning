@@ -5,20 +5,13 @@ class Player
   attr_accessor :headquarter, :view
   attr_reader   :world
 
-  def initialize view
+  def initialize view, headquarter
     @view   = view
     @world  = view.world
+    @headquarter = headquarter
   end
 
   def create config
-    @headquarter = Headquarter.new(24, 70)
-    world[24, 70].merge!(pawn: @headquarter)
-    @headquarter.create_pawns
-    view.unfog(@headquarter)
-    @headquarter.pawns.each do |pawn|
-      view.unfog(pawn)
-      world[pawn.x, pawn.y].merge!(pawn: pawn)
-    end
     self
   end
 

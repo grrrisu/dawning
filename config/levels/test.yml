@@ -14,3 +14,19 @@ world:
           times: 2
           vegetation: 13
           count: 4
+dropzones:
+  bot_1:
+    from:  0
+    to:    3
+  gateway:
+    from:  4
+    to:    6
+  transit:
+    from:  7
+    to:    9
+  players:
+    from: 10
+    to:   12
+  bot_2:
+    from: 13
+    to:   15

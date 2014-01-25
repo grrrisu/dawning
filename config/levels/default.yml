@@ -99,3 +99,19 @@ world:
             -
               vegetation: 5
               amount: 1
+dropzones:
+  bot_1:
+    from:  0
+    to:   19
+  gateway:
+    from: 20
+    to:   39
+  transit:
+    from: 50
+    to:   49
+  players:
+    from: 60
+    to:   79
+  bot_2:
+    from: 80
+    to:   99
