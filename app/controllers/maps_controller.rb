@@ -3,6 +3,7 @@ class MapsController < ApplicationController
 
   before_filter :get_running_level
   before_filter :find_player_id, except: :show
+  before_filter :prepare_map_images
 
   # setup html for map
   def show
@@ -64,6 +65,28 @@ private
         render json: "no player found", status: 403
       end
     end
+  end
+
+  def prepare_map_images
+    @images = {
+      'fog' => 'map/fog3.png',
+      '0_desert' => 'map/0_desert4.png',
+      '1_grass' => 'map/1_grass4.png',
+      '2_grass' => 'map/2_grass4.png',
+      '3_grass' => 'map/3_grass4.png',
+      '5_grass' => 'map/5_grass4.png',
+      '8_forest' => 'map/8_forest4.png',
+      '13_forest' => 'map/13_forest4.png',
+      'banana_1' => 'map/banana-1.png',
+      'banana_2' => 'map/banana-2.png',
+      'banana_3' => 'map/banana-3.png',
+      'rabbit' => 'map/rabbit.png',
+      'gazelle' => 'map/gazelle.png',
+      'mammoth' => 'map/meat.png',
+      'leopard' => 'map/leopard3.png',
+      'headquarter' => 'map/Raratonga_Mask.gif',
+      'man' => 'map/caveman.png'
+    }
   end
 
 end

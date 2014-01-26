@@ -12,3 +12,6 @@
           = link_to "create a new world", "/world", id: "create_new_world"
         %li
           = link_to "center view", "#", id: "center_view"
+
+:javascript
+  var image_sources = #{images_with_asset_path(@images).to_json};

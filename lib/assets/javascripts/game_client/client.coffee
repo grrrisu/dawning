@@ -1,24 +1,5 @@
 class @Client
 
-  image_sources =
-    'fog': '/assets/map/fog3.png'
-    '0_desert': '/assets/map/0_desert4.png'
-    '1_grass': '/assets/map/1_grass4.png'
-    '2_grass': '/assets/map/2_grass4.png'
-    '3_grass': '/assets/map/3_grass4.png'
-    '5_grass': '/assets/map/5_grass4.png'
-    '8_forest': '/assets/map/8_forest4.png'
-    '13_forest': '/assets/map/13_forest4.png'
-    'banana_1': '/assets/map/banana-1.png'
-    'banana_2': '/assets/map/banana-2.png'
-    'banana_3': '/assets/map/banana-3.png'
-    'rabbit': '/assets/map/rabbit.png'
-    'gazelle': '/assets/map/gazelle.png'
-    'mammoth': '/assets/map/meat.png'
-    'leopard': '/assets/map/leopard3.png'
-    'headquarter': '/assets/map/Raratonga_Mask.gif'
-    'man': '/assets/map/caveman.png'
-
   constructor: (width) ->
     fieldsVisible = 11
     @api          = new ApiCaller()
@@ -45,6 +26,7 @@ class @Client
       @images[src].src = sources[src]
 
   render: () =>
+    # variable image_sources is defined on the page, see maps/show.html
     @preload_images image_sources, () =>
       @fetch (data) =>
         @presenter.render()
