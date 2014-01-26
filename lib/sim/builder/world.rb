@@ -99,7 +99,6 @@ module Builder
         type_config[:spread].each do |spread|
           fields = @world.find_all {|field| field[:vegetation] == spread[:vegetation] && field[:flora].nil? }
           size = (spread[:amount] * spread_ratio).round
-          $stderr.puts type, size
           fields.shuffle.slice(0, size).each do |field|
             yield field, type
           end
