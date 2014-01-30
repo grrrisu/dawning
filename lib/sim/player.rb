@@ -28,10 +28,9 @@ class Player
               x: @headquarter.x,
               y: @headquarter.y,
               pawns:
-              [
-                {id: @headquarter.pawns[0].id, type: 'base', x: @headquarter.pawns[0].x, y: @headquarter.pawns[0].y},
-                {id: @headquarter.pawns[1].id, type: 'base', x: @headquarter.pawns[1].x, y: @headquarter.pawns[1].y}
-              ]
+                @headquarter.pawns.map do |pawn|
+                  {id: pawn.id, type: pawn.type, x: pawn.x, y: pawn.y}
+                end
             }
           }
         else

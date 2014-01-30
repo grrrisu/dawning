@@ -1,6 +1,6 @@
 class Pawn
 
-  attr_accessor :id, :x, :y, :view_radius
+  attr_accessor :id, :x, :y, :view_radius, :type
 
   def self.id_count
     @count ||= 0
@@ -21,6 +21,7 @@ class Pawn
     Pawn.add(self)
     @view_radius = 1
     @x, @y       = x, y
+    @tpye        = 'base'
   end
 
   # the value that is returned to the view
