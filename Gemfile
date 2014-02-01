@@ -28,7 +28,7 @@ gem 'bootstrap-sass', "~> 3.0.2.0"
 gem "font-awesome-sass"
 
 group :development do
-  gem 'thin'
+  gem 'puma'
   gem 'pry-rails'
 
   gem 'rb-readline', :require => false
@@ -72,7 +72,6 @@ group :test do
 end
 
 group :staging, :production do
-  gem 'puma'
   gem 'newrelic_rpm'
   gem 'airbrake'
 end
