@@ -8,6 +8,7 @@ gem 'haml-rails'
 gem 'simple_form', '~> 3.0.0'
 
 gem "mongoid", :github => "mongoid/mongoid" # wait until ready for activerecord 4.0
+gem 'puma'
 
 gem 'sorcery'
 gem 'cancan'
@@ -28,7 +29,6 @@ gem 'bootstrap-sass', "~> 3.0.2.0"
 gem "font-awesome-sass"
 
 group :development do
-  gem 'puma'
   gem 'pry-rails'
 
   gem 'rb-readline', :require => false
