@@ -22,9 +22,9 @@ class User
 
   has_gravatar default: :retro
 
-  scope :active, where(activation_state: 'active').excludes(username: 'admin')
+  scope :active, -> { where(activation_state: 'active').excludes(username: 'admin') }
 
-  scope :to_be_notified, active.excludes(notification: false)
+  scope :to_be_notified, -> { active.excludes(notification: false) }
 
   def notification_needs_email
     unless new_record?
