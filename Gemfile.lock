@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/grrrisu/Simulator.git
-  revision: 09e6321c915ae754317281227e27f2fe50f4fc71
+  revision: ad645185a964162afba610965e3ed520269ba55b
   specs:
     Simulator (0.0.2)
       celluloid (~> 0.13)

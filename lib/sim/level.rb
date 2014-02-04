@@ -36,25 +36,17 @@ class Level < Sim::Level
   end
 
   def process_message message
-    if message.key? :player
-      if player = find_player(message[:player])
-        player.process_message message
-      else
-        raise ArgumentError, "no player[#{message[:player]} found in this level"
-      end
+    case message[:action]
+      when 'admin_view'
+        AdminView.view @world, message[:params]
+      when 'init_map'
+        if @world
+          { world: { width: @world.width, height: @world.height } }
+        else
+          false
+        end
     else
-      case message[:action]
-        when 'admin_view'
-          AdminView.view @world, message[:params]
-        when 'init_map'
-          if @world
-            { world: { width: @world.width, height: @world.height } }
-          else
-            false
-          end
-      else
-        super
-      end
+      super
     end
   end
 
