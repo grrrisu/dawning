@@ -15,34 +15,28 @@ class Player
     self
   end
 
-  def process_message message
-    params = message[:params]
-    case message[:action]
-      when 'init_map'
-        if @view.world
-          {
-            world: { width: @view.world.width, height: @view.world.height },
-            headquarter:
-            {
-              id: @headquarter.id,
-              x: @headquarter.x,
-              y: @headquarter.y,
-              pawns:
-                @headquarter.pawns.map do |pawn|
-                  {id: pawn.id, type: pawn.type, x: pawn.x, y: pawn.y}
-                end
-            }
-          }
-        else
-          false
-        end
-      when 'view'
-        @view.filter_slice(params[:x], params[:y], params[:width], params[:height])
-      when 'move'
-        move(params[:id].to_i, params[:x], params[:y])
-      else
-        raise ArgumentError, "unknown message #{message}"
-      end
+  def init_map
+    if @view.world
+      {
+        world: { width: @view.world.width, height: @view.world.height },
+        headquarter:
+        {
+          id: @headquarter.id,
+          x: @headquarter.x,
+          y: @headquarter.y,
+          pawns:
+            @headquarter.pawns.map do |pawn|
+              {id: pawn.id, type: pawn.type, x: pawn.x, y: pawn.y}
+            end
+        }
+      }
+    else
+      false
+    end
+  end
+
+  def view x, y, width, height
+    @view.filter_slice(x, y, width, height)
   end
 
   def move id, x, y

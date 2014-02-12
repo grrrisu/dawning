@@ -35,18 +35,11 @@ class Level < Sim::Level
     true
   end
 
-  def process_message message
-    case message[:action]
-      when 'admin_view'
-        AdminView.view @world, message[:params]
-      when 'init_map'
-        if @world
-          { world: { width: @world.width, height: @world.height } }
-        else
-          false
-        end
+  def init_map
+    if @world
+      { world: { width: @world.width, height: @world.height } }
     else
-      super
+      false
     end
   end
 
