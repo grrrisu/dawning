@@ -47,6 +47,10 @@ class Level < Sim::Level
     raise "implement in subclass"
   end
 
+  def admin_view x, y, width, height
+    AdminView.view @world, x, y, width, height
+  end
+
   def add_player id
     # player_supervisors_as << Sim::Player.supervise_as "player_#{id}"
     # raise "implement in subclass"
