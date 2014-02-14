@@ -41,20 +41,23 @@ class @Map
       data.each (row, j) =>
         row.each (field_data, i) =>
           if field_data?
-            field_shape = @presenter.render_field(field_data, (rx + i) , (ry + j))
-            @add_shape(field_shape)
-
-            if field_data.flora?
-              @render_figure(new Banana(field_data.flora), rx + i, ry + j)
-
-            if field_data.fauna?
-              @render_figure(new Animal(field_data.fauna), rx + i, ry + j)
-
-            if field_data.pawn?
-              @render_pawn(field_data.pawn, (rx + i), (ry + j))
+            @render_field(field_data, rx + i , ry + j)
 
       @presenter.layer.draw()
       @presenter.pawn_layer.draw()
+
+  render_field: (field_data, rx , ry) =>
+    field_shape = @presenter.render_field(field_data, rx , ry)
+    @add_shape(field_shape)
+
+    if field_data.flora?
+      @render_figure(new Banana(field_data.flora), rx , ry)
+
+    if field_data.fauna?
+      @render_figure(new Animal(field_data.fauna), rx , ry)
+
+    if field_data.pawn?
+      @render_pawn(field_data.pawn, rx , ry)
 
   render_figure: (figure, rx, ry) =>
     figure.setPosition(rx, ry)
