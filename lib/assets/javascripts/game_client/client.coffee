@@ -31,7 +31,7 @@ class @Client
       @fetch (data) =>
         @presenter.render()
         @map.setWorldSize(data.world)
-        @map.render(@presenter.map_layer)
+        @map.render(@presenter.map_layer, @presenter.pawn_layer)
         # admin view has no headquarter
         if data.headquarter?
           @headquarter  = new Headquarter(data.headquarter)

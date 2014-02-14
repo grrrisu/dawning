@@ -5,6 +5,9 @@ class @MapPresenter
   setLayer: (layer) =>
     @layer = layer
 
+  setPawnLayer: (layer) =>
+    @pawn_layer = layer
+
   render_fog: () =>
     @fog   = new Kinetic.Rect
       width: @model.mapWidth()

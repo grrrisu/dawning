@@ -28,8 +28,9 @@ class @Map
     client.api.post '/view', request_data, (data, status, xhr) ->
       callback(data)
 
-  render: (layer) =>
-    @presenter.setLayer(layer)
+  render: (map_layer, pawn_layer) =>
+    @presenter.setLayer(map_layer)
+    @presenter.setPawnLayer(pawn_layer)
     @presenter.render_fog()
 
   render_fields: (rx, ry, width, height) =>
@@ -53,6 +54,7 @@ class @Map
               @render_pawn(field_data.pawn, (rx + i), (ry + j))
 
       @presenter.layer.draw()
+      @presenter.pawn_layer.draw()
 
   render_figure: (figure, rx, ry) =>
     figure.setPosition(rx, ry)
@@ -62,9 +64,9 @@ class @Map
   # TODO
   render_pawn: (data, rx, ry) =>
     if data == 'headquarter'
-      shape = client.headquarter.render(@presenter.layer)
+      shape = client.headquarter.render(@presenter.pawn_layer)
     else if data == 'pawn'
-      shape = client.headquarter.findPawn(rx, ry).render(@presenter.layer)
+      shape = client.headquarter.findPawn(rx, ry).render(@presenter.pawn_layer)
 
     @add_shape(shape)
 
