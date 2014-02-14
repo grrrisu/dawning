@@ -30,7 +30,7 @@ class MapsController < ApplicationController
 
   def move
     authorize! :move, @level
-    render json: level_action(:move, id: params[:id], x: params[:x].to_i, y: params[:y].to_i)
+    render json: level_action(:move, id: params[:id].to_i, x: params[:x].to_i, y: params[:y].to_i)
   end
 
 private
