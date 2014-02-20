@@ -69,7 +69,11 @@ class @Map
     if data == 'headquarter'
       shape = client.headquarter.render(@presenter.pawn_layer)
     else if data == 'pawn'
-      shape = client.headquarter.findPawn(rx, ry).render(@presenter.pawn_layer)
+      pawn = client.headquarter.findPawn(rx, ry)
+      if pawn?
+        shape = pawn.render(@presenter.pawn_layer)
+      else
+        console.log("ERROR pawn not found with position ["+rx+","+ry+"]")
 
     @add_shape(shape)
 
