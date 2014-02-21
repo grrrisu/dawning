@@ -7,11 +7,12 @@ GIT
 
 GIT
   remote: git://github.com/grrrisu/Simulator.git
-  revision: 291edfdf1b04505da8003f8faf8937e498b92d49
+  revision: a8897c0b41820559c1c6f2bbd51ac95ca148b065
   specs:
-    Simulator (0.2.0)
+    Simulator (0.2.1)
       activesupport (~> 4.0.2)
       celluloid (~> 0.13)
+      hashie
 
 GIT
   remote: git://github.com/mongoid/mongoid.git
@@ -161,6 +162,7 @@ GEM
       activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
+    hashie (2.0.5)
     highline (1.6.20)
     hike (1.2.3)
     hirb (0.7.1)

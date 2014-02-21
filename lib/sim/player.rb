@@ -42,7 +42,7 @@ class Player
   def move id, x, y
     pawn = Pawn.find(id) # TODO check owner
     @headquarter.within_influence_area(x,y) do
-      if world[x,y][:pawn].is_blank?
+      if world[x,y][:pawn].blank?
         @view.fog(pawn)
         world[pawn.x, pawn.y].delete(:pawn)
         pawn.x, pawn.y = x, y
