@@ -61,6 +61,7 @@ group :test, :development do
   gem "guard-spork", :require => false
   gem "better_errors"
   gem "binding_of_caller"
+  gem 'simplecov', '~> 0.7.1', :require => false
 end
 
 group :test do

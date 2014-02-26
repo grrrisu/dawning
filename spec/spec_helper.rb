@@ -27,6 +27,18 @@ if $LOADED_FEATURES.grep(/spec\/spec_helper\.rb/).any?
 end
 
 Spork.prefork do
+  unless ENV['DRB']
+    puts 'simplecov without DRB'
+    require 'simplecov'
+    SimpleCov.start do
+      add_filter '/spec/'
+      add_filter '/config/'
+      add_group 'Controllers', 'app/controllers'
+      add_group 'Models', 'app/models'
+      add_group 'Helpers', 'app/helpers'
+      add_group 'Libraries', 'lib'
+    end
+  end
 
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
@@ -95,6 +107,18 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  if ENV['DRB']
+    puts 'simplecov with DRB'
+    require 'simplecov'
+    SimpleCov.start do
+      add_filter '/spec/'
+      add_filter '/config/'
+      add_group 'Controllers', 'app/controllers'
+      add_group 'Models', 'app/models'
+      add_group 'Helpers', 'app/helpers'
+      add_group 'Libraries', 'lib'
+    end
+  end
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
