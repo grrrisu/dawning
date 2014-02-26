@@ -27,27 +27,23 @@ module Builder
       end
       # FIXME remove
       border
-
-      @world.set_each_field_with_index do |x, y|
-        { vegetation: @world[x, y] }
-      end
     end
 
     def border
       @world.width.times do |i|
-        @world[i,0] = 0
-        @world[i,@world.height-1] = 0
+        @world[i,0].vegetation = 0
+        @world[i,@world.height-1].vegetation = 0
       end
 
       @world.height.times do |i|
-        @world[0,i] = 0
-        @world[@world.width-1, i] = 0
+        @world[0,i].vegetation = 0
+        @world[@world.width-1, i].vegetation = 0
       end
     end
 
     def grounding grounding
-      @world.set_each_field do |field|
-        grounding
+      @world.each_field do |field|
+        field.vegetation = grounding
       end
     end
 
@@ -64,17 +60,9 @@ module Builder
       count = 0
 
       begin
-        cx, cy = cx + rand(3) -1, cy + rand(3) -1
-
-        cx = @world.width() -1 if cx < 0
-        cy = @world.height() -1 if cy < 0
-        cx = 0 if cx >= @world.width
-        cy = 0 if cy >= @world.height
-        #puts "move   #{cx} #{cy}"
+        cx, cy = @world.check_bounderies(cx + rand(3) -1, cy + rand(3) -1)
         count += 1 unless @world[cx, cy] == property
-
-        @world[cx, cy] = property
-
+        @world[cx, cy].vegetation = property
       end until count == stop_count
     end
 
@@ -82,13 +70,13 @@ module Builder
 
     def create_flora config
       create_flora_fauna(config) do |field, type|
-        field.merge! flora: type
+        field.flora = type
       end
     end
 
     def create_fauna config
       create_flora_fauna(config) do |field, type|
-        field.merge! fauna: type
+        field.fauna = type
       end
     end
 

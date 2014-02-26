@@ -7,13 +7,10 @@ describe Player do
   let(:headquarter) { Headquarter.new(1,1) }
   let(:player)      { Player.new(view, headquarter) }
 
-  describe 'move', focus: true do
+  describe 'move' do
 
     before :each do
-      # FIXME
-      world.set_each_field { Sim::FieldProperties.new }
       world[1,1].pawn = headquarter
-
       headquarter.pawns << @pawn = Pawn.new(0, 1)
       world[0,1].pawn = @pawn
     end
