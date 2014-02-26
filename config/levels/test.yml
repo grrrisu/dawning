@@ -16,6 +16,84 @@ world:
           times: 2
           vegetation: 13
           count: 4
+
+    flora:
+      # type_1, type_2, type_3 -> 9, 6, 3 / per 200 fields
+      per_fields: 200
+      types:
+        -
+          type: 'banana 1'
+          spread:
+            -
+              vegetation: 13
+              amount: 5
+            -
+              vegetation: 8
+              amount: 3
+            -
+              vegetation: 5
+              amount: 1
+        -
+          type: 'banana 2'
+          spread:
+            -
+              vegetation: 13
+              amount: 3
+            -
+              vegetation: 8
+              amount: 3
+        -
+          type: 'banana 3'
+          spread:
+            -
+              vegetation: 13
+              amount: 2
+            -
+              vegetation: 8
+              amount: 1
+    fauna:
+      # type_1, type_2, type_3 -> 8, 4, 2 / per 200 fields
+      per_fields: 200
+      types:
+        -
+          type: 'rabbit'
+          spread:
+            -
+              vegetation: 13
+              amount: 4
+            -
+              vegetation: 8
+              amount: 3
+            -
+              vegetation: 5
+              amount: 1
+        -
+          type: 'gazelle'
+          spread:
+            -
+              vegetation: 13
+              amount: 2
+            -
+              vegetation: 8
+              amount: 2
+        -
+          type: 'mammoth'
+          spread:
+            -
+              vegetation: 13
+              amount: 2
+        # just guessing
+        - type: 'leopard'
+          spread:
+            -
+              vegetation: 13
+              amount: 4
+            -
+              vegetation: 8
+              amount: 2
+            -
+              vegetation: 5
+              amount: 1
 dropzones:
   bot_1:
     from:  0

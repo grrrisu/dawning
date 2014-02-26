@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Builder::World do
 
   let(:world)   { World.new(15, 15) }
-  let(:config)  { Sim::Buildable.load_config(File.join(Rails.root, 'config', 'levels', 'test.yml'))[:world][:builder] }
+  let(:config)  { level_configuration[:world][:builder] }
   let(:builder) { Builder::World.new(world) }
 
   it "should create a vegetation" do
