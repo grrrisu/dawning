@@ -14,12 +14,14 @@ describe World do
       expect(world.check_bounderies(25, 50)).to be == [0, 0]
     end
 
-    it "should check bounderies", skip: true do
-      expect(world.position_bounderies(0, 0)).to be == [0,0]
-      expect(world.position_bounderies(15, 30)).to be == [0, 0]
-      expect(world.position_bounderies(5, 10)).to be == [5, 10]
-      expect(world.position_bounderies(-5, -10)).to be == [10, 20]
-      expect(world.position_bounderies(25, 50)).to be == [10, 20]
+    it "should check bounderies" do
+      expect(world.around_position(0, 0)).to be == [0,0]
+      expect(world.around_position(15, 30)).to be == [0, 0]
+      expect(world.around_position(5, 10)).to be == [5, 10]
+      expect(world.around_position(-5, -10)).to be == [10, 20]
+      expect(world.around_position(25, 50)).to be == [10, 20]
+      expect(world.around_position(85, 170)).to be == [10, 20]
+      expect(world.around_position(-85, -170)).to be == [5, 10]
     end
 
   end
