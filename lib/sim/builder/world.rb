@@ -61,7 +61,7 @@ module Builder
 
       begin
         cx, cy = cx + rand(3) -1, cy + rand(3) -1
-        count += 1 unless @world[cx, cy] == property
+        count += 1 unless @world[cx, cy].vegetation == property
         @world[cx, cy].vegetation = property
       end until count == stop_count
     end
