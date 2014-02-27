@@ -11,7 +11,7 @@ class OauthsController < ApplicationController
     provider = params[:provider]
     if @user = login_from(provider)
       auto_login(@user)
-      redirect_to root_path, notice: "Welcome back #{@user.username}!"
+      redirect_to levels_path, notice: "Welcome back #{@user.username}!"
     else
       begin
         username = nil
