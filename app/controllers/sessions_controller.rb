@@ -21,6 +21,8 @@ class SessionsController < ApplicationController
       username = current_user.username
       logout
       redirect_to root_url, notice: "Goodbye #{username}"
+    else
+      redirect_to root_url
     end
   end
 
