@@ -24,6 +24,11 @@ describe World do
       expect(world.around_position(-85, -170)).to be == [5, 10]
     end
 
+    it "should set and get values outside the world bounderies" do
+      world[25, 50] = 'outside is inside'
+      expect(world[25, 50]).to be == 'outside is inside'
+    end
+
   end
 
 end

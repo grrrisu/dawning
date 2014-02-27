@@ -43,4 +43,14 @@ class World < Sim::Matrix
     end
   end
 
+  def get_field x, y
+    super(*around_position(x, y))
+  end
+  alias [] get_field
+
+  def set_field x, y, value
+    super(*around_position(x, y), value)
+  end
+  alias []= set_field
+
 end

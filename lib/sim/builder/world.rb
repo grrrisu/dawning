@@ -60,7 +60,7 @@ module Builder
       count = 0
 
       begin
-        cx, cy = @world.check_bounderies(cx + rand(3) -1, cy + rand(3) -1)
+        cx, cy = cx + rand(3) -1, cy + rand(3) -1
         count += 1 unless @world[cx, cy] == property
         @world[cx, cy].vegetation = property
       end until count == stop_count
