@@ -124,6 +124,7 @@ Spork.each_run do
     end
   end
 
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+  Dir[Rails.root.join("spec/support/features/*.rb")].each {|f| require f} # require features first
+  Dir[Rails.root.join("spec/support/*.rb")].each {|f| require f}
 
 end
