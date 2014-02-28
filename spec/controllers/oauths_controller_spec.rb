@@ -28,7 +28,7 @@ describe OauthsController do
       controller.stub(:login_from).with('github').and_return(user)
 
       get 'callback', provider: 'github', code: '1234567890'
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(levels_path)
       expect(controller.current_user).to eq(user)
     end
   end
