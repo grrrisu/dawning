@@ -2,7 +2,6 @@ Dawning
 ==
 
 [![Code Climate](https://codeclimate.com/github/grrrisu/dawning.png)](https://codeclimate.com/github/grrrisu/dawning)
-
 [![Build Status](https://travis-ci.org/grrrisu/dawning.png?branch=master)](https://travis-ci.org/grrrisu/dawning)
 
 A game about emergence
