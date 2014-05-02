@@ -14,12 +14,12 @@ Requirements
 * MongoDB[http://www.mongodb.org/] ~> 2.0.4
 
 Code
---
+---
 
 https://github.com/grrrisu/dawning
 
-Frontend Dependencies
---
+### Frontend Dependencies
+
 
 * Bootstrap via gem
 * Fontawesome via gem
