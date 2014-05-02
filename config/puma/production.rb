@@ -112,10 +112,10 @@ bind "unix:///#{shared_path}/sockets/puma.sock"
 #
 # This can be called multiple times to add hooks.
 #
-on_worker_boot do
-  require 'newrelic_rpm'
-  NewRelic::Agent.manual_start
-end
+# on_worker_boot do
+#   require 'newrelic_rpm'
+#   NewRelic::Agent.manual_start
+# end
 
 # === Puma control rack application ===
 
