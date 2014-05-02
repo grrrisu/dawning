@@ -18,6 +18,14 @@ Code
 
 https://github.com/grrrisu/dawning
 
+Frontend Dependencies
+--
+
+* Bootstrap via gem
+* Fontawesome via gem
+* Kinetic via vendor
+* Sugar via vendor
+
 Credits
 --
 
