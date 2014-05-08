@@ -5,3 +5,6 @@ if defined? Unicorn
   ::NewRelic::Agent.manual_start()
   ::NewRelic::Agent.after_fork(force_reconnect: true)
 end
+
+# https://docs.newrelic.com/docs/ruby/garbage-collection#gc_setup
+GC::Profiler.enable
