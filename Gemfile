@@ -9,7 +9,7 @@ gem 'simple_form', '~> 3.0.0'
 gem 'websocket-rails'
 
 gem "mongoid", :github => "mongoid/mongoid" # wait until ready for activerecord 4.0
-gem 'puma'
+gem 'thin'
 
 gem 'sorcery'
 gem 'cancan'
