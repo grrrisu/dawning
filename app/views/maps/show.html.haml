@@ -11,5 +11,13 @@
         %li
           = link_to "center view", "#", id: "center_view"
 
+    #chat.well{'data-uri' => "#{request.host}:#{request.port}"}
+
+    .form-inline.well
+      %fieldset
+        %input#user_name{type: "text", class: "input-medium"}
+        %input#message.input-xlarge{type: "text"}
+        %button#send.btn.btn-primary Send
+
 :javascript
   var image_sources = #{images_with_asset_path(@images).to_json};
