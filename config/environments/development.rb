@@ -22,4 +22,7 @@ Dawning::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # rack lock leads to deadlocks in websocket
+  config.middleware.delete "Rack::Lock"
 end
