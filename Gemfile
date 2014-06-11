@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.0.1'
+gem 'rails', '~> 4.1.1'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
@@ -10,7 +10,7 @@ gem 'simple_form', '~> 3.0.0'
 gem "mongoid", :github => "mongoid/mongoid" # wait until ready for activerecord 4.0
 gem 'puma'
 
-gem 'sorcery'
+gem 'sorcery', :github => 'NoamB/sorcery'
 gem 'cancan'
 gem 'gravtastic'
 gem 'kaminari'

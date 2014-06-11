@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/NoamB/sorcery.git
+  revision: 1ca9d2f61e5187f5e18cd094f557578547e3e9c3
+  specs:
+    sorcery (0.8.5)
+      bcrypt (>= 3.1)
+      oauth (~> 0.4.4)
+      oauth2 (>= 0.8.0, < 1.0.0)
+
+GIT
   remote: git://github.com/bradphelan/jasminerice.git
   revision: 091349c27343bfa728b8e5745675f9ddbb7d9699
   specs:
@@ -7,10 +16,10 @@ GIT
 
 GIT
   remote: git://github.com/grrrisu/Simulator.git
-  revision: a8897c0b41820559c1c6f2bbd51ac95ca148b065
+  revision: cf31fc31f3b765672be3843073f6d9f912b834ab
   specs:
     Simulator (0.2.1)
-      activesupport (~> 4.0.2)
+      activesupport (>= 4.0.2)
       celluloid (~> 0.13)
       hashie
 
@@ -27,39 +36,39 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.0.5)
-      actionpack (= 4.0.5)
+    actionmailer (4.1.1)
+      actionpack (= 4.1.1)
+      actionview (= 4.1.1)
       mail (~> 2.5.4)
-    actionpack (4.0.5)
-      activesupport (= 4.0.5)
-      builder (~> 3.1.0)
-      erubis (~> 2.7.0)
+    actionpack (4.1.1)
+      actionview (= 4.1.1)
+      activesupport (= 4.1.1)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    activemodel (4.0.5)
-      activesupport (= 4.0.5)
-      builder (~> 3.1.0)
-    activerecord (4.0.5)
-      activemodel (= 4.0.5)
-      activerecord-deprecated_finders (~> 1.0.2)
-      activesupport (= 4.0.5)
-      arel (~> 4.0.0)
-    activerecord-deprecated_finders (1.0.3)
-    activesupport (4.0.5)
+    actionview (4.1.1)
+      activesupport (= 4.1.1)
+      builder (~> 3.1)
+      erubis (~> 2.7.0)
+    activemodel (4.1.1)
+      activesupport (= 4.1.1)
+      builder (~> 3.1)
+    activerecord (4.1.1)
+      activemodel (= 4.1.1)
+      activesupport (= 4.1.1)
+      arel (~> 5.0.0)
+    activesupport (4.1.1)
       i18n (~> 0.6, >= 0.6.9)
-      minitest (~> 4.2)
-      multi_json (~> 1.3)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
       thread_safe (~> 0.1)
-      tzinfo (~> 0.3.37)
+      tzinfo (~> 1.1)
     addressable (2.3.6)
     airbrake (3.1.16)
       builder
       multi_json
-    arel (4.0.2)
+    arel (5.0.1.20140414130214)
     awesome_print (1.2.0)
     bcrypt (3.1.7)
-    bcrypt-ruby (3.1.5)
-      bcrypt (>= 3.1.3)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -79,7 +88,7 @@ GEM
       slim (>= 1.3.6, < 3.0)
       terminal-table (~> 1.4)
     bson (2.2.2)
-    builder (3.1.4)
+    builder (3.2.2)
     bullet (4.9.0)
       activesupport
       uniform_notifier (~> 1.6.0)
@@ -166,7 +175,7 @@ GEM
       activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
-    hashie (2.1.1)
+    hashie (3.0.0)
     highline (1.6.21)
     hike (1.2.3)
     hirb (0.7.1)
@@ -179,9 +188,8 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (1.8.1)
-    jwt (0.1.11)
-      multi_json (>= 1.5)
-    kaminari (0.15.1)
+    jwt (1.0.0)
+    kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     launchy (2.4.2)
@@ -201,12 +209,12 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.5.3)
-    minitest (4.7.5)
+    minitest (5.3.4)
     moped (2.0.0.rc1)
       bson (~> 2.2)
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
-    multi_json (1.10.0)
+    multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     net-scp (1.2.1)
@@ -221,15 +229,15 @@ GEM
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
-    oauth2 (0.9.3)
+    oauth2 (0.9.4)
       faraday (>= 0.8, < 0.10)
-      jwt (~> 0.1.8)
+      jwt (~> 1.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
     optionable (0.2.0)
     origin (2.1.1)
-    polyglot (0.3.4)
+    polyglot (0.3.5)
     pretty_formatter (0.0.2)
       activesupport (>= 3.2)
     pry (0.9.12.6)
@@ -245,14 +253,16 @@ GEM
       rack (>= 1.1.3)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (4.0.5)
-      actionmailer (= 4.0.5)
-      actionpack (= 4.0.5)
-      activerecord (= 4.0.5)
-      activesupport (= 4.0.5)
+    rails (4.1.1)
+      actionmailer (= 4.1.1)
+      actionpack (= 4.1.1)
+      actionview (= 4.1.1)
+      activemodel (= 4.1.1)
+      activerecord (= 4.1.1)
+      activesupport (= 4.1.1)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.0.5)
-      sprockets-rails (~> 2.0.0)
+      railties (= 4.1.1)
+      sprockets-rails (~> 2.0)
     rails_best_practices (1.15.3)
       activesupport
       awesome_print
@@ -262,12 +272,12 @@ GEM
       i18n
       require_all
       ruby-progressbar
-    railties (4.0.5)
-      actionpack (= 4.0.5)
-      activesupport (= 4.0.5)
+    railties (4.1.1)
+      actionpack (= 4.1.1)
+      activesupport (= 4.1.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.3.1)
+    rake (10.3.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.4)
       ffi (>= 0.5.0)
@@ -326,17 +336,13 @@ GEM
       httpclient (>= 2.2)
       json
       rake
-    sorcery (0.8.5)
-      bcrypt-ruby (>= 3.0)
-      oauth (~> 0.4.4)
-      oauth2 (>= 0.8.0, < 1.0.0)
     spork (1.0.0rc4)
-    sprockets (2.11.0)
+    sprockets (2.8.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.0.1)
+    sprockets-rails (2.1.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
@@ -347,7 +353,7 @@ GEM
       libv8 (~> 3.16.14.0)
       ref
     thor (0.19.1)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     timers (1.1.0)
     treetop (1.4.15)
@@ -355,7 +361,8 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.2.2)
       coffee-rails
-    tzinfo (0.3.39)
+    tzinfo (1.2.1)
+      thread_safe (~> 0.1)
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -406,7 +413,7 @@ DEPENDENCIES
   pry-rails
   puma
   rack-mini-profiler
-  rails (~> 4.0.1)
+  rails (~> 4.1.1)
   rails_best_practices
   rb-fsevent (~> 0.9.1)
   rb-readline
@@ -416,7 +423,7 @@ DEPENDENCIES
   simple_form (~> 3.0.0)
   simplecov (~> 0.7.1)
   smusher
-  sorcery
+  sorcery!
   spork (~> 1.0rc)
   therubyracer
   turbolinks
