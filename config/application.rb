@@ -1,8 +1,5 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'yaml'
-APP_CONFIG = YAML.load(File.read(File.expand_path('../app_config.yml', __FILE__)))
-
 # instead of require 'rails/all' in order to not load active_record
 require "action_controller/railtie"
 require "action_mailer/railtie"

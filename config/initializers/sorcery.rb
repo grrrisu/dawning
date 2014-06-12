@@ -98,8 +98,8 @@ Rails.application.config.sorcery.configure do |config|
 
 
   # -- GitHub --
-  config.github.key = APP_CONFIG['github_client_id']
-  config.github.secret = APP_CONFIG['github_secret']
+  config.github.key = Rails.application.secrets.github_client_id
+  config.github.secret = Rails.application.secrets.github_secret
   unless Rails.env == 'production'
     config.github.callback_url = "http://localhost:3000/oauth/callback?provider=github"
   else
