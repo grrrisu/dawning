@@ -12,10 +12,6 @@
 /config/mongoid.yml
 /config/mongoid_production.yml
 /config/secrets.yml
-/config/app_config.yml
-/config/app_config_production.yml
-/config/newrelic.yml
-/config/chef
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
