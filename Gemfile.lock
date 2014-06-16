@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/NoamB/sorcery.git
-  revision: 1ca9d2f61e5187f5e18cd094f557578547e3e9c3
-  specs:
-    sorcery (0.8.5)
-      bcrypt (>= 3.1)
-      oauth (~> 0.4.4)
-      oauth2 (>= 0.8.0, < 1.0.0)
-
-GIT
   remote: git://github.com/bradphelan/jasminerice.git
   revision: 091349c27343bfa728b8e5745675f9ddbb7d9699
   specs:
@@ -336,6 +327,10 @@ GEM
       httpclient (>= 2.2)
       json
       rake
+    sorcery (0.8.6)
+      bcrypt (~> 3.1)
+      oauth (~> 0.4, >= 0.4.4)
+      oauth2 (>= 0.8.0, < 1.0.0)
     spork (1.0.0rc4)
     sprockets (2.8.0)
       hike (~> 1.2)
@@ -423,7 +418,7 @@ DEPENDENCIES
   simple_form (~> 3.0.0)
   simplecov (~> 0.7.1)
   smusher
-  sorcery!
+  sorcery
   spork (~> 1.0rc)
   therubyracer
   turbolinks
