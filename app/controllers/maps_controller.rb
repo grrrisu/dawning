@@ -39,7 +39,7 @@ private
     if current_user.admin?
       @level.action action, params
     else
-      @level.player_action @player_id, action, params
+      @player.action action, params
     end
   end
 
@@ -61,7 +61,7 @@ private
 
   def find_player_id
     unless current_user.admin?
-      unless @player_id = @level.find_player(current_user.id).try(:id)
+      unless @player = @level.find_player(current_user.id)
         render json: "no player found", status: 403
       end
     end

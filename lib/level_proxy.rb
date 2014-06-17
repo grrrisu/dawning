@@ -45,7 +45,7 @@ class LevelProxy
 
   def add_player user_id
     unless find_player(user_id)
-      player = PlayerProxy.new
+      player = PlayerProxy.new @connection
       @connection.send_action :add_player, id: player.id
       @players[user_id] = player
     else
@@ -66,11 +66,6 @@ class LevelProxy
   def action action, params = nil
     Rails.logger.debug "send action #{action} with #{params.inspect}"
     @connection.send_action action, params
-  end
-
-  def player_action player_id, action, params = nil
-    Rails.logger.debug "send player action #{action} with #{params.inspect}"
-    @connection.send_player_action player_id, action, params
   end
 
   # --- states ---
