@@ -61,7 +61,7 @@ private
 
   def find_player_id
     unless current_user.admin?
-      unless @player_id = @level.find_player(current_user.id)
+      unless @player_id = @level.find_player(current_user.id).try(:id)
         render json: "no player found", status: 403
       end
     end

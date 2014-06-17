@@ -38,24 +38,24 @@ class LevelProxy
     @id         = id
     @name       = name
     @connection = Sim::Popen::ParentConnection.new
-    @players    = {}    # maps user_id to player_id
+    @players    = {}    # maps user_id to player_proxy
   end
 
   # --- players ---
 
   def add_player user_id
     unless find_player(user_id)
-      player_id = UUID.new.generate
-      @connection.send_action :add_player, id: player_id
-      @players[user_id] = player_id
+      player = PlayerProxy.new
+      @connection.send_action :add_player, id: player.id
+      @players[user_id] = player
     else
       raise ArgumentError, "user [#{user_id}] has already been added to this level [#{id}]"
     end
   end
 
   def remove_player user_id
-    if player_id = find_player(user_id)
-      @connection.send_action :remove_player, id: player_id
+    if player = find_player(user_id)
+      @connection.send_action :remove_player, id: player.id
     end
   end
 
