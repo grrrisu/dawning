@@ -47,6 +47,7 @@ class LevelProxy
     unless find_player(user_id)
       player = PlayerProxy.new @connection
       @connection.send_action :add_player, id: player.id
+      player.connect_to_players_server
       @players[user_id] = player
     else
       raise ArgumentError, "user [#{user_id}] has already been added to this level [#{id}]"
@@ -66,6 +67,9 @@ class LevelProxy
   def action action, params = nil
     Rails.logger.debug "send action #{action} with #{params.inspect}"
     @connection.send_action action, params
+  rescue Errno::EPIPE
+    Rails.logger.error "level [#{id}] is corrupt -> removing"
+    LevelProxy.delete id
   end
 
   # --- states ---
@@ -73,7 +77,7 @@ class LevelProxy
   def launch
     sim_library = Rails.root.join('lib', 'sim', 'level.rb')
     level_class = 'Level'
-    @connection.launch_subprocess(sim_library, level_class)
+    @connection.launch_subprocess(sim_library, level_class, Rails.root.join('tmp', 'sockets', 'players.sock').to_s)
     @state = :launched
     self
   end

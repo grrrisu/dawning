@@ -1,6 +1,6 @@
 require_relative 'headquarter'
 
-class Player
+class Player < Sim::Player
 
   attr_accessor :headquarter, :view
   attr_reader   :world
