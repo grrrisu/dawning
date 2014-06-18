@@ -89,11 +89,9 @@ Spork.prefork do
       if example.exception && example.options[:wait]
         puts "Scenario failed. We wait because of wait. Press enter when you are done"
         $stdin.gets
-      elsif example.exception && example.options[:irb]
-        require 'irb'
-        require 'irb/completion'
-        ARGV.clear
-        IRB.start
+      elsif example.exception && example.options[:pry]
+        require 'pry'
+        binding.pry
       end
     end
 
