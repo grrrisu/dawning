@@ -86,12 +86,17 @@ Spork.prefork do
     end
 
     config.after(:each) do
-      if example.exception && example.options[:wait]
-        puts "Scenario failed. We wait because of wait. Press enter when you are done"
-        $stdin.gets
-      elsif example.exception && example.options[:pry]
-        require 'pry'
-        binding.pry
+      if example.exception
+        puts "\e[0;31m#{example.exception}"
+        puts example.exception.backtrace.reject {|line| line =~ /\/gems\//}.join("\n")
+        puts "\e[0m"
+        if example.metadata[:wait]
+          puts "Scenario failed. We wait because of wait. Press enter when you are done"
+          $stdin.gets
+        elsif example.metadata[:pry]
+          require 'pry'
+          binding.send(:pry)
+        end
       end
     end
 
