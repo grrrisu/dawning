@@ -51,16 +51,19 @@ class Level < Sim::Level
     AdminView.view @world, x, y, width, height
   end
 
-  def add_player id
-    # player_supervisors_as << Sim::Player.supervise_as "player_#{id}"
-    # raise "implement in subclass"
-    $stderr.puts "add_player #{id.inspect}"
+  def build_player connection
+    Player.new(connection, self)
+  end
 
-    player = dropzone.place_player
-    @players[id] = player
-    player.create config[:player]
-
-    id
+  def add_player player
+    $stderr.puts "*** add_player #{player.id}"
+    unless @players[player.id]
+      player = dropzone.place_player player
+      @players[player.id] = player
+      player.id
+    else
+      raise ArgumentError, "player #{player.id} is already registered"
+    end
   end
 
   def find_player player_id

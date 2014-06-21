@@ -5,10 +5,15 @@ class Player < Sim::Player
   attr_accessor :headquarter, :view
   attr_reader   :world
 
-  def initialize view, headquarter
+  def place view, headquarter
     @view   = view
     @world  = view.world
     @headquarter = headquarter
+  end
+
+  def register data
+    @id = data[:player_id]
+    level.add_player self
   end
 
   def create config
