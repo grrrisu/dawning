@@ -32,6 +32,7 @@ class PlayerProxy
 
     def receive_object message
       Rails.logger.warn("data received: #{message.inspect}")
+      EM.next_tick { send_object message: 'thanks!' }
     end
 
   end

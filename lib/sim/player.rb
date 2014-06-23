@@ -14,6 +14,7 @@ class Player < Sim::Player
   def register data
     @id = data[:player_id]
     level.add_player self
+    connection.send_data(player_id: @id, registered: true)
   end
 
   def create config

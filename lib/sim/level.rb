@@ -60,7 +60,6 @@ class Level < Sim::Level
     unless @players[player.id]
       dropzone.place_player player
       @players[player.id] = player
-      player.id
     else
       raise ArgumentError, "player #{player.id} is already registered"
     end
