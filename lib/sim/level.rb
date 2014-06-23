@@ -58,7 +58,7 @@ class Level < Sim::Level
   def add_player player
     $stderr.puts "*** add_player #{player.id}"
     unless @players[player.id]
-      player = dropzone.place_player player
+      dropzone.place_player player
       @players[player.id] = player
       player.id
     else
