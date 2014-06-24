@@ -5,7 +5,14 @@ window.Chat = {}
 
 class Chat.User
   constructor: (@user_name) ->
-  serialize: => { user_name: @user_name }
+  serialize: =>
+    {
+      level_id: @level_id()
+      user_name: @user_name
+    }
+
+  level_id: ->
+    window.location.pathname.match(/levels\/(.*?)\/map/)[1]
 
 class Chat.Controller
   template: (message) ->

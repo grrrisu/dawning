@@ -1,6 +1,7 @@
 class PlayerProxy
 
   attr_accessor :id
+  attr_accessor :websocket
 
   def initialize connection
     @id = UUID.new.generate
@@ -16,7 +17,7 @@ class PlayerProxy
   def connect_to_players_server
     Rails.logger.warn("connecting to player server...")
     EM.connect_unix_domain(Rails.root.join('tmp', 'sockets', 'players.sock').to_s, PlayerProxy::Handler) do |handler|
-      Rails.logger.warn("before register #{id}")
+      Rails.logger.warn("before register #{id} handler #{handler.inspect}")
       handler.send_object(player_id: id)
     end
   end
