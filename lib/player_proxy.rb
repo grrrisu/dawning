@@ -1,3 +1,5 @@
+# proxy to player on sim
+# holds connection to player server and the websocket connection to the browser
 class PlayerProxy
 
   attr_accessor :id
@@ -16,16 +18,25 @@ class PlayerProxy
 
   def connect_to_players_server
     Rails.logger.warn("connecting to player server...")
-    EM.connect_unix_domain(Rails.root.join('tmp', 'sockets', 'players.sock').to_s, PlayerProxy::Handler) do |handler|
+    EM.connect_unix_domain(Rails.root.join('tmp', 'sockets', 'players.sock').to_s, Handler) do |handler|
       Rails.logger.warn("before register #{id} handler #{handler.inspect}")
+      handler.player_proxy = self
       handler.send_object(player_id: id)
     end
   end
 
-  # EM specific
+  def send_message_to_browser message
+    if websocket
+      websocket.send_message :new_message, { user_name: 'system', received: Time.now.to_s(:short), msg_body: message.to_s }
+    else
+      Rails.logger.warn("could not send message #{message} to browser as websocket is not yet available")
+    end
+  end
 
   module Handler
     include EventMachine::Protocols::ObjectProtocol
+
+    attr_accessor :player_proxy
 
     def serializer
       JSON
@@ -34,6 +45,7 @@ class PlayerProxy
     def receive_object message
       Rails.logger.warn("data received: #{message.inspect}")
       EM.next_tick { send_object message: 'thanks!' }
+      EM.next_tick { player_proxy.send_message_to_browser(message) }
     end
 
   end
