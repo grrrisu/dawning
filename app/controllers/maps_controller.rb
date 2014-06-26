@@ -19,29 +19,21 @@ class MapsController < ApplicationController
                 width: params[:width].to_i,
                 height: params[:height].to_i
               }
-    render json: level_action(current_user.admin? ? :admin_view : :view, options)
+    render json: @player.action(:view, options)
   end
 
   # data to setup game client
   def init
     authorize! :init, @level
-    render json: level_action(:init_map)
+    render json: @player.action(:init_map)
   end
 
   def move
     authorize! :move, @level
-    render json: level_action(:move, id: params[:id].to_i, x: params[:x].to_i, y: params[:y].to_i)
+    render json: @player.action(:move, id: params[:id].to_i, x: params[:x].to_i, y: params[:y].to_i)
   end
 
 private
-
-  def level_action action, params = nil
-    if current_user.admin?
-      @level.action action, params
-    else
-      @player.action action, params
-    end
-  end
 
   def get_running_level
     if @level =  LevelProxy.find(params[:level_id])
@@ -60,10 +52,8 @@ private
   end
 
   def find_player_id
-    unless current_user.admin?
-      unless @player = @level.find_player(current_user.id)
-        render json: "no player found", status: 403
-      end
+    unless @player = @level.find_player(current_user.id)
+      render json: "no player found", status: 403
     end
   end
 

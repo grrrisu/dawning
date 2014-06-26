@@ -1,7 +1,7 @@
 class Admin::LevelsController < ApplicationController
   navigation :admin, :levels
 
-  before_filter :find_level, only: [:run, :build, :stop, :destroy]
+  before_filter :find_level, only: [:run, :join, :build, :stop, :destroy]
 
   def index
     authorize! :index, Level
@@ -23,6 +23,12 @@ class Admin::LevelsController < ApplicationController
     @level.start
     flash[:notice] = "Level #{@level.name} is running"
     render action: :level
+  end
+
+  def join
+    authorize! :admin_join, @level
+    @level.add_player current_user.id, role: :admin unless @level.find_player(current_user.id)
+    redirect_to level_map_path(@level.id)
   end
 
   def build

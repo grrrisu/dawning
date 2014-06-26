@@ -6,8 +6,8 @@ class AdminPlayer < Sim::Player
     self
   end
 
-  def place world
-    @world = world
+  def place view, headquarter
+    @world = view.world
   end
 
   def init_map

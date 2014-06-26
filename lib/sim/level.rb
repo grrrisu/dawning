@@ -4,7 +4,7 @@ require 'sim'
 
 require_relative 'world'
 require_relative 'player'
-require_relative 'admin_view'
+require_relative 'admin_player'
 require_relative 'view'
 require_relative 'builder/dropzone'
 
@@ -35,25 +35,14 @@ class Level < Sim::Level
     true
   end
 
-  def init_map
-    if @world
-      { world: { width: @world.width, height: @world.height } }
-    else
-      false
-    end
-  end
-
   def load
     raise "implement in subclass"
   end
 
-  def admin_view x, y, width, height
-    AdminView.view @world, x, y, width, height
-  end
-
   def build_player data
+    $stderr.puts "*** build player with #{data}"
     id = data[:player_id]
-    if data[:role] == :admin
+    if data[:role] == 'admin'
       player = AdminPlayer.new(id, self)
     else
       player = Player.new(id, self)

@@ -6,7 +6,7 @@
     = level.state
   %td{:colspan => 3}
     - unless level.state == :launched
-      = link_to level_map_path(level.id), class: 'btn btn-success spinner', data: {'no-turbolink' => true} do
+      = link_to join_admin_level_path(level.id), method: :put, class: 'btn btn-success spinner', data: {'no-turbolink' => true} do
         %i.fa.fa-road
         Enter
     - if level.state == :launched

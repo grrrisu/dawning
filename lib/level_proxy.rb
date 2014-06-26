@@ -43,9 +43,9 @@ class LevelProxy
 
   # --- players ---
 
-  def add_player user_id
+  def add_player user_id, options = {}
     unless find_player(user_id)
-      player = PlayerProxy.new @connection
+      player = PlayerProxy.new(@connection, options)
       Rails.logger.warn("add player without id")
       @players[user_id] = player
     else
