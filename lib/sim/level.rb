@@ -51,8 +51,14 @@ class Level < Sim::Level
     AdminView.view @world, x, y, width, height
   end
 
-  def build_player connection
-    Player.new(connection, self)
+  def build_player data
+    id = data[:player_id]
+    if data[:role] == :admin
+      player = AdminPlayer.new(id, self)
+    else
+      player = Player.new(id, self)
+    end
+    add_player player
   end
 
   def add_player player
