@@ -40,24 +40,26 @@ class Level < Sim::Level
   end
 
   def build_player data
-    $stderr.puts "*** build player with #{data}"
-    id = data[:player_id]
     if data[:role] == 'admin'
       player = AdminPlayer.new(id, self)
+      player.world = @world
     else
       player = Player.new(id, self)
+      dropzone.place_player player
     end
-    add_player player
+    player
   end
 
-  def add_player player
-    $stderr.puts "*** add_player #{player.id}"
-    unless @players[player.id]
-      dropzone.place_player player
+  def add_player data
+    $stderr.puts "*** build player with #{data}"
+    id = data[:player_id]
+    unless @players[id]
+      player = build_player(data)
       @players[player.id] = player
     else
       raise ArgumentError, "player #{player.id} is already registered"
     end
+    player
   end
 
   def find_player player_id

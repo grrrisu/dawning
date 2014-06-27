@@ -1,13 +1,9 @@
 class AdminPlayer < Sim::Player
 
-  attr_reader :world
+  attr_accessor :world
 
   def create config
     self
-  end
-
-  def place view, headquarter
-    @world = view.world
   end
 
   def init_map
