@@ -36,11 +36,15 @@ class Player < Sim::Player
   end
 
   def view x, y, width, height
-    @view.filter_slice(x, y, width, height)
+    {
+      x: x,
+      y: y,
+      view: @view.filter_slice(x, y, width, height)
+    }
   end
 
-  def move id, x, y
-    pawn = Pawn.find(id) # TODO check owner
+  def move pawn_id, x, y
+    pawn = Pawn.find(pawn_id) # TODO check owner
     @headquarter.within_influence_area(x,y) do
       if world[x,y][:pawn].blank?
         @view.fog(pawn)
@@ -50,7 +54,7 @@ class Player < Sim::Player
         @view.unfog(pawn)
       end
     end
-    return {x: pawn.x, y:pawn.y}
+    return {pawn_id: pawn_id, x: pawn.x, y: pawn.y}
   end
 
 end

@@ -19,7 +19,11 @@ class AdminPlayer < Sim::Player
     w.set_each_field_with_index do |i, j|
       @world[0 + x + i, 0 + y + j]
     end
-    w
+    {
+      x: x,
+      y: y,
+      view: w
+    }
   end
 
 end

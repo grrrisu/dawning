@@ -18,7 +18,7 @@ class PlayerProxy
     #sim_connection.send_object id, action, params
   end
 
-  def send_message action, *params
+  def send_message action, params = {}
     @sim_connection.send_object player_id: id, action: action, params: params
   end
 

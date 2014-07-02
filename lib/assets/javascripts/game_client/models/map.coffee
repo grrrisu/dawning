@@ -24,27 +24,28 @@ class @Map
   add_shape: (shape) =>
     @shapes.push(shape) if shape?
 
-  fetch: (request_data, callback) =>
-    client.api.post '/view', request_data, (data, status, xhr) ->
-      callback(data)
-
+  # called by client on own render
   render: (map_layer, pawn_layer) =>
     @presenter.setLayer(map_layer)
     @presenter.setPawnLayer(pawn_layer)
     @presenter.render_fog()
 
-  render_fields: (rx, ry, width, height) =>
+  # called by viewport when moving map
+  update_fields: (rx, ry, width, height) =>
     request_data = {x: rx, y: ry, width: width, height: height};
-    @fetch request_data, (data) =>
-      @remove_shapes()
+    client.dispatcher.view(request_data)
 
-      data.each (row, j) =>
-        row.each (field_data, i) =>
-          if field_data?
-            @render_field(field_data, rx + i , ry + j)
+  # called by dispatcher with answer of view action
+  render_fields: (data) =>
+    @remove_shapes()
 
-      @presenter.layer.draw()
-      @presenter.pawn_layer.draw()
+    data.view.each (row, j) =>
+      row.each (field_data, i) =>
+        if field_data?
+          @render_field(field_data, data.x + i , data.y + j)
+
+    @presenter.layer.draw()
+    @presenter.pawn_layer.draw()
 
   render_field: (field_data, rx , ry) =>
     field_shape = @presenter.render_field(field_data, rx , ry)
@@ -69,7 +70,7 @@ class @Map
     if data == 'headquarter'
       shape = client.headquarter.render(@presenter.pawn_layer)
     else if data == 'pawn'
-      pawn = client.headquarter.findPawn(rx, ry)
+      pawn = client.headquarter.findPawnByPosition(rx, ry)
       if pawn?
         shape = pawn.render(@presenter.pawn_layer)
       else

@@ -18,7 +18,10 @@ class @Headquarter extends Pawn
     data.pawns.each (pawn_data) =>
       @pawns.push new Human(pawn_data)
 
+  findPawn: (id) =>
+    @pawns.find (pawn) =>
+      pawn.id == id
 
-  findPawn: (rx, ry) =>
+  findPawnByPosition: (rx, ry) =>
     @pawns.find (pawn) =>
       pawn.rx == rx && pawn.ry == ry

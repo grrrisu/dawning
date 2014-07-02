@@ -8,10 +8,6 @@ class @Client
     @viewport     = new Viewport(width, fieldsVisible, @map)
     @presenter    = new StagePresenter(@viewport)
 
-  fetch: (callback) =>
-    @api.get '/init', (data) =>
-      callback(data)
-
   preload_images: (sources, callback) =>
     @images = {};
     loadedImages = 0;

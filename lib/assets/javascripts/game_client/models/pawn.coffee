@@ -12,16 +12,12 @@ class @Pawn extends Figure
     apos = client.map.snapToGrid(ax, ay)
     @getPresenter().move(apos.x, apos.y)
     rpos = client.map.relativePosition(apos.x, apos.y)
-    @update(rpos.x, rpos.y)
+    window.client.dispatcher.move({pawn_id: @id, x: rpos.x, y: rpos.y})
 
-  update: (rx, ry) =>
-    request_data =
-      id: @id
-      x: rx
-      y: ry
-    client.api.post '/move', request_data, (data, status, xhr) =>
-      @move(data.x, data.y)
-      client.viewport.update_map();
+  # invoked by dispatcher on move
+  update: (data) =>
+    @move(data.x, data.y)
+    client.viewport.update_map()
 
   move: (rx, ry) =>
     @rx = rx;

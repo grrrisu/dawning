@@ -60,5 +60,5 @@ class @Viewport
       scale: 1 / @zoom
 
   update_map: =>
-    @map.render_fields(@rx, @ry, @fieldsVisible * @zoom + 1, @fieldsVisible * @zoom + 1);
+    @map.update_fields(@rx, @ry, @fieldsVisible * @zoom + 1, @fieldsVisible * @zoom + 1);
     client.presenter.stage.draw()
