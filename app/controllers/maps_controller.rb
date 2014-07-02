@@ -3,7 +3,7 @@ class MapsController < ApplicationController
 
   before_filter :get_running_level
   before_filter :find_player_id, except: :show
-  before_filter :prepare_map_images
+  before_filter :prepare_map_images, only: :show
 
   # setup html for map
   def show

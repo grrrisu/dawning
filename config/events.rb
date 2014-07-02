@@ -5,6 +5,8 @@ WebsocketRails::EventMap.describe do
   subscribe :change_username,     to: ChatController, with_method: :change_username
   subscribe :client_disconnected, to: ChatController, with_method: :delete_user
 
+  subscribe :init_map,            to: MapEventsController, with_method: :init_map
+
   # You can use this file to map incoming events to controller actions.
   # One event can be mapped to any number of controller actions. The
   # actions will be executed in the order they were subscribed.

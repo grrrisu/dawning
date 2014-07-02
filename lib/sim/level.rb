@@ -40,6 +40,7 @@ class Level < Sim::Level
   end
 
   def build_player data
+    id = data[:player_id]
     if data[:role] == 'admin'
       player = AdminPlayer.new(id, self)
       player.world = @world

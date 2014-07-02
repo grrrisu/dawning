@@ -18,6 +18,10 @@ class PlayerProxy
     #sim_connection.send_object id, action, params
   end
 
+  def send_message action, *params
+    @sim_connection.send_object player_id: id, action: action, params: params
+  end
+
   def connect_to_players_server
     Rails.logger.warn("connecting to player server...")
     EM.connect_unix_domain(Rails.root.join('tmp', 'sockets', 'players.sock').to_s, Handler) do |handler|
@@ -31,7 +35,8 @@ class PlayerProxy
 
   def send_message_to_browser message
     if websocket
-      websocket.send_message :new_message, { user_name: 'system', received: Time.now.to_s(:short), msg_body: message.to_s }
+      Rails.logger.warn("sending to browser #{message}")
+      websocket.send_message message[:action], message[:answer]
     else
       Rails.logger.warn("could not send message #{message} to browser as websocket is not yet available")
     end
@@ -48,8 +53,7 @@ class PlayerProxy
 
     def receive_object message
       Rails.logger.warn("data received: #{message.inspect}")
-      EM.next_tick { send_object message: 'thanks!' }
-      EM.next_tick { player_proxy.send_message_to_browser(message) }
+      EM.next_tick { player_proxy.send_message_to_browser(message.symbolize_keys!) }
     end
 
   end
