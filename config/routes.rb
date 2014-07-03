@@ -19,13 +19,7 @@ Dawning::Application.routes.draw do
       patch :continue
       delete :leave
     end
-    resource :map, only: [:show] do
-      member do
-        get :init
-        post :view
-        post :move
-      end
-    end
+    resource :map, only: [:show]
   end
 
   namespace :admin do
