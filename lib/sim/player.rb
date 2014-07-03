@@ -35,15 +35,15 @@ class Player < Sim::Player
     end
   end
 
-  def view x, y, width, height
-    {
-      x: x,
-      y: y,
-      view: @view.filter_slice(x, y, width, height)
-    }
+  def view x:, y:, width:, height:
+    # FIXME if the line below is removed view returns nil
+    $stderr.puts("*** view params #{x} #{y} #{width} #{height}")
+    return { x: x, y: y, view: @view.filter_slice(x, y, width, height) }
   end
 
-  def move pawn_id, x, y
+  def move pawn_id:, x:, y:
+    # FIME if the line below is removed no pawn will be found
+    $stderr.puts("*** move #{pawn_id}, #{x}, #{y}")
     pawn = Pawn.find(pawn_id) # TODO check owner
     @headquarter.within_influence_area(x,y) do
       if world[x,y][:pawn].blank?
