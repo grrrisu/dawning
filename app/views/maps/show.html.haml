@@ -11,11 +11,14 @@
         %li
           = link_to "center view", "#", id: "center_view"
 
+    Users online
+    #user-list.well
+
+    Conversation
     #chat.well{'data-uri' => "#{request.host}:#{request.port}/websocket"}
 
     .form-inline.well
       %fieldset
-        %input#user_name{type: "text", class: "input-medium"}
         %input#message.input-xlarge{type: "text"}
         %button#send.btn.btn-primary Send
 

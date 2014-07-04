@@ -15,7 +15,7 @@ class ChatController < WebsocketRails::BaseController
 
   def user_msg(ev, msg)
     broadcast_message ev, {
-      user_name:  connection_store[:user][:user_name],
+      user_name:  current_user.username,
       received:   Time.now.to_s(:short),
       msg_body:   ERB::Util.html_escape(msg)
       }
@@ -26,7 +26,7 @@ class ChatController < WebsocketRails::BaseController
   end
 
   def new_user
-    connection_store[:user] = { user_name: sanitize(message[:user_name]) }
+    connection_store[:user] = { user_name: current_user.username }
     broadcast_user_list
   rescue Exception => e
     Rails.logger.error(e.message)

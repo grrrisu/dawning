@@ -1,7 +1,7 @@
 window.Chat = {}
 
 class Chat.User
-  constructor: (@user_name) ->
+  constructor: ->
   serialize: =>
     {
       level_id: @level_id()
@@ -55,6 +55,7 @@ class Chat.Controller
     $('#message').val('')
 
   updateUserList: (userList) =>
+    console.log('updateUserList')
     $('#user-list').html @userListTemplate(userList)
 
   updateUserInfo: (event) =>
@@ -73,8 +74,8 @@ class Chat.Controller
       $(this).remove()
 
   createGuestUser: =>
-    rand_num = Math.floor(Math.random()*1000)
-    @user = new Chat.User("Guest_" + rand_num)
+    console.log('createGuestUser')
+    @user = new Chat.User()
     $('#username').html @user.user_name
     $('input#user_name').val @user.user_name
     @dispatcher.trigger 'new_user', @user.serialize()

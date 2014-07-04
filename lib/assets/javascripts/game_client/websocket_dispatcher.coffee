@@ -45,13 +45,5 @@ class @WebsocketDispatcher
       else
         console.log("can not update pawn #{message['pawn_id']}, pawn not found")
 
-
-  # bindEvents: =>
-  #   @dispatcher.bind 'new_message', @newMessage
-  #   @dispatcher.bind 'user_list', @updateUserList
-  #   $('input#user_name').on 'keyup', @updateUserInfo
-  #   $('#send').on 'click', @sendMessage
-  #   $('#message').keypress (e) -> $('#send').click() if e.keyCode == 13
-
   level_id: ->
     window.location.pathname.match(/levels\/(.*?)\/map/)[1]
