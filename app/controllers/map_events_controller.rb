@@ -3,6 +3,14 @@ class MapEventsController < WebsocketRails::BaseController
 
   before_filter :find_player #, only: [:init_map]
 
+  def client_connected
+    Rails.logger.warn("client connected to websocket")
+  end
+
+  def client_disconnected
+    Rails.logger.warn("client disconnected from websocket")
+  end
+
   def init_map
     rescue_block do
       Rails.logger.warn 'sending init_map ...'

@@ -7,6 +7,7 @@ class @Client
     @map          = new Map()
     @viewport     = new Viewport(width, fieldsVisible, @map)
     @presenter    = new StagePresenter(@viewport)
+    @chat         = new Chat.Controller(@dispatcher.dispatcher)
 
   preload_images: (sources, callback) =>
     @images = {};

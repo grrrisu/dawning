@@ -1,6 +1,3 @@
-jQuery ->
-  window.chatController = new Chat.Controller($('#chat').data('uri'), true);
-
 window.Chat = {}
 
 class Chat.User
@@ -33,9 +30,9 @@ class Chat.Controller
       userHtml = userHtml + "<li>#{user.user_name}</li>"
     $(userHtml)
 
-  constructor: (url,useWebSockets) ->
+  constructor: (dispatcher) ->
     @messageQueue = []
-    @dispatcher = new WebSocketRails(url,useWebSockets)
+    @dispatcher = dispatcher
     @dispatcher.on_open = @createGuestUser
     @bindEvents()
 
