@@ -33,7 +33,7 @@ class @Map
   # called by viewport when moving map
   update_fields: (rx, ry, width, height) =>
     request_data = {x: rx, y: ry, width: width, height: height};
-    client.dispatcher.view(request_data)
+    client.mapController.view(request_data)
 
   # called by dispatcher with answer of view action
   render_fields: (data) =>

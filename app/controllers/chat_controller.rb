@@ -2,15 +2,7 @@ class ChatController < WebsocketRails::BaseController
   include ActionView::Helpers::SanitizeHelper
 
   def initialize_session
-    puts "Session Initialized\n"
-  end
-
-  def system_msg(ev, msg)
-    broadcast_message ev, {
-      user_name: 'system',
-      received: Time.now.to_s(:short),
-      msg_body: msg
-    }
+    Rails.logger.warn "Chat session Initialized\n"
   end
 
   def user_msg(ev, msg)
@@ -32,14 +24,8 @@ class ChatController < WebsocketRails::BaseController
     Rails.logger.error(e.message)
   end
 
-  # def change_username
-  #   connection_store[:user][:user_name] = sanitize(message[:user_name])
-  #   broadcast_user_list
-  # end
-
   def delete_user
     connection_store[:user] = nil
-    system_msg "client #{client_id} disconnected"
     broadcast_user_list
   end
 

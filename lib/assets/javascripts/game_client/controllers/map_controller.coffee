@@ -1,29 +1,30 @@
-class @WebsocketDispatcher
+class @MapController
 
-  constructor: (url, useWebSockets) ->
-    @dispatcher = new WebSocketRails(url, useWebSockets)
-    #@dispatcher.on_open = @init_map
+  constructor: (@dispatcher) ->
     @bindEvents()
 
-  trigger: (action, params) =>
-    params = {} unless params?
-    $.extend(params, { level_id: @level_id() })
-    console.log("trigger #{action} #{params}")
-    @dispatcher.trigger action, params
-
   init_map: =>
-    @trigger 'init_map'
+    @dispatcher.trigger 'init_map'
 
   view: (request_data) =>
-    @trigger 'view', request_data
+    @dispatcher.trigger 'view', request_data
 
   move: (request_data) =>
-    @trigger 'move', request_data
+    @dispatcher.trigger 'move', request_data
 
   bindEvents: =>
     @dispatcher.bind 'init_map', @render_client
     @dispatcher.bind 'view', @render_map
     @dispatcher.bind 'move', @render_pawn
+
+    $('#center_view').on 'click', (e) =>
+      e.preventDefault()
+      window.client.viewport.center()
+
+    $('#create_new_world').on 'click', (e) =>
+      e.preventDefault()
+      window.client.api.get '/world', () =>
+        alert('done')
 
   render_client: (message) =>
     console.log(message)
@@ -44,6 +45,3 @@ class @WebsocketDispatcher
         pawn.update(message)
       else
         console.log("can not update pawn #{message['pawn_id']}, pawn not found")
-
-  level_id: ->
-    window.location.pathname.match(/levels\/(.*?)\/map/)[1]

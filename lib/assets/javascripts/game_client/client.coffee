@@ -2,12 +2,13 @@ class @Client
 
   constructor: (width) ->
     fieldsVisible = 11
-    @api          = new ApiCaller()
-    @dispatcher   = new WebsocketDispatcher($('#chat').data('uri'), true)
-    @map          = new Map()
-    @viewport     = new Viewport(width, fieldsVisible, @map)
-    @presenter    = new StagePresenter(@viewport)
-    @chat         = new Chat.Controller(@dispatcher.dispatcher)
+    @api            = new ApiCaller()
+    @dispatcher     = new GameWebsocket()
+    @mapController  = new MapController(@dispatcher)
+    @chatController = new Chat.Controller(@dispatcher)
+    @map            = new Map()
+    @viewport       = new Viewport(width, fieldsVisible, @map)
+    @presenter      = new StagePresenter(@viewport)
 
   preload_images: (sources, callback) =>
     @images = {};
@@ -26,7 +27,7 @@ class @Client
   start: () =>
     # variable image_sources is defined on the page, see maps/show.html
     @preload_images image_sources, () =>
-      @dispatcher.init_map()
+      @mapController.init_map()
 
   render: (data) =>
     @presenter.render()

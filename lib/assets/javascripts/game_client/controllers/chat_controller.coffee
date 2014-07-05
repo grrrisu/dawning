@@ -3,13 +3,7 @@ window.Chat = {}
 class Chat.User
   constructor: ->
   serialize: =>
-    {
-      level_id: @level_id()
-      user_name: @user_name
-    }
-
-  level_id: ->
-    window.location.pathname.match(/levels\/(.*?)\/map/)[1]
+    { }
 
 class Chat.Controller
   template: (message) ->
@@ -33,8 +27,8 @@ class Chat.Controller
   constructor: (dispatcher) ->
     @messageQueue = []
     @dispatcher = dispatcher
-    @dispatcher.on_open = @createGuestUser
     @bindEvents()
+    @registerUser()
 
   bindEvents: =>
     @dispatcher.bind 'new_message', @newMessage
@@ -45,23 +39,18 @@ class Chat.Controller
 
   newMessage: (message) =>
     @messageQueue.push message
-    @shiftMessageQueue() if @messageQueue.length > 15
+    @shiftMessageQueue() if @messageQueue.length > 5
     @appendMessage message
 
   sendMessage: (event) =>
     event.preventDefault()
     message = $('#message').val()
-    @dispatcher.trigger 'new_message', {user_name: @user.user_name, msg_body: message}
+    @dispatcher.trigger 'new_message', {msg_body: message}
     $('#message').val('')
 
   updateUserList: (userList) =>
     console.log('updateUserList')
     $('#user-list').html @userListTemplate(userList)
-
-  updateUserInfo: (event) =>
-    @user.user_name = $('input#user_name').val()
-    $('#username').html @user.user_name
-    @dispatcher.trigger 'change_username', @user.serialize()
 
   appendMessage: (message) ->
     messageTemplate = @template(message)
@@ -73,9 +62,7 @@ class Chat.Controller
     $('#chat div.messages:first').slideDown 100, ->
       $(this).remove()
 
-  createGuestUser: =>
-    console.log('createGuestUser')
+  registerUser: =>
+    console.log('registerUser')
     @user = new Chat.User()
-    $('#username').html @user.user_name
-    $('input#user_name').val @user.user_name
     @dispatcher.trigger 'new_user', @user.serialize()

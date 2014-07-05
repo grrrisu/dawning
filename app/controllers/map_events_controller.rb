@@ -1,6 +1,7 @@
 class MapEventsController < WebsocketRails::BaseController
   include ActionView::Helpers::SanitizeHelper
 
+  #before_filter :sanitize_message
   before_filter :find_player #, only: [:init_map]
 
   def client_connected
@@ -38,6 +39,11 @@ class MapEventsController < WebsocketRails::BaseController
       level_id = message.delete('level_id')
       @player = LevelProxy.find(level_id).try(:find_player, current_user.id) or raise "no player found for level #{params[:level_id]} and user #{current_user}"
     end
+  end
+
+  def sanitize_message
+    message.each {|key, value| message[key] = sanitize(value)}
+    Rails.logger.warn(message)
   end
 
   def rescue_block
