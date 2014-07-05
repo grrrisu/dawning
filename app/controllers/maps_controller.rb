@@ -2,35 +2,11 @@ class MapsController < ApplicationController
   navigation :map
 
   before_filter :get_running_level
-  before_filter :find_player_id, except: :show
   before_filter :prepare_map_images, only: :show
 
   # setup html for map
   def show
     authorize! :show, @level
-  end
-
-  # view data
-  def view
-    authorize! :view, @level
-    options = {
-                x: params[:x].to_i,
-                y: params[:y].to_i,
-                width: params[:width].to_i,
-                height: params[:height].to_i
-              }
-    render json: @player.action(:view, options)
-  end
-
-  # data to setup game client
-  def init
-    authorize! :init, @level
-    render json: @player.action(:init_map)
-  end
-
-  def move
-    authorize! :move, @level
-    render json: @player.action(:move, id: params[:id].to_i, x: params[:x].to_i, y: params[:y].to_i)
   end
 
 private
@@ -48,12 +24,6 @@ private
       else
         redirect_to levels_path
       end
-    end
-  end
-
-  def find_player_id
-    unless @player = @level.find_player(current_user.id)
-      render json: "no player found", status: 403
     end
   end
 
