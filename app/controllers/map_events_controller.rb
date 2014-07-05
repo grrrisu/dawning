@@ -1,16 +1,8 @@
 class MapEventsController < WebsocketRails::BaseController
   include ActionView::Helpers::SanitizeHelper
 
-  #before_filter :sanitize_message
-  before_filter :find_player #, only: [:init_map]
-
-  def client_connected
-    Rails.logger.warn("client connected to websocket")
-  end
-
-  def client_disconnected
-    Rails.logger.warn("client disconnected from websocket")
-  end
+  before_filter :sanitize_message
+  before_filter :find_player, except: [:client_connected]
 
   def init_map
     rescue_block do
@@ -42,8 +34,10 @@ class MapEventsController < WebsocketRails::BaseController
   end
 
   def sanitize_message
-    message.each {|key, value| message[key] = sanitize(value)}
-    Rails.logger.warn(message)
+    rescue_block do
+      message.each {|key, value| message[key] = sanitize(value) if value.instance_of? String }
+      Rails.logger.warn(message)
+    end
   end
 
   def rescue_block

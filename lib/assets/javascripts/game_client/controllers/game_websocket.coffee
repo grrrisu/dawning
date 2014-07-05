@@ -2,6 +2,10 @@ class @GameWebsocket
 
   constructor: ->
     @dispatcher = new WebSocketRails($('#chat').data('uri'), true)
+    @dispatcher.on_error = (data) =>
+      console.log("ERROR: #{data}");
+    @dispatcher.on_close = (data) =>
+      console.log("closing #{data}");
 
   trigger: (action, params) =>
     params = {} unless params?

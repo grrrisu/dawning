@@ -1,10 +1,5 @@
 window.Chat = {}
 
-class Chat.User
-  constructor: ->
-  serialize: =>
-    { }
-
 class Chat.Controller
   template: (message) ->
     html =
@@ -28,7 +23,6 @@ class Chat.Controller
     @messageQueue = []
     @dispatcher = dispatcher
     @bindEvents()
-    @registerUser()
 
   bindEvents: =>
     @dispatcher.bind 'new_message', @newMessage
@@ -61,8 +55,3 @@ class Chat.Controller
     @messageQueue.shift()
     $('#chat div.messages:first').slideDown 100, ->
       $(this).remove()
-
-  registerUser: =>
-    console.log('registerUser')
-    @user = new Chat.User()
-    @dispatcher.trigger 'new_user', @user.serialize()
