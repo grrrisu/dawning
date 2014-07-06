@@ -33,7 +33,7 @@ class Chat.Controller
 
   newMessage: (message) =>
     @messageQueue.push message
-    @shiftMessageQueue() if @messageQueue.length > 5
+    @shiftMessageQueue() if @messageQueue.length > 10
     @appendMessage message
 
   sendMessage: (event) =>
@@ -52,5 +52,5 @@ class Chat.Controller
 
   shiftMessageQueue: =>
     @messageQueue.shift()
-    $('#chat div.messages:first').slideDown 100, ->
+    $('#chat div.message:first').slideDown 100, ->
       $(this).remove()
