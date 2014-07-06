@@ -27,15 +27,12 @@ class @MapController
         alert('done')
 
   render_client: (message) =>
-    console.log(message)
     window.client.render(message)
 
   render_map: (message) =>
-    console.log(message)
     window.client.map.render_fields(message)
 
   render_pawn: (message) =>
-    console.log(message)
     headquarter = window.client.headquarter
     if headquarter.id == message['pawn_id']
       headquarter.update(message)

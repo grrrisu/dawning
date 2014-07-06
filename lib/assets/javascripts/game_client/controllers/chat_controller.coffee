@@ -43,7 +43,6 @@ class Chat.Controller
     $('#message').val('')
 
   updateUserList: (userList) =>
-    console.log('updateUserList')
     $('#user-list').html @userListTemplate(userList)
 
   appendMessage: (message) ->

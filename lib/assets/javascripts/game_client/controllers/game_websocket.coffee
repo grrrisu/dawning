@@ -14,7 +14,9 @@ class @GameWebsocket
     @dispatcher.trigger action, params
 
   bind: (action, callback) =>
-    @dispatcher.bind action, callback
+    @dispatcher.bind action, (data) =>
+      console.log("received #{action}:", data)
+      callback(data)
 
   level_id: ->
     window.location.pathname.match(/levels\/(.*?)\/map/)[1]
