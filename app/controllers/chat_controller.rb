@@ -30,6 +30,7 @@ class ChatController < WebsocketRails::BaseController
 
   def new_message
     user_msg :new_message, message[:msg_body].dup
+    user_msg :new_message, strip_tags(sanitize(message[:msg_body]))
   end
 
   def broadcast_user_list
