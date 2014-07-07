@@ -6,7 +6,7 @@ class Chat.Controller
       """
       <div class="message" >
         <label class="label label-info">
-          [#{message.received}] #{message.user_name}
+          [#{message.received}] #{message.username}
         </label>&nbsp;
         #{message.msg_body}
       </div>
@@ -16,7 +16,7 @@ class Chat.Controller
   userListTemplate: (userList) ->
     userHtml = ""
     for user in userList
-      userHtml = userHtml + "<li>#{user.user_name}</li>"
+      userHtml = userHtml + "<li>#{user.username}</li>"
     $(userHtml)
 
   constructor: (dispatcher) ->
@@ -27,7 +27,6 @@ class Chat.Controller
   bindEvents: =>
     @dispatcher.bind 'new_message', @newMessage
     @dispatcher.bind 'user_list', @updateUserList
-    $('input#user_name').on 'keyup', @updateUserInfo
     $('#send').on 'click', @sendMessage
     $('#message').keypress (e) -> $('#send').click() if e.keyCode == 13
 
