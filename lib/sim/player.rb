@@ -1,6 +1,6 @@
 require_relative 'headquarter'
 
-class Player < Sim::Player
+class Player < BasePlayer
 
   attr_accessor :headquarter, :view
   attr_reader   :world
@@ -54,7 +54,7 @@ class Player < Sim::Player
         @view.unfog(pawn)
       end
     end
-    return {pawn_id: pawn_id, x: pawn.x, y: pawn.y}
+    {pawn_id: pawn_id, x: pawn.x, y: pawn.y}
   end
 
 end

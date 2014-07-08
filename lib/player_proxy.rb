@@ -52,7 +52,6 @@ class PlayerProxy
     end
 
     def receive_object message
-      Rails.logger.warn("data received: #{message.inspect}")
       EM.next_tick { player_proxy.send_message_to_browser(message.symbolize_keys!) }
     end
 

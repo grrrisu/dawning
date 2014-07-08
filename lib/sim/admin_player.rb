@@ -1,4 +1,4 @@
-class AdminPlayer < Sim::Player
+class AdminPlayer < BasePlayer
 
   attr_accessor :world
 
