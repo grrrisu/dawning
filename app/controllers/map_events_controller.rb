@@ -6,7 +6,6 @@ class MapEventsController < WebsocketRails::BaseController
 
   def init_map
     rescue_block do
-      Rails.logger.warn 'sending init_map ...'
       @player.websocket = connection
       @player.send_message 'init_map'
     end
@@ -14,14 +13,12 @@ class MapEventsController < WebsocketRails::BaseController
 
   def view
     rescue_block do
-      Rails.logger.warn "sending view ... #{message}"
       @player.send_message 'view', message
     end
   end
 
   def move
     rescue_block do
-      Rails.logger.warn "sending move ... #{message}"
       @player.send_message 'move', message
     end
   end
@@ -36,7 +33,6 @@ class MapEventsController < WebsocketRails::BaseController
   def sanitize_message
     rescue_block do
       message.each {|key, value| message[key] = sanitize(value) if value.instance_of? String }
-      Rails.logger.warn(message)
     end
   end
 

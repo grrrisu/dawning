@@ -45,8 +45,7 @@ class LevelProxy
 
   def add_player user_id, options = {}
     unless find_player(user_id)
-      player = PlayerProxy.new(@connection, options)
-      Rails.logger.warn("add player without id")
+      player = PlayerProxy.new options
       @players[user_id] = player
     else
       raise ArgumentError, "user [#{user_id}] has already been added to this level [#{id}]"

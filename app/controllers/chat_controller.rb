@@ -2,7 +2,7 @@ class ChatController < WebsocketRails::BaseController
   include ActionView::Helpers::SanitizeHelper
 
   def initialize_session
-    Rails.logger.warn "Chat session Initialized\n"
+    Rails.logger.debug "Chat session Initialized\n"
   end
 
   def client_connected
@@ -13,7 +13,7 @@ class ChatController < WebsocketRails::BaseController
   end
 
   def client_disconnected
-    Rails.logger.warn("client_disconnected")
+    Rails.logger.debug("client_disconnected")
     connection_store[:user] = nil
     broadcast_user_list
   rescue Exception => e
@@ -29,7 +29,6 @@ class ChatController < WebsocketRails::BaseController
   end
 
   def new_message
-    user_msg :new_message, message[:msg_body].dup
     user_msg :new_message, strip_tags(sanitize(message[:msg_body]))
   end
 
