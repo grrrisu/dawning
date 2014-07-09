@@ -54,8 +54,6 @@ Spork.prefork do
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/features/*.rb")].each {|f| require f} # require features first
   Dir[Rails.root.join("spec/support/*.rb")].each {|f| require f}
-  require_relative 'support/page_objects/application_page'
-  Dir[Rails.root.join("spec/support/page_objects/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
 
@@ -131,6 +129,7 @@ Spork.each_run do
   end
 
   Dir[Rails.root.join("spec/support/features/*.rb")].each {|f| require f} # require features first
+  Dir[Rails.root.join("spec/support/page_objects/*.rb")].each {|f| require f}
   Dir[Rails.root.join("spec/support/*.rb")].each {|f| require f}
 
 end
