@@ -85,6 +85,13 @@ Spork.prefork do
       ActionMailer::Base.deliveries.clear
     end
 
+    config.around(:each) do |example|
+      EM.run do
+        example.run
+        EM.stop
+      end
+    end
+
     config.after(:each) do
       if example.exception
         puts "\e[0;31m#{example.exception}"
