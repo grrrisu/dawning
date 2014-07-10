@@ -54,6 +54,8 @@ Spork.prefork do
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/features/*.rb")].each {|f| require f} # require features first
   Dir[Rails.root.join("spec/support/*.rb")].each {|f| require f}
+  require_relative 'support/page_objects/application_page'
+  Dir[Rails.root.join("spec/support/page_objects/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
 
@@ -86,14 +88,17 @@ Spork.prefork do
     end
 
     config.after(:each) do
-      if example.exception && example.options[:wait]
-        puts "Scenario failed. We wait because of wait. Press enter when you are done"
-        $stdin.gets
-      elsif example.exception && example.options[:irb]
-        require 'irb'
-        require 'irb/completion'
-        ARGV.clear
-        IRB.start
+      if example.exception
+        puts "\e[0;31m#{example.exception}"
+        puts example.exception.backtrace.reject {|line| line =~ /\/gems\//}.join("\n")
+        puts "\e[0m"
+        if example.metadata[:wait]
+          puts "Scenario failed. We wait because of wait. Press enter when you are done"
+          $stdin.gets
+        elsif example.metadata[:pry]
+          require 'pry'
+          binding.send(:pry)
+        end
       end
     end
 

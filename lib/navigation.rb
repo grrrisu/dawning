@@ -3,7 +3,7 @@ module Navigation
   def self.included(base)
     base.extend ClassMethods
     base.instance_eval do
-      helper_method :navigation_active?, :page_title
+      helper_method :navigation_active?, :subnavigation_active?, :page_title
     end
     base.send(:include, InstanceMethods)
   end
@@ -30,8 +30,12 @@ module Navigation
       self.class.navigation *breadcrumbs
     end
 
-    def navigation_active? key
+    def subnavigation_active? key
       self.class.breadcrumbs.include?(key)
+    end
+
+    def navigation_active? keys
+      self.class.breadcrumbs.sort == keys.sort
     end
 
   end
