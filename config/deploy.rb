@@ -44,15 +44,31 @@ after "deploy", "deploy:cleanup"
 task :upload_configs do
   {'mongoid_production.yml' => 'mongoid.yml',
    'app_config_production.yml' => 'app_config.yml',
-   'newrelic.yml' => 'newrelic.yml'}.each do |local_file, remote_file|
+   'newrelic.yml' => 'newrelic.yml',
+   'thin_production.yml' => 'thin.yml'}.each do |local_file, remote_file|
     upload File.expand_path("../#{local_file}", __FILE__), "#{shared_path}/config/#{remote_file}", via: :scp
   end
 end
 
-# puma
-require 'puma/capistrano'
-
 namespace :deploy do
+
+  # Thin
+
+  desc "Start the Thin processes"
+  task :start do
+    sudo "cd #{current_path} && bundle exec thin start -C config/thin.yml"
+  end
+
+  desc "Stop the Thin processes"
+  task :stop do
+    sudo "cd #{current_path} && bundle exec thin stop -C config/thin.yml"
+  end
+
+  desc "Restart the Thin processes"
+  task :restart do
+    sudo "cd #{current_path} && bundle exec thin restart -C config/thin.yml"
+  end
+
 
   desc "setup additional shared directories "
   task :setup_shared_dirs do
