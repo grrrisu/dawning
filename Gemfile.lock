@@ -6,6 +6,16 @@ GIT
       coffee-rails
 
 GIT
+  remote: git://github.com/grrrisu/Simulator.git
+  revision: 1e62646c88454c3d4087ba3cad67c57e4ee80bed
+  specs:
+    Simulator (0.3.0)
+      activesupport (>= 4.0.2)
+      celluloid (~> 0.13)
+      celluloid-io (~> 0.15.0)
+      hashie
+
+GIT
   remote: git://github.com/mongoid/mongoid.git
   revision: e93a4837b0266db46c24aae172e184f57c847b04
   specs:
@@ -14,14 +24,6 @@ GIT
       moped (~> 2.0.beta6)
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
-
-PATH
-  remote: ../Simulator
-  specs:
-    Simulator (0.2.1)
-      activesupport (>= 4.0.2)
-      celluloid (~> 0.13)
-      hashie
 
 GEM
   remote: https://rubygems.org/
@@ -171,7 +173,7 @@ GEM
       activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
-    hashie (3.0.0)
+    hashie (3.2.0)
     highline (1.6.21)
     hike (1.2.3)
     hirb (0.7.1)

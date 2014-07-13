@@ -17,7 +17,7 @@ gem 'gravtastic'
 gem 'kaminari'
 gem 'pretty_formatter'
 
-gem 'Simulator', :require => 'sim', :path => '../Simulator' #:github => 'grrrisu/Simulator'
+gem 'Simulator', :require => 'sim', :github => 'grrrisu/Simulator' # :path => '../Simulator'
 gem 'uuid'
 
 gem 'sass-rails',   '~> 4.0.1'
