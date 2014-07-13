@@ -85,13 +85,6 @@ Spork.prefork do
       ActionMailer::Base.deliveries.clear
     end
 
-    config.around(:each) do |example|
-      EM.run do
-        example.run
-        EM.stop
-      end
-    end
-
     config.after(:each) do
       if example.exception
         puts "\e[0;31m#{example.exception}"
@@ -115,6 +108,12 @@ Spork.prefork do
     # helpers
     require Rails.root.join('spec', 'support', 'sim_helper')
     config.include SimHelper
+  end
+
+  Capybara.server do |app, port|
+    require 'rack/handler/thin'
+    #Thin::Logging.silent = true
+    Thin::Server.new('0.0.0.0', port, app).start
   end
 
   include Sorcery::TestHelpers::Rails

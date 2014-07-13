@@ -67,8 +67,9 @@ end
 
 group :test do
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'capybara', '~> 2.0.3' # version 2.1 needs capybara-webkit  >= 1.0
-  gem 'capybara-webkit', '~> 0.14.2' # version 1.0 needs QT >= 4.8 which is not compatible with OS X 10.6
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'launchy'
 end

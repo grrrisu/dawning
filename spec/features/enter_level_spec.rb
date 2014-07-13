@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "enter level", em: true do
+describe "enter level", driver: :selenium do
 
   let!(:level) { running_level }
   let!(:user) { logged_in_user }
