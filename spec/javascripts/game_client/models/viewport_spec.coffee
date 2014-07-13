@@ -37,8 +37,9 @@ describe 'Viewport', ->
     describe 'with zoom 2', ->
 
       beforeEach ->
-        client.presenter.stage = jasmine.createSpyObj('stage', ['setAttrs'])
-        @viewport.setZoom(2)
+        #client.presenter.stage = jasmine.createSpyObj('stage', ['setAttrs'])
+        #@viewport.setZoom(2)
+        @viewport.zoom = 2
 
       it "within boundaries", ->
         pos = @viewport.checkBoundaries({x: -10, y: -25})
