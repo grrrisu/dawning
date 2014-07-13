@@ -25,10 +25,11 @@ FactoryGirl.define do
         # remove confirm_registration and activation mails
         ActionMailer::Base.deliveries.pop(2)
       end
-    end
 
-    factory :admin_user do
-      role 'admin'
+      factory :admin_user do
+        role 'admin'
+      end
+
     end
 
   end
