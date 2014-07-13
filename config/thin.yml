@@ -9,6 +9,6 @@ require: []
 threadpool_size: 20
 environment: production
 max_persistent_conns: 100
-server: 2
+server: 1
 daemonize: true
 chdir: /path/to/current
