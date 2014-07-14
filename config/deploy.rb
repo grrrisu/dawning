@@ -8,7 +8,7 @@ require 'bundler/capistrano'
 set :bundle_without, %w(development test)
 
 # setup multistage
-set :stages, %w(production helium)
+set :stages, %w(production staging helium)
 set :default_stage, "production"
 require 'capistrano/ext/multistage'
 

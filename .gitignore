@@ -14,6 +14,7 @@
 /config/app_config.yml
 /config/app_config_production.yml
 /config/newrelic.yml
+/config/thin.yml
 /config/thin_production.yml
 
 # Ignore all logfiles and tempfiles.
