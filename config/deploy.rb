@@ -37,6 +37,7 @@ set :keep_releases, 5
 after 'deploy:setup', 'deploy:setup_shared_dirs'
 before 'deploy:assets:precompile', 'deploy:symlink_configs'
 before 'deploy:symlink_configs', 'upload_configs'
+after 'deploy:symlink_configs', 'deploy:symlink_sockets'
 #after "deploy:create_symlink",  "deploy:migrate"
 #after 'deploy:symlink_configs', 'deploy:create_db'
 after "deploy", "deploy:cleanup"
@@ -85,8 +86,12 @@ namespace :deploy do
   end
 
   task :symlink_configs do
-    %w{mongoid.yml app_config.yml newrelic.yml}.each do |yml_file|
+    %w{mongoid.yml app_config.yml newrelic.yml thin.yml}.each do |yml_file|
       run "ln -s #{shared_path}/config/#{yml_file} #{release_path}/config/#{yml_file}"
     end
+  end
+
+  task :symlink_sockets do
+    run "ln -s #{shared_path}/sockets #{release_path}/tmp/sockets"
   end
 end
