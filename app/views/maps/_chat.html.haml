@@ -1,0 +1,13 @@
+Users online
+  #user-list.well
+
+  Conversation
+  #chat.well{'data-uri' => websocket_url}
+
+  .form-inline.well
+    %fieldset
+      %input#message.input-xlarge{type: "text"}
+      %button#send.btn.btn-primary Send
+
+:javascript
+  var image_sources = #{images_with_asset_path(@images).to_json};
