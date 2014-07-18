@@ -60,7 +60,7 @@ Spork.prefork do
     config.expect_with :rspec do |c|
       c.syntax = :expect
     end
-    config.fail_fast = true
+    config.fail_fast = false
 
     config.filter_run focus: true
     config.filter_run_excluding skip: true
