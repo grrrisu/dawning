@@ -2,9 +2,9 @@
   .row.alert-box
     .col-md-12
       - flash.each do |name, message|
-        .alert.alert-dismissable{:class => (name == :notice ? 'alert-success' : 'alert-danger')}
+        .alert.alert-dismissable{:class => (name == 'notice' ? 'alert-success' : 'alert-danger')}
           %button.close{"type" => "button", "data-dismiss" => "alert", "aria-hidden" => "true"} &times
-          - if name == :notice
+          - if name == 'notice'
             %i.fa.fa-info-circle
           - else
             %i.fa.fa-exclamation-circle

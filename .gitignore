@@ -11,11 +11,10 @@
 /.bundle
 /config/mongoid.yml
 /config/mongoid_production.yml
-/config/app_config.yml
-/config/app_config_production.yml
 /config/newrelic.yml
 /config/thin.yml
 /config/thin_production.yml
+/config/secrets.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*.log

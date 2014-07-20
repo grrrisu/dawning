@@ -44,9 +44,10 @@ after "deploy", "deploy:cleanup"
 
 task :upload_configs do
   {'mongoid_production.yml' => 'mongoid.yml',
-   'app_config_production.yml' => 'app_config.yml',
+   'secrets.yml' => 'secrets.yml',
    'newrelic.yml' => 'newrelic.yml',
    'thin_production.yml' => 'thin.yml'}.each do |local_file, remote_file|
+   }.each do |local_file, remote_file|
     upload File.expand_path("../#{local_file}", __FILE__), "#{shared_path}/config/#{remote_file}", via: :scp
   end
 end
