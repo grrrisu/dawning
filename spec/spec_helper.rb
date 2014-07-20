@@ -134,6 +134,7 @@ Spork.each_run do
     end
   end
 
+  require Rails.root.join('spec', 'support', 'page_objects', 'application_page')
   Dir[Rails.root.join("spec/support/features/*.rb")].each {|f| require f} # require features first
   Dir[Rails.root.join("spec/support/page_objects/*.rb")].each {|f| require f}
   Dir[Rails.root.join("spec/support/*.rb")].each {|f| require f}
