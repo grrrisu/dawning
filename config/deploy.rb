@@ -86,7 +86,7 @@ namespace :deploy do
   end
 
   task :symlink_configs do
-    %w{mongoid.yml app_config.yml thin.yml}.each do |yml_file|
+    %w{mongoid.yml secrets.yml thin.yml}.each do |yml_file|
       run "ln -s #{shared_path}/config/#{yml_file} #{release_path}/config/#{yml_file}"
     end
   end
