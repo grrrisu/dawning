@@ -55,15 +55,15 @@ Dawning::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
   ActionMailer::Base.smtp_settings = {
-    user_name: Rails.application.secrets.mail.user_name,
-    password: Rails.application.secrets.mail.password,
-    domain: Rails.application.secrets.mail.domain,
-    address: Rails.application.secrets.mail.address,
-    port: Rails.application.secrets.mail.port,
-    authentication: Rails.application.secrets.mail.authentication,
+    user_name: Rails.application.secrets.mail['user_name'],
+    password: Rails.application.secrets.mail['password'],
+    domain: Rails.application.secrets.mail['domain'],
+    address: Rails.application.secrets.mail['address'],
+    port: Rails.application.secrets.mail['port'],
+    authentication: Rails.application.secrets.mail['authentication'],
     enable_starttls_auto: true
   }
-  config.action_mailer.default_url_options = { host: Rails.application.secrets.mail.domain }
+  config.action_mailer.default_url_options = { host: Rails.application.secrets.mail['domain'] }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)

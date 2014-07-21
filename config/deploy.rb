@@ -45,7 +45,6 @@ after "deploy", "deploy:cleanup"
 task :upload_configs do
   {'mongoid_production.yml' => 'mongoid.yml',
    'secrets.yml' => 'secrets.yml',
-   'newrelic.yml' => 'newrelic.yml',
    'thin_production.yml' => 'thin.yml'
    }.each do |local_file, remote_file|
     upload File.expand_path("../#{local_file}", __FILE__), "#{shared_path}/config/#{remote_file}", via: :scp
@@ -87,7 +86,7 @@ namespace :deploy do
   end
 
   task :symlink_configs do
-    %w{mongoid.yml app_config.yml newrelic.yml thin.yml}.each do |yml_file|
+    %w{mongoid.yml app_config.yml thin.yml}.each do |yml_file|
       run "ln -s #{shared_path}/config/#{yml_file} #{release_path}/config/#{yml_file}"
     end
   end
