@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/grrrisu/Simulator.git
-  revision: 1e62646c88454c3d4087ba3cad67c57e4ee80bed
+  revision: c46e28dd09c35b05add8451df8169b3ee5dbff2f
   specs:
     Simulator (0.3.0)
       activesupport (>= 4.0.2)
@@ -55,7 +55,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
-    airbrake (3.1.16)
+    airbrake (4.0.0)
       builder
       multi_json
     arel (5.0.1.20140414130214)
@@ -129,7 +129,7 @@ GEM
       eventmachine (>= 1.0.0.beta.1)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    execjs (2.0.2)
+    execjs (2.2.1)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.4.1)
@@ -223,7 +223,7 @@ GEM
     net-ssh (2.9.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    newrelic_rpm (3.8.0.218)
+    newrelic_rpm (3.9.0.229)
     nio4r (1.0.0)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
@@ -371,7 +371,7 @@ GEM
       coffee-rails
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
-    uglifier (2.5.0)
+    uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     uniform_notifier (1.6.0)
