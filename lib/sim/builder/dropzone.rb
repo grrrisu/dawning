@@ -10,7 +10,7 @@ module Builder
 
     def place_player player
       y = rand(config[:players][:from]..config[:players][:to])
-      x = rand(0..(world.width-1))
+      x = rand(2..(world.width-1-2))
 
       view = View.new(world, 0, 0, world.width, world.height)
       headquarter = create_headquarter(view, x,y)
