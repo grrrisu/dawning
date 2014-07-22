@@ -66,6 +66,9 @@ Spork.prefork do
     config.filter_run_excluding skip: true
     config.run_all_when_everything_filtered = true
 
+    # set metadata type (eg. controller, model, feature) corresponding to the location/dir of the spec file
+    config.infer_spec_type_from_file_location!
+
     config.include FactoryGirl::Syntax::Methods
 
     config.before(:suite) do
@@ -85,7 +88,7 @@ Spork.prefork do
       ActionMailer::Base.deliveries.clear
     end
 
-    config.after(:each) do
+    config.after(:each) do |example|
       if example.exception
         puts "\e[0;31m#{example.exception}"
         puts example.exception.backtrace.reject {|line| line =~ /\/gems\//}.join("\n")
@@ -112,7 +115,7 @@ Spork.prefork do
 
   Capybara.server do |app, port|
     require 'rack/handler/thin'
-    #Thin::Logging.silent = true
+    Thin::Logging.silent = true
     Thin::Server.new('0.0.0.0', port, app).start
   end
 

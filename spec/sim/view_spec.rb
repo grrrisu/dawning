@@ -10,10 +10,10 @@ describe View do
   end
 
   it 'should detect wihtin radius' do
-    expect(View.within_radius(1,1,2)).to be_true
-    expect(View.within_radius(2,2,2)).to be_false
-    expect(View.within_radius(1,2,2)).to be_true
-    expect(View.within_radius(1,2,2,0)).to be_false
+    expect(View.within_radius(1,1,2)).to be true
+    expect(View.within_radius(2,2,2)).to be false
+    expect(View.within_radius(1,2,2)).to be true
+    expect(View.within_radius(1,2,2,0)).to be false
   end
 
   describe 'with pawn' do

@@ -12,7 +12,7 @@ describe EmailValidator do
 
   it "invalid_email.com should be invalid" do
     validator.validate_each(record, :email, 'invalid_email.com')
-    expect(record.errors[:email]).to have(1).item
+    expect(record.errors[:email].size).to be == 1
     expect(record.errors[:email].first).to be_eql("not a valid email address")
   end
 

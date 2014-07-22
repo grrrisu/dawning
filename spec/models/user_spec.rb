@@ -21,7 +21,7 @@ describe User do
 
   it "can remove email if notificaiton is removed as well" do
     user = create :user
-    expect(user.update_attributes(email: '', notification: false)).to be_true
+    expect(user.update_attributes(email: '', notification: false)).to be true
   end
 
 end

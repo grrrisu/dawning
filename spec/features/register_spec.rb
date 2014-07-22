@@ -19,7 +19,7 @@ describe "Register" do
       expect(page).to have_content('Successfully registered as Rocky')
     end
 
-    expect(ActionMailer::Base.deliveries).to have(1).item
+    expect(ActionMailer::Base.deliveries.size).to be == 1
     link = ActionMailer::Base.deliveries.first.body.match /http:\/\/.*?(\/.*?)$/
     visit link[1]
     within('.alert-success') do

@@ -16,7 +16,7 @@ describe "Reset password" do
     fill_in 'Email', with: 'rocky@balboa.com'
     click_button 'Send Mail'
 
-    expect(ActionMailer::Base.deliveries).to have(1).item
+    expect(ActionMailer::Base.deliveries.size).to be == 1
     link = ActionMailer::Base.deliveries.first.body.match /http:\/\/.*?(\/.*?)$/
     visit link[1]
 
