@@ -15,16 +15,6 @@ GIT
       celluloid-io (~> 0.15.0)
       hashie
 
-GIT
-  remote: git://github.com/mongoid/mongoid.git
-  revision: a2586f039fe6c0a1b11ad3bbcf62a7b9f488e960
-  specs:
-    mongoid (4.0.0)
-      activemodel (~> 4.0)
-      moped (~> 2.0.0)
-      origin (~> 2.1)
-      tzinfo (>= 0.3.37)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -208,6 +198,11 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.6.0)
     minitest (5.4.0)
+    mongoid (4.0.0)
+      activemodel (~> 4.0)
+      moped (~> 2.0.0)
+      origin (~> 2.1)
+      tzinfo (>= 0.3.37)
     moped (2.0.0)
       bson (~> 2.2)
       connection_pool (~> 2.0)
@@ -429,7 +424,7 @@ DEPENDENCIES
   jquery-turbolinks
   kaminari
   launchy
-  mongoid!
+  mongoid (~> 4.0.0)
   newrelic_rpm
   pretty_formatter
   pry-rails
