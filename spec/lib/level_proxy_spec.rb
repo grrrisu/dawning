@@ -8,8 +8,8 @@ describe LevelProxy do
   describe 'without connection' do
 
     before :each do
-      Sim::Popen::ParentConnection.stub(:new).and_return(connection)
-      connection.should_receive(:launch_subprocess)
+      allow(Sim::Popen::ParentConnection).to receive(:new).and_return(connection)
+      expect(connection).to receive(:launch_subprocess)
     end
 
     it "should create and launch" do
@@ -40,7 +40,7 @@ describe LevelProxy do
 
     it "should build a level" do
       level.instance_variable_set('@state', :launched)
-      connection.should_receive(:send_action).with(:build, config_file: an_instance_of(String))
+      expect(connection).to receive(:send_action).with(:build, config_file: an_instance_of(String))
       level.build('default.yml')
       expect(level.state).to eq(:ready)
     end
