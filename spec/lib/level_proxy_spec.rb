@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe LevelProxy do
 
-  let (:connection) { double(Sim::Popen::ParentConnection) }
+  let (:connection) { double(Sim::Net::ParentConnection) }
   let (:level) { LevelProxy.new('123', 'test') }
 
   describe 'without connection' do
 
     before :each do
-      allow(Sim::Popen::ParentConnection).to receive(:new).and_return(connection)
+      allow(Sim::Net::ParentConnection).to receive(:new).and_return(connection)
       expect(connection).to receive(:launch_subprocess)
     end
 

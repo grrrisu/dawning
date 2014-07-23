@@ -37,7 +37,7 @@ class LevelProxy
   def initialize id, name
     @id         = id
     @name       = name
-    @connection = Sim::Popen::ParentConnection.new
+    @connection = Sim::Net::ParentConnection.new
     @players    = {}    # maps user_id to player_proxy
   end
 
