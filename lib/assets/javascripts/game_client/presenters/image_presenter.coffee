@@ -1,4 +1,4 @@
-class @ImagePresenter
+class Game.ImagePresenter
 
   constructor: (@model) ->
 

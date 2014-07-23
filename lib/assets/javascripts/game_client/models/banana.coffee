@@ -1,7 +1,7 @@
-class @Banana extends Figure
+class Game.Banana extends Game.Figure
 
   constructor: (data) ->
-    @presenter        = new ImagePresenter(this)
+    @presenter        = new Game.ImagePresenter(this)
     @image            = @setImage(data)
 
   getPresenter: () =>

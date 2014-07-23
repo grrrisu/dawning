@@ -1,7 +1,7 @@
 describe 'Map', ->
 
   beforeEach ->
-    @map = new Map()
+    @map = new Game.Map()
     @map.setFieldWidth(5)
 
   describe 'should calculate relative position', ->

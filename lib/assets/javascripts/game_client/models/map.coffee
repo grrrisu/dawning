@@ -1,7 +1,7 @@
-class @Map
+class Game.Map
 
   constructor: () ->
-    @presenter  = new MapPresenter(this)
+    @presenter  = new Game.MapPresenter(this)
     @shapes     = []
 
   setFieldWidth: (width) =>
@@ -52,10 +52,10 @@ class @Map
     @add_shape(field_shape)
 
     if field_data.flora?
-      @render_figure(new Banana(field_data.flora), rx , ry)
+      @render_figure(new Game.Banana(field_data.flora), rx , ry)
 
     if field_data.fauna?
-      @render_figure(new Animal(field_data.fauna), rx , ry)
+      @render_figure(new Game.Animal(field_data.fauna), rx , ry)
 
     if field_data.pawn?
       @render_pawn(field_data.pawn, rx , ry)

@@ -1,4 +1,4 @@
-class @Viewport
+class Game.Viewport
 
   constructor: (@width, @fieldsVisible, @map) ->
     @zoom   = 1

@@ -1,4 +1,4 @@
-class @MapPresenter
+class Game.MapPresenter
 
   constructor: (@model) ->
 

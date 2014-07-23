@@ -1,4 +1,4 @@
-class @GameWebsocket
+class Game.Websocket
 
   constructor: ->
     @dispatcher = new WebSocketRails($('#chat').data('uri'), true)

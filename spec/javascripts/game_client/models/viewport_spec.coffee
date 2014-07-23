@@ -1,12 +1,12 @@
 describe 'Viewport', ->
 
   beforeEach ->
-    @map = new Map()
+    @map = new Game.Map()
     @map.setFieldWidth(5)
     @map.setWorldSize({width: 50, height: 100})
     @map.mapWidth()
     @map.mapHeight()
-    @viewport = new Viewport(55, 11, @map)
+    @viewport = new Game.Viewport(55, 11, @map)
     spyOn(@viewport, 'update_map')
 
   describe 'checkBoundaries', ->

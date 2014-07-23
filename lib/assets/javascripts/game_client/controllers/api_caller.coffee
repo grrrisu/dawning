@@ -1,4 +1,4 @@
-class @ApiCaller
+class Game.ApiCaller
 
   constructor: (@base_url) ->
     @base_url ?= window.location.protocol + '//' + window.location.host + window.location.pathname

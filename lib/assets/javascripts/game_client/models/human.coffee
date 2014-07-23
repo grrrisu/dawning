@@ -1,7 +1,7 @@
-class @Human extends Pawn
+class Game.Human extends Game.Pawn
 
   constructor: (data) ->
-    @presenter        = new ImagePresenter(this)
+    @presenter        = new Game.ImagePresenter(this)
     @view_radius      = 1
     @influence_radius = 1
     @type             = data.type

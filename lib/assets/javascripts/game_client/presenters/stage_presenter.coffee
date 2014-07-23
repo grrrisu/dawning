@@ -1,4 +1,4 @@
-class @StagePresenter
+class Game.StagePresenter
 
   constructor: (@viewport) ->
 

@@ -1,4 +1,4 @@
-class @Pawn extends Figure
+class Game.Pawn extends Game.Figure
 
   constructor: (data) ->
     @id        = data.id

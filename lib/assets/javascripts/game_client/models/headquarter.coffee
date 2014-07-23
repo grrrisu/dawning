@@ -1,7 +1,7 @@
-class @Headquarter extends Pawn
+class Game.Headquarter extends Game.Pawn
 
   constructor: (data) ->
-    @presenter        = new ImagePresenter(this)
+    @presenter        = new Game.ImagePresenter(this)
     @view_radius      = 2
     @influence_radius = 2
     @secure_radius    = 2
@@ -16,7 +16,7 @@ class @Headquarter extends Pawn
   createPawns: (data) =>
     @pawns = []
     data.pawns.each (pawn_data) =>
-      @pawns.push new Human(pawn_data)
+      @pawns.push new Game.Human(pawn_data)
 
   findPawn: (id) =>
     @pawns.find (pawn) =>

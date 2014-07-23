@@ -1,7 +1,7 @@
-class @Animal extends Figure
+class Game.Animal extends Game.Figure
 
   constructor: (data) ->
-    @presenter        = new ImagePresenter(this)
+    @presenter        = new Game.ImagePresenter(this)
     @image            = @setImage(data)
 
   getPresenter: () =>

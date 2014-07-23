@@ -1,14 +1,14 @@
-class @Client
+class Game.Client
 
   constructor: (width) ->
     fieldsVisible = 11
-    @api            = new ApiCaller()
-    @dispatcher     = new GameWebsocket()
-    @mapController  = new MapController(@dispatcher)
-    @chatController = new Chat.Controller(@dispatcher)
-    @map            = new Map()
-    @viewport       = new Viewport(width, fieldsVisible, @map)
-    @presenter      = new StagePresenter(@viewport)
+    @api            = new Game.ApiCaller()
+    @dispatcher     = new Game.Websocket()
+    @mapController  = new Game.MapController(@dispatcher)
+    @chatController = new Game.ChatController(@dispatcher)
+    @map            = new Game.Map()
+    @viewport       = new Game.Viewport(width, fieldsVisible, @map)
+    @presenter      = new Game.StagePresenter(@viewport)
 
   preload_images: (sources, callback) =>
     @images = {};
@@ -35,5 +35,5 @@ class @Client
     @map.render(@presenter.map_layer, @presenter.pawn_layer)
     # admin view has no headquarter
     if data.headquarter?
-      @headquarter  = new Headquarter(data.headquarter)
+      @headquarter  = new Game.Headquarter(data.headquarter)
     @viewport.center()

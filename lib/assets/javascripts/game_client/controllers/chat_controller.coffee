@@ -1,6 +1,4 @@
-window.Chat = {}
-
-class Chat.Controller
+class Game.ChatController
   template: (message) ->
     html =
       """

@@ -1,4 +1,4 @@
-class @MapController
+class Game.MapController
 
   constructor: (@dispatcher) ->
     @bindEvents()

@@ -1,4 +1,4 @@
-class @Figure
+class Game.Figure
 
   constructor: (data) ->
     if data.x? && data.y?
