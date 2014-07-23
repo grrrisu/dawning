@@ -4,6 +4,8 @@ class @Viewport
     @zoom   = 1
     @height = @width
     @map.setFieldWidth(@width / @fieldsVisible)
+    @prev_rx = -1
+    @prev_ry = -1
 
   setZoom: (zoom) =>
     @zoom = zoom
@@ -28,7 +30,10 @@ class @Viewport
     rpos = @map.relativePosition(@ax * @zoom, @ay * @zoom)
     @rx = rpos.x
     @ry = rpos.y
-    @update_map()
+    if(@rx != @prev_rx || @ry != @prev_ry)
+      @update_map()
+      @prev_rx = @rx
+      @prev_ry = @ry
     { x: x, y: y }
 
   center: () =>
@@ -62,3 +67,5 @@ class @Viewport
   update_map: =>
     @map.update_fields(@rx, @ry, @fieldsVisible * @zoom + 1, @fieldsVisible * @zoom + 1);
     client.presenter.stage.draw()
+
+
