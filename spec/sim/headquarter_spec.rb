@@ -3,13 +3,13 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe Headquarter do
 
   before(:each) do
-    @headquarter = Headquarter.new(5,5)
+    @headquarter = Headquarter.build(x: 5, y: 5)
   end
 
   describe "create view" do
 
     before(:each) do
-      @headquarter.pawns << Pawn.new(4,5)
+      @headquarter.pawns << Pawn.build(x: 4, y: 5)
       config  = {world: {height: 10, width: 10}}
       world   = World.new(11).build(config)
       @view   = View.new(world, 0, 0, world.width, world.height)

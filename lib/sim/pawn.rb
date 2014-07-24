@@ -1,6 +1,9 @@
 class Pawn
+  include Sim::Buildable
 
-  attr_accessor :id, :x, :y, :view_radius, :type
+  attr_accessor :id, :x, :y, :type
+
+  default_attr :view_radius, 1
 
   def self.id_count
     @count ||= 0
@@ -19,7 +22,6 @@ class Pawn
 
   def initialize x, y
     Pawn.add(self)
-    @view_radius = 1
     @x, @y       = x, y
     @tpye        = 'base'
   end

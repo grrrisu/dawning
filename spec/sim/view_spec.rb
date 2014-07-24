@@ -19,7 +19,7 @@ describe View do
   describe 'with pawn' do
 
     before(:each) do
-      pawn = Pawn.new(1,1)
+      pawn = Pawn.build(x: 1, y: 1)
       @view.unfog(pawn)
     end
 

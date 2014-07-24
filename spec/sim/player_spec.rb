@@ -4,14 +4,14 @@ describe Player do
 
   let(:world)       { World.new(3,3) }
   let(:view)        { View.new(world, 0, 0, world.height)}
-  let(:headquarter) { Headquarter.new(1,1) }
+  let(:headquarter) { Headquarter.build(x: 1, y: 1) }
   let(:player)      { Player.new('123', double(:level)) }
 
   describe 'move' do
 
     before :each do
       world[1,1].pawn = headquarter
-      headquarter.pawns << @pawn = Pawn.new(0, 1)
+      headquarter.pawns << @pawn = Pawn.build(x: 0, y: 1)
       world[0,1].pawn = @pawn
       player.place(view, headquarter)
     end

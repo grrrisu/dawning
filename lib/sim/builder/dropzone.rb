@@ -18,7 +18,7 @@ module Builder
     end
 
     def create_headquarter view, x, y
-      headquarter = Headquarter.new(x, y)
+      headquarter = Headquarter.build(x: x, y: y)
       world[x, y].merge!(pawn: headquarter)
       headquarter.create_pawns
       view.unfog(headquarter)

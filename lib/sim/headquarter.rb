@@ -4,9 +4,10 @@ class Headquarter < Pawn
 
   attr_accessor :pawns, :view
 
+  default_attr :view_radius, 2
+
   def initialize x, y
     super x, y
-    self.view_radius = 2
     @pawns = []
   end
 
@@ -26,8 +27,8 @@ class Headquarter < Pawn
   end
 
   def create_pawns
-    @pawns << Pawn.new(x+1, y)
-    @pawns << Pawn.new(x-1, y)
+    @pawns << Pawn.build(x: x+1, y: y)
+    @pawns << Pawn.build(x: x-1, y: y)
   end
 
 end
