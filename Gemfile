@@ -31,6 +31,8 @@ gem "font-awesome-sass"
 
 group :development do
   gem 'pry-rails'
+  gem 'spring'
+  gem "spring-commands-rspec"
 
   gem 'rb-readline', :require => false
   gem 'guard', :require => false
@@ -58,8 +60,6 @@ end
 group :test, :development do
   gem "rspec-rails", '~> 3.0.2'
   gem "jasminerice", :github => 'bradphelan/jasminerice' # wait until ready for rails4
-  gem "spork", '~> 1.0rc', :require => false
-  gem "guard-spork", :require => false
   gem "better_errors"
   gem "binding_of_caller"
   gem 'simplecov', '~> 0.7.1', :require => false
