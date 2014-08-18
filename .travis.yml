@@ -6,6 +6,10 @@ rvm:
 services:
   - mongodb
 
+addons:
+  code_climate:
+    repo_token: <%= Rails.application.secrets.codeclimate_repo %>
+
 bundler_args: --without development
 
 before_install:
