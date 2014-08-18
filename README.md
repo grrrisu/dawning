@@ -3,6 +3,7 @@ Dawning
 
 [![Code Climate](https://codeclimate.com/github/grrrisu/dawning.png)](https://codeclimate.com/github/grrrisu/dawning)
 [![Build Status](https://travis-ci.org/grrrisu/dawning.png?branch=master)](https://travis-ci.org/grrrisu/dawning)
+[![Stories in Ready](https://badge.waffle.io/grrrisu/dawning.svg?label=ready&title=Ready)](http://waffle.io/grrrisu/dawning)
 
 A game about emergence
 
