@@ -55,6 +55,7 @@ group :development do
   gem 'bullet'
   gem 'rails_best_practices'
   gem 'smusher', :require => false
+  gem 'rubocop', :require => false
 end
 
 group :test, :development do
