@@ -1,6 +1,6 @@
 # setup rvm
 require 'rvm/capistrano'
-set :rvm_ruby_string, '2.0.0'
+set :rvm_ruby_string, '2.1.2'
 set :rvm_type, :system
 
 # setup bundler
