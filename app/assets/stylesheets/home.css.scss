@@ -1,6 +1,6 @@
 /* Visual */
 .visual {
-  background-image: url(asset-path("dawning2b.jpg"));
+  @include img-retina("dawning.jpg", "dawning@2x.jpg", 1680px, 400px);
   background-position: 30% -30px;
   background-repeat: no-repeat;
   background-color: #101116;
