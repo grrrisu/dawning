@@ -30,7 +30,7 @@ private
   def prepare_map_images
     @images = {
       'fog' => 'map/fog3.png',
-      '0_desert' => 'map/0_desert4.png',
+      '0_desert' => 'map/0_desert_110.png',
       '1_grass' => 'map/1_grass4.png',
       '2_grass' => 'map/2_grass4.png',
       '3_grass' => 'map/3_grass4.png',
