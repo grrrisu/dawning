@@ -63,6 +63,7 @@ group :test, :development do
   gem "jasminerice", :github => 'bradphelan/jasminerice' # wait until ready for rails4
   gem "better_errors"
   gem "binding_of_caller"
+  gem "byebug"
   gem 'simplecov', '~> 0.7.1', :require => false
 end
 
