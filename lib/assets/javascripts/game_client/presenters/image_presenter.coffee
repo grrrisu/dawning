@@ -4,11 +4,11 @@ class Game.ImagePresenter
 
   render: (layer) =>
     @node = new Kinetic.Image
-      x: @model.ax - @model.image.width / 2
-      y: @model.ay - @model.image.height / 2
+      x: @model.ax - @model.image.width / 4
+      y: @model.ay - @model.image.height / 4
       image: @model.image
-      width: @model.image.width
-      height: @model.image.height
+      width: @model.image.width / 2
+      height: @model.image.height / 2
       draggable: @model.draggable
       dragBoundFunc: (pos) =>
         @model.checkBoundaries(pos)

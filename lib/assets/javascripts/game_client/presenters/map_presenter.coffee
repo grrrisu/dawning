@@ -13,6 +13,8 @@ class Game.MapPresenter
       width: @model.mapWidth()
       height: @model.mapHeight()
       fillPatternImage: client.images['fog']
+      fillPatternScaleX: 1 / Kinetic.pixelRatio
+      fillPatternScaleY: 1 / Kinetic.pixelRatio
       stroke: 'black'
       strokeWidth: 1
 
@@ -27,7 +29,10 @@ class Game.MapPresenter
       width: @model.fieldWidth
       height: @model.fieldWidth
       fillPatternImage: client.images[@field_pattern(data)]
-      stroke: 'black'
+      fillPatternScaleX: 1 / Kinetic.pixelRatio
+      fillPatternScaleY: 1 / Kinetic.pixelRatio
+      pixelRatio: 2
+      stroke: '#222222'
       strokeWidth: 1
 
     @layer.add(ground);

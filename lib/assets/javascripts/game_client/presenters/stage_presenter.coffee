@@ -3,6 +3,8 @@ class Game.StagePresenter
   constructor: (@viewport) ->
 
   render: =>
+    console.log('pixelRatio: ' + window.devicePixelRatio)
+    Kinetic.pixelRatio = 2
     @stage = new Kinetic.Stage
       container: 'pawns'
       width: @viewport.width
