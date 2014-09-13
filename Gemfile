@@ -55,6 +55,7 @@ group :development do
   gem 'bullet'
   gem 'rails_best_practices'
   gem 'smusher', :require => false
+  gem 'rubocop', :require => false
 end
 
 group :test, :development do
@@ -62,6 +63,7 @@ group :test, :development do
   gem "jasminerice", :github => 'bradphelan/jasminerice' # wait until ready for rails4
   gem "better_errors"
   gem "binding_of_caller"
+  gem "byebug"
   gem 'simplecov', '~> 0.7.1', :require => false
 end
 
