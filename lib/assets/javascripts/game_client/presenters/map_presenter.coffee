@@ -32,8 +32,8 @@ class Game.MapPresenter
       fillPatternScaleX: 1 / Kinetic.pixelRatio
       fillPatternScaleY: 1 / Kinetic.pixelRatio
       pixelRatio: 2
-      stroke: '#222222'
-      strokeWidth: 1
+      stroke: '#454545'
+      strokeWidth: 2
 
     @layer.add(ground);
     ground

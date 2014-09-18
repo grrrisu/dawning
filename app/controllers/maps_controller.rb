@@ -30,20 +30,20 @@ private
   def prepare_map_images
     @images = {
       'fog' => 'map/fog3.png',
-      '0_desert' => 'map/0_desert_110.png',
-      '1_grass' => 'map/1_grass4.png',
-      '2_grass' => 'map/2_grass4.png',
-      '3_grass' => 'map/3_grass4.png',
-      '5_grass' => 'map/5_grass4.png',
-      '8_forest' => 'map/8_forest4.png',
-      '13_forest' => 'map/13_forest4.png',
+      '0_desert' => 'map/0_desert@2x.png',
+      '1_grass' => 'map/1_grass@2x.png',
+      '2_grass' => 'map/2_grass@2x.png',
+      '3_grass' => 'map/3_grass@2x.png',
+      '5_grass' => 'map/5_grass@2x.png',
+      '8_forest' => 'map/8_forest@2x.png',
+      '13_forest' => 'map/13_forest@2x.png',
       'banana_1' => 'map/banana-1.png',
       'banana_2' => 'map/banana-2.png',
       'banana_3' => 'map/banana-3.png',
       'rabbit' => 'map/rabbit.png',
       'gazelle' => 'map/gazelle.png',
       'mammoth' => 'map/meat.png',
-      'leopard' => 'map/leopard3.png',
+      'leopard' => 'map/leopard.png',
       'headquarter' => 'map/Raratonga_Mask.gif',
       'man' => 'map/caveman.png'
     }
