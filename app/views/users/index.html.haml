@@ -12,7 +12,7 @@
       - @users.each do |user|
         %tr{:class => user == current_user && 'current'}
           %td{:align => 'center'}
-            = gravatar_for user, 50, 'gravatar gravatar-list'
+            = gravatar_for user, 100, 'gravatar gravatar-list'
           %td
             = user.username
           %td

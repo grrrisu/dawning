@@ -20,7 +20,8 @@ class User
 
   before_create :set_default_role
 
-  has_gravatar default: :retro
+  has_gravatar default: :retro,
+               secure: true
 
   scope :active, -> { where(activation_state: 'active').excludes(username: 'admin') }
 
