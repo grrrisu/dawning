@@ -64,7 +64,7 @@ group :test, :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem "byebug"
-  gem 'simplecov', '~> 0.7.1', :require => false
+  gem 'simplecov', '~> 0.9.1', :require => false
 end
 
 group :test do
