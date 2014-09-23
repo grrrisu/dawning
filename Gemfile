@@ -59,7 +59,7 @@ group :development do
 end
 
 group :test, :development do
-  gem "rspec-rails", '~> 3.0.2'
+  gem "rspec-rails", '~> 3.1.0'
   gem "jasminerice", :github => 'bradphelan/jasminerice' # wait until ready for rails4
   gem "better_errors"
   gem "binding_of_caller"
