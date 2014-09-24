@@ -6,15 +6,14 @@ FactoryGirl.define do
     uid         1234567890
   end
 
-
-  # --- User ---
+  sequence(:username) {|n| "Rocky #{n}"}
 
   factory :pending_user, class: User do
-    username  { generate :username }
-    email     {|u| "#{u.username.gsub(' ', '_')}@example.com"}
-    password  "Sesame"
+    username              { generate :username }
+    email                 {|u| "#{u.username.gsub(' ', '_')}@example.com"}
+    password              "Sesame"
     password_confirmation {|u| u.password}
-    role      "member"
+    role                  "member"
     after(:create) do |user|
       user.password_confirmation = nil
     end
