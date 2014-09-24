@@ -1,32 +1,31 @@
 require "spec_helper"
 
-describe "Register" do
+feature "Register" do
 
-  it "a new member" do
-    visit '/'
-    click_link 'register'
+  let(:home_page)     { ApplicationPage.new }
+  let(:register_page) { Users::RegisterPage.new }
+  let(:register_params) {
+    {
+      username: 'Rocky',
+      password: 'Balboa',
+      email:    'rocky.balboa@example.com'
+    }
+  }
 
+  scenario "as a new member" do
+    home_page.open
+    home_page.click_nav_register
     expect(page).to have_content('Register')
-    within('#new_user') do
-      fill_in 'user_username', with: 'Rocky'
-      fill_in 'user_password', with: 'Balboa'
-      fill_in 'user_password_confirmation', with: 'Balboa'
-      fill_in 'user_email', with: 'rocky.balboa@example.com'
-      click_button 'register'
-    end
 
-    within('.alert-success') do
-      expect(page).to have_content('Successfully registered as Rocky')
-    end
+    register_page.fill_form_with register_params
+    register_page.submit
 
-    expect(ActionMailer::Base.deliveries.size).to be == 1
-    link = ActionMailer::Base.deliveries.first.body.match /http:\/\/.*?(\/.*?)$/
-    visit link[1]
-    within('.alert-success') do
-      expect(page).to have_content('Welcome Rocky! Your account has been activated.')
-    end
-    expect(page).to have_content('Logout')
+    expect(home_page.flash).to have_content('Successfully registered as Rocky')
+    expect(home_page.emails_sent.size).to be == 1
+    home_page.visit_link_in_email
 
+    expect(home_page.flash).to have_content('Welcome Rocky! Your account has been activated.')
+    expect(register_page.navigation).to have_content('Logout')
   end
 
 end

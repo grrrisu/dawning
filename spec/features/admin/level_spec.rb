@@ -1,14 +1,16 @@
 require "spec_helper"
 
 describe "Level" do
+  include_context "session"
+
+  let(:admin_page) { Levels::AdminPage.new }
 
   before :each do
-    user = create :admin_user, password: 'secret'
-    login_with(user, 'secret')
+    logged_in_admin
   end
 
   it "should create a new level", js: true do
-    visit '/admin/levels'
+    admin_page.open
     click_on 'create_level_button'
     fill_in 'level_name', with: 'level test'
     click_on 'Launch'

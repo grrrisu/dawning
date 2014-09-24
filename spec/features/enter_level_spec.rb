@@ -1,22 +1,23 @@
 require "spec_helper"
 
 describe "enter level", js: true do
+  include_context "session"
+  include_context "level"
 
-  let!(:level) { running_level }
-  let!(:user) { logged_in_user }
+  let!(:level)      { running_level }
+  let(:level_page)  { Levels::IndexPage.new}
+
+  before :each do
+    logged_in_user
+  end
 
   it "user joins a level and enters it" do
-    visit '/levels'
+    level_page.open
+    expect(level_page.entry(level)).to have_content('players: 0')
+    level_page.join level
 
-    within("#level_#{level.id}") do
-      expect(page).to have_content('players: 0')
-      click_link "join_#{level.id}"
-    end
-
-    within("#level_#{level.id}") do
-      expect(page).to have_content('players: 1')
-      click_link "enter_#{level.id}"
-    end
+    expect(level_page.entry(level)).to have_content('players: 1')
+    level_page.enter level
 
     expect(page).to have_content('Map')
     expect(page).to have_selector('#pawns')

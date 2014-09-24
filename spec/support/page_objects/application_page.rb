@@ -2,26 +2,51 @@ class ApplicationPage
   include Capybara::DSL
   include Rails.application.routes.url_helpers
 
-  def visit_home
+  def open
     visit '/'
+    self
   end
 
-  def has_success_alert? text
-    within('.alert-success') do
-      has_content? text
+  def flash
+    find('.alert-box')
+  end
+
+  def navigation
+    find('nav.navbar')
+  end
+
+  def click_nav_register
+    click_nav 'register'
+  end
+
+  def click_nav_login
+    click_nav 'login'
+  end
+
+  def click_nav_logout
+    click_nav 'logout'
+  end
+
+  def email_sent
+    ActionMailer::Base.deliveries.first
+  end
+
+  def emails_sent
+    ActionMailer::Base.deliveries
+  end
+
+  def visit_link_in_email index = 0
+    email = ActionMailer::Base.deliveries[index]
+    link  = email.body.match /http:\/\/.*?(\/.*?)$/
+    visit link[1]
+  end
+
+private
+
+  def click_nav identifier
+    within navigation do
+      click_link identifier
     end
-  end
-
-  def has_error_alert? text
-    within('.alert-danger') do
-      has_content? text
-    end
-  end
-
-  # navigation
-
-  def logout
-    click_link 'logout'
   end
 
 end

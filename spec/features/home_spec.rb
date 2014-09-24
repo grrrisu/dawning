@@ -1,9 +1,11 @@
 require "spec_helper"
 
-describe "Home" do
+feature "Home" do
 
-  it "should display a welcome message" do
-    visit '/'
+  let(:home_page) { ApplicationPage.new }
+
+  scenario "should display a welcome message" do
+    home_page.open
     expect(page).to have_content('Welcome')
   end
 

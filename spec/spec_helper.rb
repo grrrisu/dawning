@@ -15,12 +15,9 @@ end
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'database_cleaner'
 
 require Rails.root.join('spec', 'support', 'page_objects', 'application_page')
-Dir[Rails.root.join("spec/support/features/*.rb")].each {|f| require f} # require features first
-Dir[Rails.root.join("spec/support/page_objects/*.rb")].each {|f| require f}
-Dir[Rails.root.join("spec/support/*.rb")].each {|f| require f}
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
 
@@ -48,7 +45,6 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   # helpers
-  #require Rails.root.join('spec', 'support', 'sim_helper')
   config.include SimHelper
 end
 

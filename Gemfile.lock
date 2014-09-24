@@ -146,7 +146,7 @@ GEM
     faye-websocket (0.7.4)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.3.1)
-    ffi (1.9.3)
+    ffi (1.9.4)
     font-awesome-sass (4.2.0)
       sass (~> 3.2)
     formatador (0.2.5)

@@ -1,9 +1,11 @@
 require "spec_helper"
 
 describe "map" do
+  include_context "session"
+  include_context "level"
 
   let!(:level) { running_level }
-  let!(:user) { logged_in_user }
+  let!(:user)  { logged_in_user }
 
   it "user sees map", js: true do
     user_joined_level(user, level)

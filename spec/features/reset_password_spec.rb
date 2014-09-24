@@ -1,47 +1,36 @@
 require "spec_helper"
 
-describe "Reset password" do
+feature "Reset password" do
 
-  before :each do
-    create :user, username: 'Rocky', email: 'rocky@balboa.com'
-  end
+  let!(:user)                 { create :user, username: 'Rocky', email: 'rocky@balboa.com' }
+  let(:home_page)             { ApplicationPage.new }
+  let(:login_page)            { Sessions::LoginPage.new }
+  let(:forgot_password_page)  { Sessions::ForgotPasswordPage.new }
+  let(:reset_password_page)   { Sessions::ResetPasswordPage.new }
 
-  it "through login form" do
-    visit '/login'
-    within('#session_password ~ p') do
-      click_link 'here'
-    end
+  scenario "through login form" do
+    login_page.open
+    login_page.click_forgot_password
 
     expect(page).to have_content('Forgot Password')
-    fill_in 'Email', with: 'rocky@balboa.com'
-    click_button 'Send Mail'
+    forgot_password_page.fill_form_with email: user.email
+    forgot_password_page.submit
 
-    expect(ActionMailer::Base.deliveries.size).to be == 1
-    link = ActionMailer::Base.deliveries.first.body.match /http:\/\/.*?(\/.*?)$/
-    visit link[1]
+    expect(forgot_password_page.emails_sent.size).to be == 1
+    forgot_password_page.visit_link_in_email
 
     expect(page).to have_content('Reset your Password')
-    fill_in 'user_password', with: 'secret'
-    fill_in 'user_password_confirmation', with: 'secret'
-    click_button 'Reset Password'
+    reset_password_page.fill_form_with password: 'secret'
+    reset_password_page.submit
+    expect(reset_password_page.flash).to have_css('.alert-success')
 
-    within('.alert-success') do
-      expect(page).to have_content('Password was successfully updated.')
-    end
-
-    click_link 'logout'
-    click_link 'login'
+    home_page.click_nav_logout
+    home_page.click_nav_login
 
     expect(page).to have_content('Login')
-    within('#new_session') do
-      fill_in 'Username', with: 'Rocky'
-      fill_in 'Password', with: 'secret'
-      click_button 'Login'
-    end
+    login_page.login_as 'Rocky', 'secret'
 
-    within('.alert-success') do
-      expect(page).to have_content('Welcome back Rocky')
-    end
+    expect(home_page.flash).to have_css('.alert-success')
   end
 
 end

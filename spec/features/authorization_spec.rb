@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe "Authorization" do
+  include_context "session"
 
   it "a guest should have access" do
     visit '/'
@@ -15,7 +16,7 @@ describe "Authorization" do
 
   it "a member should have access" do
     user = create :user, password: 'secret'
-    login_with(user, 'secret')
+    login_with(user.username, 'secret')
     click_link 'Account'
     expect(page).to have_content(user.username)
   end
