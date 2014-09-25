@@ -3,7 +3,8 @@
 .navbar {
   @include box-shadow(0 1px 5px rgba(0,0,0,.75));
   @include gradient-vertical(#444, #111);
-  margin: 0px;
+  padding-left: 20px;
+  padding-right: 25px;
   font-size: 18px;
 }
 
