@@ -32,7 +32,7 @@ class LevelProxy
 
   # --- Instance Methods ----
 
-  attr_reader :id, :name, :state, :players
+  attr_reader :id, :name, :state, :players, :connection
 
   def initialize id, name
     @id         = id

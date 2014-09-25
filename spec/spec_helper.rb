@@ -39,6 +39,16 @@ RSpec.configure do |config|
     ActionMailer::Base.deliveries.clear
   end
 
+  config.after(:each) do
+    LevelProxy.levels.each do |level|
+      # check if connection is not a RSpec double
+      if level.connection.instance_of?(Sim::Net::ParentConnection)
+        level.stop rescue nil
+        level.remove rescue nil
+      end
+    end
+  end
+
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
