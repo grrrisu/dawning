@@ -69,7 +69,7 @@ end
 
 group :test do
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'capybara'
+  gem 'capybara', '2.4.1'
   gem 'capybara-webkit'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
