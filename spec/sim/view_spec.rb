@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
 
 describe View do
 
@@ -24,12 +24,20 @@ describe View do
     end
 
     it "should set pawns visibility" do
-      expected = [[1, 1, 1, 0, 0], [1, 1, 1, 0, 0], [1, 1, 1, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
+      expected = [[1, 1, 1, 0, 0],
+                  [1, 1, 1, 0, 0],
+                  [1, 1, 1, 0, 0],
+                  [0, 0, 0, 0, 0],
+                  [0, 0, 0, 0, 0]]
       expect(@view.fields).to be == expected
     end
 
     it "should filter pawns visibility to world" do
-      expected = [[@w, @w, @w, nil, nil], [@w, @w, @w, nil, nil], [@w, @w, @w, nil, nil], [nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil]]
+      expected = [[@w, @w, @w, nil, nil],
+                  [@w, @w, @w, nil, nil],
+                  [@w, @w, @w, nil, nil],
+                  [nil, nil, nil, nil, nil],
+                  [nil, nil, nil, nil, nil]]
       expect(@view.filter.fields).to be == expected
     end
 
