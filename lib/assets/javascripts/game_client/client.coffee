@@ -38,3 +38,4 @@ class Game.Client
       @headquarter  = new Game.Headquarter(data.headquarter)
       @headquarter.createPawns(data.headquarter)
     @viewport.center()
+

@@ -52,15 +52,16 @@ class Game.Map
     @add_shape(field_shape)
 
     if field_data.flora?
-      @render_figure(new Game.Banana(field_data.flora), rx , ry)
+      @render_figure(field_data.flora, rx , ry)
 
     if field_data.fauna?
-      @render_figure(new Game.Animal(field_data.fauna), rx , ry)
+      @render_figure(field_data.fauna, rx , ry)
 
     if field_data.pawn?
       @render_pawn(field_data.pawn, rx , ry)
 
-  render_figure: (figure, rx, ry) =>
+  render_figure: (figure_data, rx, ry) =>
+    figure = new Game.ImageFigure(figure_data)
     figure.setPosition(rx, ry)
     shape = figure.render(@presenter.layer)
     @add_shape(shape)
@@ -68,27 +69,20 @@ class Game.Map
   render_pawn: (data, rx, ry) =>
     if data == 'headquarter'
       if client.headquarter? && client.headquarter.rx == rx && client.headquarter.ry = ry
-        @render_own_pawn(data, rx, ry)
+        shape = client.headquarter.render(@presenter.pawn_layer)
+        @add_shape(shape)
       else
-        @render_figure(new Game.Headquarter(data), rx, ry)
+        @render_figure(new Game.ImageFigure(data), rx, ry)
     else if data == 'pawn'
-      if client.headquarter? && client.headquarter.findPawnByPosition(rx, ry)
-        @render_own_pawn(data, rx, ry)
+      if client.headquarter?
+        pawn = client.headquarter.findPawnByPosition(rx, ry)
+        if pawn?
+          shape = pawn.render(@presenter.pawn_layer)
+          @add_shape(shape)
+        else
+          @render_figure(new Game.ImageFigure(data), rx, ry)
       else
-        @render_figure(new Game.Human(data), rx, ry)
-
-  # TODO
-  render_own_pawn: (data, rx, ry) =>
-    if data == 'headquarter'
-      shape = client.headquarter.render(@presenter.pawn_layer)
-    else if data == 'pawn'
-      pawn = client.headquarter.findPawnByPosition(rx, ry)
-      if pawn?
-        shape = pawn.render(@presenter.pawn_layer)
-      else
-        console.log("ERROR pawn not found with position ["+rx+","+ry+"]")
-
-    @add_shape(shape)
+        @render_figure(new Game.ImageFigure(data), rx, ry)
 
 
   # --- position helpers ---

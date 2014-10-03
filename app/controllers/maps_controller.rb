@@ -45,7 +45,7 @@ private
       'mammoth' => 'map/meat.png',
       'leopard' => 'map/leopard.png',
       'headquarter' => 'map/Raratonga_Mask.gif',
-      'man' => 'map/caveman.png'
+      'pawn' => 'map/caveman.png'
     }
   end
 
