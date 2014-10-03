@@ -8,15 +8,15 @@
 
   #main-menu.navbar-collapse.collapse
     %ul.nav.navbar-nav
-      = navigation_item 'Home', [:home], root_path
-      = navigation_item 'Documentation', [:documentation], root_path
-      = navigation_item 'User Ranking', [:user_ranking], users_path
+      = navigation_item 'Home', :home, root_path
+      = navigation_item 'Documentation', :documentation, root_path
+      = navigation_item 'User Ranking', :user_ranking, users_path
       - unless current_user
-        = navigation_item 'Register', [:register], register_path, id: 'register'
-        = navigation_item 'Login', [:login], login_path, id: 'login'
+        = navigation_item 'Register', :register, register_path, id: 'register'
+        = navigation_item 'Login', :login, login_path, id: 'login'
       - else
-        = navigation_item 'Account', [:account], edit_user_path(current_user)
-        = navigation_item 'Levels', [:levels], levels_path
+        = navigation_item 'Account', :account, edit_user_path(current_user)
+        = navigation_item 'Levels', :levels, levels_path
         - if current_user.admin?
           %li.dropdown{class: subnavigation_active?(:admin) && 'active'}
             = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do

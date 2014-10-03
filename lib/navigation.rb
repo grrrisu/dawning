@@ -35,7 +35,7 @@ module Navigation
     end
 
     def navigation_active? keys
-      self.class.breadcrumbs.sort == keys.sort
+      self.class.breadcrumbs.sort == Array(keys).sort
     end
 
   end
