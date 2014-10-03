@@ -72,7 +72,7 @@ class Game.Map
         shape = client.headquarter.render(@presenter.pawn_layer)
         @add_shape(shape)
       else
-        @render_figure(new Game.ImageFigure(data), rx, ry)
+        @render_figure(data, rx, ry)
     else if data == 'pawn'
       if client.headquarter?
         pawn = client.headquarter.findPawnByPosition(rx, ry)
@@ -80,9 +80,9 @@ class Game.Map
           shape = pawn.render(@presenter.pawn_layer)
           @add_shape(shape)
         else
-          @render_figure(new Game.ImageFigure(data), rx, ry)
+          @render_figure(data, rx, ry)
       else
-        @render_figure(new Game.ImageFigure(data), rx, ry)
+        @render_figure(data, rx, ry)
 
 
   # --- position helpers ---
