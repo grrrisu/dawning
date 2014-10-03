@@ -36,4 +36,5 @@ class Game.Client
     # admin view has no headquarter
     if data.headquarter?
       @headquarter  = new Game.Headquarter(data.headquarter)
+      @headquarter.createPawns(data.headquarter)
     @viewport.center()

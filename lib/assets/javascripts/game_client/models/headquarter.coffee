@@ -6,8 +6,6 @@ class Game.Headquarter extends Game.Pawn
     @influence_radius = 2
     @secure_radius    = 2
     @image            = client.images['headquarter']
-
-    @createPawns(data)
     super(data)
 
   getPresenter: () =>
