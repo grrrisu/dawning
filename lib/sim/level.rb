@@ -23,16 +23,15 @@ class Level < Sim::Level
   attr_reader :world, :dropzone, :config
 
   def create config
-    $stderr.puts '******* BEGIN CREATING *********'
+    #$stderr.puts '******* BEGIN CREATING *********'
 
     @config  = config
-    @players = {}       # maps player_id to player obj
-    $stderr.puts config
+    #$stderr.puts config
 
     @world =    World.build(config[:world])
     @dropzone = Builder::Dropzone.new(@world, config[:dropzones])
 
-    $stderr.puts '******* END CREATING *********'
+    #$stderr.puts '******* END CREATING *********'
     true
   end
 
@@ -55,9 +54,9 @@ class Level < Sim::Level
   def add_player data
     $stderr.puts "*** build player with #{data}"
     id = data[:player_id]
-    unless @players[id]
+    unless players[id]
       player = build_player(data)
-      @players[player.id] = player
+      players[player.id] = player
     else
       raise ArgumentError, "player #{player.id} is already registered"
     end
@@ -65,7 +64,7 @@ class Level < Sim::Level
   end
 
   def find_player player_id
-    @players[player_id]
+    players[player_id]
   end
 
   def remove_player id
