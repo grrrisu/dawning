@@ -15,6 +15,7 @@ class AdminPlayer < BasePlayer
   end
 
   def view x, y, width, height
+    super
     w = Sim::Matrix.new(width, height)
     w.set_each_field_with_index do |i, j|
       @world.filter_value(0 + x + i, 0 + y + j)

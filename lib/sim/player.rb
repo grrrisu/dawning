@@ -2,7 +2,7 @@ require_relative 'headquarter'
 
 class Player < BasePlayer
 
-  attr_accessor :headquarter, :view
+  attr_accessor :headquarter
   attr_reader   :world
 
   def place view, headquarter
@@ -36,6 +36,7 @@ class Player < BasePlayer
   end
 
   def view x, y, width, height
+    super
     {
       x: x,
       y: y,
