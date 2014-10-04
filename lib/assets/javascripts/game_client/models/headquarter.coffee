@@ -23,3 +23,7 @@ class Game.Headquarter extends Game.Pawn
   findPawnByPosition: (rx, ry) =>
     @pawns.find (pawn) =>
       pawn.rx == rx && pawn.ry == ry
+
+  headquarterOrPawn: (rx, ry) =>
+    return this if @rx == rx && @ry == ry
+    @findPawnByPosition(rx, ry)

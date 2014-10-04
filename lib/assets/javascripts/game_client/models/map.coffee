@@ -67,23 +67,12 @@ class Game.Map
     @add_shape(shape)
 
   render_pawn: (data, rx, ry) =>
-    if data == 'headquarter'
-      if client.headquarter? && client.headquarter.rx == rx && client.headquarter.ry = ry
-        shape = client.headquarter.render(@presenter.pawn_layer)
-        @add_shape(shape)
-      else
-        @render_figure(data, rx, ry)
-    else if data == 'pawn'
-      if client.headquarter?
-        pawn = client.headquarter.findPawnByPosition(rx, ry)
-        if pawn?
-          shape = pawn.render(@presenter.pawn_layer)
-          @add_shape(shape)
-        else
-          @render_figure(data, rx, ry)
-      else
-        @render_figure(data, rx, ry)
-
+    pawn = client.headquarter.headquarterOrPawn(rx, ry) if client.headquarter?
+    if pawn?
+      shape = pawn.render(@presenter.pawn_layer)
+      @add_shape(shape)
+    else
+      @render_figure(data, rx, ry)
 
   # --- position helpers ---
 

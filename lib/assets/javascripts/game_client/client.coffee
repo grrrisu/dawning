@@ -39,3 +39,5 @@ class Game.Client
       @headquarter.createPawns(data.headquarter)
     @viewport.center()
 
+
+
