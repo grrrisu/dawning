@@ -23,19 +23,10 @@ class View < Sim::Matrix
     self[x,y].to_i > 0
   end
 
-  def filter_value x, y
-    properties = @world[x, y]
-    properties.inject({}) do |view_properties, property|
-      key, value = property[0], property[1]
-      view_properties[key] = value.respond_to?(:view_value) ? value.view_value : value
-      view_properties
-    end
-  end
-
   def filter
     @w ||= Sim::Matrix.new(width, height)
     @w.set_each_field_with_index do |x, y|
-      visible?(x,y) ? filter_value(@x + x, @y + y) : nil
+      visible?(x,y) ? @world.filter_value(@x + x, @y + y) : nil
     end
     @w
   end
@@ -45,7 +36,7 @@ class View < Sim::Matrix
     height = y + height > self.height ? self.height - y : height
     w = Sim::Matrix.new(width, height)
     w.set_each_field_with_index do |i, j|
-      visible?(x + i, y + j) ? filter_value(@x + x + i, @y + y + j) : nil
+      visible?(x + i, y + j) ? @world.filter_value(@x + x + i, @y + y + j) : nil
     end
     w
   end

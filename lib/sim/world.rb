@@ -53,4 +53,13 @@ class World < Sim::Matrix
   end
   alias []= set_field
 
+  def filter_value x, y
+    properties = get_field(x, y)
+    properties.inject({}) do |view_properties, property|
+      key, value = property[0], property[1]
+      view_properties[key] = value.respond_to?(:view_value) ? value.view_value : value
+      view_properties
+    end
+  end
+
 end
