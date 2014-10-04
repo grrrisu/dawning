@@ -3,30 +3,24 @@ class Game.ImagePresenter
   constructor: (@model) ->
 
   render: (layer) =>
-    @node = new Kinetic.Image
-      x: @model.ax - @model.image.width / 4
-      y: @model.ay - @model.image.height / 4
-      image: @model.image
-      width: @model.image.width / 2
-      height: @model.image.height / 2
-      draggable: @model.draggable
-      dragBoundFunc: (pos) =>
-        @model.checkBoundaries(pos)
+    @create_node()
+    @update_layer(layer)
 
-    @node.on 'mouseover', (event) =>
-      client.presenter.stage.setDraggable(false)
-
-    @node.on 'mouseout', (event) =>
-      client.presenter.stage.setDraggable(true)
-
-    @node.on 'dragend', (event) =>
-      @model.drop(@node.getX() + @node.getWidth() / 2, @node.getY() + @node.getHeight() / 2)
-
+  update_layer: (layer) =>
     layer.add(@node)
     @node.moveToTop()
     layer.draw
-
     @node
+
+  create_node: =>
+    @node = new Kinetic.Image(@node_attributes())
+
+  node_attributes: =>
+    x: @model.ax - @model.image.width / 4
+    y: @model.ay - @model.image.height / 4
+    image: @model.image
+    width: @model.image.width / 2
+    height: @model.image.height / 2
 
   move: (ax, ay) =>
     @node.setAttrs

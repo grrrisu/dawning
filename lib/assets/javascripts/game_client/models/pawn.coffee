@@ -3,7 +3,6 @@ class Game.Pawn extends Game.Figure
   # data is {x: 2, y: 3, type: 'pawn', id: '123'}
   constructor: (data) ->
     @id        = data.id
-    @draggable = true
     @setPosition(data.x, data.y)
 
   checkBoundaries: (pos) =>

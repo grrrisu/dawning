@@ -1,7 +1,7 @@
 class Game.Headquarter extends Game.Pawn
 
   constructor: (data) ->
-    @presenter        = new Game.ImagePresenter(this)
+    @presenter        = new Game.DragablePresenter(this)
     @view_radius      = 2
     @influence_radius = 2
     @secure_radius    = 2
