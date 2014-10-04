@@ -61,7 +61,7 @@ class Game.Map
       @render_pawn(field_data.pawn, rx , ry)
 
   render_figure: (figure_data, rx, ry) =>
-    figure = new Game.ImageFigure(figure_data)
+    figure = new Game.Thing(figure_data)
     figure.setPosition(rx, ry)
     shape = figure.render(@presenter.layer)
     @add_shape(shape)

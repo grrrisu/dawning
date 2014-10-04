@@ -5,7 +5,7 @@ class Game.Headquarter extends Game.Pawn
     @view_radius      = 2
     @influence_radius = 2
     @secure_radius    = 2
-    @image            = client.images['headquarter']
+    @image            = @getImage('headquarter')
     super(data)
 
   getPresenter: () =>

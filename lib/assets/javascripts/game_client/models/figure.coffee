@@ -1,9 +1,5 @@
 class Game.Figure
 
-  constructor: (data) ->
-    if data.x? && data.y?
-      @setPosition(data.x, data.y)
-
   render: (layer) =>
     @getPresenter().render(layer)
 
@@ -13,3 +9,6 @@ class Game.Figure
     apos = client.map.absolutePosition(@rx, @ry)
     @ax        = apos.x
     @ay        = apos.y
+
+  getImage: (data) =>
+    client.images[data]
