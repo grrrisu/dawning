@@ -6,7 +6,7 @@ class Ability
 
     if user.admin?
       can :manage, :all
-    elsif !user.new_record? # logged in user
+    elsif user.persisted? # logged in user
       # user
       can :read, User
       can :update, User, id: user.id
