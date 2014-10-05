@@ -11,17 +11,8 @@ module Player
 
     def overlap_current_view? other
       view = current_view_dimension
-      horizontal_range = (view.x)..(view.x + view.width)
-      vertical_range   = (view.y)..(view.y + view.height)
-      return true if horizontal_range.include?(other.x) &&
-                     vertical_range.include?(other.y)
-      return true if horizontal_range.include?(other.x + other.width) &&
-                     vertical_range.include?(other.y)
-      return true if horizontal_range.include?(other.x) &&
-                     vertical_range.include?(other.y + other.height)
-      return true if horizontal_range.include?(other.x + other.width) &&
-                     vertical_range.include?(other.y + other.height)
-      false
+      ((view.x)..(view.x + view.width)).overlaps?((other.x)..(other.x + other.width)) &&
+      ((view.y)..(view.y + view.height)).overlaps?((other.y)..(other.y + other.height))
     end
 
   end
