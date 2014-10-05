@@ -3,9 +3,9 @@ Bundler.setup(:default)
 require 'sim'
 
 require_relative 'world'
-require_relative 'base_player'
-require_relative 'player'
-require_relative 'admin_player'
+require_relative 'player/base'
+require_relative 'player/member'
+require_relative 'player/admin'
 require_relative 'view'
 require_relative 'builder/dropzone'
 
@@ -42,10 +42,10 @@ class Level < Sim::Level
   def build_player data
     id = data[:player_id]
     if data[:role] == 'admin'
-      player = AdminPlayer.new(id, self)
+      player = Player::Admin.new(id, self)
       player.world = @world
     else
-      player = Player.new(id, self)
+      player = Player::Member.new(id, self)
       dropzone.place_player player
     end
     player
