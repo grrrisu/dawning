@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Player do
+describe Player::Member do
 
   let(:world)       { World.new(3,3) }
   let(:view)        { View.new(world, 0, 0, world.height)}
   let(:headquarter) { Headquarter.build(x: 1, y: 1) }
-  let(:player)      { Player.new('123', double(:level)) }
+  let(:player)      { Player::Member.new('123', double(:level)) }
 
   describe 'move' do
 

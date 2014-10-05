@@ -1,4 +1,4 @@
-require_relative 'headquarter'
+require_relative '../headquarter'
 
 module Player
   class Member < Base
