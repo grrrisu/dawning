@@ -72,7 +72,7 @@ class Vegetation < Sim::Object
   #                (C - s)
   # Δs = s (b - d) -------
   #                  C
-  def sim
+  def calculate
     delta = @size * (birth_rate - death_rate) * (capacity - @size) / capacity
     self.size += delta * delay
     #inc :size, delta * delay
