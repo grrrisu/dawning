@@ -47,16 +47,24 @@ module Player
 
     def move pawn_id, x, y
       pawn = Pawn.find(pawn_id) # TODO check owner
-      @headquarter.within_influence_area(x,y) do
-        if world[x,y][:pawn].blank?
-          @view.fog(pawn)
-          world[pawn.x, pawn.y].delete(:pawn)
-          pawn.x, pawn.y = x, y
-          world[x, y].merge!(pawn: pawn)
-          @view.unfog(pawn)
+      change_move(pawn.x, pawn.y) do
+        @headquarter.within_influence_area(x,y) do
+          if world[x,y][:pawn].blank?
+            @view.fog(pawn)
+            world[pawn.x, pawn.y].delete(:pawn)
+            pawn.x, pawn.y = x, y
+            world[x, y].merge!(pawn: pawn)
+            @view.unfog(pawn)
+          end
         end
+        {pawn_id: pawn_id, x: pawn.x, y: pawn.y}
       end
-      {pawn_id: pawn_id, x: pawn.x, y: pawn.y}
+    end
+
+    def change_move x, y
+      pristine = {x: x, y: y}
+      answer = yield
+      answer.merge!(pristine: pristine)
     end
 
   end
