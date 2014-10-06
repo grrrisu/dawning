@@ -30,7 +30,6 @@ gem 'bootstrap-sass', "~> 3.2.0.2"
 gem "font-awesome-sass"
 
 group :development do
-  gem 'pry-rails'
   gem 'spring'
   gem "spring-commands-rspec"
 
@@ -63,7 +62,8 @@ group :test, :development do
   gem "jasminerice", :github => 'bradphelan/jasminerice' # wait until ready for rails4
   gem "better_errors"
   gem "binding_of_caller"
-  gem "byebug"
+  gem 'pry-rails'
+  gem 'byebug'
   gem 'simplecov', '~> 0.9.1', :require => false
 end
 
