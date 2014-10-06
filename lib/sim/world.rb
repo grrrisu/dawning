@@ -5,7 +5,7 @@ class World < Sim::Matrix
 
   def initialize width, height = nil
     super(width, height) # map width and height to columns and rows
-    set_each_field { Sim::FieldProperties.new }
+    set_each_field_with_index {|x, y| Sim::FieldProperties.new(x: x, y: y) }
   end
 
   def build config
@@ -60,6 +60,28 @@ class World < Sim::Matrix
       view_properties[key] = value.respond_to?(:view_value) ? value.view_value : value
       view_properties
     end
+  end
+
+  def inspect
+    output = "\n"
+    (height-1).downto(0) do |y|
+        0.upto(width-1) {|x| output += '-'*10}
+        output += "-\n"
+        0.upto(width-1) {|x| output += "| #{field_as_string(x, y, :vegetation).rjust(7)} "}
+        output += "|\n"
+        0.upto(width-1) {|x| output += "| #{field_as_string(x, y, :flora).rjust(7)} "}
+        output += "|\n"
+        0.upto(width-1) {|x| output += "| #{field_as_string(x, y, :fauna).rjust(7)} "}
+        output += "|\n"
+        0.upto(width-1) {|x| output += "| #{(x.to_s+' '+y.to_s).rjust(7)} "}
+        output += "|\n"
+    end
+    0.upto(width-1) {|x| output += '-'*10}
+    output += "-\n"
+  end
+
+  def field_as_string x, y, property
+    self[x,y].try(:[], property).try(:view_value).to_s
   end
 
 end
