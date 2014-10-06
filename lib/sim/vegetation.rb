@@ -59,8 +59,6 @@ class Vegetation < Sim::Object
   default_attr :size, 650
   default_attr :view_value, 13
 
-  attr_accessor :x, :y
-
   # resource grows by birth rate (alias grow rate) and shrinks by natural deaths (age),
   # the resource size is limited by the capacity (available room, sun energy)
   #
@@ -78,10 +76,6 @@ class Vegetation < Sim::Object
     delta = @size * (birth_rate - death_rate) * (capacity - @size) / capacity
     self.size += delta * delay
     #inc :size, delta * delay
-  end
-
-  def set_coordinates x, y
-    @x, @y = x, y
   end
 
 end
