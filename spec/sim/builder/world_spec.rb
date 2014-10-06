@@ -9,7 +9,7 @@ describe Builder::World do
   it "should create a vegetation" do
     world = builder.create(config)
     world.each_field do |field|
-      expect(field.vegetation?).to be true
+      expect(field.vegetation).to be_instance_of(Vegetation)
     end
   end
 

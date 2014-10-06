@@ -31,19 +31,19 @@ module Builder
 
     def border
       @world.width.times do |i|
-        @world[i,0].vegetation = 0
-        @world[i,@world.height-1].vegetation = 0
+        @world[i,0].vegetation = build_vegetation(0)
+        @world[i,@world.height-1].vegetation = build_vegetation(0)
       end
 
       @world.height.times do |i|
-        @world[0,i].vegetation = 0
-        @world[@world.width-1, i].vegetation = 0
+        @world[0,i].vegetation = build_vegetation(0)
+        @world[@world.width-1, i].vegetation = build_vegetation(0)
       end
     end
 
     def grounding grounding
       @world.each_field do |field|
-        field.vegetation = grounding
+        field.vegetation = build_vegetation(grounding)
       end
     end
 
@@ -61,9 +61,15 @@ module Builder
 
       begin
         cx, cy = cx + rand(3) -1, cy + rand(3) -1
-        count += 1 unless @world[cx, cy].vegetation == property
-        @world[cx, cy].vegetation = property
+        unless @world[cx, cy].vegetation.try(:view_value) == property
+          count += 1
+          @world[cx, cy].vegetation = build_vegetation(property)
+        end
       end until count == stop_count
+    end
+
+    def build_vegetation property
+      Vegetation.build(Vegetation::TYPE[property])
     end
 
     # --- create flora and fauna ---

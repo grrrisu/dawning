@@ -3,6 +3,7 @@ Bundler.setup(:default)
 require 'sim'
 
 require_relative 'world'
+require_relative 'vegetation'
 require_relative 'player/base'
 require_relative 'player/member'
 require_relative 'player/admin'
