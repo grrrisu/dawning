@@ -62,9 +62,17 @@ module Player
     end
 
     def change_move x, y
-      pristine = {x: x, y: y}
       answer = yield
-      answer.merge!(pristine: pristine)
+      if x != answer[:x] || y != answer[:y]
+        answer.merge! notify: {
+          x: x <= answer[:x] ? x : answer[:x],
+          y: y <= answer[:y] ? y : answer[:y],
+          width: (x - answer[:x]).abs + 1,
+          height: (y - answer[:y]).abs + 1
+        }
+      else
+        answer
+      end
     end
 
   end
