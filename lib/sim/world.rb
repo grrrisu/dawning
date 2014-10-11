@@ -66,9 +66,9 @@ class World < Sim::Matrix
     output = "\n"
     (height-1).downto(0) do |y|
         output += line_output
-        output += row_output {|x| "| #{field_as_string(x, y, :vegetation).rjust(7)} "}
-        output += row_output {|x| "| #{field_as_string(x, y, :flora).rjust(7)} "}
-        output += row_output {|x| "| #{field_as_string(x, y, :fauna).rjust(7)} "}
+        %i(vegetation flora fauna).each do |property|
+          output += row_output {|x| "| #{field_as_string(x, y, property).rjust(7)} " }
+        end
         output += row_output {|x| "| #{(x.to_s+' '+y.to_s).rjust(7)} "}
     end
     output += line_output
@@ -79,6 +79,10 @@ private
   def line_output
     output  = row_output(output) { '-'*10 }
     output += "-\n"
+  end
+
+  def row_property_output property
+
   end
 
   def row_output
