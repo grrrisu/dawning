@@ -6,6 +6,7 @@ world:
   height: 15
   builder:
     vegetation:
+      config: vegetation.yml
       grounding: 5
       clusters:
         -

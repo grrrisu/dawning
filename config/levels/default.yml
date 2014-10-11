@@ -1,4 +1,4 @@
-time_unit: 5
+time_unit: 60
 sim_loop:
   duration: 15
 world:
@@ -6,6 +6,7 @@ world:
   height: 100
   builder:
     vegetation:
+      config: vegetation.yml
       grounding: 5
       clusters:
         -

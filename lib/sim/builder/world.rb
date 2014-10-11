@@ -21,6 +21,8 @@ module Builder
     # --- create vegetation ---
 
     def create_vegetation config
+      file = File.join(__dir__, '..', '..', '..', 'config', 'levels', config[:config])
+      @vegetation_config = Sim::Buildable.load_config(file)
       grounding config[:grounding]
       config[:clusters].each do |cluster_config|
         draw_clusters cluster_config[:times], cluster_config[:vegetation], cluster_config[:count]
@@ -69,7 +71,8 @@ module Builder
     end
 
     def build_vegetation property
-      Vegetation.build(Vegetation::TYPE[property])
+      config = @vegetation_config[property]
+      Vegetation.build(config)
     end
 
     # --- create flora and fauna ---
@@ -91,7 +94,7 @@ module Builder
       config[:types].each do |type_config|
         type = type_config[:type]
         type_config[:spread].each do |spread|
-          fields = @world.find_all {|field| field[:vegetation] == spread[:vegetation] && field[:flora].nil? }
+          fields = @world.find_all {|field| field[:vegetation].view_value == spread[:vegetation] && field[:flora].nil? }
           size = (spread[:amount] * spread_ratio).round
           fields.shuffle.slice(0, size).each do |field|
             yield field, type
