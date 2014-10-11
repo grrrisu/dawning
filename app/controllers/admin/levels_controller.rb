@@ -4,12 +4,12 @@ class Admin::LevelsController < ApplicationController
   before_filter :find_level, only: [:run, :join, :build, :stop, :destroy]
 
   def index
-    authorize! :index, Level
+    authorize! :index, LevelProxy
     @levels = LevelProxy.levels
   end
 
   def create
-    authorize! :create, Level
+    authorize! :create, LevelProxy
     if params[:level].try(:[],:name)
       level = LevelProxy.create params[:level][:name]
     else
