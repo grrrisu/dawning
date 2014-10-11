@@ -49,17 +49,13 @@ module Player
       pawn = Pawn.find(pawn_id) # TODO check owner
       change_move(pawn.x, pawn.y) do
         @headquarter.within_influence_area(x,y) do
-          if world[x,y][:pawn].blank?
-            @view.fog(pawn)
-            world[pawn.x, pawn.y].delete(:pawn)
-            pawn.x, pawn.y = x, y
-            world[x, y].merge!(pawn: pawn)
-            @view.unfog(pawn)
-          end
+          move_pawn(pawn, x, y) if world[x,y].pawn?
         end
         {pawn_id: pawn_id, x: pawn.x, y: pawn.y}
       end
     end
+
+  private
 
     def change_move x, y
       answer = yield
@@ -73,6 +69,14 @@ module Player
       else
         answer
       end
+    end
+
+    def move_pawn x, y
+      @view.fog(pawn)
+      world[pawn.x, pawn.y].delete(:pawn)
+      pawn.x, pawn.y = x, y
+      world[x, y].merge!(pawn: pawn)
+      @view.unfog(pawn)
     end
 
   end

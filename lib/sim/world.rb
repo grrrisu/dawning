@@ -65,25 +65,26 @@ class World < Sim::Matrix
   def inspect
     output = "\n"
     (height-1).downto(0) do |y|
-        row_output { '-'*10 }
-        output += "-\n"
-        row_output {|x| "| #{field_as_string(x, y, :vegetation).rjust(7)} "}
-        output += "|\n"
-        row_output {|x| "| #{field_as_string(x, y, :flora).rjust(7)} "}
-        output += "|\n"
-        row_output {|x| "| #{field_as_string(x, y, :fauna).rjust(7)} "}
-        output += "|\n"
-        row_output {|x| "| #{(x.to_s+' '+y.to_s).rjust(7)} "}
-        output += "|\n"
+        output += line_output
+        output += row_output {|x| "| #{field_as_string(x, y, :vegetation).rjust(7)} "}
+        output += row_output {|x| "| #{field_as_string(x, y, :flora).rjust(7)} "}
+        output += row_output {|x| "| #{field_as_string(x, y, :fauna).rjust(7)} "}
+        output += row_output {|x| "| #{(x.to_s+' '+y.to_s).rjust(7)} "}
     end
-    row_output { '-'*10 }
-    output += "-\n"
+    output += line_output
   end
 
 private
 
+  def line_output
+    output  = row_output(output) { '-'*10 }
+    output += "-\n"
+  end
+
   def row_output
+    output  = ''
     0.upto(width-1) {|x| output += yield(x) }
+    output += "|\n"
   end
 
   def field_as_string x, y, property
