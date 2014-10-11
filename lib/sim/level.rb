@@ -1,15 +1,4 @@
-require 'bundler'
-Bundler.setup(:default)
-require 'sim'
-
-require_relative 'world'
-require_relative 'vegetation'
-require_relative 'player/base'
-require_relative 'player/member'
-require_relative 'player/admin'
-require_relative 'view'
-require_relative 'builder/dropzone'
-
+require_relative 'setup'
 
 # Level 1.0
 # example: 50 x 100 fields
