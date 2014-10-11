@@ -67,28 +67,27 @@ class World < Sim::Matrix
     (height-1).downto(0) do |y|
         output += line_output
         %i(vegetation flora fauna).each do |property|
-          output += row_output {|x| "| #{field_as_string(x, y, property).rjust(7)} " }
+          output += row_field_output {|x| field_as_string(x, y, property) }
         end
-        output += row_output {|x| "| #{(x.to_s+' '+y.to_s).rjust(7)} "}
+        output += row_field_output {|x| "#{x} #{y}"}
     end
     output += line_output
   end
 
 private
 
-  def line_output
-    output  = row_output(output) { '-'*10 }
-    output += "-\n"
-  end
-
-  def row_property_output property
-
-  end
-
-  def row_output
-    output  = ''
+  def row_output char
+    output = ''
     0.upto(width-1) {|x| output += yield(x) }
-    output += "|\n"
+    output += "#{char}\n"
+  end
+
+  def line_output
+    row_output('-') { '-' * 10 }
+  end
+
+  def row_field_output
+    row_output('|') {|x| "| #{yield(x).rjust(7)} " }
   end
 
   def field_as_string x, y, property
