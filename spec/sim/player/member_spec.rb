@@ -21,7 +21,7 @@ describe Player::Member do
     end
 
     it "should not move a pawn to an occupied field" do
-      expect(player.move(@pawn.id, 1, 1)).to be == { pawn_id: @pawn.id, x: 0, y: 1 }
+      expect(player.move(@pawn.id, 1, 1)).to be == Hashie::Mash.new(pawn_id: @pawn.id, x: 0, y: 1)
     end
 
   end
