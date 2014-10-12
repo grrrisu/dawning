@@ -49,7 +49,7 @@ module Player
       pawn = Pawn.find(pawn_id) # TODO check owner
       change_move(pawn.x, pawn.y) do
         @headquarter.within_influence_area(x,y) do
-          move_pawn(pawn, x, y) if world[x,y][:pawn].blank?
+          move_pawn(pawn, x, y) unless world[x,y].key?(:pawn)
         end
         {pawn_id: pawn_id, x: pawn.x, y: pawn.y}
       end
@@ -60,12 +60,12 @@ module Player
     def change_move x, y
       answer = yield
       if x != answer[:x] || y != answer[:y]
-        answer.merge! notify: {
+        Hashie::Mash.new answer.merge(notify: {
           x: x <= answer[:x] ? x : answer[:x],
           y: y <= answer[:y] ? y : answer[:y],
           width: (x - answer[:x]).abs + 1,
           height: (y - answer[:y]).abs + 1
-        }
+        })
       else
         answer
       end
