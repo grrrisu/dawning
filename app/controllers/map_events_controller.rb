@@ -23,6 +23,8 @@ class MapEventsController < WebsocketRails::BaseController
     end
   end
 
+private
+
   def find_player
     rescue_block do
       level_id = message.delete('level_id')

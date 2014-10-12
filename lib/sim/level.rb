@@ -10,13 +10,10 @@ require_relative 'setup'
 # * bot dropzone 1    (80 - 99)
 class Level < Sim::Level
 
-  attr_reader :world, :dropzone, :config
+  attr_reader :world, :dropzone
 
   def create config
     #$stderr.puts '******* BEGIN CREATING *********'
-
-    @config  = config
-    #$stderr.puts config
 
     @world =    World.build(config[:world])
     @dropzone = Builder::Dropzone.new(@world, config[:dropzones])
@@ -58,7 +55,12 @@ class Level < Sim::Level
   end
 
   def remove_player id
-    # raise "implement in subclass"
+    if player = find_player(id)
+      player.connection.close
+      players.delete(id)
+    else
+      raise ArgumentError, "player #{id} could not be found"
+    end
   end
 
 end
