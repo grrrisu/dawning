@@ -7,6 +7,8 @@ class Vegetation < Sim::Object
   default_attr :size, 650
   default_attr :view_value, 13
 
+  attr_accessor :field
+
   # resource grows by birth rate (alias grow rate) and shrinks by natural deaths (age),
   # the resource size is limited by the capacity (available room, sun energy)
   #
@@ -23,7 +25,13 @@ class Vegetation < Sim::Object
   def calculate
     delta = @size * (birth_rate - death_rate) * (capacity - @size) / capacity
     self.size += delta * delay
+    Hashie::Mash.new(x: field.x, y: field.y, width: 0, height: 0)
+    $stderr.print "+"
     #inc :size, delta * delay
+  end
+
+  def queue_up
+    Celluloid::Actor[:sim_loop].add(self)
   end
 
 end

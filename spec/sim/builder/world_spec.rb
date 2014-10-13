@@ -7,6 +7,8 @@ describe Builder::World do
   let(:builder) { Builder::World.new(world) }
 
   before(:each) do
+    Celluloid::Actor[:time_unit] = Sim::TimeUnit.new 1
+    Celluloid::Actor[:sim_loop]  = Sim::Queue::SimLoop.new(10, [])
     world = builder.create(config)
   end
 
@@ -14,6 +16,10 @@ describe Builder::World do
     world.each_field do |field|
       expect(field.vegetation).to be_instance_of(Vegetation)
     end
+  end
+
+  it "should add vegetation to sim loop" do
+    expect(Celluloid::Actor[:sim_loop].objects.size).to eq(15 * 15)
   end
 
   it "should create flora" do

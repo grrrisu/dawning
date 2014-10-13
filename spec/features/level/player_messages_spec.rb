@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "level messages" do
+describe "player messages" do
 
   let(:level)             { Level.new }
   let(:player_connection) { Sim::Net::PlayerConnection.new('socket') }

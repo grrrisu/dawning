@@ -29,23 +29,25 @@ module Builder
       end
       # FIXME remove
       border
+
+      add_objects_to_sim_loop
     end
 
     def border
       @world.width.times do |i|
-        @world[i,0].vegetation = build_vegetation(0)
-        @world[i,@world.height-1].vegetation = build_vegetation(0)
+        set_vegetation(i, 0, 0)
+        set_vegetation(i, @world.height-1, 0)
       end
 
       @world.height.times do |i|
-        @world[0,i].vegetation = build_vegetation(0)
-        @world[@world.width-1, i].vegetation = build_vegetation(0)
+        set_vegetation(0, i, 0)
+        set_vegetation(@world.width-1, i, 0)
       end
     end
 
     def grounding grounding
       @world.each_field do |field|
-        field.vegetation = build_vegetation(grounding)
+        set_vegetation(field.x, field.y, grounding)
       end
     end
 
@@ -65,14 +67,26 @@ module Builder
         cx, cy = cx + rand(3) -1, cy + rand(3) -1
         unless @world[cx, cy].vegetation.try(:view_value) == property
           count += 1
-          @world[cx, cy].vegetation = build_vegetation(property)
+          set_vegetation(cx, cy, property)
         end
       end until count == stop_count
     end
 
-    def build_vegetation property
-      config = @vegetation_config[property]
+    def set_vegetation x, y, type
+      vegetation = build_vegetation(type)
+      @world[x, y].vegetation = vegetation
+      vegetation.field = @world[x, y]
+    end
+
+    def build_vegetation type
+      config = @vegetation_config[type]
       Vegetation.build(config)
+    end
+
+    def add_objects_to_sim_loop
+      @world.each_field do |field|
+        field.vegetation.queue_up
+      end
     end
 
     # --- create flora and fauna ---
