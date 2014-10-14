@@ -55,6 +55,24 @@ module Player
       end
     end
 
+    def needed_resources action, params
+      case action
+      when :move
+        movement_resources params
+      else
+        [] # none
+      end
+    end
+
+    def movement_resources params
+      pawn = Pawn.find(pawn_id)
+      Array.new.tap do |resources|
+        View.view_radius(pawn) do |x, y|
+          resources << @world[x,y]
+        end
+      end
+    end
+
   private
 
     def change_move x, y
