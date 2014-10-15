@@ -1,6 +1,6 @@
 # the view acts as a filter on the partial of the world
 # everything not
-class View < Sim::Matrix
+class View < Sim::Globe
 
   def self.within_radius dx, dy, radius, border = 1
     return false if dx > radius || dy > radius
