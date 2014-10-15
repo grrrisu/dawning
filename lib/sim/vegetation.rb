@@ -34,4 +34,8 @@ class Vegetation < Sim::Object
     Celluloid::Actor[:sim_loop].add(self)
   end
 
+  def needed_resources
+    [@object.field]
+  end
+
 end

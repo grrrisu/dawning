@@ -66,11 +66,12 @@ module Player
 
     def movement_resources params
       pawn = Pawn.find(pawn_id)
-      Array.new.tap do |resources|
-        View.view_radius(pawn) do |x, y|
-          resources << @world[x,y]
-        end
-      end
+      [@world[pawn.x, pawn.y]]
+      # Array.new.tap do |resources|
+      #   View.view_radius(pawn) do |x, y|
+      #     resources << @world[x,y]
+      #   end
+      # end
     end
 
   private

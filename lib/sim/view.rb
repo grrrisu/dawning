@@ -53,14 +53,27 @@ class View < Sim::Globe
   end
 
   def unfog pawn
-    View.view_radius(pawn) do |x, y|
+    view_radius(pawn) do |x, y|
       self[x, y] += 1
     end
   end
 
   def fog pawn
-    View.view_radius(pawn) do |x, y|
+    view_radius(pawn) do |x, y|
       self[x, y] -= 1
+    end
+  end
+
+private
+
+  def view_radius pawn
+    rx, ry = pawn.x - x, pawn.y - y
+    (-pawn.view_radius..pawn.view_radius).each do |j|
+      (-pawn.view_radius..pawn.view_radius).each do |i|
+        if View.within_radius(i, j, pawn.view_radius)
+          yield rx + i, ry + j
+        end
+      end
     end
   end
 
