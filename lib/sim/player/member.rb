@@ -46,21 +46,17 @@ module Player
     end
 
     def move pawn_id, x, y
+      event = Sim::Queue::ActionEvent.new self, :move_event, pawn_id: pawn_id, x: x, y: y
+      fire_action_event(event)
+    end
+
+    def move_event pawn_id, x, y
       pawn = Pawn.find(pawn_id) # TODO check owner
       change_move(pawn.x, pawn.y) do
         @headquarter.within_influence_area(x,y) do
           move_pawn(pawn, x, y) unless world[x,y].key?(:pawn)
         end
         Hashie::Mash.new pawn_id: pawn_id, x: pawn.x, y: pawn.y
-      end
-    end
-
-    def needed_resources action, params
-      case action
-      when :move
-        movement_resources params
-      else
-        [] # none
       end
     end
 
