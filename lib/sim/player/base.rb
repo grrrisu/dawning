@@ -10,9 +10,10 @@ module Player
     end
 
     def overlap_current_view? other
-      view = current_view_dimension
-      ((view.x)..(view.x + view.width)).overlaps?((other.x)..(other.x + other.width)) &&
-      ((view.y)..(view.y + view.height)).overlaps?((other.y)..(other.y + other.height))
+      if view = current_view_dimension
+        ((view.x)..(view.x + view.width)).overlaps?((other.x)..(other.x + other.width)) &&
+        ((view.y)..(view.y + view.height)).overlaps?((other.y)..(other.y + other.height))
+      end
     end
 
   end
