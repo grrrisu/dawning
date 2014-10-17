@@ -22,7 +22,7 @@ module Builder
 
     def create_vegetation config
       file = File.join(__dir__, '..', '..', '..', 'config', 'levels', config[:config])
-      @vegetation_config = Sim::Buildable.load_config(file)
+      @vegetation_config = Vegetation.load_config(file)
       grounding config[:grounding]
       config[:clusters].each do |cluster_config|
         draw_clusters cluster_config[:times], cluster_config[:vegetation], cluster_config[:count]
