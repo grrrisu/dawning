@@ -29,7 +29,7 @@ describe "player messages" do
 
   it "should return move" do
     expect(player_connection).to receive(:send_message).with(
-      :move_event, hash_including(pawn_id: hq.id, x: hq.x, y: hq.y + 1)
+      :move, hash_including(pawn_id: hq.id, x: hq.x, y: hq.y + 1)
     )
     player_connection.forward_message player_id: '123',
       action: 'move', params: {pawn_id: hq.id, x: hq.x, y: hq.y + 1}

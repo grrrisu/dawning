@@ -4,12 +4,12 @@ module Player
   class Member < Base
 
     attr_accessor :headquarter
-    attr_reader   :world
+    attr_reader   :world, :world_view
 
     def place view, headquarter
-      @view   = view
-      @world  = view.world
-      @headquarter = headquarter
+      @world_view   = view
+      @world        = view.world
+      @headquarter  = headquarter
     end
 
     def create config
@@ -17,9 +17,9 @@ module Player
     end
 
     def init_map
-      if @view.world
+      if @world_view.world
         {
-          world: { width: @view.world.width, height: @view.world.height },
+          world: { width: @world_view.world.width, height: @world_view.world.height },
           headquarter:
           {
             id: @headquarter.id,
@@ -41,57 +41,13 @@ module Player
       {
         x: x,
         y: y,
-        view: @view.filter_slice(x, y, width, height)
+        view: @world_view.filter_slice(x, y, width, height)
       }
     end
 
     def move pawn_id, x, y
-      event = Sim::Queue::ActionEvent.new self, :move_event, pawn_id: pawn_id, x: x, y: y
+      event = Event::Move.new self, pawn_id, x, y
       fire_action_event(event)
-    end
-
-    def move_event pawn_id, x, y
-      pawn = Pawn.find(pawn_id) # TODO check owner
-      change_move(pawn.x, pawn.y) do
-        @headquarter.within_influence_area(x,y) do
-          move_pawn(pawn, x, y) unless world[x,y].key?(:pawn)
-        end
-        Hashie::Mash.new pawn_id: pawn_id, x: pawn.x, y: pawn.y
-      end
-    end
-
-    def movement_resources params
-      pawn = Pawn.find(pawn_id)
-      [@world[pawn.x, pawn.y]]
-      # Array.new.tap do |resources|
-      #   View.view_radius(pawn) do |x, y|
-      #     resources << @world[x,y]
-      #   end
-      # end
-    end
-
-  private
-
-    def change_move x, y
-      answer = yield
-      if x != answer[:x] || y != answer[:y]
-        answer.merge! notify: {
-          x: x <= answer[:x] ? x : answer[:x],
-          y: y <= answer[:y] ? y : answer[:y],
-          width: (x - answer[:x]).abs + 1,
-          height: (y - answer[:y]).abs + 1
-        }
-      else
-        answer
-      end
-    end
-
-    def move_pawn pawn, x, y
-      @view.fog(pawn)
-      world[pawn.x, pawn.y].delete(:pawn)
-      pawn.x, pawn.y = x, y
-      world[x, y].merge!(pawn: pawn)
-      @view.unfog(pawn)
     end
 
   end
