@@ -1,10 +1,12 @@
+# vegetation represents the main flora type
+# resoucres are foliage, branches, roots, grass, weed
 class Vegetation < Sim::Object
 
   default_attr :capacity, 1300
   default_attr :birth_rate, 0.15
   default_attr :death_rate, 0.05
   default_attr :size, 650
-  default_attr :view_value, 13
+  default_attr :type, 13
 
   attr_accessor :field
 
@@ -38,6 +40,10 @@ class Vegetation < Sim::Object
 
   def create_event
     Event::SimField.new(self)
+  end
+
+  def view_value
+    {type: type, size: size.round}
   end
 
 end

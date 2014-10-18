@@ -3,40 +3,40 @@
   birth_rate: 0.15
   death_rate: 0.05
   size: 650
-  view_value: 13
+  type: 13
 8:
   capacity: 800
   birth_rate: 0.15
   death_rate: 0.05
   size: 400
-  view_value: 8
+  type: 8
 5:
   capacity: 500
   birth_rate: 0.15
   death_rate: 0.05
   size: 250
-  view_value: 5
+  type: 5
 3:
   capacity: 300
   birth_rate: 0.15
   death_rate: 0.05
   size: 150
-  view_value: 3
+  type: 3
 2:
   capacity: 200
   birth_rate: 0.15
   death_rate: 0.05
   size: 100
-  view_value: 2
+  type: 2
 1:
   capacity: 100
   birth_rate: 0.15
   death_rate: 0.05
   size: 50
-  view_value: 1
+  type: 1
 0:
   capacity: 20
   birth_rate: 0.15
   death_rate: 0.05
   size: 10
-  view_value: 0
+  type: 0

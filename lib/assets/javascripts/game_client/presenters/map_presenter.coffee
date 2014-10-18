@@ -39,7 +39,7 @@ class Game.MapPresenter
     ground
 
   field_pattern: (data) =>
-    switch data.vegetation
+    switch data.vegetation.type
       when 0 then "0_desert" # "#F8D76D";
       when 1 then "1_grass" # "#DBB253";
       when 2 then "2_grass" # "#A3AE45";
