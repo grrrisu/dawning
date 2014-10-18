@@ -1,5 +1,4 @@
 class Vegetation < Sim::Object
-  include Sim::Buildable
 
   default_attr :capacity, 1300
   default_attr :birth_rate, 0.15
@@ -22,12 +21,15 @@ class Vegetation < Sim::Object
   #                (C - s)
   # Δs = s (b - d) -------
   #                  C
-  def calculate
+  def calculate step
     delta = @size * (birth_rate - death_rate) * (capacity - @size) / capacity
-    self.size += delta * delay
+    self.size += delta * step
+  end
+
+  def changed_area
+    #inc :size, delta_size
     $stderr.print "+"
     Hashie::Mash.new(x: field.x, y: field.y, width: 1, height: 1)
-    #inc :size, delta * delay
   end
 
   def queue_up
