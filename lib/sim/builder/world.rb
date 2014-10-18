@@ -108,7 +108,7 @@ module Builder
       config[:types].each do |type_config|
         type = type_config[:type]
         type_config[:spread].each do |spread|
-          fields = @world.find_all {|field| field[:vegetation].view_value == spread[:vegetation] && field[:flora].nil? }
+          fields = @world.find_all {|field| field[:vegetation].type == spread[:vegetation] && field[:flora].nil? }
           size = (spread[:amount] * spread_ratio).round
           fields.shuffle.slice(0, size).each do |field|
             yield field, type
