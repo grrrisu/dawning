@@ -18,15 +18,6 @@ module Event
       respond answer
     end
 
-    def move
-      change_move(pawn.x, pawn.y) do
-        headquarter.within_influence_area(x,y) do
-          move_pawn(pawn, x, y) unless world[x,y].key?(:pawn)
-        end
-        Hashie::Mash.new pawn_id: pawn.id, x: pawn.x, y: pawn.y
-      end
-    end
-
     def needed_resources
       @resources ||= Array.new.tap do |fields|
         View.square(1) do |i, j|
@@ -35,7 +26,24 @@ module Event
       end
     end
 
+    def move
+      change_move(pawn.x, pawn.y) do
+        check_movement
+        answer
+      end
+    end
+
   private
+
+    def answer
+      Hashie::Mash.new pawn_id: pawn.id, x: pawn.x, y: pawn.y
+    end
+
+    def check_movement
+      headquarter.within_influence_area(x,y) do
+        move_pawn(pawn, x, y) unless world[x,y].key?(:pawn)
+      end
+    end
 
     def change_move x, y
       answer = yield
