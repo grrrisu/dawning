@@ -7,13 +7,10 @@ class View < Sim::Globe
     (dx**2 + dy**2) <= (radius**2 + border)
   end
 
-  def self.view_radius pawn
-    rx, ry = pawn.x - x, pawn.y - y
-    (-pawn.view_radius..pawn.view_radius).each do |j|
-      (-pawn.view_radius..pawn.view_radius).each do |i|
-        if View.within_radius(i, j, pawn.view_radius)
-          yield rx + i, ry + j
-        end
+  def self.square radius
+    (-radius..radius).each do |j|
+      (-radius..radius).each do |i|
+        yield i, j
       end
     end
   end
@@ -68,11 +65,9 @@ private
 
   def view_radius pawn
     rx, ry = pawn.x - x, pawn.y - y
-    (-pawn.view_radius..pawn.view_radius).each do |j|
-      (-pawn.view_radius..pawn.view_radius).each do |i|
-        if View.within_radius(i, j, pawn.view_radius)
-          yield rx + i, ry + j
-        end
+    View.square(pawn.view_radius) do |i, j|
+      if View.within_radius(i, j, pawn.view_radius)
+        yield rx + i, ry + j
       end
     end
   end

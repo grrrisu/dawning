@@ -1,6 +1,6 @@
 time_unit: 60
 sim_loop:
-  duration: 60
+  duration: 180
 world:
   width: 50
   height: 100
