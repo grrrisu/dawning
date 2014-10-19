@@ -28,12 +28,11 @@ module Event
     end
 
     def needed_resources
-      [world[pawn.x, pawn.y]]
-      # Array.new.tap do |resources|
-      #   View.view_radius(pawn) do |x, y|
-      #     resources << @world[x,y]
-      #   end
-      # end
+      @resources ||= Array.new.tap do |fields|
+        View.square(1) do |i, j|
+          fields << world[pawn.x + i, pawn.y + j]
+        end
+      end
     end
 
   private
