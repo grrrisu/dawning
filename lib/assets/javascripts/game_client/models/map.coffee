@@ -1,15 +1,19 @@
 class Game.Map
 
-  constructor: () ->
-    @presenter  = new Game.MapPresenter(this)
-    @shapes     = []
-
-  setFieldWidth: (width) =>
-    @fieldWidth = width
+  constructor: (@fieldWidth, @visibleFields) ->
+    @map_presenter    = new Game.MapPresenter(this)
+    @field_presenter  = new Game.FieldPresenter(this)
+    @shapes           = []
 
   setWorldSize: (size) =>
     @worldWidth   = size.width
     @worldHeight  = size.height
+    @initFields()
+
+  initFields: =>
+    @fields       = new Array(@visibleFields + 1)
+    for field, index in @fields
+      @fields[index] = new Array(@visibleFields + 1)
 
   mapWidth: =>
     @width = @worldWidth * @fieldWidth
@@ -17,23 +21,22 @@ class Game.Map
   mapHeight: =>
     @height = @worldHeight * @fieldWidth
 
-  remove_shapes: =>
-    while (@shapes.length > 0)
-      @shapes.pop().remove()
+  layer: =>
+    @map_presenter.layer
 
-  add_shape: (shape) =>
-    @shapes.push(shape) if shape?
+  pawn_layer: =>
+    @map_presenter.pawn_layer
+
+  remove_shapes: =>
+    @fields.each (row) ->
+      row.each (field) ->
+        field.remove_shapes()
 
   # called by client on own render
   render: (map_layer, pawn_layer) =>
-    @presenter.setLayer(map_layer)
-    @presenter.setPawnLayer(pawn_layer)
-    @presenter.render_fog()
-
-  # called by viewport when moving map
-  update_fields: (rx, ry, width, height) =>
-    request_data = {x: rx, y: ry, width: width, height: height};
-    client.mapController.view(request_data)
+    @map_presenter.setLayer(map_layer)
+    @map_presenter.setPawnLayer(pawn_layer)
+    @map_presenter.render_fog()
 
   # called by dispatcher with answer of view action
   render_fields: (data) =>
@@ -42,49 +45,13 @@ class Game.Map
     data.view.each (row, j) =>
       row.each (field_data, i) =>
         if field_data?
-          @render_field(field_data, data.x + i , data.y + j)
+          field = @fields[i][j] = new Game.Field(field_data)
+          field.render(this)
 
-    @presenter.layer.draw()
-    @presenter.pawn_layer.draw()
-
-  render_field: (field_data, rx , ry) =>
-    field_shape = @presenter.render_field(field_data, rx , ry)
-    @add_shape(field_shape)
-
-    if field_data.flora?
-      @render_figure(field_data.flora, rx , ry)
-
-    if field_data.fauna?
-      @render_figure(field_data.fauna, rx , ry)
-
-    if field_data.pawn?
-      @render_pawn(field_data.pawn, rx , ry)
-
-  render_figure: (figure_data, rx, ry) =>
-    figure = new Game.Thing(figure_data)
-    figure.setPosition(rx, ry)
-    shape = figure.render(@presenter.layer)
-    @add_shape(shape)
-
-  render_pawn: (data, rx, ry) =>
-    pawn = client.headquarter.headquarterOrPawn(rx, ry) if client.headquarter?
-    if pawn?
-      shape = pawn.render(@presenter.pawn_layer)
-      @add_shape(shape)
-    else
-      @render_figure(data, rx, ry)
+    @layer().draw()
+    @pawn_layer().draw()
 
   # --- position helpers ---
-
-  # this.field = function(x, y){
-  #   var x_dimension = this.fields[0].length;
-  #   var y_dimension = this.fields.length;
-  #   if(x < 0) x = x_dimension + x;
-  #   if(y < 0) y = y_dimension + y;
-  #   if(x >= x_dimension) x = x - x_dimension;
-  #   if(y >= y_dimension) y = y - y_dimension;
-  #   return this.getField(x,y);
-  # };
 
   relativePosition: (ax, ay) =>
     rx = ((ax - @fieldWidth / 2) / @fieldWidth).round()

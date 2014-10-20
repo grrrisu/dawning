@@ -3,7 +3,6 @@ class Game.Viewport
   constructor: (@width, @fieldsVisible, @map) ->
     @zoom   = 1
     @height = @width
-    @map.setFieldWidth(@width / @fieldsVisible)
     @prev_rx = -1
     @prev_ry = -1
 
@@ -65,7 +64,8 @@ class Game.Viewport
       scale: 1 / @zoom
 
   update_map: =>
-    @map.update_fields(@rx, @ry, @fieldsVisible * @zoom + 1, @fieldsVisible * @zoom + 1);
-    client.presenter.stage.draw()
+    width = @fieldsVisible * @zoom + 1
+    request_data = {x: @rx, y: @ry, width: width, height: width};
+    client.mapController.view(request_data)
 
 

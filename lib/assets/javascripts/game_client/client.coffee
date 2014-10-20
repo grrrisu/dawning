@@ -6,7 +6,7 @@ class Game.Client
     @dispatcher     = new Game.Websocket()
     @mapController  = new Game.MapController(@dispatcher)
     @chatController = new Game.ChatController(@dispatcher)
-    @map            = new Game.Map()
+    @map            = new Game.Map(width / fieldsVisible, fieldsVisible)
     @viewport       = new Game.Viewport(width, fieldsVisible, @map)
     @presenter      = new Game.StagePresenter(@viewport)
 
