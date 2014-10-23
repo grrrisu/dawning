@@ -36,18 +36,28 @@ module Player
       end
     end
 
+    def update_view x, y, width, height
+      view_params x, y, width, height
+    end
+
     def view x, y, width, height
       super
-      {
-        x: x,
-        y: y,
-        view: @world_view.filter_slice(x, y, width, height)
-      }
+      view_params x, y, width, height
     end
 
     def move pawn_id, x, y
       event = Event::Move.new self, pawn_id, x, y
       fire_action_event(event)
+    end
+
+  private
+
+    def view_params x, y, width, height
+      {
+        x: x,
+        y: y,
+        view: @world_view.filter_slice(x, y, width, height)
+      }
     end
 
   end

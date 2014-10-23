@@ -14,6 +14,7 @@ class Game.Field
       @shapes.pop().remove()
 
   render: (map) =>
+    @remove_shapes()
     field_shape = map.field_presenter.render(@data)
     @add_shape(field_shape)
 
@@ -38,4 +39,4 @@ class Game.Field
       shape = pawn.render(map.pawn_layer())
       @add_shape(shape)
     else
-      @render_figure(data, @data.x, @data.y)
+      @render_figure(data, map)

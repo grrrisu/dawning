@@ -2,7 +2,7 @@ class Game.FieldPresenter
 
   constructor: (@map) ->
 
-  render: (field_data, rx, ry) =>
+  render: (field_data) =>
     ground = new Kinetic.Rect
       x: field_data.x * @map.fieldWidth
       y: field_data.y * @map.fieldWidth
@@ -15,7 +15,10 @@ class Game.FieldPresenter
       strokeWidth: 2
 
     ground.on 'click', (e) =>
-      console.log("ground: [" + ground.attrs.x + ", " + ground.attrs.y + "]")
+      field = @map.getFieldFromFieldShape(ground)
+      field_info = $('#field_info')
+      field_info.find('td.type').text(field.data.vegetation.type)
+      field_info.find('td.size').text(field.data.vegetation.size)
 
     @map.layer().add(ground);
     ground

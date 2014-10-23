@@ -15,6 +15,7 @@ class Game.MapController
   bindEvents: =>
     @dispatcher.bind 'init_map', @render_client
     @dispatcher.bind 'view', @render_map
+    @dispatcher.bind 'update_view', @update_map
     @dispatcher.bind 'move', @render_pawn
 
     $('#center_view').on 'click', (e) =>
@@ -30,7 +31,10 @@ class Game.MapController
     window.client.render(message)
 
   render_map: (message) =>
-    window.client.map.render_fields(message)
+    window.client.map.render_map(message)
+
+  update_map: (message) =>
+    window.client.map.update_map(message)
 
   render_pawn: (message) =>
     headquarter = window.client.headquarter

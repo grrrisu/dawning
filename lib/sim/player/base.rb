@@ -2,7 +2,7 @@ module Player
   class Base < Sim::Player
 
     def direct_actions
-      [:init_map, :view]
+      [:init_map, :view, :update_view]
     end
 
     def view x, y, width, height

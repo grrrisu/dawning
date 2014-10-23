@@ -15,6 +15,15 @@ class Game.Map
     for field, index in @fields
       @fields[index] = new Array(@visibleFields + 1)
 
+  setField:(vx, vy, field) =>
+    @fields[vx][vy] = field
+
+  getField: (vx, vy) =>
+    @fields[vx][vy]
+
+  getFieldFromFieldShape: (fieldShape) =>
+    @getField(fieldShape.attrs.x / @fieldWidth - @mapLeft, fieldShape.attrs.y / @fieldWidth - @mapTop)
+
   mapWidth: =>
     @width = @worldWidth * @fieldWidth
 
@@ -38,18 +47,30 @@ class Game.Map
     @map_presenter.setPawnLayer(pawn_layer)
     @map_presenter.render_fog()
 
-  # called by dispatcher with answer of view action
-  render_fields: (data) =>
+  render_map: (data) =>
     @remove_shapes()
+    @mapLeft = data.x
+    @mapTop = data.y
+    @render_fields(data)
 
+  update_map: (data) =>
+    x = data.x - @mapLeft
+    y = data.y - @mapTop
+    if x >= 0 && y >= 0
+      @render_fields(data, x, y)
+
+  # called by dispatcher with answer of view action
+  render_fields: (data, offsetX = 0, offsetY = 0) =>
     data.view.each (row, j) =>
       row.each (field_data, i) =>
         if field_data?
-          field = @fields[i][j] = new Game.Field(field_data)
+          field = new Game.Field(field_data)
+          @setField(offsetX + i, offsetY + j, field)
           field.render(this)
 
     @layer().draw()
     @pawn_layer().draw()
+
 
   # --- position helpers ---
 
