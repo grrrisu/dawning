@@ -21,7 +21,7 @@ module Event
     def needed_resources
       @resources ||= Array.new.tap do |fields|
         View.square(1) do |i, j|
-          fields << world[pawn.x + i, pawn.y + j]
+          fields << world[pawn.x + i, pawn.y + j].coordinates
         end
       end
     end

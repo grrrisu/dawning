@@ -6,6 +6,7 @@ require 'simplecov' if %w(development test).include? ENV['SIM_ENV']
 
 require_relative 'event/move'
 require_relative 'event/sim_field'
+require_relative 'field'
 require_relative 'world'
 require_relative 'vegetation'
 require_relative 'player/base'

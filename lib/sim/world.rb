@@ -5,7 +5,7 @@ class World < Sim::Globe
 
   def initialize width, height = nil
     super(width, height) # map width and height to columns and rows
-    set_each_field_with_index {|x, y| Sim::FieldProperties.new(x: x, y: y) }
+    set_each_field_with_index {|x, y| Field.new(x: x, y: y) }
   end
 
   def build config
