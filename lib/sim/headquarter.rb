@@ -19,7 +19,7 @@ class Headquarter < Pawn
 
   def within_influence_area x, y
     dx, dy = self.x - x, self.y - y
-    if View.within_radius(dx, dy, view_radius)
+    if View.within_radius(dx, dy, view_radius * 0.5)
       yield
     else
       $stderr.puts "movement[#{dx},#{dy}] not within influence area[#{view_radius}, #{x}, #{y}] "
