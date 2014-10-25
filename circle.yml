@@ -1,0 +1,14 @@
+general:
+  branches:
+    only:
+      - master
+      - production
+dependencies:
+  bundler:
+    without: [development]
+database:
+  override:
+    - mv config/mongoid_example.yml config/mongoid.yml
+    - mv config/secrets_example.yml config/secrets.yml
+    - mkdir tmp
+    - mkdir tmp/sockets
