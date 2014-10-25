@@ -1,4 +1,4 @@
-class Game.FieldPresenter
+class Game.FieldPresenter extends Game.BasePresenter
 
   constructor: (@map) ->
 
@@ -14,11 +14,7 @@ class Game.FieldPresenter
       stroke: '#454545'
       strokeWidth: 2
 
-    ground.on 'click', (e) =>
-      field = @map.getFieldFromFieldShape(ground)
-      field_info = $('#field_info')
-      field_info.find('td.type').text(field.data.vegetation.type)
-      field_info.find('td.size').text(field.data.vegetation.size)
+    @show_field_info(ground, @map)
 
     @map.layer().add(ground);
     ground

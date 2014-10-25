@@ -24,7 +24,7 @@ describe Builder::World do
 
   it "should create flora" do
     field_with_flora = world.find {|field| field.flora? }
-    expect(field_with_flora).to_not be_nil
+    expect(field_with_flora).to_not be_instance_of(Flora)
   end
 
   it "should create fauna" do

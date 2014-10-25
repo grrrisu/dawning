@@ -1,4 +1,4 @@
-class Game.ImagePresenter
+class Game.ImagePresenter extends Game.BasePresenter
 
   constructor: (@model) ->
 

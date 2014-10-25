@@ -19,6 +19,7 @@ world:
           count: 4
 
     flora:
+      config: flora.yml
       # type_1, type_2, type_3 -> 9, 6, 3 / per 200 fields
       per_fields: 200
       types:

@@ -21,8 +21,8 @@ class Game.Map
   getField: (vx, vy) =>
     @fields[vx][vy]
 
-  getFieldFromFieldShape: (fieldShape) =>
-    @getField(fieldShape.attrs.x / @fieldWidth - @mapLeft, fieldShape.attrs.y / @fieldWidth - @mapTop)
+  getFieldFromFieldShape: (shape) =>
+    @getField((shape.attrs.x / @fieldWidth - @mapLeft).floor(), (shape.attrs.y.floor() / @fieldWidth - @mapTop).floor())
 
   mapWidth: =>
     @width = @worldWidth * @fieldWidth

@@ -86,15 +86,24 @@ module Builder
     def add_objects_to_sim_loop
       @world.each_field do |field|
         field.vegetation.queue_up
+        field.flora.try(:queue_up)
       end
     end
 
     # --- create flora and fauna ---
 
     def create_flora config
+      file = File.join(__dir__, '..', '..', '..', 'config', 'levels', config[:config])
+      @flora_config = Flora.load_config(file)
       create_flora_fauna(config) do |field, type|
-        field.flora = type
+        flora = build_flora(type)
+        field.flora, flora.field = flora, field
       end
+    end
+
+    def build_flora type
+      config = @flora_config[type.to_sym]
+      Flora.build(config)
     end
 
     def create_fauna config

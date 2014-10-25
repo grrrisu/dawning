@@ -19,7 +19,7 @@ class Game.Field
     @add_shape(field_shape)
 
     if @data.flora?
-      @render_figure(@data.flora, map)
+      @render_figure(@data.flora.type, map)
 
     if @data.fauna?
       @render_figure(@data.fauna, map)
@@ -31,6 +31,7 @@ class Game.Field
     figure = new Game.Thing(figure_data)
     figure.setPosition(@data.x, @data.y)
     shape = figure.render(map.layer())
+    figure.presenter.show_field_info(shape, map)
     @add_shape(shape)
 
   render_pawn: (data, map) =>
