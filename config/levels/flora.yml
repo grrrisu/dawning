@@ -1,16 +1,16 @@
-banana_1:
+Banana1:
   capacity: 30
   birth_rate: 0.3
   death_rate: 0.05
   size: 15
   type: banana_1
-banana_2:
+Banana2:
   capacity: 50
   birth_rate: 0.3
   death_rate: 0.05
   size: 25
   type: banana_2
-banana_3:
+Banana3:
   capacity: 80
   birth_rate: 0.3
   death_rate: 0.05

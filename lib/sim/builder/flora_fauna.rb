@@ -13,6 +13,15 @@ module Builder
       @type_config = Sim::Buildable.load_config(file)
     end
 
+    def create_classes
+      @type_config.each do |klass_name, config|
+        unless ::Vegetation.const_defined?(klass_name)
+          ::Vegetation.const_set(klass_name, Class.new(::Vegetation))
+          ::Vegetation.const_get(klass_name).set_defaults(config)
+        end
+      end
+    end
+
     def create config
       @config = config
       load_type_config
@@ -20,6 +29,7 @@ module Builder
 
     def create_flora config
       create config
+      create_classes
       set_flora
     end
 
@@ -35,9 +45,8 @@ module Builder
       end
     end
 
-    def build_flora type
-      flora_config = @type_config[type.to_sym]
-      ::Flora.build(flora_config)
+    def build_flora klass
+      ::Vegetation.const_get(klass).build
     end
 
     def set_fauna

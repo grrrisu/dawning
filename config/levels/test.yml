@@ -24,7 +24,7 @@ world:
       per_fields: 200
       types:
         -
-          type: 'banana_1'
+          type: Banana1
           spread:
             -
               vegetation: 13
@@ -36,7 +36,7 @@ world:
               vegetation: 5
               amount: 1
         -
-          type: 'banana_2'
+          type: Banana2
           spread:
             -
               vegetation: 13
@@ -45,7 +45,7 @@ world:
               vegetation: 8
               amount: 3
         -
-          type: 'banana_3'
+          type: Banana3
           spread:
             -
               vegetation: 13

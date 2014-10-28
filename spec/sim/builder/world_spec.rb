@@ -25,11 +25,11 @@ describe Builder::World do
 
   it "should create flora" do
     field_with_flora = world.find {|field| field.flora? }
-    expect(field_with_flora).to_not be_instance_of(Flora)
+    expect(field_with_flora.flora).to be_kind_of(Vegetation)
   end
 
   it "should add flora to sim loop" do
-    vegetations = Celluloid::Actor[:sim_loop].objects.select {|obj| obj.instance_of?(Flora) }
+    vegetations = Celluloid::Actor[:sim_loop].objects.select {|obj| obj.instance_of?(Vegetation::Banana1) }
     expect(vegetations.size).to be > 0
   end
 
