@@ -51,12 +51,18 @@ module Builder
       config[:types].each do |type_config|
         type = type_config[:type]
         type_config[:spread].each do |spread|
-          fields = @world.find_all {|field| field[:vegetation].type == spread[:vegetation] && field[:flora].nil? }
+          fields = free_fields_of_vegetation spread[:vegetation]
           size = (spread[:amount] * spread_ratio).round
           fields.shuffle.slice(0, size).each do |field|
             yield field, type
           end
         end
+      end
+    end
+
+    def free_fields_of_vegetation vegetation_type
+      @world.find_all do |field|
+        field[:vegetation].type == vegetation_type && field[:flora].nil?
       end
     end
 

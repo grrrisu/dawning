@@ -2,7 +2,7 @@ require 'bundler'
 Bundler.setup(:default, ENV['SIM_ENV'])
 require 'sim'
 
-require 'simplecov' if %w(development test).include? ENV['SIM_ENV']
+require 'simplecov' if %w(test).include? ENV['SIM_ENV']
 
 require_relative 'event/move'
 require_relative 'event/sim_field'
