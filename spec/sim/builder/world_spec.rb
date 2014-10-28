@@ -19,12 +19,18 @@ describe Builder::World do
   end
 
   it "should add vegetation to sim loop" do
-    expect(Celluloid::Actor[:sim_loop].objects.size).to eq(15 * 15)
+    vegetations = Celluloid::Actor[:sim_loop].objects.select {|obj| obj.instance_of?(Vegetation) }
+    expect(vegetations.size).to eq(15 * 15)
   end
 
   it "should create flora" do
     field_with_flora = world.find {|field| field.flora? }
     expect(field_with_flora).to_not be_instance_of(Flora)
+  end
+
+  it "should add flora to sim loop" do
+    vegetations = Celluloid::Actor[:sim_loop].objects.select {|obj| obj.instance_of?(Flora) }
+    expect(vegetations.size).to be > 0
   end
 
   it "should create fauna" do
