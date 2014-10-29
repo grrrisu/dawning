@@ -1,0 +1,23 @@
+time_unit: 5
+sim_loop:
+  duration: 120
+world:
+  width: 5
+  height: 5
+  # no vegetation, flora, fauna or anyThing
+dropzones:
+  bot_1:
+    from:  0
+    to:    0
+  gateway:
+    from:  1
+    to:    1
+  transit:
+    from:  2
+    to:    2
+  players:
+    from:  3
+    to:    3
+  bot_2:
+    from:  4
+    to:    4
