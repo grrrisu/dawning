@@ -23,7 +23,7 @@ module Builder
 
     def add_objects_to_sim_loop
       @world.each_field do |field|
-        field.vegetation.queue_up
+        field.vegetation.try(:queue_up)
         field.flora.try(:queue_up)
       end
     end

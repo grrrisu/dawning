@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "level messages" do
 
-  let(:level)         { Level.new }
+  let(:level)         { Level.instance }
   let(:player_server) { double Sim::Net::PlayerServer }
   let(:dispatcher)    { Sim::Net::MessageDispatcher.new(level) }
   let(:config)        { Rails.root.join('config', 'levels', 'test.yml').to_s }
@@ -48,8 +48,8 @@ describe "level messages" do
   end
 
   it "should add admin" do
-    level.add_player player_id: '123', role: 'admin'
-    expect(level.players['123']).to be_instance_of(Player::Admin)
+    level.add_player player_id: '345', role: 'admin'
+    expect(level.players['345']).to be_instance_of(Player::Admin)
   end
 
   it "should remove a player" do

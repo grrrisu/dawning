@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "player messages" do
 
-  let(:level)             { Level.new }
+  let(:level)             { Level.instance }
   let(:player_connection) { Sim::Net::PlayerConnection.new('socket') }
   let(:player)            { Player::Member.new '123', level }
   let(:config)            { Rails.root.join('config', 'levels', 'test.yml').to_s }

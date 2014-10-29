@@ -1,5 +1,3 @@
-require_relative 'builder/world'
-
 class World < Sim::Globe
   include Sim::Buildable
 

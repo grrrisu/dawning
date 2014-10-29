@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Level do
 
-  subject(:level) { Level.new }
+  subject(:level) { Level.instance }
 
   it "should create the world" do
     config = {world: {height: 100, width: 50}}
