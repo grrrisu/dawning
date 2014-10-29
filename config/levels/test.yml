@@ -4,98 +4,15 @@ sim_loop:
 world:
   width: 15
   height: 15
-  builder:
-    vegetation:
-      config: vegetation.yml
-      grounding: 5
-      clusters:
-        -
-          times: 1
-          vegetation: 8
-          count: 10
-        -
-          times: 2
-          vegetation: 13
-          count: 4
-
-    flora:
-      config: flora.yml
-      # type_1, type_2, type_3 -> 9, 6, 3 / per 200 fields
-      per_fields: 200
-      types:
-        -
-          type: Banana1
-          spread:
-            -
-              vegetation: 13
-              amount: 5
-            -
-              vegetation: 8
-              amount: 3
-            -
-              vegetation: 5
-              amount: 1
-        -
-          type: Banana2
-          spread:
-            -
-              vegetation: 13
-              amount: 3
-            -
-              vegetation: 8
-              amount: 3
-        -
-          type: Banana3
-          spread:
-            -
-              vegetation: 13
-              amount: 2
-            -
-              vegetation: 8
-              amount: 1
-    fauna:
-      # type_1, type_2, type_3 -> 8, 4, 2 / per 200 fields
-      per_fields: 200
-      types:
-        -
-          type: 'rabbit'
-          spread:
-            -
-              vegetation: 13
-              amount: 4
-            -
-              vegetation: 8
-              amount: 3
-            -
-              vegetation: 5
-              amount: 1
-        -
-          type: 'gazelle'
-          spread:
-            -
-              vegetation: 13
-              amount: 2
-            -
-              vegetation: 8
-              amount: 2
-        -
-          type: 'mammoth'
-          spread:
-            -
-              vegetation: 13
-              amount: 2
-        # just guessing
-        - type: 'leopard'
-          spread:
-            -
-              vegetation: 13
-              amount: 4
-            -
-              vegetation: 8
-              amount: 2
-            -
-              vegetation: 5
-              amount: 1
+  vegetation:
+    classes: vegetation.yml
+    builder: test_vegetation_builder.yml
+  flora:
+    classes: flora.yml
+    builder: test_flora_builder.yml
+  fauna:
+    classes: fauna.yml
+    builder: test_fauna_builder.yml
 dropzones:
   bot_1:
     from:  0

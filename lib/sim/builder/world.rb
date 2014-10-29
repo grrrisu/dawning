@@ -4,8 +4,8 @@ module Builder
 
     def initialize world
       @world = world
-      @vegetation_builder  = Vegetation.new(@world)
-      @flora_fauna_buidler = FloraFauna.new(@world)
+      @vegetation_builder  = Builder::Vegetation.new(@world)
+      @flora_fauna_buidler = Builder::FloraFauna.new(@world)
       srand
     end
 

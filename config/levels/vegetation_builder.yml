@@ -1,0 +1,18 @@
+grounding: 5
+clusters:
+  -
+    times: 10
+    vegetation: 2
+    count: 10
+  -
+    times: 20
+    vegetation: 3
+    count: 30
+  -
+    times: 50
+    vegetation: 8
+    count: 80
+  -
+    times: 50
+    vegetation: 13
+    count: 40

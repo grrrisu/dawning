@@ -8,14 +8,14 @@ module Builder
       @world = world
     end
 
-    def load_vegetation_config
-      file = File.join(__dir__, '..', '..', '..', 'config', 'levels', config[:config])
-      @vegetation_config = ::Vegetation.load_config(file)
+    def load_configuration file_name
+      file = File.join(__dir__, '..', '..', '..', 'config', 'levels', file_name)
+      Sim::Buildable.load_config(file)
     end
 
     def create config
-      @config = config
-      load_vegetation_config
+      @config = load_configuration config[:builder]
+      @vegetation_config = load_configuration config[:classes]
       create_vegetation
     end
 

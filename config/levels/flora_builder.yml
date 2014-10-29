@@ -1,0 +1,33 @@
+# type_1, type_2, type_3 -> 9, 6, 3 / per 200 fields
+per_fields: 200
+types:
+  -
+    type: Banana1
+    spread:
+      -
+        vegetation: 13
+        amount: 5
+      -
+        vegetation: 8
+        amount: 3
+      -
+        vegetation: 5
+        amount: 1
+  -
+    type: Banana2
+    spread:
+      -
+        vegetation: 13
+        amount: 3
+      -
+        vegetation: 8
+        amount: 3
+  -
+    type: Banana3
+    spread:
+      -
+        vegetation: 13
+        amount: 2
+      -
+        vegetation: 8
+        amount: 1

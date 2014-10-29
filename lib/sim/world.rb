@@ -10,7 +10,7 @@ class World < Sim::Globe
 
   def build config
     builder = Builder::World.new(self)
-    builder.create(config[:builder]) if config[:builder]
+    builder.create(config)
     self
   end
 

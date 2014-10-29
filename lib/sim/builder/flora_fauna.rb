@@ -8,9 +8,13 @@ module Builder
       @world = world
     end
 
-    def load_type_config
-      file = File.join(__dir__, '..', '..', '..', 'config', 'levels', config[:config])
-      @type_config = Sim::Buildable.load_config(file)
+    def load_configuration file_name
+      file = File.join(__dir__, '..', '..', '..', 'config', 'levels', file_name)
+      Sim::Buildable.load_config(file)
+    end
+
+    def create config
+      @config = load_configuration config[:builder]
     end
 
     def create_classes
@@ -22,19 +26,15 @@ module Builder
       end
     end
 
-    def create config
-      @config = config
-      load_type_config
-    end
-
     def create_flora config
       create config
+      @type_config = load_configuration config[:classes]
       create_classes
       set_flora
     end
 
     def create_fauna config
-      #create config
+      create config
       set_fauna
     end
 
