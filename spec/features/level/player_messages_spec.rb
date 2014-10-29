@@ -7,11 +7,12 @@ describe "player messages" do
   let(:player)            { Player::Member.new '123', level }
   let(:config)            { Rails.root.join('config', 'levels', 'test.yml').to_s }
   let(:hq)                { player.headquarter }
+  let(:logfile)           { File.open(File.expand_path("../../../../log/level.log", __FILE__), 'a') }
 
   before(:each) do
     player_connection.instance_variable_set('@player', player)
     player.connection = player_connection
-    Sim::Queue::Master.setup $stderr, level
+    Sim::Queue::Master.setup logfile, level
     level.build config
     level.start
     level.dropzone.place_player player

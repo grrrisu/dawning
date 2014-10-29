@@ -6,11 +6,12 @@ describe "level messages" do
   let(:player_server) { double Sim::Net::PlayerServer }
   let(:dispatcher)    { Sim::Net::MessageDispatcher.new(level) }
   let(:config)        { Rails.root.join('config', 'levels', 'test.yml').to_s }
+  let(:logfile)       { File.open(File.expand_path("../../../../log/level.log", __FILE__), 'a') }
 
   before(:each) do
     level.instance_variable_set('@player_server', player_server)
     level.instance_variable_set('@dispatcher', dispatcher)
-    Sim::Queue::Master.setup $stderr, level
+    Sim::Queue::Master.setup logfile, level
   end
 
   after(:each) do
