@@ -1,5 +1,5 @@
 # vegetation represents the main flora type
-# resoucres are foliage, branches, roots, grass, weed
+# resoucres are trees, grass, foliage, branches, roots, weed
 class Vegetation < Sim::Object
 
   default_attr :capacity, 1300
