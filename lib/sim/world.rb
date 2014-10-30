@@ -21,7 +21,7 @@ class World < Sim::Globe
     end
   end
 
-  def inspect
+  def pp
     output = "\n"
     (height-1).downto(0) do |y|
         output += line_output
@@ -31,6 +31,7 @@ class World < Sim::Globe
         output += row_field_output {|x| "#{x} #{y}"}
     end
     output += line_output
+    puts output
   end
 
 private
