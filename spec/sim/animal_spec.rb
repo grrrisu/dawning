@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Animal do
 
-  describe "aging" do
+  context "aging" do
 
     it "should get older" do
       animal = Animal.build
@@ -26,7 +26,7 @@ describe Animal do
 
   end
 
-  describe "eat" do
+  context "eat" do
 
     it "should increase health" do
       pending "wait for smart formula"
@@ -70,7 +70,7 @@ describe Animal do
       animal.field = world[1,1]
     end
 
-    describe "looks around" do
+    context "looks around" do
 
       it "should return an array of fields" do
         fields = animal.look_around
@@ -82,7 +82,7 @@ describe Animal do
 
     end
 
-    describe "most_profitable_field" do
+    context "most_profitable_field" do
 
       it "should choose best free field" do
         field_low       = Field.new vegetation: Vegetation.build(size: 10)
@@ -95,7 +95,7 @@ describe Animal do
 
     end
 
-    describe "move_to" do
+    context "move_to" do
 
       it "should move to target field" do
         animal.move_to world[1,2]
@@ -111,11 +111,11 @@ describe Animal do
 
     end
 
-    describe "think" do
+    context "think" do
 
     end
 
-    describe "sim" do
+    context "sim" do
 
     end
 

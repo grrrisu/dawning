@@ -29,7 +29,7 @@ describe Builder::World do
   end
 
   it "should add flora to sim loop" do
-    vegetations = Celluloid::Actor[:sim_loop].objects.select {|obj| obj.instance_of?(Vegetation::Banana1) }
+    vegetations = Celluloid::Actor[:sim_loop].objects.select {|obj| obj.instance_of?(Flora::Banana1) }
     expect(vegetations.size).to be > 0
   end
 
