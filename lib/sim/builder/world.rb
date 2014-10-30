@@ -13,8 +13,8 @@ module Builder
       start_time = Time.now
 
       @vegetation_builder.create config[:vegetation] if config[:vegetation]
-      @flora_fauna_buidler.create_flora config[:flora] if config[:flora]
-      @flora_fauna_buidler.create_fauna config[:fauna] if config[:fauna]
+      @flora_fauna_buidler.create_flora ::Flora, config[:flora] if config[:flora]
+      @flora_fauna_buidler.create_fauna ::Animal, config[:fauna] if config[:fauna]
 
       add_objects_to_sim_loop
       $stderr.puts "world created after #{Time.now - start_time}"

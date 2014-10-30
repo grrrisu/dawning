@@ -2,9 +2,9 @@ module Builder
 
   class FloraFauna
 
-    attr_reader :config
+    attr_reader :config, :namespace
 
-    def initialize world
+    def initialize world, namespace
       @world = world
     end
 
@@ -13,46 +13,41 @@ module Builder
       Sim::Buildable.load_config(file)
     end
 
-    def create config
+    def create namspace, config
+      @namespace = namespace
       @config = load_configuration config[:builder]
+      @type_config = load_configuration config[:classes]
+      create_classes
     end
 
     def create_classes
       @type_config.each do |klass_name, config|
-        unless ::Flora.const_defined?(klass_name)
-          ::Flora.const_set(klass_name, Class.new(::Flora))
-          ::Flora.const_get(klass_name).set_defaults(config)
+        unless namespace.const_defined?(klass_name)
+          namespace.const_set(klass_name, Class.new(namespace))
+          namespace.const_get(klass_name).set_defaults(config)
         end
       end
     end
 
-    def create_flora config
-      create config
-      @type_config = load_configuration config[:classes]
-      create_classes
-      set_flora
+    def create_flora namspace, config
+      create namspace, config
+      set_field :flora
     end
 
-    def create_fauna config
-      create config
-      set_fauna
+    def create_fauna namspace, config
+      create namspace, config
+      set_field :fauna
     end
 
-    def set_flora
+    def set_field property
       create_flora_fauna do |field, type|
-        flora = build_flora(type)
-        field.flora, flora.field = flora, field
+        object = build_object(type)
+        field.send(property), object.field = object, field
       end
     end
 
-    def build_flora klass
-      ::Flora.const_get(klass).build
-    end
-
-    def set_fauna
-      create_flora_fauna do |field, type|
-        field.fauna = type
-      end
+    def build_object klass
+      namespace.const_get(klass).build
     end
 
     def create_flora_fauna
