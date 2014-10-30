@@ -48,19 +48,10 @@ module Event
     def change_move x, y
       answer = yield
       if x != answer[:x] || y != answer[:y]
-        answer.merge! notify: notify_message(answer, x, y)
+        answer.merge! notify: View.move_nofitication(answer[:x], answer[:y], x, y)
       else
         answer
       end
-    end
-
-    def notify_message answer, x, y
-      {
-        x: x <= answer[:x] ? x : answer[:x],
-        y: y <= answer[:y] ? y : answer[:y],
-        width: (x - answer[:x]).abs + 1,
-        height: (y - answer[:y]).abs + 1
-      }
     end
 
     def move_pawn pawn, x, y

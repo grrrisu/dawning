@@ -12,10 +12,9 @@ class Animal < Sim::Object
   attr_accessor :field
 
   def sim
-    area = super
+    super
     aging delay
-    think
-    area
+    area = think
   end
 
   def calculate step
@@ -38,7 +37,7 @@ class Animal < Sim::Object
   def food_eaten
     field.vegetation.sim
     food_available = field.vegetation.size
-    food_eaten = x * r * (max_food - x) / max_food
+    # food_eaten = x * r * (max_food - x) / max_food
     # TODO smart formula
   end
 
@@ -64,10 +63,12 @@ class Animal < Sim::Object
     end
   end
 
-  def move_to field
-    field.delete(:pawn)
-    pawn.x, pawn.y = x, y
-    world[x, y].merge!(pawn: pawn)
+  def move_to target
+    View.move_nofitication(field.x, field.y, target.x, target.y).tap do
+      field.delete(:fauna)
+      self.field = target
+      target.merge!(fauna: self)
+    end
   end
 
   def world

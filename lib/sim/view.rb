@@ -2,6 +2,9 @@
 # everything not
 class View < Sim::Globe
 
+  # View/World utitliy methods
+  # TODO move to own module / namespace
+
   def self.within_radius dx, dy, radius, border = 1
     return false if dx > radius || dy > radius
     (dx**2 + dy**2) <= (radius**2 + border)
@@ -13,6 +16,15 @@ class View < Sim::Globe
         yield i, j
       end
     end
+  end
+
+  def self.move_nofitication x1, y1, x2, y2
+    {
+      x: x2 <= x1 ? x2 : x1,
+      y: y2 <= y1 ? y2 : y1,
+      width: (x1 - x2).abs + 1,
+      height: (y1 - y2).abs + 1
+    }
   end
 
   # field properties
