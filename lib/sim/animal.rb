@@ -3,7 +3,7 @@ class Animal < Sim::Object
   default_attr :age, 0
   default_attr :age_death, 30
   default_attr :health, 50
-  defautl_attr :max_health, 100
+  default_attr :max_health, 100
   default_attr :birth_step, 5
   default_attr :next_birth, 0
   default_attr :needed_food, 20
@@ -38,12 +38,40 @@ class Animal < Sim::Object
   def food_eaten
     field.vegetation.sim
     food_available = field.vegetation.size
+    food_eaten = x * r * (max_food - x) / max_food
     # TODO smart formula
   end
 
   def think
-    look_around
-    move
+    move_to(most_profitable_field(look_around))
+  end
+
+  def most_profitable_field fields
+    fields.select do |field|
+      field[:fauna].nil?
+    end.max_by do |field|
+      field.vegetation.size
+    end
+  end
+
+  def look_around
+    Array.new.tap do |fields|
+      View.square(1) do |i, j|
+        if View.within_radius(i, j, 1)
+          fields << world[field.x + i, field.y + j]
+        end
+      end
+    end
+  end
+
+  def move_to field
+    field.delete(:pawn)
+    pawn.x, pawn.y = x, y
+    world[x, y].merge!(pawn: pawn)
+  end
+
+  def world
+    Level.instance.world
   end
 
   def die!
@@ -53,6 +81,8 @@ class Animal < Sim::Object
   def reproduce
     self.next_birth -= birth_step
     # TODO fire reproduce event
+    # child = self.class.build
+    # fire DropEvent.new(child)
   end
 
   def create_event
