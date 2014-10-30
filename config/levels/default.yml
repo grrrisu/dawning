@@ -11,8 +11,8 @@ world:
     classes: flora.yml
     builder: flora_builder.yml
   fauna:
-    classes: fauna.yml
-    builder: faun_builder.yml
+    classes: animal.yml
+    builder: fauna_builder.yml
 dropzones:
   bot_1:
     from:  0
