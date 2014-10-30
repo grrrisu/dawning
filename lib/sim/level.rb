@@ -39,7 +39,6 @@ class Level < Sim::Level
   end
 
   def add_player data
-    $stderr.puts "*** build player with #{data}"
     id = data[:player_id]
     unless players[id]
       player = build_player(data)
