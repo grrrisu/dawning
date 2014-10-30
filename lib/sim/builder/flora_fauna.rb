@@ -19,9 +19,9 @@ module Builder
 
     def create_classes
       @type_config.each do |klass_name, config|
-        unless ::Vegetation.const_defined?(klass_name)
-          ::Vegetation.const_set(klass_name, Class.new(::Vegetation))
-          ::Vegetation.const_get(klass_name).set_defaults(config)
+        unless ::Flora.const_defined?(klass_name)
+          ::Flora.const_set(klass_name, Class.new(::Flora))
+          ::Flora.const_get(klass_name).set_defaults(config)
         end
       end
     end
@@ -46,7 +46,7 @@ module Builder
     end
 
     def build_flora klass
-      ::Vegetation.const_get(klass).build
+      ::Flora.const_get(klass).build
     end
 
     def set_fauna
