@@ -1,11 +1,11 @@
 class Animal < Sim::Object
 
   default_attr :age, 0
+  default_attr :next_birth, 0
   default_attr :age_death, 30
   default_attr :health, 50
   default_attr :max_health, 100
   default_attr :birth_step, 5
-  default_attr :next_birth, 0
   default_attr :needed_food, 20
   default_attr :max_food, 30
 
@@ -87,7 +87,15 @@ class Animal < Sim::Object
   end
 
   def create_event
-    Event::Bot.new(self)
+    Event::BotMove.new(self)
+  end
+
+  def queue_up
+    Celluloid::Actor[:sim_loop].add(self)
+  end
+
+  def view_value
+    {type: type, health: health.round, age: age.round}
   end
 
 end

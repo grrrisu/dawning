@@ -4,6 +4,7 @@ require 'sim'
 
 require 'simplecov' if %w(test).include? ENV['SIM_ENV']
 
+require_relative 'event/bot_move'
 require_relative 'event/move'
 require_relative 'event/sim_field'
 require_relative 'field'

@@ -19,11 +19,7 @@ module Event
     end
 
     def needed_resources
-      @resources ||= Array.new.tap do |fields|
-        View.square(1) do |i, j|
-          fields << world[pawn.x + i, pawn.y + j].coordinates
-        end
-      end
+      BotMove.move_resources(pawn)
     end
 
     def move
