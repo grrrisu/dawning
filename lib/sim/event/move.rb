@@ -19,7 +19,7 @@ module Event
     end
 
     def needed_resources
-      BotMove.move_resources(pawn)
+      BotMove.move_resources(world, pawn)
     end
 
     def move
