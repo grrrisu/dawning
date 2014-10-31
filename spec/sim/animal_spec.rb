@@ -20,7 +20,7 @@ describe Animal do
     end
 
     it "should die" do
-      animal = Animal.build age: 28
+      animal = Animal.build age: 28, age_death: 30
       expect { animal.aging 4 }.to raise_error(Death)
     end
 

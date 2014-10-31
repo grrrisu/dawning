@@ -4,7 +4,7 @@ module Builder
 
     attr_reader :config, :namespace
 
-    def initialize world, namespace
+    def initialize world
       @world = world
     end
 
@@ -13,7 +13,7 @@ module Builder
       Sim::Buildable.load_config(file)
     end
 
-    def create namspace, config
+    def create namespace, config
       @namespace = namespace
       @config = load_configuration config[:builder]
       @type_config = load_configuration config[:classes]
@@ -29,20 +29,21 @@ module Builder
       end
     end
 
-    def create_flora namspace, config
-      create namspace, config
+    def create_flora namespace, config
+      create namespace, config
       set_field :flora
     end
 
-    def create_fauna namspace, config
-      create namspace, config
+    def create_fauna namespace, config
+      create namespace, config
       set_field :fauna
     end
 
     def set_field property
       create_flora_fauna do |field, type|
         object = build_object(type)
-        field.send(property), object.field = object, field
+        field.send("#{property}=", object)
+        object.field = field
       end
     end
 

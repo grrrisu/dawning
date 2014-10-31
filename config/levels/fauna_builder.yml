@@ -2,7 +2,7 @@
 per_fields: 200
 types:
   -
-    type: 'rabbit'
+    type: Rabbit
     spread:
       -
         vegetation: 13
@@ -14,7 +14,7 @@ types:
         vegetation: 5
         amount: 1
   -
-    type: 'gazelle'
+    type: Gazelle
     spread:
       -
         vegetation: 13
@@ -23,13 +23,13 @@ types:
         vegetation: 8
         amount: 2
   -
-    type: 'mammoth'
+    type: Mammoth
     spread:
       -
         vegetation: 13
         amount: 2
   # just guessing
-  - type: 'leopard'
+  - type: Leopard
     spread:
       -
         vegetation: 13
