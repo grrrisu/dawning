@@ -35,7 +35,12 @@ describe Builder::World do
 
   it "should create fauna" do
     field_with_fauna = world.find {|field| field.fauna? }
-    expect(field_with_fauna).to_not be_nil
+    expect(field_with_fauna.fauna).to be_kind_of(Animal)
+  end
+
+  it "should add fauna to sim loop" do
+    rabbits = Celluloid::Actor[:sim_loop].objects.select {|obj| obj.instance_of?(Animal::Rabbit) }
+    expect(rabbits.size).to be > 0
   end
 
 end
