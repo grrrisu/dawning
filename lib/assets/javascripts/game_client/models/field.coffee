@@ -22,7 +22,7 @@ class Game.Field
       @render_figure(@data.flora.type, map)
 
     if @data.fauna?
-      @render_figure(@data.fauna, map)
+      @render_figure(@data.fauna.type, map)
 
     if @data.pawn?
       @render_pawn(@data.pawn, map)

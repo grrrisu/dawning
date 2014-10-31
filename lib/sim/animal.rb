@@ -12,6 +12,7 @@ class Animal < Sim::Object
   attr_accessor :field
 
   def sim
+    field.vegetation.sim
     super
     aging delay
     area = think
@@ -22,17 +23,11 @@ class Animal < Sim::Object
   end
 
   def eat step
-    field.vegetation.calculate step
-    self.health += (food_eaten - needed_food) * step
-    self.health = max_health if health > max_health
-    die! if health <= 0
-  end
+    eaten = food_eaten
+    inc_health (eaten - needed_food) * step
 
-  def aging step
-    self.next_birth += step
-    self.age += step
-    die! if age >= age_death
-    reproduce if next_birth >= birth_step
+    sustenance = 1.0 / 3.0
+    field.vegetation.size -= (eaten / sustenance) * step
   end
 
   #
@@ -47,11 +42,21 @@ class Animal < Sim::Object
   def food_eaten
     max_vegetation = 1300 # max size of vegetation jungle 13
     max_food = max_health / 3.0
-    sustenance = 1.0 / 3.0
 
-    eaten = field.vegetation.size * max_food / max_vegetation
-    field.vegetation.size -= eaten / sustenance
-    eaten
+    field.vegetation.size * max_food / max_vegetation
+  end
+
+  def inc_health delta
+    self.health += delta
+    self.health = max_health if health > max_health
+    die! if health <= 0
+  end
+
+  def aging step
+    self.next_birth += step
+    self.age += step
+    die! if age >= age_death
+    reproduce if next_birth >= birth_step
   end
 
   def think
