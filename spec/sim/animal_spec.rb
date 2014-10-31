@@ -26,33 +26,64 @@ describe Animal do
 
   end
 
+  context "food_eaten" do
+
+    let(:field) { Field.new vegetation: Vegetation.build(size: 650) }
+
+    it "should calculate food for rabbit" do
+      animal = Animal.build max_health: 40, needed_food: 5
+      animal.field = field
+      eaten = animal.food_eaten
+      expect(eaten).to be_within(0.1).of(6.66)
+      expect(field.vegetation.size).to be == 650 - 20
+    end
+
+    it "should calculate food for gazelle" do
+      animal = Animal.build max_health: 100, needed_food: 15
+      animal.field = field
+      eaten = animal.food_eaten
+      expect(eaten).to be_within(0.1).of(16.66)
+      expect(field.vegetation.size).to be == 650 - 50
+    end
+
+    it "should calculate food for mammouth" do
+      animal = Animal.build max_health: 160, needed_food: 130
+      animal.field = field
+      eaten = animal.food_eaten
+      expect(eaten).to be_within(0.1).of(26.66)
+      expect(field.vegetation.size).to be == 650 - 80
+    end
+
+  end
+
   context "eat" do
 
+    let(:animal) { Animal.build }
+
+    before(:each) do
+      allow(animal).to receive_message_chain(:field, :vegetation, :calculate)
+    end
+
     it "should increase health" do
-      pending "wait for smart formula"
-      animal = Animal.build
-      allow(animal).to receive_message_chain(:field, :vegetation, size: 600)
-      expect(animal).to receive_message_chain(:field, :vegetation, :sim)
-      animal.eat 4
-      expect(animal.health).to be == 0
+      allow(animal).to receive(:food_eaten).and_return(20)
+      animal.eat 2
+      expect(animal.health).to be == 50 + 2 * 5
     end
 
     it "should not excide max health" do
-      animal = Animal.build
       allow(animal).to receive(:food_eaten).and_return(500)
       animal.eat 4
       expect(animal.health).to be == 100
     end
 
     it "should decrease health" do
-      animal = Animal.build
-      allow(animal).to receive(:food_eaten).and_return(15)
+      allow(animal).to receive(:food_eaten).and_return(10)
       animal.eat 2
       expect(animal.health).to be == 50 - 2 * 5
     end
 
     it "should die" do
-      animal = Animal.build health: 10
+      animal.health = 10
       allow(animal).to receive(:food_eaten).and_return(10)
       expect { animal.eat 4 }.to raise_error(Death)
     end

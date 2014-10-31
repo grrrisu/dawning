@@ -11,7 +11,7 @@ Gazelle:
   health: 50
   max_health: 100
   birth_step: 8
-  needed_food: 50
+  needed_food: 15
   max_food: 80
   type: gazelle
 Mammoth:
@@ -19,7 +19,7 @@ Mammoth:
   health: 80
   max_health: 160
   birth_step: 12
-  needed_food: 130
+  needed_food: 25
   max_food: 200
   type: mammoth
 Leopard:

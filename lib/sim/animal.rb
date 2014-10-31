@@ -6,7 +6,7 @@ class Animal < Sim::Object
   default_attr :health, 50
   default_attr :max_health, 100
   default_attr :birth_step, 5
-  default_attr :needed_food, 20
+  default_attr :needed_food, 15
   default_attr :max_food, 30
 
   attr_accessor :field
@@ -22,6 +22,7 @@ class Animal < Sim::Object
   end
 
   def eat step
+    field.vegetation.calculate step
     self.health += (food_eaten - needed_food) * step
     self.health = max_health if health > max_health
     die! if health <= 0
@@ -34,11 +35,23 @@ class Animal < Sim::Object
     reproduce if next_birth >= birth_step
   end
 
+  #
+  #                                   max_food
+  # food_eaten =  vegetation.size * --------------
+  #                                 max_vegetation
+  #
+  #                                1
+  # food_used  = food_eaten * -----------
+  #                            sustenance
+  #
   def food_eaten
-    field.vegetation.sim
-    food_available = field.vegetation.size
-    # food_eaten = x * r * (max_food - x) / max_food
-    # TODO smart formula
+    max_vegetation = 1300 # max size of vegetation jungle 13
+    max_food = max_health / 3.0
+    sustenance = 1.0 / 3.0
+
+    eaten = field.vegetation.size * max_food / max_vegetation
+    field.vegetation.size -= eaten / sustenance
+    eaten
   end
 
   def think
