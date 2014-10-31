@@ -25,6 +25,7 @@ module Builder
       @world.each_field do |field|
         field.vegetation.try(:queue_up)
         field.flora.try(:queue_up)
+        field.fauna.try(:queue_up)
       end
     end
 

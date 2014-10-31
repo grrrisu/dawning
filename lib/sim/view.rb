@@ -19,12 +19,12 @@ class View < Sim::Globe
   end
 
   def self.move_nofitication x1, y1, x2, y2
-    {
+    Hashie::Mash.new(
       x: x2 <= x1 ? x2 : x1,
       y: y2 <= y1 ? y2 : y1,
       width: (x1 - x2).abs + 1,
       height: (y1 - y2).abs + 1
-    }
+    )
   end
 
   # field properties
