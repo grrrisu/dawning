@@ -21,6 +21,14 @@ class World < Sim::Globe
     end
   end
 
+  # TODO ? should we make world (matrix) an Actor
+  # so that only one thread can change fields
+  # use this method as a kind of transaction
+  def move property, source, target
+    object = source.delete(property)
+    target.merge!(property => object)
+  end
+
   def pp
     output = "\n"
     (height-1).downto(0) do |y|
