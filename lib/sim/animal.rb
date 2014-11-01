@@ -95,7 +95,7 @@ class Animal < Sim::Object
 
   def die!
     sim_loop.remove(self)
-    field.pawn = nil
+    field.fauna = nil
     self.field = nil
     raise Death # abort any running sim process
   end
@@ -105,7 +105,7 @@ class Animal < Sim::Object
     free_field = world.select do |field|
       field.fauna.nil?
     end.shuffle.first
-    free_field.pawn = self.class.build if free_field
+    free_field.fauna = self.class.build if free_field
     # TODO fire reproduce event
     # child = self.class.build
     # fire DropEvent.new(child)
