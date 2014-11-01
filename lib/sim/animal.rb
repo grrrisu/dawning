@@ -102,6 +102,10 @@ class Animal < Sim::Object
 
   def reproduce
     self.next_birth -= birth_step
+    free_field = world.select do |field|
+      field.fauna.nil?
+    end.shuffle.first
+    free_field.pawn = self.class.build
     # TODO fire reproduce event
     # child = self.class.build
     # fire DropEvent.new(child)
