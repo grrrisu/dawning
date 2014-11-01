@@ -94,7 +94,10 @@ class Animal < Sim::Object
   end
 
   def die!
-    raise Death
+    sim_loop.remove(self)
+    field.pawn = nil
+    self.field = nil
+    raise Death # abort any running sim process
   end
 
   def reproduce
@@ -109,7 +112,11 @@ class Animal < Sim::Object
   end
 
   def queue_up
-    Celluloid::Actor[:sim_loop].add(self)
+    sim_loop.add(self)
+  end
+
+  def sim_loop
+    Celluloid::Actor[:sim_loop]
   end
 
   def view_value

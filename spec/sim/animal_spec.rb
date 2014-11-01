@@ -21,7 +21,8 @@ describe Animal do
 
     it "should die" do
       animal = Animal.build age: 28, age_death: 30
-      expect { animal.aging 4 }.to raise_error(Death)
+      expect(animal).to receive(:die!)
+      animal.aging 4
     end
 
   end
@@ -83,7 +84,8 @@ describe Animal do
     it "should die" do
       animal.health = 10
       allow(animal).to receive(:food_eaten).and_return(10)
-      expect { animal.eat 4 }.to raise_error(Death)
+      expect(animal).to receive(:die!)
+      animal.eat 4
     end
 
     it "should decrease vegetation" do
