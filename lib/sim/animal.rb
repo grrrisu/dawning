@@ -12,13 +12,13 @@ class Animal < Sim::Object
   attr_accessor :field
 
   def sim
-    field.vegetation.sim
     super
     aging delay
     area = think
   end
 
   def calculate step
+    field.vegetation.calculate(step)
     eat(step)
   end
 
@@ -26,7 +26,7 @@ class Animal < Sim::Object
     eaten = food_eaten
     inc_health (eaten - needed_food) * step
 
-    sustenance = 1.0 / 3.0
+    sustenance = 1.0 / 5.0
     field.vegetation.size -= (eaten / sustenance) * step
   end
 

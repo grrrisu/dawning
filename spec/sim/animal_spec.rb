@@ -35,7 +35,6 @@ describe Animal do
       animal.field = field
       eaten = animal.food_eaten
       expect(eaten).to be_within(0.1).of(6.66)
-      expect(field.vegetation.size).to be == 650 - 20
     end
 
     it "should calculate food for gazelle" do
@@ -43,7 +42,6 @@ describe Animal do
       animal.field = field
       eaten = animal.food_eaten
       expect(eaten).to be_within(0.1).of(16.66)
-      expect(field.vegetation.size).to be == 650 - 50
     end
 
     it "should calculate food for mammouth" do
@@ -51,7 +49,6 @@ describe Animal do
       animal.field = field
       eaten = animal.food_eaten
       expect(eaten).to be_within(0.1).of(26.66)
-      expect(field.vegetation.size).to be == 650 - 80
     end
 
   end
@@ -59,9 +56,10 @@ describe Animal do
   context "eat" do
 
     let(:animal) { Animal.build }
+    let(:field) { Field.new vegetation: Vegetation.build(size: 650) }
 
-    before(:each) do
-      allow(animal).to receive_message_chain(:field, :vegetation, :calculate)
+    before :each do
+      animal.field = field
     end
 
     it "should increase health" do
@@ -86,6 +84,12 @@ describe Animal do
       animal.health = 10
       allow(animal).to receive(:food_eaten).and_return(10)
       expect { animal.eat 4 }.to raise_error(Death)
+    end
+
+    it "should decrease vegetation" do
+      allow(animal).to receive(:food_eaten).and_return(10)
+      animal.eat 1
+      expect(field.vegetation.size).to be == 650 - 50
     end
 
   end
@@ -137,7 +141,7 @@ describe Animal do
 
       it "should return a notification area" do
         area = animal.move_to world[1,2]
-        expect(area).to be == {x: 1, y: 1, width: 1, height: 2}
+        expect(area).to eq Hashie::Mash.new(x: 1, y: 1, width: 1, height: 2)
       end
 
     end
