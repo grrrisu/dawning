@@ -5,14 +5,14 @@ world:
   width: 15
   height: 15
   vegetation:
-    classes: vegetation.yml
-    builder: test_vegetation_builder.yml
+    classes: default/vegetation.yml
+    builder: test/vegetation_builder.yml
   flora:
-    classes: flora.yml
-    builder: test_flora_builder.yml
+    classes: default/flora.yml
+    builder: test/flora_builder.yml
   fauna:
-    classes: animal.yml
-    builder: test_fauna_builder.yml
+    classes: default/animal.yml
+    builder: test/fauna_builder.yml
 dropzones:
   bot_1:
     from:  0
