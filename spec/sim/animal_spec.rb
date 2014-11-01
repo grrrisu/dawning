@@ -13,6 +13,7 @@ describe Animal do
 
     it "should reproduce" do
       animal = Animal.build age: 2, next_birth: 2
+      allow(animal).to receive_message_chain(:world, select: [Field.new])
       animal.aging 4
       expect(animal.next_birth).to be == 2 + 4 - 5
       # TODO

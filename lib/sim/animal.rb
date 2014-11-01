@@ -105,7 +105,7 @@ class Animal < Sim::Object
     free_field = world.select do |field|
       field.fauna.nil?
     end.shuffle.first
-    free_field.pawn = self.class.build
+    free_field.pawn = self.class.build if free_field
     # TODO fire reproduce event
     # child = self.class.build
     # fire DropEvent.new(child)
