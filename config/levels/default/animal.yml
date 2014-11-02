@@ -1,32 +1,34 @@
-Rabbit:
-  age_death: 30
-  health: 20
-  max_health: 40
-  birth_step: 5
-  needed_food: 5
-  max_food: 15
-  type: rabbit
-Gazelle:
-  age_death: 40
-  health: 50
-  max_health: 100
-  birth_step: 8
-  needed_food: 15
-  max_food: 80
-  type: gazelle
-Mammoth:
-  age_death: 80
-  health: 80
-  max_health: 160
-  birth_step: 12
-  needed_food: 25
-  max_food: 200
-  type: mammoth
-Leopard:
-  age_death: 42
-  health: 50
-  max_health: 100
-  birth_step: 7
-  needed_food: 30
-  max_food: 50
-  type: leopard
+Herbivore:
+  Rabbit:
+    age_death: 30
+    health: 20
+    max_health: 40
+    birth_step: 5
+    needed_food: 5
+    max_food: 15
+    type: rabbit
+  Gazelle:
+    age_death: 40
+    health: 50
+    max_health: 100
+    birth_step: 8
+    needed_food: 15
+    max_food: 80
+    type: gazelle
+  Mammoth:
+    age_death: 80
+    health: 80
+    max_health: 160
+    birth_step: 12
+    needed_food: 25
+    max_food: 200
+    type: mammoth
+Predator:
+  Leopard:
+    age_death: 42
+    health: 50
+    max_health: 100
+    birth_step: 7
+    needed_food: 30
+    max_food: 50
+    type: leopard

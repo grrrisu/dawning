@@ -17,13 +17,12 @@ module Builder
       @namespace = namespace
       @config = load_configuration config[:builder]
       @type_config = load_configuration config[:classes]
-      create_classes
     end
 
-    def create_classes
-      @type_config.each do |klass_name, config|
+    def create_classes super_klass, classes_config
+      classes_config.each do |klass_name, config|
         unless namespace.const_defined?(klass_name)
-          namespace.const_set(klass_name, Class.new(namespace))
+          namespace.const_set(klass_name, Class.new(super_klass))
           namespace.const_get(klass_name).set_defaults(config)
         end
       end
@@ -31,11 +30,14 @@ module Builder
 
     def create_flora namespace, config
       create namespace, config
+      create_classes Flora, @type_config
       set_field :flora
     end
 
     def create_fauna namespace, config
       create namespace, config
+      create_classes Herbivore, @type_config[:Herbivore]
+      create_classes Predator, @type_config[:Predator]
       set_field :fauna
     end
 
