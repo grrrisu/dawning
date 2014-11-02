@@ -1,0 +1,3 @@
+class Herbivore < Animal
+
+end

@@ -13,8 +13,8 @@ class Animal < Sim::Object
 
   def sim
     field.vegetation.sim
-    super
     aging delay
+    super
     area = think
   end
 
