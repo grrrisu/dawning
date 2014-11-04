@@ -8,7 +8,12 @@ class Vegetation < Sim::Object
   default_attr :size, 650
   default_attr :type, 13
 
-  attr_accessor :field
+  attr_reader :field
+
+  def field= field
+    @field           = field
+    field.vegetation = self
+  end
 
   # resource grows by birth rate (alias grow rate) and shrinks by natural deaths (age),
   # the resource size is limited by the capacity (available room, sun energy)

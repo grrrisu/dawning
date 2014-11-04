@@ -69,7 +69,6 @@ module Builder
 
     def set_vegetation x, y, type
       vegetation = build_vegetation(type)
-      @world[x, y].vegetation = vegetation
       vegetation.field = @world[x, y]
     end
 

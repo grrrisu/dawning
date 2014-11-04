@@ -9,7 +9,12 @@ class Animal < Sim::Object
   default_attr :needed_food, 15
   default_attr :max_food, 30
 
-  attr_accessor :field
+  attr_reader :field
+
+  def field= field
+    @field      = field
+    field.fauna = self
+  end
 
   def calculate step
     eat(step)
@@ -67,7 +72,8 @@ class Animal < Sim::Object
       field.fauna.nil?
     end.shuffle.first
     if free_field
-      free_field.fauna = self.class.build
+      child = self.class.build
+      child.field = free_field
       sim_loop.add(free_field.fauna)
     end
     # TODO fire reproduce event

@@ -31,20 +31,19 @@ module Builder
     def create_flora namespace, config
       create namespace, config
       create_classes Flora, @type_config
-      set_field :flora
+      set_field
     end
 
     def create_fauna namespace, config
       create namespace, config
       create_classes Herbivore, @type_config[:Herbivore]
       create_classes Predator, @type_config[:Predator]
-      set_field :fauna
+      set_field
     end
 
-    def set_field property
+    def set_field
       create_flora_fauna do |field, type|
         object = build_object(type)
-        field.send("#{property}=", object)
         object.field = field
       end
     end
