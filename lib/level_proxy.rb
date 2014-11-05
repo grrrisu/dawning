@@ -75,7 +75,7 @@ class LevelProxy
   def launch
     sim_library = Rails.root.join('lib', 'sim', 'level.rb')
     level_class = 'Level'
-    @connection.launch_subprocess(sim_library, level_class, Rails.root.join('tmp', 'sockets', 'players.sock').to_s)
+    @connection.launch_subprocess(sim_library, level_class, Rails.root.to_s, Rails.env)
     @state = :launched
     self
   end
