@@ -11,7 +11,7 @@ describe "level messages" do
   before(:each) do
     level.instance_variable_set('@player_server', player_server)
     level.instance_variable_set('@dispatcher', dispatcher)
-    Sim::Queue::Master.setup logfile, level
+    Sim::Queue::Master.setup level
   end
 
   after(:each) do
