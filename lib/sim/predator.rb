@@ -24,6 +24,7 @@ class Predator < Animal
   end
 
   def move_to target
+    return unless target
     if @prey = target.fauna
       target.fauna = nil
     end
