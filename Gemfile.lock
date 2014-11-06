@@ -7,12 +7,12 @@ GIT
 
 GIT
   remote: git://github.com/grrrisu/Simulator.git
-  revision: 7a433f4468e5f687f234007e8055d76e33cafce5
+  revision: c81381fbbeec8c06f10c2a77302be76214591d5d
   specs:
-    Simulator (0.3.2)
+    Simulator (0.3.3)
       activesupport (>= 4.0.2)
       celluloid (~> 0.13)
-      celluloid-io (~> 0.15.0)
+      celluloid-io (~> 0.15)
       eventmachine
       hashie
       rake
@@ -104,9 +104,9 @@ GEM
       json
     celluloid (0.16.0)
       timers (~> 4.0.0)
-    celluloid-io (0.15.0)
-      celluloid (>= 0.15.0)
-      nio4r (>= 0.5.0)
+    celluloid-io (0.16.1)
+      celluloid (>= 0.16.0)
+      nio4r (>= 1.0.0)
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
     code_analyzer (0.4.5)
