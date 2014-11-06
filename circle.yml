@@ -10,5 +10,6 @@ database:
   override:
     - mv config/mongoid_example.yml config/mongoid.yml
     - mv config/secrets_example.yml config/secrets.yml
+    - mv config/level_example.yml config/level.yml
     - mkdir tmp
     - mkdir tmp/sockets
