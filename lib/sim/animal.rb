@@ -12,8 +12,8 @@ class Animal < Sim::Object
   attr_reader :field
 
   def field= field
-    @field      = field
     field.fauna = self
+    @field      = field
   end
 
   def calculate step
@@ -61,7 +61,6 @@ class Animal < Sim::Object
 
   def die!
     sim_loop.remove(self)
-    field.fauna = nil
     self.field = nil
     raise Death # abort any running sim process
   end
