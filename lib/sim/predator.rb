@@ -16,10 +16,20 @@ class Predator < Animal
   end
 
   def most_profitable_field fields
-    fields.select do |field|
+    field = fields.select do |field|
       field[:fauna].present?
     end.max_by do |field|
       field.fauna.try(:max_health)
+    end
+    field = alternative_field fields unless field
+    field
+  end
+
+  def alternative_field fields
+    fields.select do |field|
+      field[:fauna].nil?
+    end.max_by do |field|
+      field.vegetation.size
     end
   end
 
