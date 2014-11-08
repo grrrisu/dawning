@@ -21,7 +21,7 @@ gem 'Simulator', :require => 'sim', :github => 'grrrisu/Simulator' # :path => '.
 gem 'uuid'
 
 gem 'sass-rails',   '~> 4.0.1'
-gem 'coffee-rails', '~> 4.0.1'
+gem 'coffee-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', :platform => :ruby
