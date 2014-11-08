@@ -2,11 +2,15 @@ class Predator < Animal
 
   default_attr :sim_threshold, 1.0 # does eat and move within 1 sim
 
+  def type
+    :predator
+  end
+
   def sim
-    aging delay
-    area = think
-    eat delay
-    area
+    aging
+    think.tap do
+      eat delay
+    end
   end
 
   def eat step
@@ -16,18 +20,20 @@ class Predator < Animal
   end
 
   def most_profitable_field fields
-    field = fields.select do |field|
-      field[:fauna].present?
+    biggest_prey(fields) || search_prey(fields)
+  end
+
+  def biggest_prey fields
+    fields.select do |field|
+      field.fauna.try(:type) == :herbivore
     end.max_by do |field|
       field.fauna.try(:max_health)
     end
-    field = alternative_field fields unless field
-    field
   end
 
-  def alternative_field fields
+  def search_prey fields
     fields.select do |field|
-      field[:fauna].nil?
+      field.fauna.nil?
     end.max_by do |field|
       field.vegetation.size
     end

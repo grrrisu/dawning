@@ -13,5 +13,13 @@ module Event
       @resources ||= BotMove.move_resources(object.world, object.field)
     end
 
+    def fire
+      changed_area = object.update_simulation
+    rescue Death => d
+      changed_area = d.changed_area
+    ensure
+      notify(changed_area)
+    end
+
   end
 end

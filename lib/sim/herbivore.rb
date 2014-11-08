@@ -1,10 +1,14 @@
 class Herbivore < Animal
 
+  def type
+    :herbivore
+  end
+
   def sim
+    aging
     field.vegetation.sim
-    aging delay
-    super
-    area = think
+    calculate_steps
+    think
   end
 
   def eat step
@@ -15,6 +19,7 @@ class Herbivore < Animal
     field.vegetation.size -= (eaten / sustenance) * step
   end
 
+  # food eaten per time unit
   #
   #                                   max_food
   # food_eaten =  vegetation.size * --------------
@@ -33,7 +38,7 @@ class Herbivore < Animal
 
   def most_profitable_field fields
     fields.select do |field|
-      field[:fauna].nil?
+      field.fauna.nil?
     end.max_by do |field|
       field.vegetation.size
     end

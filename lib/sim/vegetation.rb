@@ -15,6 +15,11 @@ class Vegetation < Sim::Object
     field.vegetation = self
   end
 
+  def sim
+    calculate_steps
+    changed_area
+  end
+
   # resource grows by birth rate (alias grow rate) and shrinks by natural deaths (age),
   # the resource size is limited by the capacity (available room, sun energy)
   #

@@ -6,7 +6,8 @@ describe Animal do
 
     it "should get older" do
       animal = Animal.build
-      animal.aging 4
+      allow(animal).to receive(:delay).and_return(4)
+      animal.aging
       expect(animal.age).to be == 4
       expect(animal.next_birth).to be == 4
     end
@@ -15,7 +16,8 @@ describe Animal do
       animal = Animal.build age: 2, next_birth: 2
       allow(animal).to receive_message_chain(:world, select: [Field.new])
       expect(animal).to receive_message_chain(:sim_loop, :add)
-      animal.aging 4
+      allow(animal).to receive(:delay).and_return(4)
+      animal.aging
       expect(animal.next_birth).to be == 2 + 4 - 5
       # TODO
       # expect(event_queue).to receive(:fire).with(reproduce_event)
@@ -23,8 +25,9 @@ describe Animal do
 
     it "should die" do
       animal = Animal.build age: 28, age_death: 30
+      allow(animal).to receive(:delay).and_return(4)
       expect(animal).to receive(:die!)
-      animal.aging 4
+      animal.aging
     end
 
   end
@@ -68,11 +71,17 @@ describe Animal do
 
     end
 
-    context "think" do
+    context "die!" do
 
-    end
+      let(:sim_loop) { double(Sim::Queue::SimLoop) }
 
-    context "sim" do
+      it "should detach itself" do
+        allow(animal).to receive(:sim_loop).and_return(sim_loop)
+        expect(sim_loop).to receive(:remove).with(animal)
+        expect { animal.die! }.to raise_error(Death)
+        expect(animal.field).to be_nil
+        expect(world[1,1].fauna).to be_nil
+      end
 
     end
 

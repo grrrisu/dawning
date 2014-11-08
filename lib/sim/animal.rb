@@ -26,9 +26,9 @@ class Animal < Sim::Object
     die! if health <= 0
   end
 
-  def aging step
-    self.next_birth += step
-    self.age += step
+  def aging
+    self.next_birth += delay
+    self.age += delay
     die! if age >= age_death
     reproduce if next_birth >= birth_step
   end
@@ -48,6 +48,7 @@ class Animal < Sim::Object
   end
 
   def move_to target
+    return unless target
     View.move_nofitication(field.x, field.y, target.x, target.y).tap do
       field.delete(:fauna)
       self.field = target
@@ -61,8 +62,10 @@ class Animal < Sim::Object
 
   def die!
     sim_loop.remove(self)
-    self.field = nil
-    raise Death # abort any running sim process
+    area = Hashie::Mash.new(x: field.x, y: field.y, width: 1, height: 1)
+    @field.fauna = nil
+    @field = nil
+    raise Death.new area
   end
 
   def reproduce
