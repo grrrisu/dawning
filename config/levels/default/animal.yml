@@ -29,6 +29,6 @@ Predator:
     health: 50
     max_health: 100
     birth_step: 7
-    needed_food: 30
+    needed_food: 10
     max_food: 50
     type: leopard
