@@ -2,7 +2,7 @@ class Predator < Animal
 
   default_attr :sim_threshold, 1.0 # does eat and move within 1 sim
 
-  def type
+  def bio_order
     :predator
   end
 
@@ -25,9 +25,9 @@ class Predator < Animal
 
   def biggest_prey fields
     fields.select do |field|
-      field.fauna.try(:type) == :herbivore
+      field.fauna.try(:bio_order) == :herbivore
     end.max_by do |field|
-      field.fauna.try(:max_health)
+      field.fauna.max_health
     end
   end
 
@@ -42,7 +42,7 @@ class Predator < Animal
   def move_to target
     return unless target
     if @prey = target.fauna
-      target.fauna = nil
+      @prey.die
     end
     super
   end

@@ -7,9 +7,9 @@ describe Predator do
     let(:animal) { Predator.build }
 
     it "should choose field with biggest prey" do
-      field_low       = Field.new vegetation: Vegetation.build(size: 10), fauna: Herbivore.build(max_health: 10)
-      field_empty     = Field.new vegetation: Vegetation.build(size: 20)
-      field_high      = Field.new vegetation: Vegetation.build(size: 30), fauna: Herbivore.build(max_health: 20)
+      field_low       = Field.new vegetation: Vegetation.build(size: 20), fauna: Herbivore.build(max_health: 10)
+      field_empty     = Field.new vegetation: Vegetation.build(size: 30)
+      field_high      = Field.new vegetation: Vegetation.build(size: 10), fauna: Herbivore.build(max_health: 20)
       field_occupied  = Field.new vegetation: Vegetation.build(size: 50), fauna: Predator.build(max_health: 50)
       result = animal.most_profitable_field [field_low, field_high, field_occupied, field_empty]
       expect(result).to eq(field_high)
@@ -51,6 +51,8 @@ describe Predator do
 
     it "should move to prey field" do
       expect(@area).to eq(Hashie::Mash.new(height: 2, width: 2, x: 0, y: 0))
+      expect(animal.field.x).to eq(0)
+      expect(animal.field.y).to eq(0)
     end
 
   end

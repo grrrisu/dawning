@@ -1,6 +1,6 @@
 class Herbivore < Animal
 
-  def type
+  def bio_order
     :herbivore
   end
 
