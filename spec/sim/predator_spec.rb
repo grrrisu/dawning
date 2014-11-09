@@ -38,6 +38,7 @@ describe Predator do
       allow(animal).to receive(:delay).and_return(2.1)
       allow(animal).to receive(:look_around).and_return([field1, field2, field3])
       animal.field = field
+      expect(field1.fauna).to receive(:die)
       @area = animal.sim
     end
 

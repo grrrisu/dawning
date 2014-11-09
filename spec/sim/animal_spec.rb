@@ -75,10 +75,17 @@ describe Animal do
 
       let(:sim_loop) { double(Sim::Queue::SimLoop) }
 
-      it "should detach itself" do
+      before :each do
         allow(animal).to receive(:sim_loop).and_return(sim_loop)
         expect(sim_loop).to receive(:remove).with(animal)
+      end
+
+      it "should raise Death" do
         expect { animal.die! }.to raise_error(Death)
+      end
+
+      it "should detach itself" do
+        animal.die
         expect(animal.field).to be_nil
         expect(world[1,1].fauna).to be_nil
       end

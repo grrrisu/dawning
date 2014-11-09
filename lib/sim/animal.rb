@@ -60,12 +60,16 @@ class Animal < Sim::Object
     Level.instance.world
   end
 
-  def die!
+  def die
     sim_loop.remove(self)
-    area = Hashie::Mash.new(x: field.x, y: field.y, width: 1, height: 1)
     @field.fauna = nil
     @field = nil
-    raise Death.new area
+  end
+
+  def die!
+    area = Hashie::Mash.new(x: field.x, y: field.y, width: 1, height: 1)
+    die
+    raise Death.new(area)
   end
 
   def reproduce
