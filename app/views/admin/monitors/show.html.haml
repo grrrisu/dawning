@@ -2,5 +2,8 @@
   = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"
 
 %h1 Monitor
-%p
-  {{'Hello ' + 'Angular!'}}
+%p {{'Hello ' + 'Angular!'}}
+
+.levels{'ng-controller' => 'MonitorController as monitor'}
+  %div Name: {{ monitor.level.name }}
+  %div State: {{ monitor.level.state }}
