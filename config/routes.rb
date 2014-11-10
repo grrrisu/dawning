@@ -31,5 +31,6 @@ Dawning::Application.routes.draw do
         put :stop
       end
     end
+    resource :monitor, only: [:show]
   end
 end

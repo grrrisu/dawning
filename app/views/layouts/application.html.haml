@@ -1,5 +1,5 @@
 !!! html5
-%html{:lang => 'en'}
+%html{:lang => 'en', 'ng-app' => 'monitor'}
   %head
     %title= "Dawning - #{page_title}"
     %meta{ :charset => "utf-8" }
@@ -8,9 +8,9 @@
     %meta{ :description => "Dawning a game of emeregence"}
     = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tag
+    = yield :javascript
     = javascript_include_tag "application"
     = javascript_include_tag "game_client" if show_map?
-    = yield :javascript
   %body
     .wrapper
       = render 'shared/navigation'
