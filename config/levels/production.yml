@@ -1,9 +1,9 @@
-time_unit: 120
+time_unit: 60
 sim_loop:
-  duration: 360
+  duration: 180
 world:
-  width: 50
-  height: 100
+  width: 25
+  height: 50
   vegetation:
     classes: default/vegetation.yml
     builder: default/vegetation_builder.yml
