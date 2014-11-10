@@ -5,5 +5,6 @@
 %p {{'Hello ' + 'Angular!'}}
 
 .levels{'ng-controller' => 'MonitorController as monitor'}
-  %div Name: {{ monitor.level.name }}
-  %div State: {{ monitor.level.state }}
+  .level{'ng-repeat' => 'level in monitor.levels'}
+    %div Name: {{ level.name }}
+    %div State: {{ level.state }}
