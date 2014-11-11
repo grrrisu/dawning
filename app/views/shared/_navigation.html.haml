@@ -24,6 +24,7 @@
               %b.caret
             %ul.dropdown-menu
               = navigation_item 'Levels', [:admin, :levels], admin_levels_path
+              = navigation_item 'Monitor', [:admin, :monitor], admin_monitor_path, data: {:'no-turbolink' => true}
 
     -if current_user
       .navbar-text.navbar-right

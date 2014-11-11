@@ -1,10 +1,27 @@
-- content_for :javascript do
-  = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"
-
-%h1 Monitor
+%legend
+  Monitor
 %p {{'Hello ' + 'Angular!'}}
 
-.levels{'ng-controller' => 'MonitorController as monitor'}
-  .level{'ng-repeat' => 'level in monitor.levels'}
-    %div Name: {{ level.name }}
-    %div State: {{ level.state }}
+.row.levels{'ng-controller' => 'MonitorController as monitor'}
+  .col-md-3.col-sm-6{'ng-repeat' => 'level in monitor.levels'}
+    %div
+      %strong {{ level.name }}
+    %div
+      State: {{ level.state }}
+      %i.fa.fa-rocket{'ng-show' => "level.state == 'launched'"}
+      %i.fa.fa-cubes{'ng-show' => "level.state == 'ready'"}
+      %i.fa.fa-spin.fa-refresh{'ng-show' => "level.state == 'running'"}
+      %i.fa.fa-coffee{'ng-show' => "level.state == 'stopped'"}
+    %div
+      %button{type: 'submit', class: 'btn btn-primary spinner', 'ng-show' => "level.state == 'launched'"}
+        %i.fa.fa-cog
+        Build
+      %a.btn.btn-success.spinner{:href => '/admin/levels/{{level.id}}', 'ng-show' => "level.state == 'ready'", :data => {:remote => true, :method => 'put'}}
+        %i.fa.fa-play
+        Run
+      %a.btn.btn-warning.spinner{:href => '/admin/levels/{{level.id}}/stop', 'ng-show' => "level.state == 'running'", :data => {:remote => true, :method => 'put'}}
+        %i.fa.fa-power-off
+        Stop
+      %a.btn.btn-danger.spinner{:href => '/admin/levels/{{level.id}}', 'ng-show' => "level.state == 'stopped'", :data => {:remote => true, :method => 'delete'}}
+        %i.fa.fa-times
+        Remove
