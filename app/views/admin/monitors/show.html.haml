@@ -2,26 +2,73 @@
   Monitor
 %p {{'Hello ' + 'Angular!'}}
 
-.row.levels{'ng-controller' => 'MonitorController as monitor'}
-  .col-md-3.col-sm-6{'ng-repeat' => 'level in monitor.levels'}
-    %div
-      %strong {{ level.name }}
-    %div
-      State: {{ level.state }}
-      %i.fa.fa-rocket{'ng-show' => "level.state == 'launched'"}
-      %i.fa.fa-cubes{'ng-show' => "level.state == 'ready'"}
-      %i.fa.fa-spin.fa-refresh{'ng-show' => "level.state == 'running'"}
-      %i.fa.fa-coffee{'ng-show' => "level.state == 'stopped'"}
-    %div
-      %button{type: 'submit', class: 'btn btn-primary spinner', 'ng-show' => "level.state == 'launched'"}
-        %i.fa.fa-cog
-        Build
-      %a.btn.btn-success.spinner{:href => '/admin/levels/{{level.id}}', 'ng-show' => "level.state == 'ready'", :data => {:remote => true, :method => 'put'}}
-        %i.fa.fa-play
-        Run
-      %a.btn.btn-warning.spinner{:href => '/admin/levels/{{level.id}}/stop', 'ng-show' => "level.state == 'running'", :data => {:remote => true, :method => 'put'}}
-        %i.fa.fa-power-off
-        Stop
-      %a.btn.btn-danger.spinner{:href => '/admin/levels/{{level.id}}', 'ng-show' => "level.state == 'stopped'", :data => {:remote => true, :method => 'delete'}}
-        %i.fa.fa-times
-        Remove
+.row.levels{'ng-controller' => 'MonitorController as monitorCtrl'}
+  .col-md-3.col-sm-8{'ng-repeat' => 'level in monitorCtrl.levels'}
+    .level{style: 'text-align: left'}
+      .row
+        .col-md-8
+          %div
+            %strong {{ level.name }}
+          %div{'ng-show' => 'level.state'}
+            State: {{ level.state }}
+          %div{'ng-show' => 'level.config'}
+            Config: {{ level.config }}
+          %div{'ng-hide' => 'level.state'}
+            %form.form-horizontal{name: 'launchForm', 'ng-controller' => 'LaunchController as launchCtrl', 'ng-submit' => 'launchForm.$valid && launchCtrl.launchLevel(monitorCtrl, level)', novalidate: true}
+              .form-group
+                %label.control-label.col-sm-2{for: "level_name"}
+                  Name
+                .col-sm-10
+                  %input{style: 'width: auto', type: 'text', required: true, id: 'level_name', name: 'level[name]', 'ng-model' => 'level.name'}
+              %button.btn.btn-primary{type: "submit"}
+                %i.fa.fa-rocket
+                Launch
+          %div
+            %button{type: 'submit', class: 'btn btn-primary spinner', 'ng-show' => "monitorCtrl.hasState(level,'launched')"}
+              %i.fa.fa-cog
+              Build
+            %a.btn.btn-success.spinner{:href => '/admin/levels/{{level.id}}', 'ng-show' => "monitorCtrl.hasState(level,'ready')", :data => {:remote => true, :method => 'put'}}
+              %i.fa.fa-play
+              Run
+            %a.btn.btn-warning.spinner{:href => '/admin/levels/{{level.id}}/stop', 'ng-show' => "monitorCtrl.hasState(level,'running')", :data => {:remote => true, :method => 'put'}}
+              %i.fa.fa-power-off
+              Stop
+            %a.btn.btn-danger.spinner{:href => '/admin/levels/{{level.id}}', 'ng-show' => "monitorCtrl.hasState(level,'stopped')", :data => {:remote => true, :method => 'delete'}}
+              %i.fa.fa-times
+              Remove
+        .col-md-4
+          %i.fa.fa-3x{'ng-class' => "monitorCtrl.state_class(level.state)"}
+      .row{'ng-show' => 'level.time_unit'}
+        .col-md-12
+          %strong
+            %i.fa.fa-clock-o
+            Time Unit
+          %br
+          Unit: {{level.time_unit.unit}} sec
+          %br
+          Time Elapsed: {{level.time_unit.time_elapsed / 60 | number:2 }} min
+          %br
+          Started: {{level.time_unit.started | date: 'd. MMM. yyyy H:mm:ss' : UTC }}
+      .row{'ng-show' => 'level.event_queue'}
+        .col-md-12
+          %strong
+            %i.fa.fa-fire
+            Event Queue
+          %br
+          \# waitings: 5
+          %br
+          \# processing: 1
+          %br
+          \# locks: 0
+      .row{'ng-show' => 'level.sim_loops'}
+        .col-md-12
+          %strong
+            %i.fa.fa-recycle
+            Sim Loop
+          %br
+          duration: 3 tu
+          %br
+          \# objects: 50000
+
+
+
