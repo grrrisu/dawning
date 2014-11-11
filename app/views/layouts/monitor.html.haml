@@ -1,5 +1,5 @@
 !!! html5
-%html{:lang => 'en'}
+%html{:lang => 'en', 'ng-app' => 'monitor'}
   %head
     %title= "Dawning - #{page_title}"
     %meta{ :charset => "utf-8" }
@@ -10,7 +10,7 @@
     = csrf_meta_tag
     = yield :javascript
     = javascript_include_tag "application"
-    = javascript_include_tag "game_client" if show_map?
+    = javascript_include_tag "monitor"
   %body
     .wrapper
       = render 'shared/navigation'
