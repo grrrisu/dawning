@@ -7,7 +7,8 @@
     .col-md-3.col-sm-8{'ng-repeat' => 'level in monitorCtrl.levels'}
       .level{style: 'text-align: left'}
         .row
-          .col-md-8
+          .col-md-12
+            %i.fa.fa-3x.pull-right{'ng-class' => "monitorCtrl.state_class(level.state)"}
             %div
               %strong {{ level.name }}
             %div{'ng-show' => 'level.state'}
@@ -18,8 +19,6 @@
               %new-level-form
             %div
               %level-actions
-          .col-md-4
-            %i.fa.fa-3x{'ng-class' => "monitorCtrl.state_class(level.state)"}
         .row{'ng-show' => 'level.time_unit'}
           .col-md-12
             %strong
