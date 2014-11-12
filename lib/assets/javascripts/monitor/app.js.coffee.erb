@@ -1,7 +1,9 @@
+#= depend_on_asset "create_level_button.html.haml"
+#= depend_on_asset "new_level_form.html.haml"
+
 time_unit = { unit: 60, time_elapsed: 3200, started: '2014-09-27T18:30:49-0300' }
 
 data = [
-  {},
   {id: 1, name: 'Foobar', state: 'launched', config: 'default.yml'},
   {id: 2, name: 'Test Level', state: 'ready', config: 'default.yml', time_unit: time_unit, event_queue: {}, sim_loops: []},
   {id: 3, name: 'Default Level', state: 'running', config: 'default.yml', time_unit: time_unit, event_queue: {}, sim_loops: []},
@@ -34,11 +36,24 @@ app.controller('MonitorController', ->
   @button_class = (state) ->
     @states[state].button_class if state?
 
+
+  @addLevel = () ->
+    @levels.unshift({})
+
+  @removeLevel = (level) ->
+    #if level.state == ''
+    @levels.shift()
+
+  @launchLevel = (level) ->
+    level.state = 'launched'
 )
 
-app.controller('LaunchController', ->
+app.directive('createLevelButton', ->
+  restrict: 'E',
+  templateUrl: '<%= asset_path("create_level_button.html") %>'
+)
 
-  @launchLevel = (monitorCtrl, level) ->
-    level.state = 'launched'
-    monitorCtrl.levels.unshift({})
+app.directive('newLevelForm', ->
+  restrict: 'E',
+  templateUrl: '<%= asset_path("new_level_form.html") %>'
 )
