@@ -42,8 +42,9 @@ app.controller('MonitorController', ->
     @levels.unshift({})
 
   @removeLevel = (level) ->
+    console.log(level)
     #if level.state == ''
-    @levels.shift()
+    @levels.remove(level)
 
   @launchLevel = (level) ->
     level.state = 'launched'
