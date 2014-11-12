@@ -1,5 +1,6 @@
 #= depend_on_asset "create_level_button.html.haml"
 #= depend_on_asset "new_level_form.html.haml"
+#= depend_on_asset "level_actions.html.haml"
 
 time_unit = { unit: 60, time_elapsed: 3200, started: '2014-09-27T18:30:49-0300' }
 
@@ -56,4 +57,9 @@ app.directive('createLevelButton', ->
 app.directive('newLevelForm', ->
   restrict: 'E',
   templateUrl: '<%= asset_path("new_level_form.html") %>'
+)
+
+app.directive('levelActions', ->
+  restrict: 'E',
+  templateUrl: '<%= asset_path("level_actions.html") %>'
 )

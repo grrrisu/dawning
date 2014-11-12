@@ -1,0 +1,12 @@
+%button{type: 'submit', class: 'btn btn-primary spinner', 'ng-show' => "monitorCtrl.hasState(level,'launched')"}
+  %i.fa.fa-cog
+  Build
+%a.btn.btn-success.spinner{:href => '/admin/levels/{{level.id}}', 'ng-show' => "monitorCtrl.hasState(level,'ready')", :data => {:remote => true, :method => 'put'}}
+  %i.fa.fa-play
+  Run
+%a.btn.btn-warning.spinner{:href => '/admin/levels/{{level.id}}/stop', 'ng-show' => "monitorCtrl.hasState(level,'running')", :data => {:remote => true, :method => 'put'}}
+  %i.fa.fa-power-off
+  Stop
+%a.btn.btn-danger.spinner{:href => '/admin/levels/{{level.id}}', 'ng-show' => "monitorCtrl.hasState(level,'stopped')", :data => {:remote => true, :method => 'delete'}}
+  %i.fa.fa-times
+  Remove
