@@ -10,7 +10,7 @@
           .col-md-12
             %i.fa.fa-3x.pull-right{'ng-class' => "monitorCtrl.state_class(level.state)"}
             %div
-              %strong {{ level.name }}
+              %h4 {{ level.name }}
             %div{'ng-show' => 'level.state'}
               State: {{ level.state }}
             %div{'ng-show' => 'level.config'}
