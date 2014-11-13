@@ -11,6 +11,13 @@ data = [
   {id: 4, name: 'Old Level', state: 'stopped', config: 'default.yml', time_unit: time_unit, event_queue: {}, sim_loops: []}
 ]
 
+config_files = [
+  'default.yml',
+  'production.yml',
+  'test.yml',
+  'test_minimal.yml'
+]
+
 states = {
   'launched': { state_class: 'fa-rocket', button_class: 'btn btn-primary spinner' },
   'ready': { state_class: 'fa-cubes', button_class: 'btn btn-success spinner' },
@@ -23,6 +30,7 @@ app = angular.module('monitor', [])
 app.controller('MonitorController', ->
   @levels = data
   @states = states
+  @config_files = config_files
 
   # TODO move to model
   @hasState = (level, state) ->
@@ -48,6 +56,10 @@ app.controller('MonitorController', ->
 
   @launchLevel = (level) ->
     level.state = 'launched'
+
+  @buildLevel = (level) ->
+    level.state = 'ready'
+    level.config = '????'
 )
 
 app.directive('createLevelButton', ->

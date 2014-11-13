@@ -1,7 +1,12 @@
-%div{style: 'margin-top: 15px; margin-bottom: 15px;'}
-%button{type: 'submit', class: 'btn btn-primary spinner', 'ng-show' => "monitorCtrl.hasState(level,'launched')"}
-  %i.fa.fa-cube
-  Build
+%div{style: 'margin-top: 5px; margin-bottom: 15px;'}
+
+%div{'ng-show' => "monitorCtrl.hasState(level,'launched')"}
+  %select{id:"config_file", name:"config_file"}
+    %option{'ng-repeat' => 'config_file in monitorCtrl.config_files'}
+      {{config_file}}
+  %a.btn.btn-primary.spinner{'ng-click' => "monitorCtrl.buildLevel(level)"}
+    %i.fa.fa-cube
+    Build
 %a.btn.btn-success.spinner{:href => '/admin/levels/{{level.id}}', 'ng-show' => "monitorCtrl.hasState(level,'ready')", :data => {:remote => true, :method => 'put'}}
   %i.fa.fa-play
   Run
