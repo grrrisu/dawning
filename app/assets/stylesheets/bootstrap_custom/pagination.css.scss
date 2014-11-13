@@ -13,7 +13,7 @@ ul.pagination {
     @include box-shadow(inset 0px 1px 1px #aaa);
     border: 1px solid #ddd;
     color: $brand-primary;
-    background-color: #eee;
+    background-color: $background-grey;
   }
 
   li > a, li > span {

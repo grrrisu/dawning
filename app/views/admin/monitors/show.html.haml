@@ -1,26 +1,26 @@
-%div{'ng-controller' => 'MonitorController as monitorCtrl'}
-  %legend
-    Monitor
-  %p
-    %create-level-button
-  .row.levels
-    .col-md-3.col-sm-8{'ng-repeat' => 'level in monitorCtrl.levels'}
-      .level{style: 'text-align: left'}
-        .row
-          .col-md-12
-            %i.fa.fa-3x.pull-right{'ng-class' => "monitorCtrl.state_class(level.state)"}
-            %div
-              %h4 {{ level.name }}
-            %div{'ng-show' => 'level.state'}
-              State: {{ level.state }}
-            %div{'ng-show' => 'level.config'}
-              Config: {{ level.config }}
-            %div{'ng-hide' => 'level.state'}
-              %new-level-form
-            %div
-              %level-actions
-        .row{'ng-show' => 'level.time_unit'}
-          .col-md-12
+- content_for :javascript do
+  = javascript_include_tag "monitor"
+
+%div{'ng-app' => 'monitor'}
+  %div{'ng-controller' => 'MonitorController as monitorCtrl'}
+    %legend
+      Monitor
+    %p
+      %create-level-button
+    .row.levels
+      .col-md-3.col-sm-8{'ng-repeat' => 'level in monitorCtrl.levels'}
+
+        .panel.panel-default.level-panel
+          .panel-heading
+            %h4
+              {{ level.name }}
+              %i.fa.fa-2x.pull-right{'ng-class' => "monitorCtrl.state_class(level.state)"}
+          .panel-section{'ng-show' => 'level.state'}
+            %div State: {{ level.state }}
+            %div Config: {{ level.config }}
+          .panel-section{'ng-hide' => 'level.state'}
+            %new-level-form
+          .panel-section{'ng-show' => 'level.time_unit'}
             %strong
               %i.fa.fa-clock-o
               Time Unit
@@ -30,19 +30,17 @@
             Time Elapsed: {{level.time_unit.time_elapsed / 60 | number:2 }} min
             %br
             Started: {{level.time_unit.started | date: 'd. MMM. yyyy H:mm:ss' : UTC }}
-        .row{'ng-show' => 'level.event_queue'}
-          .col-md-12
+          .panel-section{'ng-show' => 'level.event_queue'}
             %strong
               %i.fa.fa-fire
               Event Queue
             %br
             \# waitings: 5
             %br
-            \# processing: 1
+            \# processing: 1 of 2
             %br
             \# locks: 0
-        .row{'ng-show' => 'level.sim_loops'}
-          .col-md-12
+          .panel-section{'ng-show' => 'level.sim_loops'}
             %strong
               %i.fa.fa-recycle
               Sim Loop
@@ -50,6 +48,7 @@
             duration: 3 tu
             %br
             \# objects: 50000
-
+          .panel-section
+            %level-actions
 
 
