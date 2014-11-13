@@ -18,8 +18,6 @@
           .panel-section{'ng-show' => 'level.state'}
             %div State: {{ level.state }}
             %div Config: {{ level.config }}
-          .panel-section{'ng-hide' => 'level.state'}
-            %new-level-form
           .panel-section{'ng-show' => 'level.time_unit'}
             %strong
               %i.fa.fa-clock-o
@@ -49,6 +47,7 @@
             %br
             \# objects: 50000
           .panel-section
-            %level-actions
+            %level-actions{'ng-show' => 'level.state'}
+            %new-level-form{'ng-hide' => 'level.state'}
 
 
