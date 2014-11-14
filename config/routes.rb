@@ -31,6 +31,12 @@ Dawning::Application.routes.draw do
         put :stop
       end
     end
+
     resource :monitor, only: [:show]
+    namespace :api do
+      namespace :v1 do
+        resources :config_files, defaults: {format: 'json'}, only: [:index]
+      end
+    end
   end
 end
