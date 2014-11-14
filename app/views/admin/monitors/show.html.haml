@@ -16,13 +16,13 @@
               %i.fa.fa-2x.pull-right{'ng-class' => "monitorCtrl.state_class(level.state)"}
           .panel-section{'ng-show' => 'level.state'}
             %div State: {{ level.state }}
-            %div Config: {{ level.config }}
+            %div Config: {{ level.config_file }}
           .panel-section{'ng-show' => 'level.time_unit'}
             %strong
               %i.fa.fa-clock-o
               Time Unit
             %br
-            Unit: {{level.time_unit.unit}} sec
+            Unit: {{level.time_unit.time_unit}} sec
             %br
             Time Elapsed: {{level.time_unit.time_elapsed / 60 | number:2 }} min
             %br
@@ -32,11 +32,11 @@
               %i.fa.fa-stack-overflow.fa-rotate-90
               Event Queue
             %br
-            \# waitings: 5
+            \# waitings: {{level.event_queue.waitings}}
             %br
-            \# processing: 1 of 2
+            \# processing: {{level.event_queue.processing}} of {{level.event_queue.workers}}
             %br
-            \# locks: 0
+            \# locks: {{level.event_queue.locks}}
           .panel-section{'ng-show' => 'level.sim_loops'}
             %strong
               %i.fa.fa-recycle

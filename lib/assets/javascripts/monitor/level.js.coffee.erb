@@ -1,10 +1,10 @@
 time_unit = { unit: 60, time_elapsed: 3200, started: '2014-09-27T18:30:49-0300' }
 
 data = [
-  {id: 1, name: 'Foobar', state: 'launched', config: 'default.yml'},
-  {id: 2, name: 'Test Level', state: 'ready', config: 'default.yml', time_unit: time_unit, event_queue: {}, sim_loops: []},
-  {id: 3, name: 'Default Level', state: 'running', config: 'default.yml', time_unit: time_unit, event_queue: {}, sim_loops: []},
-  {id: 4, name: 'Old Level', state: 'stopped', config: 'default.yml', time_unit: time_unit, event_queue: {}, sim_loops: []}
+  {id: 1, name: 'Foobar', state: 'launched', config_file: 'test.yml'},
+  {id: 2, name: 'Test Level', state: 'ready', config_file: 'test.yml', time_unit: time_unit, event_queue: {}, sim_loops: []},
+  {id: 3, name: 'Default Level', state: 'running', config_file: 'test.yml', time_unit: time_unit, event_queue: {}, sim_loops: []},
+  {id: 4, name: 'Old Level', state: 'stopped', config_file: 'test.yml'}
 ]
 
 states = {
@@ -26,6 +26,11 @@ app.controller('MonitorController', [ '$http', (http)->
     http.get('/admin/api/v1/config_files.json').success( (data) ->
       controller.config_files = data
     ).error( ->
+    )
+
+  @loadLevelInfo = () ->
+    http.get('/admin/api/v1/levels.json').success( (data) ->
+      controller.levels = controller.levels.concat(data)
     )
 
   # TODO move to model
@@ -57,6 +62,7 @@ app.controller('MonitorController', [ '$http', (http)->
     level.config = '????'
 
   @loadConfigFiles()
+  @loadLevelInfo()
 ])
 
 app.directive('createLevelButton', ->

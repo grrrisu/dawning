@@ -32,7 +32,7 @@ class LevelProxy
 
   # --- Instance Methods ----
 
-  attr_reader :id, :name, :state, :players, :connection
+  attr_reader :id, :name, :state, :players, :connection, :config_file
 
   def initialize id, name
     @id         = id
@@ -82,8 +82,9 @@ class LevelProxy
 
   def build config
     if @state == :launched
-      config_file = Rails.root.join('config', 'levels', config).to_s
-      @connection.send_action :build, config_file: config_file
+      @config_file = config
+      file = Rails.root.join('config', 'levels', config).to_s
+      @connection.send_action :build, config_file: file
       @state = :ready
     else
       raise ArgumentError, "level must be in state started but is in '#{@state}'"
@@ -115,6 +116,10 @@ class LevelProxy
     else
       raise ArgumentError, "level must be in state stopped but is in '#{@state}'"
     end
+  end
+
+  def as_json
+    @connection.send_action :as_json
   end
 
 end
