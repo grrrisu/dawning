@@ -119,7 +119,11 @@ class LevelProxy
   end
 
   def as_json
-    @connection.send_action :as_json
+    json = { id: id, name: name, state: state, config_file: config_file }
+    unless state == :stopped
+      json.merge! @connection.send_action :as_json
+    end
+    json
   end
 
 end

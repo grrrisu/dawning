@@ -24,7 +24,9 @@
             %br
             Unit: {{level.time_unit.time_unit}} sec
             %br
-            Time Elapsed: {{level.time_unit.time_elapsed / 60 | number:2 }} min
+            Time Elapsed: {{(level.time_unit.time_elapsed * level.time_unit.time_unit)/ 60 | number:2 }} min
+            %br
+            TU Elapsed: {{level.time_unit.time_elapsed | number:2 }}
             %br
             Started: {{level.time_unit.started | date: 'd. MMM. yyyy H:mm:ss' : UTC }}
           .panel-section{'ng-show' => 'level.event_queue'}
@@ -37,14 +39,14 @@
             \# processing: {{level.event_queue.processing}} of {{level.event_queue.workers}}
             %br
             \# locks: {{level.event_queue.locks}}
-          .panel-section{'ng-show' => 'level.sim_loops'}
+          .panel-section{'ng-show' => 'level.sim_loop'}
             %strong
               %i.fa.fa-recycle
               Sim Loop
             %br
-            duration: 3 tu
+            duration: {{level.sim_loop.duration}} tu
             %br
-            \# objects: 50000
+            \# objects: {{level.sim_loop.objects}}
           .panel-section
             %level-actions{'ng-show' => 'level.state'}
             %new-level-form{'ng-hide' => 'level.state'}
