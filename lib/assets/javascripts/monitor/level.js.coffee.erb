@@ -20,6 +20,7 @@ app.controller('MonitorController', [ '$http', (http)->
   @levels = data
   @states = states
   @config_files = []
+  @sending = false;
   controller = this
 
   @loadConfigFiles = () ->
@@ -49,13 +50,19 @@ app.controller('MonitorController', [ '$http', (http)->
   @addLevel = () ->
     @levels.unshift({})
 
+  @launchLevel = (level) ->
+    @sending = true
+    http.post('/admin/api/v1/levels.json', {level: {name: level.name}}).success( (data) ->
+      index = controller.levels.indexOf(level)
+      if index != -1
+        controller.levels[index] = data
+      controller.sending = false
+    )
+
   @removeLevel = (level) ->
     console.log(level)
     #if level.state == ''
     @levels.remove(level)
-
-  @launchLevel = (level) ->
-    level.state = 'launched'
 
   @buildLevel = (level) ->
     level.state = 'ready'
