@@ -1,12 +1,5 @@
 time_unit = { unit: 60, time_elapsed: 3200, started: '2014-09-27T18:30:49-0300' }
 
-data = [
-  {id: 1, name: 'Foobar', state: 'launched', config_file: 'test.yml'},
-  {id: 2, name: 'Test Level', state: 'ready', config_file: 'test.yml', time_unit: time_unit, event_queue: {}, sim_loops: []},
-  {id: 3, name: 'Default Level', state: 'running', config_file: 'test.yml', time_unit: time_unit, event_queue: {}, sim_loops: []},
-  {id: 4, name: 'Old Level', state: 'stopped', config_file: 'test.yml'}
-]
-
 states = {
   'launched': { state_class: 'fa-rocket', button_class: 'btn btn-primary spinner' },
   'ready': { state_class: 'fa-cubes', button_class: 'btn btn-success spinner' },
@@ -16,22 +9,23 @@ states = {
 
 app = angular.module('levels', [])
 
-app.controller('MonitorController', [ '$http', (http)->
-  @levels = data
+app.controller('MonitorController', [ '$http', ($http)->
+  @levels = []
+  @currentLevel = null
   @states = states
   @config_files = []
-  @sending = false;
+  @sending = false
   controller = this
 
   @loadConfigFiles = () ->
-    http.get('/admin/api/v1/config_files.json').success( (data) ->
+    $http.get('/admin/api/v1/config_files.json').success( (data) ->
       controller.config_files = data
     ).error( ->
     )
 
   @loadLevelInfo = () ->
-    http.get('/admin/api/v1/levels.json').success( (data) ->
-      controller.levels = controller.levels.concat(data)
+    $http.get('/admin/api/v1/levels.json').success( (data) ->
+      controller.levels = data
     )
 
   # TODO move to model
@@ -52,21 +46,44 @@ app.controller('MonitorController', [ '$http', (http)->
 
   @launchLevel = (level) ->
     @sending = true
-    http.post('/admin/api/v1/levels.json', {level: {name: level.name}}).success( (data) ->
-      index = controller.levels.indexOf(level)
-      if index != -1
-        controller.levels[index] = data
-      controller.sending = false
-    )
-
-  @removeLevel = (level) ->
-    console.log(level)
-    #if level.state == ''
-    @levels.remove(level)
+    @currentLevel = level
+    $http.post('/admin/api/v1/levels.json', {level: {name: level.name}})
+      .success(@updateLevel)
 
   @buildLevel = (level) ->
-    level.state = 'ready'
-    level.config = '????'
+    @sending = true
+    @currentLevel = level
+    $http.put('/admin/api/v1/levels/'+level.id+'/build.json', {level: {config: level.config_file}})
+      .success(@updateLevel)
+
+  @runLevel = (level) ->
+    @sending = true
+    @currentLevel = level
+    $http.put('/admin/api/v1/levels/'+level.id+'/run.json')
+      .success(@updateLevel)
+
+  @stopLevel = (level) ->
+    @sending = true
+    @currentLevel = level
+    $http.put('/admin/api/v1/levels/'+level.id+'/stop.json')
+      .success(@updateLevel)
+
+  @removeLevel = (level) ->
+    @sending = true
+    @currentLevel = level
+    $http.delete('/admin/api/v1/levels/'+level.id)
+      .success( (data) ->
+        index = controller.levels.indexOf(controller.currentLevel)
+        if index != -1
+          controller.levels.splice(index, 1)
+        controller.sending = false
+    )
+
+  @updateLevel = (data) =>
+    index = @levels.indexOf(@currentLevel)
+    if index != -1
+      @levels[index] = data
+    @sending = false
 
   @loadConfigFiles()
   @loadLevelInfo()

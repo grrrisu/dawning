@@ -12,32 +12,28 @@ class Admin::Api::V1::LevelsController < ApplicationController
   end
 
   def create
-    if params[:level].try(:[],:name)
-      level = LevelProxy.create params[:level][:name]
-      render json: level.as_json
-    else
-      raise ArgumentError, "no name passed"
-    end
+    level = LevelProxy.create params[:level][:name]
+    render json: level.as_json
   end
 
   def build
-    @level.build params[:config_file]
-    render action: :level
+    @level.build params[:level][:config]
+    render json: @level.as_json
   end
 
   def run
     @level.start
-    render action: :level
+    render json: @level.as_json
   end
 
   def stop
     @level.stop
-    render action: :level
+    render json: @level.as_json
   end
 
   def destroy
     @level.remove
-    render action: :destroy
+    render json: nil
   end
 
 private
