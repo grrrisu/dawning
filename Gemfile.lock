@@ -84,7 +84,7 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
-    cancan (1.6.10)
+    cancancan (1.9.2)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -425,7 +425,7 @@ DEPENDENCIES
   brakeman
   bullet
   byebug
-  cancan
+  cancancan
   capistrano
   capistrano-ext
   capybara (= 2.4.1)
