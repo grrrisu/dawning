@@ -14,9 +14,8 @@ app.controller('MonitorController', [ '$http', ($http)->
   controller = this
 
   @loadLevelInfo = () ->
-    $http.get('/admin/api/v1/levels.json').success( (data) ->
+    $http.get('/admin/api/v1/levels.json').success (data) ->
       controller.levels = data
-    )
 
   @stateClass = (state) ->
     if state?
@@ -35,13 +34,15 @@ app.controller('LevelPanelController', [ '$http', '$scope', ($http, $scope)->
   controller = this
 
   @loadConfigFiles = () ->
-    $http.get('/admin/api/v1/config_files.json').success( (data) ->
+    $http.get('/admin/api/v1/config_files.json').success (data) ->
       controller.config_files = data
-    )
 
   # TODO move to model
   @hasState = (state) ->
-    $scope.level.state is state
+    if typeof(state) == 'string'
+      $scope.level.state is state
+    else
+      state.indexOf($scope.level.state) > -1
 
   @launchLevel = () ->
     @sending = true
@@ -62,6 +63,12 @@ app.controller('LevelPanelController', [ '$http', '$scope', ($http, $scope)->
     @sending = true
     $http.put('/admin/api/v1/levels/'+$scope.level.id+'/stop.json')
       .success(@updateLevel)
+
+  @joinLevel = () ->
+    @sending = true
+    $http.put('/admin/api/v1/levels/'+$scope.level.id+'/join.json')
+      .success (data) ->
+        window.location.href = '/levels/'+$scope.level.id+'/map.html'
 
   @updateLevel = (data) =>
     $scope.level = data

@@ -2,7 +2,7 @@ class Admin::Api::V1::LevelsController < ApplicationController
 
   authorize_resource
 
-  before_filter :find_level, only: [:run, :build, :stop, :destroy]
+  before_filter :find_level, only: [:run, :build, :join, :stop, :destroy]
 
   respond_to :json
 
@@ -36,10 +36,17 @@ class Admin::Api::V1::LevelsController < ApplicationController
     render json: nil
   end
 
+  def join
+    @level.add_player current_user.id, role: :admin unless @level.find_player(current_user.id)
+    render json: {success: true}
+  end
+
 private
 
   def find_level
-    @level =  LevelProxy.find params[:id]
+    unless @level = LevelProxy.find(params[:id])
+      render json: {error: "Level with id #{params[:id]} not found"}, status: 404
+    end
   end
 
 end

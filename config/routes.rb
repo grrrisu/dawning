@@ -38,6 +38,7 @@ Dawning::Application.routes.draw do
         resources :config_files, defaults: {format: 'json'}, only: [:index]
         resources :levels, defaults: {format: 'json'}, only: [:index, :create, :destroy] do
           member do
+            put :join
             put :build
             put :run
             put :stop
