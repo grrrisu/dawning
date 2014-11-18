@@ -23,16 +23,7 @@ Dawning::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :levels, only: [:index, :create, :destroy] do
-      member do
-        put :join
-        put :build
-        put :run
-        put :stop
-      end
-    end
-
-    resource :monitor, only: [:show]
+    resource :launch_panel, only: [:show]
     namespace :api do
       namespace :v1 do
         resources :config_files, defaults: {format: 'json'}, only: [:index]
