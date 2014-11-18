@@ -101,11 +101,11 @@ class LevelProxy
   end
 
   def stop
-    if @state == :running
+    if %i{launched ready running}.include? @state
       @connection.send_action :stop
       @state = :stopped
     else
-      raise ArgumentError, "level must be in state running but is in '#{@state}'"
+      raise ArgumentError, "level must be in state launched, ready or running but is in '#{@state}'"
     end
   end
 
