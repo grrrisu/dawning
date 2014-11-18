@@ -7,31 +7,36 @@ states = {
 
 app = angular.module('levels', [])
 
-app.controller('MonitorController', [ '$http', ($http)->
-  @levels = []
-  @states = states
+app.controller('MonitorController', [ '$scope', '$http', ($scope, $http)->
+  $scope.levels = []
   @sending = false
-  controller = this
 
   @loadLevelInfo = () ->
     $http.get('/admin/api/v1/levels.json').success (data) ->
-      controller.levels = data
+      $scope.levels = data
+
+  @addLevel = () ->
+    $scope.levels.unshift({})
+
+  @removeLevel = (level) ->
+    index = $scope.levels.findIndex (item) ->
+      item.name == level.name
+    if index != -1
+      $scope.levels.splice(index, 1)
+
+  @loadLevelInfo()
+])
+
+app.controller('LevelPanelController', [ '$scope', '$http', ($scope, $http)->
+  @config_files = []
+  @states = states
+  controller = this
 
   @stateClass = (state) ->
     if state?
       @states[state].state_class
     else
       'fa-star'
-
-  @addLevel = () ->
-    @levels.unshift({})
-
-  @loadLevelInfo()
-])
-
-app.controller('LevelPanelController', [ '$http', '$scope', ($http, $scope)->
-  @config_files = []
-  controller = this
 
   @loadConfigFiles = () ->
     $http.get('/admin/api/v1/config_files.json').success (data) ->
@@ -78,10 +83,7 @@ app.controller('LevelPanelController', [ '$http', '$scope', ($http, $scope)->
     @sending = 'remove'
     $http.delete('/admin/api/v1/levels/'+level.id)
       .success (data) ->
-        index = $scope.monitorCtrl.levels.findIndex (item) ->
-          item.name == level.name
-        if index != -1
-          $scope.monitorCtrl.levels.splice(index, 1)
+        $scope.monitorCtrl.removeLevel(level)
         controller.sending = false
 
   @loadConfigFiles()

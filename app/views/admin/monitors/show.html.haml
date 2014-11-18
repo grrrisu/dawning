@@ -7,12 +7,12 @@
   %p
     %create-level-button
   .row.levels
-    .col-md-3.col-sm-8{'ng-repeat' => 'level in monitorCtrl.levels'}
+    .col-md-3.col-sm-8{'ng-repeat' => 'level in levels'}
       .panel.panel-default.level-panel{'ng-controller' => 'LevelPanelController as panelCtrl'}
         .panel-heading
           %h4
             {{ level.name }}
-            %i.fa.fa-2x.pull-right{'ng-class' => "monitorCtrl.stateClass(level.state)"}
+            %i.fa.fa-2x.pull-right{'ng-class' => "panelCtrl.stateClass(level.state)"}
         .panel-section{'ng-show' => 'level.state'}
           %div State: {{ level.state }}
           %div Config: {{ level.config_file }}

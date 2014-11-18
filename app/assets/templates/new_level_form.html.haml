@@ -6,7 +6,7 @@
   %button.btn.btn-primary{:type => "submit", 'ng-disabled' => 'panelCtrl.sending' }
     %i.fa{'ng-class' => "{'fa-rocket': !panelCtrl.sending, 'fa-spin': panelCtrl.sending, 'fa-spinner': panelCtrl.sending}"}
     Launch
-  %a.cancel{:href => "#", 'ng-click' => "panelCtrl.removeLevel(level)"}
+  %a.cancel{:href => "#", 'ng-click' => "monitorCtrl.removeLevel(level)"}
     Cancel
 
 :coffee
