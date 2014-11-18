@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/grrrisu/Simulator.git
-  revision: 1852a21d9982fad96cdbebda8d0f7996b09bcfa9
+  revision: e85f9a9c5d5616cc132c068c5abc9ed06a81b151
   specs:
     Simulator (0.3.3)
       activesupport (>= 4.0.2)
@@ -208,7 +208,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.1)
-    minitest (5.4.2)
+    minitest (5.4.3)
     mongoid (4.0.0)
       activemodel (~> 4.0)
       moped (~> 2.0.0)
