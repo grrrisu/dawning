@@ -1,19 +1,13 @@
 %div
-  %div{'ng-show' => "panelCtrl.hasState('launched')"}
-    %form{name: 'buildForm', 'ng-submit' => 'buildForm.$valid && panelCtrl.buildLevel(level)', novalidate: true}
-      %select{id:"config_file", name:"config_file", 'ng-model' => 'level.config_file', 'ng-options' => "config_file for config_file in panelCtrl.config_files", required: true }
-      %button.btn.btn-primary.spinner{:type => 'submit', 'ng-disabled' => 'panelCtrl.sending' }
-        %i.fa{'ng-class' => "{'fa-cube': !panelCtrl.sending, 'fa-spin': panelCtrl.sending, 'fa-spinner': panelCtrl.sending}"}
-        Build
   %a.btn.btn-primary.spinner{:href => '', 'ng-show' => "panelCtrl.hasState('ready')", 'ng-click' => "panelCtrl.runLevel(level)", 'ng-disabled' => 'panelCtrl.sending'}
-    %i.fa{'ng-class' => "{'fa-play': !panelCtrl.sending, 'fa-spin': panelCtrl.sending, 'fa-spinner': panelCtrl.sending}"}
+    %i.fa{'ng-class' => "{'fa-play': panelCtrl.sending != 'run', 'fa-spin': panelCtrl.sending == 'run', 'fa-spinner': panelCtrl.sending == 'run'}"}
     Run
   %a.btn.btn-success.spinner{:href => '', 'ng-show' => "panelCtrl.hasState(['ready', 'running'])", 'ng-click' => "panelCtrl.joinLevel(level)", 'ng-disabled' => 'panelCtrl.sending'}
-    %i.fa{'ng-class' => "{'fa-road': !panelCtrl.sending, 'fa-spin': panelCtrl.sending, 'fa-spinner': panelCtrl.sending}"}
+    %i.fa{'ng-class' => "{'fa-road': panelCtrl.sending != 'join', 'fa-spin': panelCtrl.sending == 'join', 'fa-spinner': panelCtrl.sending == 'join'}"}
     Enter
-  %a.btn.btn-warning.spinner{:href => '', 'ng-show' => "panelCtrl.hasState('running')", 'ng-click' => "panelCtrl.stopLevel(level)", 'ng-disabled' => 'panelCtrl.sending'}
-    %i.fa{'ng-class' => "{'fa-power-off': !panelCtrl.sending, 'fa-spin': panelCtrl.sending, 'fa-spinner': panelCtrl.sending}"}
+  %a.btn.btn-warning.spinner{:href => '', 'ng-show' => "panelCtrl.hasState(['launched','ready', 'running'])", 'ng-click' => "panelCtrl.stopLevel(level)", 'ng-disabled' => 'panelCtrl.sending'}
+    %i.fa{'ng-class' => "{'fa-power-off': panelCtrl.sending != 'stop', 'fa-spin': panelCtrl.sending == 'stop', 'fa-spinner': panelCtrl.sending == 'stop'}"}
     Stop
   %a.btn.btn-danger.spinner{:href => '', 'ng-show' => "panelCtrl.hasState('stopped')", 'ng-click' => "panelCtrl.removeLevel(level)", 'ng-disabled' => 'panelCtrl.sending'}
-    %i.fa{'ng-class' => "{'fa-times': !panelCtrl.sending, 'fa-spin': panelCtrl.sending, 'fa-spinner': panelCtrl.sending}"}
+    %i.fa{'ng-class' => "{'fa-times': panelCtrl.sending != 'remove', 'fa-spin': panelCtrl.sending == 'remove', 'fa-spinner': panelCtrl.sending == 'remove'}"}
     Remove

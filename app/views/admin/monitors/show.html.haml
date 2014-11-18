@@ -46,6 +46,8 @@
           duration: {{level.sim_loop.duration}} tu
           %br
           \# objects: {{level.sim_loop.objects}}
+        .panel-section{'ng-show' => "panelCtrl.hasState('launched')"}
+          %build-level-form
         .panel-section
           %level-actions{'ng-show' => 'level.state'}
           %new-level-form{'ng-hide' => 'level.state'}

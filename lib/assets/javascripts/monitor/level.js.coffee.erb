@@ -45,27 +45,27 @@ app.controller('LevelPanelController', [ '$http', '$scope', ($http, $scope)->
       state.indexOf($scope.level.state) > -1
 
   @launchLevel = () ->
-    @sending = true
+    @sending = 'launch'
     $http.post('/admin/api/v1/levels.json', {level: {name: $scope.level.name}})
       .success(@updateLevel)
 
   @buildLevel = () ->
-    @sending = true
+    @sending = 'build'
     $http.put('/admin/api/v1/levels/'+$scope.level.id+'/build.json', {level: {config: $scope.level.config_file}})
       .success(@updateLevel)
 
   @runLevel = () ->
-    @sending = true
+    @sending = 'run'
     $http.put('/admin/api/v1/levels/'+$scope.level.id+'/run.json')
       .success(@updateLevel)
 
   @stopLevel = () ->
-    @sending = true
+    @sending = 'stop'
     $http.put('/admin/api/v1/levels/'+$scope.level.id+'/stop.json')
       .success(@updateLevel)
 
   @joinLevel = () ->
-    @sending = true
+    @sending = 'join'
     $http.put('/admin/api/v1/levels/'+$scope.level.id+'/join.json')
       .success (data) ->
         window.location.href = '/levels/'+$scope.level.id+'/map.html'
@@ -75,7 +75,7 @@ app.controller('LevelPanelController', [ '$http', '$scope', ($http, $scope)->
     @sending = false
 
   @removeLevel = (level) ->
-    @sending = true
+    @sending = 'remove'
     $http.delete('/admin/api/v1/levels/'+level.id)
       .success (data) ->
         index = $scope.monitorCtrl.levels.findIndex (item) ->
@@ -101,4 +101,9 @@ app.directive('newLevelForm', ->
 app.directive('levelActions', ->
   restrict: 'E',
   templateUrl: '<%= asset_path("level_actions.html") %>'
+)
+
+app.directive('buildLevelForm', ->
+  restrict: 'E',
+  templateUrl: '<%= asset_path("build_level_form.html") %>'
 )
