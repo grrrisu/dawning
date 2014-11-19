@@ -3,7 +3,7 @@
     %label.sr-only.control-label{for: "level_name"}
     .col-sm-12
       %input{style: 'width: auto', type: 'text', placeholder: 'Name', required: true, id: 'level_name', name: 'level[name]', 'ng-model' => 'new_level_name'}
-  %button.btn.btn-primary{:type => "submit", 'ng-disabled' => 'panelCtrl.sending' }
+  %button.btn.btn-primary{:type => "submit", 'ng-disabled' => 'panelCtrl.sending || !launchForm.$valid' }
     %i.fa{'ng-class' => "{'fa-rocket': !panelCtrl.sending, 'fa-spin': panelCtrl.sending, 'fa-spinner': panelCtrl.sending}"}
     Launch
   %a.cancel{:href => "#", 'ng-click' => "monitorCtrl.removeLevel(level)"}
