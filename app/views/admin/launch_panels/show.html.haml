@@ -1,7 +1,7 @@
 - content_for :javascript do
   = javascript_include_tag "monitor"
 
-%div{'ng-app' => 'monitor', 'ng-controller' => 'MonitorController as monitorCtrl'}
+%div{'ng-app' => 'monitor', 'ng-controller' => 'MonitorController as monitorCtrl', 'ng-cloak' => true}
   %legend
     Launch Panel
   %p
