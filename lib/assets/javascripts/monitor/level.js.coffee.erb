@@ -51,7 +51,7 @@ app.controller('LevelPanelController', [ '$scope', '$http', ($scope, $http)->
 
   @launchLevel = () ->
     @sending = 'launch'
-    $http.post('/admin/api/v1/levels.json', {level: {name: $scope.level.name}})
+    $http.post('/admin/api/v1/levels.json', {level: {name: $scope.new_level_name}})
       .success(@updateLevel)
 
   @buildLevel = () ->

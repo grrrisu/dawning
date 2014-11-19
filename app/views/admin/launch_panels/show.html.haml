@@ -11,7 +11,7 @@
       .panel.panel-default.level-panel{'ng-controller' => 'LevelPanelController as panelCtrl'}
         .panel-heading
           %h4
-            {{ level.name }}
+            {{ level.name || 'New Level' }}
             %i.fa.fa-2x.pull-right{'ng-class' => "panelCtrl.stateClass(level.state)"}
         .panel-section{'ng-show' => 'level.state'}
           %div State: {{ level.state }}
