@@ -12,7 +12,7 @@
         .panel-heading
           %h4
             {{ level.name || 'New Level' }}
-            %i.fa.fa-2x.pull-right{'ng-class' => "panelCtrl.stateClass(level.state)"}
+            %i.fa.fa-2x.pull-right{'ng-class' => "stateClass()"}
         .panel-section{'ng-show' => 'level.state'}
           %div State: {{ level.state }}
           %div Config: {{ level.config_file }}
@@ -46,7 +46,7 @@
           duration: {{level.sim_loop.duration}} tu
           %br
           \# objects: {{level.sim_loop.objects}}
-        .panel-section{'ng-show' => "panelCtrl.hasState('launched')"}
+        .panel-section{'ng-show' => "hasState('launched')"}
           %build-level-form
         .panel-section
           %level-actions{'ng-show' => 'level.state'}

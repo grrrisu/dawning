@@ -1,13 +1,13 @@
 %div
-  %a.btn.btn-primary.spinner{:href => '', 'ng-show' => "panelCtrl.hasState('ready')", 'ng-click' => "panelCtrl.runLevel(level)", 'ng-disabled' => 'panelCtrl.sending'}
-    %i.fa{'ng-class' => "{'fa-play': panelCtrl.sending != 'run', 'fa-spin': panelCtrl.sending == 'run', 'fa-spinner': panelCtrl.sending == 'run'}"}
+  %a.btn.btn-primary.spinner{:href => '', 'ng-show' => "hasState('ready')", 'ng-click' => "runLevel()", 'ng-disabled' => 'panelCtrl.sending'}
+    %i.fa{'ng-class' => "buttonIcon('fa-play', 'run')"}
     Run
-  %a.btn.btn-success.spinner{:href => '', 'ng-show' => "panelCtrl.hasState(['ready', 'running'])", 'ng-click' => "panelCtrl.joinLevel(level)", 'ng-disabled' => 'panelCtrl.sending'}
-    %i.fa{'ng-class' => "{'fa-road': panelCtrl.sending != 'join', 'fa-spin': panelCtrl.sending == 'join', 'fa-spinner': panelCtrl.sending == 'join'}"}
+  %a.btn.btn-success.spinner{:href => '', 'ng-show' => "hasState(['ready', 'running'])", 'ng-click' => "joinLevel()", 'ng-disabled' => 'panelCtrl.sending'}
+    %i.fa{'ng-class' => "buttonIcon('fa-road', 'join')"}
     Enter
-  %a.btn.btn-warning.spinner{:href => '', 'ng-show' => "panelCtrl.hasState(['launched','ready', 'running'])", 'ng-click' => "panelCtrl.stopLevel(level)", 'ng-disabled' => 'panelCtrl.sending'}
-    %i.fa{'ng-class' => "{'fa-power-off': panelCtrl.sending != 'stop', 'fa-spin': panelCtrl.sending == 'stop', 'fa-spinner': panelCtrl.sending == 'stop'}"}
+  %a.btn.btn-warning.spinner{:href => '', 'ng-show' => "hasState(['launched','ready', 'running'])", 'ng-click' => "stopLevel()", 'ng-disabled' => 'panelCtrl.sending'}
+    %i.fa{'ng-class' => "buttonIcon('fa-power-off', 'stop')"}
     Stop
-  %a.btn.btn-danger.spinner{:href => '', 'ng-show' => "panelCtrl.hasState('stopped')", 'ng-click' => "panelCtrl.removeLevel(level)", 'ng-disabled' => 'panelCtrl.sending'}
-    %i.fa{'ng-class' => "{'fa-times': panelCtrl.sending != 'remove', 'fa-spin': panelCtrl.sending == 'remove', 'fa-spinner': panelCtrl.sending == 'remove'}"}
+  %a.btn.btn-danger.spinner{:href => '', 'ng-show' => "hasState('stopped')", 'ng-click' => "removeLevel()", 'ng-disabled' => 'panelCtrl.sending'}
+    %i.fa{'ng-class' => "buttonIcon('fa-times', 'remove')"}
     Remove

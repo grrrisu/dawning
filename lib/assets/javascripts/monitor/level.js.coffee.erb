@@ -8,6 +8,7 @@ states = {
 app = angular.module('levels', [])
 
 app.controller('MonitorController', [ '$scope', '$http', ($scope, $http)->
+
   $scope.levels = []
   @sending = false
 
@@ -15,7 +16,7 @@ app.controller('MonitorController', [ '$scope', '$http', ($scope, $http)->
     $http.get('/admin/api/v1/levels.json').success (data) ->
       $scope.levels = data
 
-  @addLevel = () ->
+  $scope.addLevel = () ->
     $scope.levels.unshift({})
 
   @removeLevel = (level) ->
@@ -27,49 +28,50 @@ app.controller('MonitorController', [ '$scope', '$http', ($scope, $http)->
   @loadLevelInfo()
 ])
 
-app.controller('LevelPanelController', [ '$scope', '$http', ($scope, $http)->
+app.controller('LevelPanelController', [ '$scope', '$http', ($scope, $http) ->
+
   @config_files = []
   @states = states
-  controller = this
 
-  @stateClass = (state) ->
+  $scope.stateClass = () =>
+    state = $scope.level.state
     if state?
       @states[state].state_class
     else
       'fa-star'
 
   @loadConfigFiles = () ->
-    $http.get('/admin/api/v1/config_files.json').success (data) ->
-      controller.config_files = data
+    $http.get('/admin/api/v1/config_files.json').success (data) =>
+      @config_files = data
 
   # TODO move to model
-  @hasState = (state) ->
+  $scope.hasState = (state) ->
     if typeof(state) == 'string'
       $scope.level.state is state
     else
       state.indexOf($scope.level.state) > -1
 
-  @launchLevel = () ->
+  $scope.launchLevel = () =>
     @sending = 'launch'
     $http.post('/admin/api/v1/levels.json', {level: {name: $scope.new_level_name}})
       .success(@updateLevel)
 
-  @buildLevel = () ->
+  $scope.buildLevel = () =>
     @sending = 'build'
     $http.put('/admin/api/v1/levels/'+$scope.level.id+'/build.json', {level: {config: $scope.level.config_file}})
       .success(@updateLevel)
 
-  @runLevel = () ->
+  $scope.runLevel = () =>
     @sending = 'run'
     $http.put('/admin/api/v1/levels/'+$scope.level.id+'/run.json')
       .success(@updateLevel)
 
-  @stopLevel = () ->
+  $scope.stopLevel = () =>
     @sending = 'stop'
     $http.put('/admin/api/v1/levels/'+$scope.level.id+'/stop.json')
       .success(@updateLevel)
 
-  @joinLevel = () ->
+  $scope.joinLevel = () =>
     @sending = 'join'
     $http.put('/admin/api/v1/levels/'+$scope.level.id+'/join.json')
       .success (data) ->
@@ -79,12 +81,18 @@ app.controller('LevelPanelController', [ '$scope', '$http', ($scope, $http)->
     $scope.level = data
     @sending = false
 
-  @removeLevel = (level) ->
+  $scope.removeLevel = () =>
     @sending = 'remove'
-    $http.delete('/admin/api/v1/levels/'+level.id)
-      .success (data) ->
-        $scope.monitorCtrl.removeLevel(level)
-        controller.sending = false
+    $http.delete('/admin/api/v1/levels/'+$scope.level.id)
+      .success (data) =>
+        $scope.monitorCtrl.removeLevel($scope.level)
+        @sending = false
+
+
+  $scope.buttonIcon = (icon, action) =>
+    classes = {'fa-spin': @sending == action, 'fa-spinner': @sending == action}
+    classes[icon] = @sending != action
+    classes
 
   @loadConfigFiles()
 
@@ -110,4 +118,9 @@ app.directive('levelActions', ->
 app.directive('buildLevelForm', ->
   restrict: 'E',
   templateUrl: '<%= asset_path("build_level_form.html") %>'
+)
+
+app.directive('actionIcon', ->
+  restrict: 'A',
+  template: "'ng-class' => \"{'fa-power-off': !panelCtrl.sending, 'fa-spin': panelCtrl.sending, 'fa-spinner': panelCtrl.sending}\"}'"
 )
