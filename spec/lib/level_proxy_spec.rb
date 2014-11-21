@@ -69,14 +69,16 @@ describe LevelProxy do
     end
 
     it "should stop a level" do
-      level.instance_variable_set('@state', :running)
-      expect(connection).to receive(:send_action).with(:stop)
-      level.stop
-      expect(level.state).to eq(:stopped)
+      [:launched, :ready, :running].each do |state|
+        level.instance_variable_set('@state', state)
+        expect(connection).to receive(:send_action).with(:stop)
+        level.stop
+        expect(level.state).to eq(:stopped)
+      end
     end
 
     it "should not stop level" do
-      [:launched, :ready, :stopped].each do |state|
+      [:stopped].each do |state|
         level.instance_variable_set('@state', state)
         expect(connection).to receive(:send_action).never
         expect { level.stop }.to raise_error(ArgumentError)
