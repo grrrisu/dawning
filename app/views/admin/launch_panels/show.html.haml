@@ -27,7 +27,7 @@
           %br
           TU Elapsed: {{level.time_unit.time_elapsed | number:2 }}
           %br
-          Started: {{level.time_unit.started | date: 'd. MMM. yyyy H:mm:ss' : UTC }}
+          Started: {{level.time_unit.started | date: 'd. MMM. yyyy H:mm:ss' }}
         .panel-section{'ng-show' => 'level.event_queue'}
           %strong
             %i.fa.fa-stack-overflow.fa-rotate-90
