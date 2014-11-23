@@ -23,7 +23,7 @@
               Admin
               %b.caret
             %ul.dropdown-menu
-              = navigation_item 'Levels', [:admin, :levels], admin_levels_path
+              = navigation_item 'Launch Panel', [:admin, :launch_panel], admin_launch_panel_path, data: {:'no-turbolink' => true}
 
     -if current_user
       .navbar-text.navbar-right

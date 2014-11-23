@@ -20,7 +20,7 @@ private
       end
     else
       if current_user.admin?
-        redirect_to admin_levels_path
+        redirect_to admin_launch_panel_path
       else
         redirect_to levels_path
       end

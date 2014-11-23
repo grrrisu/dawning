@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/grrrisu/Simulator.git
-  revision: 1852a21d9982fad96cdbebda8d0f7996b09bcfa9
+  revision: 838111df7706ee743300e5d69cfc2ef20e215c44
   specs:
     Simulator (0.3.3)
       activesupport (>= 4.0.2)
@@ -84,7 +84,7 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
-    cancan (1.6.10)
+    cancancan (1.9.2)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -208,7 +208,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.1)
-    minitest (5.4.2)
+    minitest (5.4.3)
     mongoid (4.0.0)
       activemodel (~> 4.0)
       moped (~> 2.0.0)
@@ -425,7 +425,7 @@ DEPENDENCIES
   brakeman
   bullet
   byebug
-  cancan
+  cancancan
   capistrano
   capistrano-ext
   capybara (= 2.4.1)

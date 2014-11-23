@@ -32,7 +32,7 @@ class LevelProxy
 
   # --- Instance Methods ----
 
-  attr_reader :id, :name, :state, :players, :connection
+  attr_reader :id, :name, :state, :players, :connection, :config_file
 
   def initialize id, name
     @id         = id
@@ -82,8 +82,9 @@ class LevelProxy
 
   def build config
     if @state == :launched
-      config_file = Rails.root.join('config', 'levels', config).to_s
-      @connection.send_action :build, config_file: config_file
+      @config_file = config
+      file = Rails.root.join('config', 'levels', config).to_s
+      @connection.send_action :build, config_file: file
       @state = :ready
     else
       raise ArgumentError, "level must be in state started but is in '#{@state}'"
@@ -100,11 +101,11 @@ class LevelProxy
   end
 
   def stop
-    if @state == :running
+    if %i{launched ready running}.include? @state
       @connection.send_action :stop
       @state = :stopped
     else
-      raise ArgumentError, "level must be in state running but is in '#{@state}'"
+      raise ArgumentError, "level must be in state launched, ready or running but is in '#{@state}'"
     end
   end
 
@@ -115,6 +116,14 @@ class LevelProxy
     else
       raise ArgumentError, "level must be in state stopped but is in '#{@state}'"
     end
+  end
+
+  def as_json
+    json = { id: id, name: name, state: state, config_file: config_file }
+    unless state == :stopped
+      json.merge! @connection.send_action :as_json
+    end
+    json
   end
 
 end

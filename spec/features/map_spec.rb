@@ -15,7 +15,7 @@ describe "map" do
 
   it "admin sees map", js: true do
     logged_in_admin
-    visit admin_levels_path
+    visit admin_launch_panel_path
     click_link 'Enter'
     expect(page).to have_selector('#pawns canvas')
   end

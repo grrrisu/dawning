@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Level" do
+describe "LevelPanel" do
   include_context "session"
 
   let(:admin_page) { Levels::AdminPage.new }

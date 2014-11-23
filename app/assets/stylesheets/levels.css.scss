@@ -1,5 +1,6 @@
 .levels {
 
+  /* user level */
   .level {
     padding: 15px;
     margin-bottom: 30px;
@@ -7,7 +8,7 @@
     text-shadow: 1px 1px 0px #fff;
     border: 1px solid #aaa;
     border-radius: 10px;
-    background-color: #eee;
+    background-color: $background-grey;
     @include box-shadow(2px 2px 3px rgba(0,0,0,.1));
 
     &.participation {
@@ -21,6 +22,34 @@
 
     i.fa-globe {
       text-shadow: 2px 2px 4px #fff
+    }
+  }
+
+  /* admin level */
+  .level-panel {
+    text-shadow: 1px 1px 0px #fff;
+    @include box-shadow(2px 2px 3px rgba(0,0,0,.1));
+
+    .panel-heading {
+      min-height: 65px;
+      i {
+        margin-top: -10px;
+      }
+
+      .fa-spin {
+        -webkit-animation: fa-spin 7s infinite linear;
+        animation: fa-spin 7s infinite linear;
+      }
+    }
+
+    .panel-section {
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #aaa;
+      padding: 15px;
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
 

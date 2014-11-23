@@ -1,0 +1,5 @@
+%form.small(name="buildForm" ng-submit="buildForm.$valid && buildLevel()" novalidate)
+  %select(id="config_file" name="config_file" ng-model="level.config_file" ng-options="config_file for config_file in panelCtrl.config_files" required)
+  %button.btn.btn-primary.spinner(type="submit" ng-disabled="panelCtrl.sending || !buildForm.$valid")
+    %i.fa(ng-class="buttonIcon('fa-cube', 'build')")
+    Build

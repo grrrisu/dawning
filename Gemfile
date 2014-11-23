@@ -12,7 +12,7 @@ gem "mongoid", "~> 4.0.0"
 gem 'thin'
 
 gem 'sorcery'
-gem 'cancan'
+gem 'cancancan'
 gem 'gravtastic'
 gem 'kaminari'
 gem 'pretty_formatter'

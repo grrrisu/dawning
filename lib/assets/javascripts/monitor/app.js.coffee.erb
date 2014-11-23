@@ -1,0 +1,11 @@
+app = angular.module('monitor', ['levels'])
+
+#app.config(['$httpProvider', '$routeProvider', ($httpProvider, $route) ->
+app.config(['$httpProvider', ($httpProvider) ->
+  authToken = $("meta[name=\"csrf-token\"]").attr("content")
+  $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
+
+  # $route.when '/admin/monitor/foo',
+  #   templateUrl: '/templates/show.html',
+  #   controller: MonitorController
+])

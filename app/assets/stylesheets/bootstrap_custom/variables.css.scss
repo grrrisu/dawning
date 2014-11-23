@@ -7,7 +7,7 @@ $brand-primary:                     darken($bright-brand-primary, 20%) ;
 
 // Scaffolding
 // -------------------------
-$body-bg:                           #eee;
+$body-bg:                           $background-grey;
 
 // Typography
 // -------------------------
@@ -43,3 +43,9 @@ $input-border-radius:               4px;
 // Alert
 // -------------------------
 $alert-padding:                     8px;
+
+// Panels
+// -------------------------
+$panel-bg:                          $background-grey;
+$panel-default-heading-bg:          $background-grey;
+$panel-default-border:              #aaa;
