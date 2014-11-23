@@ -26,6 +26,7 @@ https://github.com/grrrisu/dawning
 * Fontawesome via gem
 * Kinetic via vendor
 * Sugar via vendor
+* Angular via vendor
 
 Credits
 --
