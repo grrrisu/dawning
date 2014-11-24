@@ -14,6 +14,14 @@ app.factory('levelStates', [ ()->
       'fa-star'
 ])
 
+app.factory('levelConfigs', [ '$http', ($http) ->
+  
+  all: (callback) ->
+    $http.get('/admin/api/v1/config_files.json').success (data) =>
+      callback(data)
+  
+])
+
 app.controller('MonitorController', [ '$scope', '$http', ($scope, $http)->
 
   $scope.levels = []
@@ -35,16 +43,16 @@ app.controller('MonitorController', [ '$scope', '$http', ($scope, $http)->
   @loadLevelInfo()
 ])
 
-app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', ($scope, $http, levelStates) ->
+app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', 'levelConfigs', ($scope, $http, levelStates, levelConfigs) ->
 
-  @config_files = []
+  levelConfigs.all (data) =>
+    @config_files = data
   
   $scope.stateClass = () =>
     levelStates.stateClass($scope.level.state)
     
   @loadConfigFiles = () ->
-    $http.get('/admin/api/v1/config_files.json').success (data) =>
-      @config_files = data
+    
 
   # TODO move to model
   $scope.hasState = (state) ->
@@ -100,8 +108,6 @@ app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', ($sco
       
   $scope.cannotSubmit = (form) =>
     @sending || form.$invalid
-
-  @loadConfigFiles()
 
 ])
 
