@@ -1,11 +1,18 @@
-states = {
-  'launched': { state_class: 'fa-rocket', button_class: 'btn btn-primary spinner' },
-  'ready': { state_class: 'fa-cubes', button_class: 'btn btn-success spinner' },
-  'running': { state_class: 'fa-spin fa-cog', button_class: 'btn btn-warning spinner' },
-  'stopped': { state_class: 'fa-moon-o', button_class: 'btn btn-danger spinner'}
-}
-
 app = angular.module('levels', [])
+
+app.factory('levelStates', [ ()->
+  @state_classes = 
+    'launched': 'fa-rocket',
+    'ready': 'fa-cubes',
+    'running': 'fa-spin fa-cog',
+    'stopped': 'fa-moon-o'
+  
+  stateClass: (state) =>
+    if state?
+      @state_classes[state]
+    else
+      'fa-star'
+])
 
 app.controller('MonitorController', [ '$scope', '$http', ($scope, $http)->
 
@@ -28,18 +35,13 @@ app.controller('MonitorController', [ '$scope', '$http', ($scope, $http)->
   @loadLevelInfo()
 ])
 
-app.controller('LevelPanelController', [ '$scope', '$http', ($scope, $http) ->
+app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', ($scope, $http, levelStates) ->
 
   @config_files = []
-  @states = states
-
+  
   $scope.stateClass = () =>
-    state = $scope.level.state
-    if state?
-      @states[state].state_class
-    else
-      'fa-star'
-
+    levelStates.stateClass($scope.level.state)
+    
   @loadConfigFiles = () ->
     $http.get('/admin/api/v1/config_files.json').success (data) =>
       @config_files = data
