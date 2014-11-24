@@ -17,7 +17,7 @@ class Admin::Api::V1::LevelsController < ApplicationController
   end
 
   def build
-    @level.build params[:level][:config]
+    @level.build params[:config_file]
     render json: @level.as_json
   end
 
