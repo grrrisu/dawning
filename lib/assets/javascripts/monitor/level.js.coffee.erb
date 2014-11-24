@@ -52,14 +52,16 @@ app.controller('LevelPanelController', [ '$scope', '$http', ($scope, $http) ->
       state.indexOf($scope.level.state) > -1
 
   $scope.launchLevel = () =>
-    @sending = 'launch'
-    $http.post('/admin/api/v1/levels.json', {level: {name: $scope.new_level_name}})
-      .success(@updateLevel)
+    if $scope.launchForm.$valid
+      @sending = 'launch'
+      $http.post('/admin/api/v1/levels.json', {level: {name: $scope.new_level_name}})
+        .success(@updateLevel)
 
   $scope.buildLevel = () =>
-    @sending = 'build'
-    $http.put('/admin/api/v1/levels/'+$scope.level.id+'/build.json', {level: {config: $scope.level.config_file}})
-      .success(@updateLevel)
+    if $scope.buildForm.$valid
+      @sending = 'build'
+      $http.put('/admin/api/v1/levels/'+$scope.level.id+'/build.json', {level: {config: $scope.level.config_file}})
+        .success(@updateLevel)
 
   $scope.runLevel = () =>
     @sending = 'run'
@@ -93,6 +95,9 @@ app.controller('LevelPanelController', [ '$scope', '$http', ($scope, $http) ->
     classes = {'fa-spin': @sending == action, 'fa-spinner': @sending == action}
     classes[icon] = @sending != action
     classes
+      
+  $scope.cannotSubmit = (form) =>
+    @sending || form.$invalid
 
   @loadConfigFiles()
 

@@ -1,9 +1,9 @@
-%form.form-horizontal(name="launchForm" ng-submit="launchForm.$valid && launchLevel()" novalidate)
+%form.form-horizontal(name="launchForm" ng-submit="launchLevel()" novalidate)
   .form-group
     %label.sr-only.control-label(for="level_name")
     .col-sm-12
       %input(style="width: auto" type="text" placeholder="Name" required id="level_name" name="level[name]" ng-model="new_level_name")
-  %button.btn.btn-primary(type="submit" ng-disabled="panelCtrl.sending || !launchForm.$valid")
+  %button.btn.btn-primary(type="submit" ng-disabled="cannotSubmit(launchForm)")
     %i.fa(ng-class="buttonIcon('fa-rocket', 'launch')")
     Launch
   %a.cancel(href="" ng-click="monitorCtrl.removeLevel(level)")
