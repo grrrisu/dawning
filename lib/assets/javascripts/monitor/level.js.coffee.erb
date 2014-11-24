@@ -14,11 +14,17 @@ app.factory('levelStates', [ ()->
       'fa-star'
 ])
 
-app.factory('levelConfigs', [ '$http', ($http) ->
+app.factory('levelConfigs', [ '$q', '$http', '$log', ($q, $http, $log) ->
   
-  all: (callback) ->
-    $http.get('/admin/api/v1/config_files.json').success (data) =>
-      callback(data)
+  all: () ->
+    @future = $q.defer()
+    $http.get('/admin/api/v1/config_files.json')
+      .success (data) =>
+        @future.resolve(data)
+      .error (data, status, headers, config) =>
+        $log.warn(data, status, headers(), config)
+        @future.reject("Error while loading config files status: #{status}")
+    @future.promise
   
 ])
 
@@ -45,8 +51,10 @@ app.controller('MonitorController', [ '$scope', '$http', ($scope, $http)->
 
 app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', 'levelConfigs', ($scope, $http, levelStates, levelConfigs) ->
 
-  levelConfigs.all (data) =>
+  levelConfigs.all().then (data) =>
     @config_files = data
+  , (error) =>
+    console.log(error)
   
   $scope.stateClass = () =>
     levelStates.stateClass($scope.level.state)
