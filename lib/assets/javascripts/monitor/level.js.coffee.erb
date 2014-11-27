@@ -1,12 +1,12 @@
 app = angular.module('levels', ['ngResource'])
 
 app.factory('levelStates', [ ()->
-  @state_classes = 
+  @state_classes =
     'launched': 'fa-rocket',
     'ready': 'fa-cubes',
     'running': 'fa-spin fa-cog',
     'stopped': 'fa-moon-o'
-  
+
   stateClass: (state) =>
     if state?
       @state_classes[state]
@@ -15,7 +15,7 @@ app.factory('levelStates', [ ()->
 ])
 
 app.factory('levelConfigs', [ '$q', '$http', '$log', ($q, $http, $log) ->
-  
+
   all: () ->
     @future = $q.defer()
     $http.get('/admin/api/v1/config_files.json')
@@ -25,60 +25,66 @@ app.factory('levelConfigs', [ '$q', '$http', '$log', ($q, $http, $log) ->
         $log.warn(data, status, headers(), config)
         @future.reject("Error while loading config files status: #{status}")
     @future.promise
-  
+
 ])
 
 app.factory('level', ['$q', '$http', '$log', ($q, $http, $log) ->
   @base_url = '/admin/api/v1'
   @sending  = false
-  
+
   @handleSuccess = (data) =>
     @callback(data)
-    
+
   @handleError = (data, status, header, config) =>
     $log.error("could not #{config} status #{status}")
-    
+
   @apiCall = (callback, apiFunction) =>
     @callback = callback
     apiFunction().success(@handleSuccess).error(@handleError)
-  
+
   all: (callback) =>
     @apiCall callback, () =>
       $http.get(@base_url + '/levels.json')
-        
+
   launch: (name, callback) =>
       @apiCall callback, () =>
         $http.post(@base_url + '/levels.json', {level: {name: name}})
-    
+
   build: (level, callback) =>
     @apiCall callback, () =>
       $http.put(@base_url + '/levels/'+level.id+'/build.json', {level: {config: level.config_file}})
-      
+
   run: (level, callback) =>
     @apiCall callback, () =>
       $http.put(@base_url + '/levels/'+level.id+'/run.json')
-      
+
   stop: (level, callback) =>
     @apiCall callback, () =>
       $http.put(@base_url + '/levels/'+level.id+'/stop.json')
-      
+
   join: (level, callback) =>
     @apiCall callback, () =>
       $http.put(@base_url + '/levels/'+level.id+'/join.json')
-      
+
   remove: (level, callback) =>
     @apiCall callback, () =>
       $http.delete(@base_url + '/levels/'+level.id)
-    
+
 ])
 
-app.controller('MonitorController', [ '$scope', '$http', 'level', ($scope, $http, level)->
+app.controller('MonitorController', [ '$scope', '$http', '$timeout', 'level', ($scope, $http, $timeout, level)->
 
-  $scope.levels = level.data
-  
+  $scope.levels = []
+
+  @refresh = () =>
+    $timeout () =>
+      @loadLevels()
+    , 5000
+
   @loadLevels = () =>
     level.all (data) =>
       $scope.levels = data
+      #@refresh()
 
   $scope.addLevel = () ->
     $scope.levels.unshift({})
@@ -88,7 +94,7 @@ app.controller('MonitorController', [ '$scope', '$http', 'level', ($scope, $http
       item.name == level.name
     if index != -1
       $scope.levels.splice(index, 1)
-      
+
   @loadLevels()
 
 ])
@@ -99,12 +105,12 @@ app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', 'leve
     @config_files = data
   , (error) =>
     console.log(error)
-    
+
   @sending = false
-  
+
   $scope.stateClass = () =>
     levelStates.stateClass($scope.level.state)
-    
+
   $scope.hasState = (state) ->
     if typeof(state) == 'string'
       $scope.level.state is state
@@ -133,7 +139,7 @@ app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', 'leve
     @sending = 'join'
     level.join $scope.level, (data) =>
       window.location.href = '/levels/'+$scope.level.id+'/map.html'
-      
+
   $scope.removeLevel = () =>
     @sending = 'remove'
     level.remove $scope.level, (data) =>
@@ -143,7 +149,7 @@ app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', 'leve
   @updateLevel = (data) =>
     $scope.level = data
     @resetSending()
-    
+
   @resetSending = () =>
     @sending = false
 
@@ -151,7 +157,7 @@ app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', 'leve
     classes = {'fa-spin': @sending == action, 'fa-spinner': @sending == action}
     classes[icon] = @sending != action
     classes
-      
+
   $scope.cannotSubmit = (form) =>
     @sending || form.$invalid
 
