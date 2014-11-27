@@ -16,36 +16,37 @@
         .panel-section(ng-show="level.state")
           %div State: {{ level.state }}
           %div Config: {{ level.config_file }}
-        .panel-section(ng-show="level.time_unit")
-          %strong
-            %i.fa.fa-clock-o
-            Time Unit
-          %br
-          Unit: {{level.time_unit.time_unit}} sec
-          %br
-          Time Elapsed: {{(level.time_unit.time_elapsed * level.time_unit.time_unit)/ 60 | number:2 }} min
-          %br
-          TU Elapsed: {{level.time_unit.time_elapsed | number:2 }}
-          %br
-          Started: {{level.time_unit.started | date: 'd. MMM. yyyy H:mm:ss' }}
-        .panel-section(ng-show="level.event_queue")
-          %strong
-            %i.fa.fa-stack-overflow.fa-rotate-90
-            Event Queue
-          %br
-          \# waitings: {{level.event_queue.waitings}}
-          %br
-          \# processing: {{level.event_queue.processing}} of {{level.event_queue.workers}}
-          %br
-          \# locks: {{level.event_queue.locks}}
-        .panel-section(ng-show="level.sim_loop")
-          %strong
-            %i.fa.fa-recycle
-            Sim Loop
-          %br
-          duration: {{level.sim_loop.duration}} tu
-          %br
-          \# objects: {{level.sim_loop.objects}}
+        .levelInfo(ng-controller="levelInfoController as infoCtrl")
+          .panel-section(ng-show="level.time_unit")
+            %strong
+              %i.fa.fa-clock-o
+              Time Unit
+            %br
+            Unit: {{level.time_unit.time_unit}} sec
+            %br
+            Time Elapsed: {{(level.time_unit.time_elapsed * level.time_unit.time_unit)/ 60 | number:2 }} min
+            %br
+            TU Elapsed: {{level.time_unit.time_elapsed | number:2 }}
+            %br
+            Started: {{level.time_unit.started | date: 'd. MMM. yyyy H:mm:ss' }}
+          .panel-section(ng-show="level.event_queue")
+            %strong
+              %i.fa.fa-stack-overflow.fa-rotate-90
+              Event Queue
+            %br
+            \# waitings: {{level.event_queue.waitings}}
+            %br
+            \# processing: {{level.event_queue.processing}} of {{level.event_queue.workers}}
+            %br
+            \# locks: {{level.event_queue.locks}}
+          .panel-section(ng-show="level.sim_loop")
+            %strong
+              %i.fa.fa-recycle
+              Sim Loop
+            %br
+            duration: {{level.sim_loop.duration}} tu
+            %br
+            \# objects: {{level.sim_loop.objects}}
         .panel-section(ng-show="hasState('launched')")
           %build-level-form
         .panel-section

@@ -2,13 +2,17 @@ class Admin::Api::V1::LevelsController < ApplicationController
 
   authorize_resource
 
-  before_filter :find_level, only: [:run, :build, :join, :stop, :destroy]
+  before_filter :find_level, only: [:show, :run, :build, :join, :stop, :destroy]
 
   respond_to :json
 
   def index
     data = LevelProxy.levels.map(&:as_json)
     respond_with data
+  end
+
+  def show
+    render json: @level.as_json
   end
 
   def create

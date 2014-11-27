@@ -27,7 +27,7 @@ Dawning::Application.routes.draw do
     namespace :api do
       namespace :v1 do
         resources :config_files, defaults: {format: 'json'}, only: [:index]
-        resources :levels, defaults: {format: 'json'}, only: [:index, :create, :destroy] do
+        resources :levels, defaults: {format: 'json'}, only: [:index, :show, :create, :destroy] do
           member do
             put :join
             put :build

@@ -46,6 +46,10 @@ app.factory('level', ['$q', '$http', '$log', ($q, $http, $log) ->
     @apiCall callback, () =>
       $http.get(@base_url + '/levels.json')
 
+  find: (id, callback) =>
+    @apiCall callback, () =>
+      $http.get(@base_url + '/levels/'+id+'.json')
+
   launch: (name, callback) =>
       @apiCall callback, () =>
         $http.post(@base_url + '/levels.json', {level: {name: name}})
@@ -76,15 +80,9 @@ app.controller('MonitorController', [ '$scope', '$http', '$timeout', 'level', ($
 
   $scope.levels = []
 
-  @refresh = () =>
-    $timeout () =>
-      @loadLevels()
-    , 5000
-
   @loadLevels = () =>
     level.all (data) =>
       $scope.levels = data
-      #@refresh()
 
   $scope.addLevel = () ->
     $scope.levels.unshift({})
@@ -160,6 +158,19 @@ app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', 'leve
 
   $scope.cannotSubmit = (form) =>
     @sending || form.$invalid
+
+])
+
+app.controller('levelInfoController', [ '$scope', 'level', '$timeout', ($scope, level, $timeout) ->
+
+  @refresh = () =>
+    $timeout () =>
+      level.find $scope.level.id, (data) =>
+        $scope.level = data
+        @refresh()
+    , 5000
+
+  @refresh()
 
 ])
 
