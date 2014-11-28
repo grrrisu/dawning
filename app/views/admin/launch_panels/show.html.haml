@@ -18,6 +18,9 @@
           %div Config: {{ level.config_file }}
         .levelInfo(ng-controller="levelInfoController as infoCtrl" ng-init="infoCtrl.refresh(level)")
           .panel-section(ng-show="level.time_unit")
+            .pull-right
+              %a.btn.btn-default(href="" ng-click="infoCtrl.refresh(level)" ng-show="level.state == 'running'")
+                %i.fa.fa-eye
             %strong
               %i.fa.fa-clock-o
               Time Unit

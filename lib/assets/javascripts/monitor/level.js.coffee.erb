@@ -162,11 +162,10 @@ app.controller('levelInfoController', [ '$scope', 'level', '$timeout', ($scope, 
 
   @refresh = (current) =>
     $timeout () =>
-      console.log(current)
-      if current && current.id
+      if current && current.id && current.state == 'running'
         level.find current.id, (data) =>
           $scope.$parent.level = data
-          @refresh(current)
+          @refresh($scope.$parent.level)
     , 5000
 
   @refresh()
