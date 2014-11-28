@@ -160,11 +160,13 @@ app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', 'leve
 
 app.controller('levelInfoController', [ '$scope', 'level', '$timeout', ($scope, level, $timeout) ->
 
-  @refresh = () =>
+  @refresh = (current) =>
     $timeout () =>
-      level.find $scope.level.id, (data) =>
-        $scope.level = data
-        @refresh()
+      console.log(current)
+      if current && current.id
+        level.find current.id, (data) =>
+          $scope.$parent.level = data
+          @refresh(current)
     , 5000
 
   @refresh()

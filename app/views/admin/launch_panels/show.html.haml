@@ -16,7 +16,7 @@
         .panel-section(ng-show="level.state")
           %div State: {{ level.state }}
           %div Config: {{ level.config_file }}
-        .levelInfo(ng-controller="levelInfoController as infoCtrl")
+        .levelInfo(ng-controller="levelInfoController as infoCtrl" ng-init="infoCtrl.refresh(level)")
           .panel-section(ng-show="level.time_unit")
             %strong
               %i.fa.fa-clock-o
@@ -49,7 +49,7 @@
             \# objects: {{level.sim_loop.objects}}
         .panel-section(ng-show="hasState('launched')")
           %build-level-form
-        .panel-section
+        .panel-section.panel-section-bottom
           %level-actions(ng-show="level.state")
           %new-level-form(ng-hide="level.state")
 
