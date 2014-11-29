@@ -16,10 +16,10 @@
         .panel-section(ng-show="level.state")
           %div State: {{ level.state }}
           %div Config: {{ level.config_file }}
-        .levelInfo(ng-controller="levelInfoController as infoCtrl" ng-init="infoCtrl.refresh(level)")
+        .levelInfo(ng-controller="levelInfoController as infoCtrl" ng-init="infoCtrl.watch(level)")
           .panel-section(ng-show="level.time_unit")
             .pull-right
-              %a.btn.btn-default(href="" ng-click="infoCtrl.refresh(level)" ng-show="level.state == 'running'")
+              %a.btn.btn-default(href="" ng-click="infoCtrl.watch(level)" ng-show="infoCtrl.showWatchButton(level)")
                 %i.fa.fa-eye
             %strong
               %i.fa.fa-clock-o
