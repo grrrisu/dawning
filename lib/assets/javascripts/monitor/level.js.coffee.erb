@@ -73,7 +73,7 @@ app.factory('level', ['$q', '$http', '$log', ($q, $http, $log) ->
 
 ])
 
-app.controller('MonitorController', [ '$scope', '$http', '$timeout', 'level', ($scope, $http, $timeout, level)->
+app.controller('MonitorController', [ '$scope', '$http', 'level', ($scope, $http, level)->
 
   $scope.levels = []
 
