@@ -4,9 +4,9 @@ app.config(['$httpProvider', '$routeProvider', ($httpProvider, $routeProvider) -
   authToken = $("meta[name=\"csrf-token\"]").attr("content")
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
 
-  console.log($routeProvider)
-
   $routeProvider.when '/',
     templateUrl: '<%= asset_path("launch_panel.html") %>',
     controller: 'MonitorController'
+  $routeProvider.otherwise
+    redirectTo: '/'
 ])
