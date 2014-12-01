@@ -181,6 +181,15 @@ app.controller('levelInfoController', [ '$scope', 'level', '$timeout', ($scope, 
 
 ])
 
+app.controller('LevelDetailController', ['$scope', '$routeParams', 'level', ($scope, $routeParams, level) ->
+
+  level.find $routeParams.id, (data) =>
+    console.log(data)
+    console.log($scope)
+    $scope.level = data
+
+])
+
 app.directive('createLevelButton', ->
   restrict: 'E',
   templateUrl: '<%= asset_path("create_level_button.html") %>'

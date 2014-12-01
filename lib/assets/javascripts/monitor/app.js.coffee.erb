@@ -1,12 +1,17 @@
 app = angular.module('monitor', ['ngRoute', 'levels'])
 
-app.config(['$httpProvider', '$routeProvider', ($httpProvider, $routeProvider) ->
+app.config(['$httpProvider', '$routeProvider', '$locationProvider', ($httpProvider, $routeProvider, $locationProvider) ->
   authToken = $("meta[name=\"csrf-token\"]").attr("content")
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
 
   $routeProvider.when '/',
     templateUrl: '<%= asset_path("launch_panel.html") %>',
     controller: 'MonitorController'
+  $routeProvider.when '/:id',
+    templateUrl: '<%= asset_path("level_detail.html") %>',
+    controller: 'LevelDetailController'
   $routeProvider.otherwise
     redirectTo: '/'
+
+  $locationProvider.html5Mode(true)
 ])
