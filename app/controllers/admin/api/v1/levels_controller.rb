@@ -2,7 +2,7 @@ class Admin::Api::V1::LevelsController < ApplicationController
 
   authorize_resource
 
-  before_filter :find_level, only: [:show, :run, :build, :join, :stop, :destroy]
+  before_filter :find_level, only: [:show, :run, :build, :join, :stop, :destroy, :sim_loop_details]
 
   respond_to :json
 
@@ -43,6 +43,10 @@ class Admin::Api::V1::LevelsController < ApplicationController
   def join
     @level.add_player current_user.id, role: :admin unless @level.find_player(current_user.id)
     render json: {success: true}
+  end
+
+  def sim_loop_details
+    render json: @level.sim_loop_details
   end
 
 private

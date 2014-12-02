@@ -62,4 +62,13 @@ class Level < Sim::Level
     end
   end
 
+  def as_json
+    if @world
+      json = {world: {height: @world.height, width: @world.width }}
+    else
+      json = {}
+    end
+    super.merge(json)
+  end
+
 end
