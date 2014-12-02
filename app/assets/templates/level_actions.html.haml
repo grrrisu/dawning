@@ -6,7 +6,7 @@
     %i.fa(ng-class="buttonIcon('fa-road', 'join')")
     Enter
   %a.btn.btn-primary.spinner(href="#/{{level.id}}" ng-show="hasState(['ready', 'running'])" ng-disabled="panelCtrl.sending")
-    %i.fa(ng-class="buttonIcon('fa-area-chart', 'join')")
+    %i.fa(ng-class="buttonIcon('fa-info-circle', 'join')")
     Info
   %a.btn.btn-warning.spinner(href="" ng-show="hasState(['launched','ready', 'running'])" ng-click="stopLevel()" ng-disabled="panelCtrl.sending")
     %i.fa(ng-class="buttonIcon('fa-power-off', 'stop')")

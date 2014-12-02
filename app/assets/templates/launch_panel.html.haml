@@ -5,7 +5,7 @@
 .row.levels
   .col-md-3.col-sm-8(ng-repeat="level in levels")
     .panel.panel-default.level-panel(ng-controller="LevelPanelController as panelCtrl")
-      .panel-heading
+      .panel-heading.panel-heading-levels
         %h4
           {{ level.name || 'New Level' }}
           %i.fa.fa-2x.pull-right(ng-class="stateClass()")

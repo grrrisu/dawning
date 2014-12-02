@@ -1,15 +1,16 @@
-%legend
-  Level {{ level.name }}
 .row.levels
   .col-md-12
     .panel.panel-default.level-panel
-      .panel-heading
-        %h4
-          {{ level.state }}
+      .panel-heading.panel-heading-level
+        %i.fa.fa-3x.fa-cubes.pull-right(ng-class="stateClass()")
+        %h2
+          Level {{ level.name }}
+          %small {{ level.state }}
+
       .row
-        .col-md-2
+        .col-md-2.col-sm-3
           .panel-section.center.level-panel-navigation(ng-click="setNav('general')" ng-class="{active: isNav('general')}")
-            %i.fa.fa-3x.fa-spin.fa-cog
+            %i.fa.fa-3x.fa-globe
             %br
             General
           .panel-section.center.level-panel-navigation(ng-click="setNav('time_unit')" ng-class="{active: isNav('time_unit')}")
@@ -24,10 +25,53 @@
             %i.fa.fa-3x.fa-recycle
             %br
             Sim Loop
+          .panel-section.center.level-panel-navigation(ng-click="setNav('players')" ng-class="{active: isNav('players')}")
+            %i.fa.fa-3x.fa-users
+            %br
+            Players
           .panel-section.panel-section-bottom.level-panel-navigation
             %level-actions
-        .col-md-10
-          %h2 {{ level.name }}
-          %p
-            %div State: {{ level.state }}
-            %div Config: {{ level.config_file }}
+        .col-md-10.col-sm-9
+          .level-panel-content(ng-show="isNav('general')")
+            %h3 General
+            %p
+              %div State: {{ level.state }}
+              %div Config: {{ level.config_file }}
+              %div World Size: {{ level.world.width}} x {{ level.world.height}}
+          .level-panel-content(ng-show="isNav('time_unit')")
+            %h3 Time Unit
+            %p
+              Unit: {{level.time_unit.time_unit}} sec
+              %br
+              Time Elapsed: {{(level.time_unit.time_elapsed * level.time_unit.time_unit)/ 60 | number:2 }} min
+              %br
+              TU Elapsed: {{level.time_unit.time_elapsed | number:2 }}
+              %br
+              Started: {{level.time_unit.started | date: 'd. MMM. yyyy H:mm:ss' }}
+          .level-panel-content(ng-show="isNav('event_queue')")
+            %h3 Event Queue
+            %p
+              %br
+              \# waitings: {{level.event_queue.waitings}}
+              %br
+              \# processing: {{level.event_queue.processing}} of {{level.event_queue.workers}}
+              %br
+              \# locks: {{level.event_queue.locks}}
+          .level-panel-content(ng-show="isNav('sim_loop')")
+            %h3 Sim Loop
+            %p
+              %br
+              duration: {{level.sim_loop.duration}} tu
+              %br
+              \# objects: {{level.sim_loop.objects}}
+          .level-panel-content(ng-show="isNav('players')")
+            %h3 Players
+            %p
+              %div Online:
+              %div Offline:
+              %div Total: {{ level.players }}
+              %table
+                %tr(ng-repeat="level.players as player")
+                  %td {{ player.name }}
+                  %td {{ player.status }}
+
