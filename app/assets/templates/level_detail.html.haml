@@ -6,3 +6,28 @@
       .panel-heading
         %h4
           {{ level.state }}
+      .row
+        .col-md-2
+          .panel-section.center.level-panel-navigation(ng-click="setNav('general')" ng-class="{active: isNav('general')}")
+            %i.fa.fa-3x.fa-spin.fa-cog
+            %br
+            General
+          .panel-section.center.level-panel-navigation(ng-click="setNav('time_unit')" ng-class="{active: isNav('time_unit')}")
+            %i.fa.fa-3x.fa-clock-o
+            %br
+            Time Unit
+          .panel-section.center.level-panel-navigation(ng-click="setNav('event_queue')" ng-class="{active: isNav('event_queue')}")
+            %i.fa.fa-3x.fa-stack-overflow.fa-rotate-90
+            %br
+            Event Queue
+          .panel-section.center.level-panel-navigation(ng-click="setNav('sim_loop')" ng-class="{active: isNav('sim_loop')}")
+            %i.fa.fa-3x.fa-recycle
+            %br
+            Sim Loop
+          .panel-section.panel-section-bottom.level-panel-navigation
+            %level-actions
+        .col-md-10
+          %h2 {{ level.name }}
+          %p
+            %div State: {{ level.state }}
+            %div Config: {{ level.config_file }}

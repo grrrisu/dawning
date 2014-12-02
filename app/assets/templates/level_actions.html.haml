@@ -5,7 +5,7 @@
   %a.btn.btn-success.spinner(href="" ng-show="hasState(['ready', 'running'])" ng-click="joinLevel()" ng-disabled="panelCtrl.sending")
     %i.fa(ng-class="buttonIcon('fa-road', 'join')")
     Enter
-  %a.btn.btn-primary.spinner(href="/{{level.id}}" ng-show="hasState(['ready', 'running'])" ng-disabled="panelCtrl.sending")
+  %a.btn.btn-primary.spinner(href="#/{{level.id}}" ng-show="hasState(['ready', 'running'])" ng-disabled="panelCtrl.sending")
     %i.fa(ng-class="buttonIcon('fa-area-chart', 'join')")
     Info
   %a.btn.btn-warning.spinner(href="" ng-show="hasState(['launched','ready', 'running'])" ng-click="stopLevel()" ng-disabled="panelCtrl.sending")

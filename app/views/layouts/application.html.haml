@@ -11,7 +11,7 @@
     = yield :javascript
     = javascript_include_tag "application"
     = javascript_include_tag "game_client" if show_map?
-    %base{:href => "/admin"}
+    //%base{:href => "/admin"}
   %body
     .wrapper
       = render 'shared/navigation'
