@@ -33,7 +33,7 @@ Dawning::Application.routes.draw do
             put :build
             put :run
             put :stop
-            get :sim_loop_details
+            get :objects_count
           end
         end
       end

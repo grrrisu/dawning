@@ -2,7 +2,7 @@ class Admin::Api::V1::LevelsController < ApplicationController
 
   authorize_resource
 
-  before_filter :find_level, only: [:show, :run, :build, :join, :stop, :destroy, :sim_loop_details]
+  before_filter :find_level, only: [:show, :run, :build, :join, :stop, :destroy, :objects_count]
 
   respond_to :json
 
@@ -45,8 +45,8 @@ class Admin::Api::V1::LevelsController < ApplicationController
     render json: {success: true}
   end
 
-  def sim_loop_details
-    render json: @level.sim_loop_details
+  def objects_count
+    render json: @level.objects_count
   end
 
 private

@@ -126,9 +126,9 @@ class LevelProxy
     json
   end
 
-  def sim_loop_details
+  def objects_count
     unless state == :stopped
-      @connection.send_action :sim_loop_details
+      @connection.send_action :objects_count
     end
   end
 

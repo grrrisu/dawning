@@ -64,6 +64,10 @@
               duration: {{level.sim_loop.duration}} tu
               %br
               \# objects: {{level.sim_loop.objects}}
+              %br
+              {{ objects_count }}
+              %br
+              {{ animals }}
           .level-panel-content(ng-show="isNav('players')")
             %h3 Players
             %p
@@ -71,7 +75,7 @@
               %div Offline:
               %div Total: {{ level.players }}
               %table
-                %tr(ng-repeat="level.players as player")
+                %tr(ng-repeat="player in level.players")
                   %td {{ player.name }}
                   %td {{ player.status }}
 
