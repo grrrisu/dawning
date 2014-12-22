@@ -1,4 +1,4 @@
-levelModule.controller('MonitorController', [ '$scope', '$http', 'level', ($scope, $http, level)->
+levelModule.controller('LevelsController', [ '$scope', '$http', 'level', ($scope, $http, level)->
 
   $scope.levels = []
 

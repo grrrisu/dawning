@@ -6,7 +6,7 @@ adminModule.config(['$httpProvider', '$routeProvider', '$locationProvider', ($ht
 
   $routeProvider.when '/',
     templateUrl: '<%= asset_path("levels/launch_panel.html") %>',
-    controller: 'MonitorController'
+    controller: 'LevelsController'
   $routeProvider.when '/:id',
     templateUrl: '<%= asset_path("levels/detail.html") %>',
     controller: 'LevelDetailController'
