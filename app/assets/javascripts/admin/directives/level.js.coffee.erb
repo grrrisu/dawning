@@ -1,0 +1,26 @@
+levelModule.directive('createLevelButton', ->
+  restrict: 'E',
+  templateUrl: '<%= asset_path("create_level_button.html") %>'
+)
+
+levelModule.directive('newLevelForm', ->
+  restrict: 'E',
+  templateUrl: '<%= asset_path("new_level_form.html") %>',
+  link: (scope, element, attrs, controller) ->
+    element.find('input')[0].focus()
+)
+
+levelModule.directive('levelActions', ->
+  restrict: 'E',
+  templateUrl: '<%= asset_path("level_actions.html") %>'
+)
+
+levelModule.directive('buildLevelForm', ->
+  restrict: 'E',
+  templateUrl: '<%= asset_path("build_level_form.html") %>'
+)
+
+levelModule.directive('actionIcon', ->
+  restrict: 'A',
+  template: "'ng-class' => \"{'fa-power-off': !panelCtrl.sending, 'fa-spin': panelCtrl.sending, 'fa-spinner': panelCtrl.sending}\"}'"
+)

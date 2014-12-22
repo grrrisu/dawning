@@ -1,4 +1,4 @@
-adminModule = angular.module('admin', ['ngRoute', 'levelModule'])
+@adminModule = angular.module('admin', ['ngRoute', 'levelModule'])
 
 adminModule.config(['$httpProvider', '$routeProvider', '$locationProvider', ($httpProvider, $routeProvider, $locationProvider) ->
   authToken = $("meta[name=\"csrf-token\"]").attr("content")
@@ -15,3 +15,5 @@ adminModule.config(['$httpProvider', '$routeProvider', '$locationProvider', ($ht
 
   #$locationProvider.html5Mode(true)
 ])
+
+@levelModule = angular.module('levelModule', ['ngResource'])
