@@ -5,10 +5,10 @@ adminModule.config(['$httpProvider', '$routeProvider', '$locationProvider', ($ht
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
 
   $routeProvider.when '/',
-    templateUrl: '<%= asset_path("launch_panel.html") %>',
+    templateUrl: '<%= asset_path("levels/launch_panel.html") %>',
     controller: 'MonitorController'
   $routeProvider.when '/:id',
-    templateUrl: '<%= asset_path("level_detail.html") %>',
+    templateUrl: '<%= asset_path("levels/detail.html") %>',
     controller: 'LevelDetailController'
   $routeProvider.otherwise
     redirectTo: '/'
