@@ -47,7 +47,7 @@ module Dawning
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.assets.precompile += ['game_client.js', 'game_client.css', 'monitor.js']
+    config.assets.precompile += ['game_client.js', 'game_client.css', 'admin.js']
 
     # logger
     config.log_formatter = PrettyFormatter.formatter

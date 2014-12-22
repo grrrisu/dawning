@@ -1,6 +1,6 @@
-app = angular.module('monitor', ['ngRoute', 'levels'])
+adminModule = angular.module('admin', ['ngRoute', 'levelModule'])
 
-app.config(['$httpProvider', '$routeProvider', '$locationProvider', ($httpProvider, $routeProvider, $locationProvider) ->
+adminModule.config(['$httpProvider', '$routeProvider', '$locationProvider', ($httpProvider, $routeProvider, $locationProvider) ->
   authToken = $("meta[name=\"csrf-token\"]").attr("content")
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
 

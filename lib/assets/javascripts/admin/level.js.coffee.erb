@@ -1,6 +1,6 @@
-app = angular.module('levels', ['ngResource'])
+levelModule = angular.module('levelModule', ['ngResource'])
 
-app.factory('levelStates', [ ()->
+levelModule.factory('levelStates', [ ()->
   @state_classes =
     'launched': 'fa-rocket',
     'ready': 'fa-cubes',
@@ -14,7 +14,7 @@ app.factory('levelStates', [ ()->
       'fa-star'
 ])
 
-app.factory('levelConfigs', [ '$q', '$http', '$log', ($q, $http, $log) ->
+levelModule.factory('levelConfigs', [ '$q', '$http', '$log', ($q, $http, $log) ->
 
   all: () ->
     @future = $q.defer()
@@ -28,7 +28,7 @@ app.factory('levelConfigs', [ '$q', '$http', '$log', ($q, $http, $log) ->
 
 ])
 
-app.factory('level', ['$q', '$http', '$log', ($q, $http, $log) ->
+levelModule.factory('level', ['$q', '$http', '$log', ($q, $http, $log) ->
   @base_url = '/admin/api/v1'
   @sending  = false
 
@@ -77,7 +77,7 @@ app.factory('level', ['$q', '$http', '$log', ($q, $http, $log) ->
 
 ])
 
-app.controller('MonitorController', [ '$scope', '$http', 'level', ($scope, $http, level)->
+levelModule.controller('MonitorController', [ '$scope', '$http', 'level', ($scope, $http, level)->
 
   $scope.levels = []
 
@@ -98,7 +98,7 @@ app.controller('MonitorController', [ '$scope', '$http', 'level', ($scope, $http
 
 ])
 
-app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', 'levelConfigs', 'level', ($scope, $http, levelStates, levelConfigs, level) ->
+levelModule.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', 'levelConfigs', 'level', ($scope, $http, levelStates, levelConfigs, level) ->
 
   levelConfigs.all().then (data) =>
     @config_files = data
@@ -162,7 +162,7 @@ app.controller('LevelPanelController', [ '$scope', '$http', 'levelStates', 'leve
 
 ])
 
-app.controller('levelInfoController', [ '$scope', 'level', '$timeout', ($scope, level, $timeout) ->
+levelModule.controller('levelInfoController', [ '$scope', 'level', '$timeout', ($scope, level, $timeout) ->
 
   @watching = []
 
@@ -185,7 +185,7 @@ app.controller('levelInfoController', [ '$scope', 'level', '$timeout', ($scope, 
 
 ])
 
-app.controller('LevelDetailController', ['$scope', '$routeParams', 'level', ($scope, $routeParams, level) ->
+levelModule.controller('LevelDetailController', ['$scope', '$routeParams', 'level', ($scope, $routeParams, level) ->
 
   @key = 'general'
 
@@ -211,29 +211,29 @@ app.controller('LevelDetailController', ['$scope', '$routeParams', 'level', ($sc
 
 ])
 
-app.directive('createLevelButton', ->
+levelModule.directive('createLevelButton', ->
   restrict: 'E',
   templateUrl: '<%= asset_path("create_level_button.html") %>'
 )
 
-app.directive('newLevelForm', ->
+levelModule.directive('newLevelForm', ->
   restrict: 'E',
   templateUrl: '<%= asset_path("new_level_form.html") %>',
   link: (scope, element, attrs, controller) ->
     element.find('input')[0].focus()
 )
 
-app.directive('levelActions', ->
+levelModule.directive('levelActions', ->
   restrict: 'E',
   templateUrl: '<%= asset_path("level_actions.html") %>'
 )
 
-app.directive('buildLevelForm', ->
+levelModule.directive('buildLevelForm', ->
   restrict: 'E',
   templateUrl: '<%= asset_path("build_level_form.html") %>'
 )
 
-app.directive('actionIcon', ->
+levelModule.directive('actionIcon', ->
   restrict: 'A',
   template: "'ng-class' => \"{'fa-power-off': !panelCtrl.sending, 'fa-spin': panelCtrl.sending, 'fa-spinner': panelCtrl.sending}\"}'"
 )
