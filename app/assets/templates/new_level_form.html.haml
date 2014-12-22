@@ -2,7 +2,7 @@
   .form-group
     %label.sr-only.control-label(for="level_name")
     .col-sm-12
-      %input(style="width: auto" type="text" placeholder="Name" required id="level_name" name="level[name]" ng-model="new_level_name")
+      %input(style="width: auto" type="text" placeholder="Name" required name="level[name]" ng-model="new_level_name")
   %button.btn.btn-primary(type="submit" ng-disabled="cannotSubmit(launchForm)")
     %i.fa(ng-class="buttonIcon('fa-rocket', 'launch')")
     Launch

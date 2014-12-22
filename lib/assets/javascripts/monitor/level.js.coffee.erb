@@ -219,8 +219,8 @@ app.directive('createLevelButton', ->
 app.directive('newLevelForm', ->
   restrict: 'E',
   templateUrl: '<%= asset_path("new_level_form.html") %>',
-  link: () ->
-    $('#level_name').focus()
+  link: (scope, element, attrs, controller) ->
+    element.find('input')[0].focus()
 )
 
 app.directive('levelActions', ->
