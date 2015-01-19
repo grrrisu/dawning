@@ -7,6 +7,8 @@
 //= require angular-resource
 //= require angular-route
 
+//= require d3
+
 //= require admin/app
 //= require_tree ./admin/services
 //= require_tree ./admin/controllers

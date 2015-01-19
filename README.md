@@ -27,6 +27,7 @@ https://github.com/grrrisu/dawning
 * Kinetic via vendor
 * Sugar via vendor
 * Angular via vendor
+* D3 via vendor
 
 Credits
 --
