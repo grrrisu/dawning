@@ -28,6 +28,13 @@ levelModule.controller('LevelDetailController', ['$scope', '$routeParams', 'leve
         $scope.showDetailPanel = true
       $scope.detailItem = item;
 
+  @vegetation = =>
+    vegetation = Object.findAll $scope.objects_count, (key, value) ->
+      key.indexOf('Vegetation::') >= 0
+    $scope.vegetation = []
+    Object.map vegetation, (key, value) ->
+      $scope.vegetation.push({name: key.replace("Vegetation::", ""), value: value})
+
   @animals = () =>
     animals = Object.findAll $scope.objects_count, (key, value) ->
       key.indexOf('Animal::') >= 0
@@ -47,5 +54,6 @@ levelModule.controller('LevelDetailController', ['$scope', '$routeParams', 'leve
       $scope.objects_count = data
       @flora()
       @animals()
+      @vegetation()
 
 ])

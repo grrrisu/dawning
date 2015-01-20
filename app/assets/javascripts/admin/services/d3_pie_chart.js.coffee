@@ -1,9 +1,9 @@
 levelModule.factory 'd3PieChart', [ 'd3Color', (d3Color) ->
 
   render: (data, svg, scope, element, attrs) ->
-    width = 250
+    width = element[0].offsetWidth
     height = 250
-    radius = Math.min(width, height) / 2
+    radius = Math.min(width - 50, height) / 2
 
     color = d3Color.lolita()
 
@@ -37,8 +37,8 @@ levelModule.factory 'd3PieChart', [ 'd3Color', (d3Color) ->
 
     # second arc for labels
     arc2 = d3.svg.arc()
-      .outerRadius(radius - 20)
-      .innerRadius(radius - 20);
+      .outerRadius(radius - 12)
+      .innerRadius(radius - 12);
 
     # label attached to second arc
     g.append("text")

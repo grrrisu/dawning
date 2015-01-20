@@ -65,13 +65,24 @@
               %br
               \# objects: {{level.sim_loop.objects}}
               %br
-              {{ objects_count }}
+              {{objects_count}}
 
-            .col-md-12{'d3-chart' => 'bar', 'data' => "animals", 'on-click' => "d3OnClick(item)"}
+            .row1
+              .col-md-12{'d3-chart' => 'bar', 'data' => "animals", 'on-click' => "d3OnClick(item)"}
 
-            .col-md-6{'d3-chart' => 'pie', 'data' => "animals", 'on-click' => "d3OnClick(item)"}
+            .row
+              .col-md-4.center 
+                %h4 Vegetation
+              .col-md-4.center 
+                %h4 Flora
+              .col-md-4.center 
+                %h4 Animals
+            .row1
+              .col-md-4{'d3-chart' => 'pie', 'data' => "vegetation", 'on-click' => "d3OnClick(item)"}
+              .col-md-4{'d3-chart' => 'pie', 'data' => "flora", 'on-click' => "d3OnClick(item)"}
+              .col-md-4{'d3-chart' => 'pie', 'data' => "animals", 'on-click' => "d3OnClick(item)"}
 
-            .col-md-6{'d3-chart' => 'pie', 'data' => "flora", 'on-click' => "d3OnClick(item)"}
+            
 
             %div.hidden(ng-show="showDetailPanel")
               DetailPanel

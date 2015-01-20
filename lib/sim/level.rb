@@ -71,4 +71,15 @@ class Level < Sim::Level
     super.merge(json)
   end
 
+  def objects_count
+    objects = super
+    objects.delete("Vegetation")
+    @world.each_field do |field|
+      vegetation_type = field.vegetation.type
+      objects["Vegetation::#{vegetation_type}"] ||= 0
+      objects["Vegetation::#{vegetation_type}"] += 1
+    end
+    objects
+  end
+
 end
