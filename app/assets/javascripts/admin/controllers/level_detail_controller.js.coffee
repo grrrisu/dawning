@@ -35,9 +35,17 @@ levelModule.controller('LevelDetailController', ['$scope', '$routeParams', 'leve
     Object.map animals, (key, value) ->
       $scope.animals.push({name: key.replace("Animal::", ""), value: value})
 
+  @flora = () =>
+    flora = Object.findAll $scope.objects_count, (key, value) ->
+      key.indexOf('Flora::') >= 0
+    $scope.flora = []
+    Object.map flora, (key, value) ->
+      $scope.flora.push({name: key.replace("Flora::", ""), value: value})
+
   @loadObjectsCount = () =>
     level.objects_count $scope.level, (data) =>
       $scope.objects_count = data
+      @flora()
       @animals()
 
 ])

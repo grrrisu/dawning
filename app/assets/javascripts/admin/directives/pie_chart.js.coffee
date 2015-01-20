@@ -28,7 +28,7 @@ levelModule.directive 'pieChart', ['$window', ($window) ->
     # our custom d3 code
     scope.render = (data) ->
       
-      color = d3.scale.category20()
+      color = d3.scale.category10()
       width = 250
       height = 250
       radius = Math.min(width, height) / 2

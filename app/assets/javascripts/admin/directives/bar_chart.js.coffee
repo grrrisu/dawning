@@ -42,11 +42,11 @@ levelModule.directive 'barChart', ['$window', ($window) ->
       # calculate the height
       height = scope.data.length * (barHeight + barPadding)
       # Use the category20() scale function for multicolor support
-      color = d3.scale.category20()
+      color = d3.scale.category10()
       # our xScale
       xScale = d3.scale.linear()
         .domain([0, d3.max(data, (d) ->
-          return d.score;
+          return d.value;
         )])
         .range([0, width]);
 
@@ -59,7 +59,6 @@ levelModule.directive 'barChart', ['$window', ($window) ->
         .enter()
           .append('rect')
           .on 'click', (d, i) ->
-            console.log(d)
             scope.onClick({item: d})
           .attr('height', barHeight)
           .attr('width', 140)
@@ -67,11 +66,11 @@ levelModule.directive 'barChart', ['$window', ($window) ->
           .attr 'y', (d,i) -> 
             return i * (barHeight + barPadding);
           .attr 'fill', (d) -> 
-            return color(d.score)
+            return color(d.value)
           .transition()
             .duration(1000)
             .attr 'width', (d) ->
-              return xScale(d.score)
+              return xScale(d.value)
 
       svg.selectAll("text")
         .data(data)
