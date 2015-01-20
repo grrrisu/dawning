@@ -66,14 +66,12 @@
               \# objects: {{level.sim_loop.objects}}
               %br
               {{ objects_count }}
-              
-            %div{'bar-chart' => true, 'data' => "animals", 'on-click' => "d3OnClick(item)"}
 
-            //%div{'pie-chart' => true, 'data' => "vegetation", 'on-click' => "d3OnClick(item)"}
+            .col-md-12{'d3-chart' => 'bar', 'data' => "animals", 'on-click' => "d3OnClick(item)"}
 
-            .col-md-6{'pie-chart' => true, 'data' => "flora", 'on-click' => "d3OnClick(item)"}
+            .col-md-6{'d3-chart' => 'pie', 'data' => "animals", 'on-click' => "d3OnClick(item)"}
 
-            .col-md-6{'pie-chart' => true, 'data' => "animals", 'on-click' => "d3OnClick(item)"}
+            .col-md-6{'d3-chart' => 'pie', 'data' => "flora", 'on-click' => "d3OnClick(item)"}
 
             %div.hidden(ng-show="showDetailPanel")
               DetailPanel
