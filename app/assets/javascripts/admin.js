@@ -8,6 +8,7 @@
 //= require angular-route
 
 //= require d3
+//= require c3
 
 //= require admin/app
 //= require_tree ./admin/services

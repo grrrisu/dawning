@@ -64,11 +64,14 @@
               duration: {{level.sim_loop.duration}} tu
               %br
               \# objects: {{level.sim_loop.objects}}
-              %br
-              {{objects_count}}
+              
+            /   %br
+            /   {{objects_count}}
 
-            .row1
-              .col-md-12{'d3-chart' => 'bar', 'data' => "animals", 'on-click' => "d3OnClick(item)"}
+
+
+            / .row
+            /   .col-md-12{'d3-chart' => 'bar', 'data' => "d3animals", 'on-click' => "d3OnClick(item)"}
 
             .row
               .col-md-4.center 
@@ -77,13 +80,19 @@
                 %h4 Flora
               .col-md-4.center 
                 %h4 Animals
-            .row1
-              .col-md-4{'d3-chart' => 'pie', 'data' => "vegetation", 'on-click' => "d3OnClick(item)"}
-              .col-md-4{'d3-chart' => 'pie', 'data' => "flora", 'on-click' => "d3OnClick(item)"}
-              .col-md-4{'d3-chart' => 'pie', 'data' => "animals", 'on-click' => "d3OnClick(item)"}
+            / .row
+            /   .col-md-4{'d3-chart' => 'pie', 'data' => "d3vegetation", 'on-click' => "d3OnClick(item)"}
+            /   .col-md-4{'d3-chart' => 'pie', 'data' => "d3flora", 'on-click' => "d3OnClick(item)"}
+            /   .col-md-4{'d3-chart' => 'pie', 'data' => "d3animals", 'on-click' => "d3OnClick(item)"}
 
+            .row
+              %c3-chart.col-md-4{'options' => "pieOptions", 'data' => "pieVegetation"}
+              %c3-chart.col-md-4{'options' => "pieOptions", 'data' => "pieFlora"}
+              %c3-chart.col-md-4{'options' => "pieOptions", 'data' => "pieAnimals"}
+
+            .row
+              %c3-chart.col-md-12{'data' => "timelineData"}
             
-
             %div.hidden(ng-show="showDetailPanel")
               DetailPanel
 
