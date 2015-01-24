@@ -5,16 +5,25 @@ levelModule.directive 'c3Chart', ['$window', 'd3PieChart', 'd3BarChart',($window
     options: '='
   ,
   link: (scope, element, attrs) ->
-    console.log(scope.options)
-    console.log(element[0].offsetWidth)
     config =
       bindto: element[0],
       size: 
         height: 200
-        width: element.offsetWidth - 50
+        width: $(element[0]).width()
       data: scope.data
 
     $.extend(config, scope.options)
+
+    # Browser onresize event
+    window.onresize = ->
+      scope.$apply()
+
+    # Watch for resize event
+    scope.$watch ->
+      angular.element($window)[0].innerWidth
+    , ->
+      scope.chart.resize({width: $(element[0]).width()}) if scope.chart?
+      scope.render
 
     # watch for data changes and re-render
     scope.$watch 'data', (newVals, oldVals) ->
@@ -22,5 +31,5 @@ levelModule.directive 'c3Chart', ['$window', 'd3PieChart', 'd3BarChart',($window
     , true # check for objectEquality 
 
     scope.render = () ->
-      c3.generate(config)
+      scope.chart = c3.generate(config)
 ]
