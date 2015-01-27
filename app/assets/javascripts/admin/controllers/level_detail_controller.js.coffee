@@ -17,6 +17,11 @@ levelModule.controller('LevelDetailController', ['$scope', '$routeParams', 'leve
 
   level.find $routeParams.id, (data) =>
     $scope.level = data
+    
+    $interval =>
+      #console.log('interval')
+      @loadObjectsCount()
+    , data.time_unit.time_unit * 100
 
   $scope.setNav = (key) =>
     @key = key
@@ -35,18 +40,31 @@ levelModule.controller('LevelDetailController', ['$scope', '$routeParams', 'leve
       $scope.detailItem = item;
 
   $scope.pieOptions =
+    data:
+      columns: [[]]
+      type: 'pie'
+      onclick: (d, element) ->
+        $scope.d3OnClick(d)
     legend:
       position: 'right'
     tooltip:
       format:
         value: (value, ratio, id, index) ->
           (ratio * 100).toFixed(1) + "% : " + value 
-    # color:
-    #   pattern: ['#328dbd', '#2cb377', '#f28248', '#fdde6c', '#9d3fa3', '#583b97', '#8bbb42']
+
+  $scope.timelineOptions =
+    data:
+      x: 'time',
+      # types: 
+      #   data1: 'area',
+      #   data2: 'area'
+      # groups: [['data1', 'data2']]
+      # colors: @animalColors
 
   $scope.vegetation = []
   $scope.flora = []
   $scope.animals = []
+  $scope.timeline = []
 
   @vegetationColors =
     'Vegetation 0': "#fee08b", 
@@ -68,92 +86,69 @@ levelModule.controller('LevelDetailController', ['$scope', '$routeParams', 'leve
     'Mammoth': "#3288bd",
     'Leopard': "#d53e4f"
 
-  $scope.timelineData =
-    x: 'x',
-    columns: [['x'], ['data1'] , ['data2']]
-    types: 
-      data1: 'area',
-      data2: 'area'
-    groups: [['data1', 'data2']]
-    colors: @animalColors
+  @prepareOptions  = (colorSet) ->
+    options = angular.copy($scope.pieOptions)
+    options.data.colors = colorSet
+    options
 
-  $scope.pieVegetation =
-    columns: $scope.vegetation
-    type: 'pie'
-    colors: @vegetationColors
-    onclick: (d, element) ->
-      $scope.d3OnClick(d)
+  $scope.vegetationOptions = @prepareOptions(@vegetationColors)
+  $scope.floraOptions = @prepareOptions(@floraColors)
+  $scope.animalOptions = @prepareOptions(@animalColors)
+  $scope.timelineOptions.data.colors = @animalColors
+  
+  @filterData = (data, needle) =>
+    res = Object.findAll data, (key, value) ->
+      key.indexOf(needle) >= 0 || key == 'time'
+    res
 
-  $scope.pieFlora =
-    columns: $scope.flora
-    type: 'pie'
-    colors: @floraColors
-    onclick: (d, element) ->
-      $scope.d3OnClick(d)
+  @extractData = (data, needle, replacement) ->
+    pieData = []
+    Object.map data, (key, value) ->
+      pieData.push([key.replace(needle, replacement), value])
+    pieData
 
-  $scope.pieAnimals =
-    columns: $scope.animals
-    type: 'pie'
-    colors: @animalColors
-    onclick: (d, element) ->
-      $scope.d3OnClick(d)
+  @prepareTimeline = (data) ->
+    columns = [['time']]
+    keys = data.map (item) ->
+      columns.push([item[0]])
+      item[0]
+    $scope.timeline = columns
+    $scope.timelineOptions.data.groups = [keys]
+    types = {}
+    keys.each (item) ->
+      types[item] = 'area'
+    $scope.timelineOptions.data.types = types
 
-  # $interval =>
-  #   dataService.loadData (data) ->
-  #     $scope.timelineData.columns[0].push(data.x);
-  #     $scope.timelineData.columns[1].push(data.data1);
-  #     $scope.timelineData.columns[2].push(data.data2);
-  # ,1000
+  @extractTimeline = (data) ->
+    data.each (data_item) ->
+      $scope.timeline.each (timeline) ->
+        if data_item[0] == timeline[0]
+          timeline.add(data_item[1])
 
+  @removeTime = (data) ->
+    data.remove (item) =>
+     item[0] == 'time'
 
-  @d3vegetation = =>
-    vegetation = Object.findAll $scope.objects_count, (key, value) ->
-      key.indexOf('Vegetation::') >= 0
-    $scope.d3vegetation = []
-    Object.map vegetation, (key, value) ->
-      $scope.d3vegetation.push({name: key.replace("::", " "), value: value})
-    
-  @d3flora = () =>
-    flora = Object.findAll $scope.objects_count, (key, value) ->
-      key.indexOf('Flora::') >= 0
-    $scope.d3flora = []
-    Object.map flora, (key, value) ->
-      $scope.d3flora.push({name: key.replace("Flora::", ""), value: value})
-
-  @d3animals = () =>
-    animals = Object.findAll $scope.objects_count, (key, value) ->
-      key.indexOf('Animal::') >= 0
-    $scope.d3animals = []
-    Object.map animals, (key, value) ->
-      $scope.d3animals.push({name: key.replace("Animal::", ""), value: value})
-
-
-  @vegetation = =>
-    vegetation = Object.findAll $scope.objects_count, (key, value) ->
-      key.indexOf('Vegetation::') >= 0
-    Object.map vegetation, (key, value) ->
-      $scope.vegetation.push([key.replace("::", " "), value])
-    
-  @flora = () =>
-    flora = Object.findAll $scope.objects_count, (key, value) ->
-      key.indexOf('Flora::') >= 0
-    Object.map flora, (key, value) ->
-      $scope.flora.push([key.replace("Flora::", ""), value])
-
-  @animals = () =>
-    animals = Object.findAll $scope.objects_count, (key, value) ->
-      key.indexOf('Animal::') >= 0
-    Object.map animals, (key, value) ->
-      $scope.animals.push([key.replace("Animal::", ""), value])
 
   @loadObjectsCount = () =>
     level.objects_count $scope.level, (data) =>
+      data['time'] = 500
       $scope.objects_count = data
-      @d3flora()
-      @d3animals()
-      @d3vegetation()
-      @flora()
-      @animals()
-      @vegetation()
 
+      vegetation = @filterData(data, 'Vegetation::')
+      flora      = @filterData(data, 'Flora::')
+      animals    = @filterData(data, 'Animal::')
+
+      vegetation = @extractData(vegetation, "::", " ")
+      flora      = @extractData(flora, "Flora::", "")
+      animals    = @extractData(animals, "Animal::", "")
+
+      if $scope.timeline.length == 0
+        @prepareTimeline(animals)
+      @extractTimeline(animals)
+
+      $scope.vegetation = @removeTime(vegetation)
+      $scope.flora      = @removeTime(flora)
+      $scope.animals    = @removeTime(animals)
+      
 ])
