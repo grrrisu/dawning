@@ -69,7 +69,7 @@
               {{ timelineOptions }}
               %br
               {{ timeline }}
-              
+
             .row
               .col-md-4.center 
                 %h4 Vegetation
@@ -85,6 +85,7 @@
 
             .row
               %c3-chart.timeline.col-md-12{'options' => "timelineOptions", 'data' => "timeline"}
+              
             
             %div.hidden(ng-show="showDetailPanel")
               DetailPanel
