@@ -2,6 +2,8 @@ levelModule.controller('LevelDetailController', ['$scope', '$routeParams', 'leve
 
   @key = 'general'
 
+  $scope.stacked = true
+
   level.find $routeParams.id, (data) =>
     $scope.level = data
     
@@ -21,8 +23,17 @@ levelModule.controller('LevelDetailController', ['$scope', '$routeParams', 'leve
   $scope.d3OnClick = (item) ->
     console.log(item)
 
+  $scope.toggleStacked = () ->
+    if $scope.stacked == true
+      $scope.timelineOptions.data.groups = @timelineGroupOptions
+      $scope.timelineOptions.data.types  = @timelineTypesOptions
+    else
+      @timelineGroupOptions = $scope.timelineOptions.data.groups
+      @timelineTypesOptions = $scope.timelineOptions.data.types
+      delete $scope.timelineOptions.data.groups
+      delete $scope.timelineOptions.data.types
+
   $scope.pieOptions = c3ObjectChart.pieOptions
-  window.c3objectChart = c3ObjectChart
   $scope.timelineOptions = c3ObjectChart.timelineOptions
 
   $scope.vegetation = []

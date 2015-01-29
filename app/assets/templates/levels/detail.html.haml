@@ -64,9 +64,6 @@
               duration: {{level.sim_loop.duration}} tu
               %br
               \# objects: {{level.sim_loop.objects}}
-
-              %br
-              {{ timelineOptions }}
               %br
               {{ timeline }}
 
@@ -84,7 +81,13 @@
               %c3-chart.col-md-4{'options' => "animalOptions", 'data' => "animals"}
 
             .row
-              %c3-chart.timeline.col-md-12{'options' => "timelineOptions", 'data' => "timeline"}
+              %c3-chart.timeline.col-md-12{'options' => "timelineOptions", 'data' => "timeline", 'height' => 300}
+            .row
+              .col-md-2
+                Chart Options:
+              .col-md-2
+                %input(type="checkbox" ng-model="stacked" name="stacked" ng-change="toggleStacked()")
+                %label(for="stacked")Stacked
               
             
             %div.hidden(ng-show="showDetailPanel")

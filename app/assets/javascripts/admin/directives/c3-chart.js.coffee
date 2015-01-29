@@ -12,7 +12,7 @@ levelModule.directive 'c3Chart', ['$window', 'd3PieChart', 'd3BarChart',($window
     config =
       bindto: element[0],
       size: 
-        height: 200
+        height: attrs['height'] || 200
         width: scope.elementWidth()
       data: scope.data
 
@@ -31,9 +31,19 @@ levelModule.directive 'c3Chart', ['$window', 'd3PieChart', 'd3BarChart',($window
 
     # watch for data changes and re-render
     scope.$watch 'data', (newVals, oldVals) ->
-      config.data.columns = newVals
-      scope.render();
+      if scope.chart?
+        scope.chart.load
+          columns: newVals
+      else
+        config.data.columns = newVals
+        scope.render()
+      
     , true # check for objectEquality
+
+    # watch for config changes
+    scope.$watch 'options', (newVals, oldVals) ->
+      scope.render()
+    , true
 
     scope.render = () ->
       # If we don't pass any data return 

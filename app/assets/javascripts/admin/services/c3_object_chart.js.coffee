@@ -12,22 +12,25 @@ levelModule.factory 'c3ObjectChart', ['level', '$interval', (level, $interval) -
     pieData
 
   @prepareTimeline = (scope, data) ->
-    columns = [['time']]
+    columns = []
     keys = data.map (item) ->
       columns.push([item[0]])
       item[0]
     scope.timeline = columns
-    #scope.timelineOptions.data.groups = [keys]
-    # types = {}
-    # keys.each (item) ->
-    #   types[item] = 'area'
-    # scope.timelineOptions.data.types = types
+    scope.timelineOptions.data.groups = [keys]
+    types = {}
+    keys.each (item) ->
+      types[item] = 'area'
+    scope.timelineOptions.data.types = types
 
   @extractTimeline = (scope, data) ->
-    data.each (data_item) ->
-      scope.timeline.each (timeline) ->
-        if data_item[0] == timeline[0]
-          timeline.add(data_item[1])
+    scope.timeline.each (timeline) ->
+      data_found = data.find (data_item) ->
+        data_item[0] == timeline[0]
+      if data_found?
+        timeline.add(data_found[1])
+      else
+        timeline.add(0)
 
   @removeTime = (data) ->
     data.remove (item) =>
