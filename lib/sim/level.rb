@@ -82,4 +82,10 @@ class Level < Sim::Level
     objects
   end
 
+  def terminal_command command
+    instance_eval(command).inspect
+  rescue Exception => e
+    e.message
+  end
+
 end

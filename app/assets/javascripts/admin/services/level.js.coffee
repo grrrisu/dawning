@@ -45,4 +45,9 @@ levelModule.factory('level', ['$q', '$http', '$log', ($q, $http, $log) ->
     @apiCall callback, () =>
       $http.get(@base_url + "/levels/#{level.id}/objects_count.json")
 
+  terminalCommand: (level, command, callback) =>
+    console.log(command)
+    @apiCall callback, () =>
+      $http.post(@base_url + "/levels/#{level.id}/terminal_command.json", {command: command})
+
 ])

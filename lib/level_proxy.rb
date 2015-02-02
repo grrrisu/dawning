@@ -132,4 +132,8 @@ class LevelProxy
     end
   end
 
+  def terminal_command command
+    @connection.send_action :terminal_command, command: command
+  end
+
 end

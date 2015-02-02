@@ -16,4 +16,4 @@ adminModule.config(['$httpProvider', '$routeProvider', '$locationProvider', ($ht
   #$locationProvider.html5Mode(true)
 ])
 
-@levelModule = angular.module('levelModule', ['ngResource'])
+@levelModule = angular.module('levelModule', ['ngResource', 'ngSanitize'])

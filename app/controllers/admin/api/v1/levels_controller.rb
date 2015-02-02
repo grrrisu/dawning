@@ -2,7 +2,7 @@ class Admin::Api::V1::LevelsController < ApplicationController
 
   authorize_resource
 
-  before_filter :find_level, only: [:show, :run, :build, :join, :stop, :destroy, :objects_count]
+  before_filter :find_level, only: [:show, :run, :build, :join, :stop, :destroy, :objects_count, :terminal_command]
 
   respond_to :json
 
@@ -47,6 +47,10 @@ class Admin::Api::V1::LevelsController < ApplicationController
 
   def objects_count
     render json: @level.objects_count
+  end
+
+  def terminal_command
+    render json: {answer: @level.terminal_command(params[:command])}
   end
 
 private

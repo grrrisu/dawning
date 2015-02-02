@@ -6,6 +6,7 @@
 //= require angular
 //= require angular-resource
 //= require angular-route
+//= require angular-sanitize
 
 //= require d3
 //= require c3

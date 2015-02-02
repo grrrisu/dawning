@@ -34,6 +34,7 @@ Dawning::Application.routes.draw do
             put :run
             put :stop
             get :objects_count
+            post :terminal_command
           end
         end
       end

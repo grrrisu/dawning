@@ -29,15 +29,34 @@
             %i.fa.fa-3x.fa-users
             %br
             Players
-          .panel-section.panel-section-bottom.level-panel-navigation
-            %level-actions
+          .panel-section.center.level-panel-navigation(ng-click="setNav('terminal')" ng-class="{active: isNav('terminal')}")
+            %span.fa-stack.fa-2x
+              %i.fa.fa-square-o.fa-stack-2x
+              %i.fa.fa-terminal.fa-stack-1x
+            %br
+            Terminal
+          //.panel-section.panel-section-bottom.level-panel-navigation
+          //  %level-actions
         .col-md-10.col-sm-9
           .level-panel-content(ng-show="isNav('general')")
             %h3 General
+            %p(style="margin-bottom: 25px;")
+              State: {{ level.state }}
+              %br
+              Config: {{ level.config_file }}
+              %br
+              World Size: {{ level.world.width}} x {{ level.world.height}}
+            %h4
+              %i.fa.fa-clock-o
+              Time Unit
             %p
-              %div State: {{ level.state }}
-              %div Config: {{ level.config_file }}
-              %div World Size: {{ level.world.width}} x {{ level.world.height}}
+              Unit: {{level.time_unit.time_unit}} sec
+              %br
+              Time Elapsed: {{(level.time_unit.time_elapsed * level.time_unit.time_unit)/ 60 | number:2 }} min
+              %br
+              TU Elapsed: {{level.time_unit.time_elapsed | number:2 }}
+              %br
+              Started: {{level.time_unit.started | date: 'd. MMM. yyyy H:mm:ss' }}
           .level-panel-content(ng-show="isNav('time_unit')")
             %h3 Time Unit
             %p
@@ -103,4 +122,17 @@
                 %tr(ng-repeat="player in level.players")
                   %td {{ player.name }}
                   %td {{ player.status }}
+
+          .level-panel-content(ng-show="isNav('terminal')")
+            %h3 Terminal
+            %div(ng-controller="TerminalController as terminalCtrl")
+              %form.form-horizontal(name="terminalForm" ng-submit="sendCommand()" novalidate)
+                #terminal.well
+                  {{ answer }}
+                %input(type="text" ng-model="command")
+                %button.btn.btn-primary.spinner(type="submit" ng-disabled="cannotSubmit(terminalForm)")
+                  %i.fa.fa-chevron-right
+                  Send
+
+              
 
