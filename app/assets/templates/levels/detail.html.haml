@@ -126,10 +126,10 @@
           .level-panel-content(ng-show="isNav('terminal')")
             %h3 Terminal
             %div(ng-controller="TerminalController as terminalCtrl")
-              %form.form-horizontal(name="terminalForm" ng-submit="sendCommand()" novalidate)
-                #terminal.well
-                  {{ answer }}
-                %input(type="text" ng-model="command")
+              %form(name="terminalForm" ng-submit="sendCommand()" novalidate)
+                #terminal(ng-show="showOutput()")
+                  %pre {{ answer }}
+                %input(terminal-input=true type="text" ng-model="command" style="width: 80%")
                 %button.btn.btn-primary.spinner(type="submit" ng-disabled="cannotSubmit(terminalForm)")
                   %i.fa.fa-chevron-right
                   Send
