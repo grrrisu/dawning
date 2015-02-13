@@ -9,7 +9,10 @@ levelModule.controller('LevelsController', [ '$scope', '$http', 'level', ($scope
   $scope.addLevel = () ->
     $scope.levels.unshift({})
 
-  @removeLevel = (level) ->
+  $scope.refreshLevels = (data) =>
+    @loadLevels()
+
+  $scope.removeLevel = (level) ->
     index = $scope.levels.findIndex (item) ->
       item.name == level.name
     if index != -1

@@ -3,7 +3,7 @@ sim_loop:
   duration: 3
 world:
   width: 25
-  height: 50
+  height: 25
   vegetation:
     classes: default/vegetation.yml
     builder: default/vegetation_builder.yml
@@ -16,16 +16,16 @@ world:
 dropzones:
   bot_1:
     from:  0
-    to:   19
+    to:    4
   gateway:
-    from: 20
-    to:   39
+    from:  5
+    to:    9
   transit:
-    from: 50
-    to:   49
+    from: 10
+    to:   14
   players:
-    from: 60
-    to:   79
+    from: 15
+    to:   19
   bot_2:
-    from: 80
-    to:   99
+    from: 20
+    to:   24

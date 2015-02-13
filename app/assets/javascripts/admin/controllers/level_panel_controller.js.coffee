@@ -20,6 +20,7 @@ levelModule.controller('LevelPanelController', [ '$scope', '$http', 'levelStates
     if $scope.launchForm.$valid
       @sending = 'launch'
       level.launch $scope.new_level_name, @updateLevel
+      $scope.$parent.refreshLevels()
 
   $scope.buildLevel = () =>
     if $scope.buildForm.$valid
@@ -42,7 +43,7 @@ levelModule.controller('LevelPanelController', [ '$scope', '$http', 'levelStates
   $scope.removeLevel = () =>
     @sending = 'remove'
     level.remove $scope.level, (data) =>
-      $scope.monitorCtrl.removeLevel($scope.level)
+      $scope.$parent.removeLevel($scope.level)
       @resetSending()
 
   @updateLevel = (data) =>
