@@ -61,6 +61,7 @@ class Animal < Sim::Object
   end
 
   def die
+    super
     sim_loop.remove(self)
     @field.fauna = nil
     @field = nil
