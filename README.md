@@ -28,6 +28,7 @@ https://github.com/grrrisu/dawning
 * Sugar via vendor
 * Angular via vendor
 * D3 via vendor
+* C3 via vendor
 
 Credits
 --

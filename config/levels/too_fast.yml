@@ -1,0 +1,31 @@
+time_unit: 1
+sim_loop:
+  duration: 3
+world:
+  width: 25
+  height: 25
+  vegetation:
+    classes: default/vegetation.yml
+    builder: default/vegetation_builder.yml
+  flora:
+    classes: default/flora.yml
+    builder: default/flora_builder.yml
+  fauna:
+    classes: default/animal.yml
+    builder: default/fauna_builder.yml
+dropzones:
+  bot_1:
+    from:  0
+    to:    4
+  gateway:
+    from:  5
+    to:    9
+  transit:
+    from: 10
+    to:   14
+  players:
+    from: 15
+    to:   19
+  bot_2:
+    from: 20
+    to:   24
