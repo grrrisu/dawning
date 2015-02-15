@@ -12,7 +12,6 @@ describe "player messages" do
   before(:each) do
     player_connection.instance_variable_set('@player', player)
     player.connection = player_connection
-    Sim::Queue::Master.setup level
     level.build config
     level.start
     level.dropzone.place_player player
