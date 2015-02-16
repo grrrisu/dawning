@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "enter level", js: true do
+describe "enter level" do
   include_context "session"
   include_context "level"
 

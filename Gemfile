@@ -70,8 +70,8 @@ end
 group :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'capybara', '2.4.1'
-  gem 'capybara-webkit'
-  gem 'selenium-webdriver'
+  gem 'poltergeist'
+  gem 'selenium-webdriver', '>=2.45.0.dev3' # fixs issue: arguments[0] is undefined
   gem 'database_cleaner'
   gem 'launchy'
   gem "codeclimate-test-reporter", :require => false

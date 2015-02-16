@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/grrrisu/Simulator.git
-  revision: 838111df7706ee743300e5d69cfc2ef20e215c44
+  revision: f2feddee65af9e67ea0e0ce93af2a29ac3a73a35
   specs:
     Simulator (0.3.3)
       activesupport (>= 4.0.2)
@@ -99,16 +99,14 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.3.1)
-      capybara (>= 2.0.2, < 2.5.0)
-      json
     celluloid (0.16.0)
       timers (~> 4.0.0)
-    celluloid-io (0.16.1)
+    celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
-      nio4r (>= 1.0.0)
+      nio4r (>= 1.1.0)
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
+    cliver (0.3.2)
     code_analyzer (0.4.5)
       sexp_processor
     codeclimate-test-reporter (0.4.1)
@@ -133,7 +131,7 @@ GEM
     em-synchrony (1.0.3)
       eventmachine (>= 1.0.0.beta.1)
     erubis (2.7.0)
-    eventmachine (1.0.3)
+    eventmachine (1.0.7)
     execjs (2.2.2)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -174,21 +172,21 @@ GEM
       activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
-    hashie (3.3.1)
+    hashie (3.4.0)
     highline (1.6.21)
     hike (1.2.3)
     hirb (0.7.2)
     hiredis (0.5.2)
     hitimes (1.2.2)
     httpclient (2.5.3.2)
-    i18n (0.6.11)
+    i18n (0.7.0)
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
-    json (1.8.1)
+    json (1.8.2)
     jwt (1.0.0)
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
@@ -208,7 +206,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.1)
-    minitest (5.4.3)
+    minitest (5.5.1)
     mongoid (4.0.0)
       activemodel (~> 4.0)
       moped (~> 2.0.0)
@@ -229,7 +227,7 @@ GEM
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     newrelic_rpm (3.9.6.257)
-    nio4r (1.0.1)
+    nio4r (1.1.0)
     nokogiri (1.6.4.1)
       mini_portile (~> 0.6.0)
     oauth (0.4.7)
@@ -244,6 +242,11 @@ GEM
     parser (2.2.0.pre.7)
       ast (>= 1.1, < 3.0)
       slop (~> 3.4, >= 3.4.5)
+    poltergeist (1.6.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     powerpack (0.0.9)
     pretty_formatter (0.0.2)
       activesupport (>= 3.2)
@@ -284,7 +287,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
-    rake (10.3.2)
+    rake (10.4.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -326,7 +329,7 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.5.0)
       sexp_processor (~> 4.1)
-    rubyzip (1.1.6)
+    rubyzip (1.1.7)
     rvm-capistrano (1.5.4)
       capistrano (~> 2.15.4)
     sass (3.2.19)
@@ -335,7 +338,7 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 2.12)
       sprockets-rails (~> 2.0)
-    selenium-webdriver (2.44.0)
+    selenium-webdriver (2.45.0.dev3)
       childprocess (~> 0.5)
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
@@ -429,7 +432,6 @@ DEPENDENCIES
   capistrano
   capistrano-ext
   capybara (= 2.4.1)
-  capybara-webkit
   codeclimate-test-reporter
   coffee-rails
   database_cleaner
@@ -449,6 +451,7 @@ DEPENDENCIES
   launchy
   mongoid (~> 4.0.0)
   newrelic_rpm
+  poltergeist
   pretty_formatter
   pry-rails
   rack-mini-profiler
@@ -460,7 +463,7 @@ DEPENDENCIES
   rubocop
   rvm-capistrano
   sass-rails (~> 4.0.1)
-  selenium-webdriver
+  selenium-webdriver (>= 2.45.0.dev3)
   simple_form (~> 3.0.0)
   simplecov (~> 0.9.1)
   smusher

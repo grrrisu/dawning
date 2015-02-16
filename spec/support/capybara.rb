@@ -1,5 +1,8 @@
 # headless javascript testing
-Capybara.javascript_driver = :webkit
+require 'capybara/poltergeist'
+Capybara.default_driver = :poltergeist
+
+#Capybara.default_wait_time = 5
 
 Capybara.server do |app, port|
   require 'rack/handler/thin'
