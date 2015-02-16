@@ -1,6 +1,8 @@
 set :application, 'dawning'
 set :repo_url, 'git@github.com:grrrisu/dawning.git'
 
+set :rvm_ruby_version, File.read(".ruby-version").strip
+
 # Default value for :log_level is :debug
 # set :log_level, :debug
 
