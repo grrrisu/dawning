@@ -42,9 +42,12 @@ group :development do
   gem 'growl', :require => false
   gem 'rb-fsevent', '~> 0.9.1', :require => false
 
-  gem 'capistrano', :require => false
-  gem 'capistrano-ext', :require => false
-  gem 'rvm-capistrano', :require => false
+  gem 'capistrano', '~> 3.3.5', :require => false
+  gem 'capistrano-rvm', :require => false
+  gem 'capistrano-bundler', :require => false
+  gem 'capistrano-rails', :require => false
+  gem 'capistrano-thin', :require => false
+  gem 'capistrano-airbrake', :require => false
 
   gem 'hirb', :require => false
   gem 'wirble', :require => false

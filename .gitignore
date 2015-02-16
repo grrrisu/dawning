@@ -12,8 +12,7 @@
 /config/mongoid.yml
 /config/mongoid_production.yml
 /config/newrelic.yml
-/config/thin.yml
-/config/thin_production.yml
+/config/thin/production.yml
 /config/secrets.yml
 
 # Ignore all logfiles and tempfiles.

@@ -1,5 +1,6 @@
-server "neon", :app, :web, :db, primary: true
-set :branch,  "production"
-set :rails_env, "production"
+role :web, 'neon'
+role :app, 'neon'
+role :db,  'neon', primary: true
 
-set :deploy_to,   "/srv/sites/dawning.zero-x.net"
+set :branch,    "production"
+set :deploy_to, "/srv/sites/dawning.zero-x.net"

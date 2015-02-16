@@ -1,98 +1,35 @@
-# setup rvm
-require 'rvm/capistrano'
-set :rvm_ruby_string, '2.1.2'
-set :rvm_type, :system
+set :application, 'dawning'
+set :repo_url, 'git@github.com:grrrisu/dawning.git'
 
-# setup bundler
-require 'bundler/capistrano'
-set :bundle_without, %w(development test)
+# Default value for :log_level is :debug
+# set :log_level, :debug
 
-# setup multistage
-set :stages, %w(production staging helium)
-set :default_stage, "production"
-require 'capistrano/ext/multistage'
+set :linked_files, %w{config/mongoid.yml config/secrets.yml config/level.yml}
+set :linked_dirs, %w{log tmp/pids tmp/sockets public/system public/assets}
 
-# setup airbrake
-require './config/boot'
-require 'airbrake/capistrano'
+# Default value for :linked_files is []
+# set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 
-# main details
-set :application, "dawning"
-#set :number_of_workers, 1
+# Default value for linked_dirs is []
+# set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
-# deployment details
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
-set :deploy_via, :remote_cache
-set :user, "grrrisu"
-set :use_sudo, false
-#set :rake, "bundle exec rake"
-set :deploy_to, "/m42/sites/#{application}"
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
-# repo details
-set :scm, :git
-set :repository,    "git://github.com/grrrisu/dawning.git"
-set :keep_releases, 5
-
-after 'deploy:setup', 'deploy:setup_shared_dirs'
-before 'deploy:assets:precompile', 'deploy:symlink_configs'
-before 'deploy:symlink_configs', 'upload_configs'
-after 'deploy:symlink_configs', 'deploy:symlink_sockets'
-#after "deploy:create_symlink",  "deploy:migrate"
-#after 'deploy:symlink_configs', 'deploy:create_db'
-after "deploy", "deploy:cleanup"
-
-task :upload_configs do
-  {'mongoid_production.yml' => 'mongoid.yml',
-   'secrets.yml' => 'secrets.yml',
-   'thin_production.yml' => 'thin.yml',
-   'level.yml' => 'level.yml'
-   }.each do |local_file, remote_file|
-    upload File.expand_path("../#{local_file}", __FILE__), "#{shared_path}/config/#{remote_file}", via: :scp
-  end
-end
+set :ssh_options, {
+  user: "grrrisu",
+  forward_agent: true,
+}
 
 namespace :deploy do
 
-  # Thin
-
-  desc "Start the Thin processes"
-  task :start do
-    run "cd #{current_path} && bundle exec thin start -C config/thin.yml"
-  end
-
-  desc "Stop the Thin processes"
-  task :stop do
-    run "cd #{current_path} && bundle exec thin stop -C config/thin.yml"
-  end
-
-  desc "Restart the Thin processes"
-  task :restart do
-    run "cd #{current_path} && bundle exec thin restart -C config/thin.yml"
-  end
-
-
-  desc "setup additional shared directories "
-  task :setup_shared_dirs do
-    dirs = ["#{shared_path}/config"]
-    run "#{try_sudo} mkdir -p #{dirs.join(' ')} && #{try_sudo} chmod g+w #{dirs.join(' ')}"
-  end
-
-  task :create_db, roles: :db, only: { primary: true } do
-    rake = fetch(:rake, "rake")
-    rails_env = fetch(:rails_env, "production")
-    migrate_env = fetch(:migrate_env, "")
-
-    run "cd #{release_path} && #{rake} RAILS_ENV=#{rails_env} #{migrate_env} db:create"
-  end
-
-  task :symlink_configs do
-    %w{mongoid.yml secrets.yml thin.yml level.yml}.each do |yml_file|
-      run "ln -s #{shared_path}/config/#{yml_file} #{release_path}/config/#{yml_file}"
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
     end
   end
 
-  task :symlink_sockets do
-    run "ln -s #{shared_path}/sockets #{release_path}/tmp/sockets"
-  end
 end

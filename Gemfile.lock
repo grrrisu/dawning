@@ -85,14 +85,26 @@ GEM
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
     cancancan (1.9.2)
-    capistrano (2.15.5)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.1.0)
-    capistrano-ext (1.2.1)
-      capistrano (>= 1.0.0)
+    capistrano (3.3.5)
+      capistrano-stats (~> 1.1.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (~> 1.3)
+    capistrano-airbrake (0.1.1)
+      capistrano (~> 3.0)
+    capistrano-bundler (1.1.4)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-rails (1.1.2)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
+    capistrano-stats (1.1.1)
+    capistrano-thin (1.1.0)
+      capistrano (~> 3.0)
+      thin (~> 1.6)
     capybara (2.4.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -120,6 +132,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     colored (1.2)
+    colorize (0.7.5)
     columnize (0.8.9)
     connection_pool (2.0.0)
     daemons (1.1.9)
@@ -221,11 +234,7 @@ GEM
     multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-sftp (2.1.2)
-      net-ssh (>= 2.6.5)
-    net-ssh (2.9.1)
-    net-ssh-gateway (1.2.0)
-      net-ssh (>= 2.6.5)
+    net-ssh (2.9.2)
     newrelic_rpm (3.9.6.257)
     nio4r (1.1.0)
     nokogiri (1.6.4.1)
@@ -330,8 +339,6 @@ GEM
     ruby_parser (3.5.0)
       sexp_processor (~> 4.1)
     rubyzip (1.1.7)
-    rvm-capistrano (1.5.4)
-      capistrano (~> 2.15.4)
     sass (3.2.19)
     sass-rails (4.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -376,6 +383,10 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sshkit (1.6.1)
+      colorize (>= 0.7.0)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     systemu (2.6.4)
     temple (0.6.10)
     terminal-table (1.4.5)
@@ -429,8 +440,12 @@ DEPENDENCIES
   bullet
   byebug
   cancancan
-  capistrano
-  capistrano-ext
+  capistrano (~> 3.3.5)
+  capistrano-airbrake
+  capistrano-bundler
+  capistrano-rails
+  capistrano-rvm
+  capistrano-thin
   capybara (= 2.4.1)
   codeclimate-test-reporter
   coffee-rails
@@ -461,7 +476,6 @@ DEPENDENCIES
   rb-readline
   rspec-rails (~> 3.1.0)
   rubocop
-  rvm-capistrano
   sass-rails (~> 4.0.1)
   selenium-webdriver (>= 2.45.0.dev3)
   simple_form (~> 3.0.0)
