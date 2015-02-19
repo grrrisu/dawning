@@ -14,6 +14,10 @@ Requirements
 
 * MongoDB[http://www.mongodb.org/] ~> 2.0.4
 
+### Developement
+
+* PhantomJS - [Install](https://github.com/teampoltergeist/poltergeist#installing-phantomjs)
+
 Code
 ---
 

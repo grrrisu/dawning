@@ -32,7 +32,7 @@ levelModule.directive 'c3Chart', ['$window', 'd3PieChart', 'd3BarChart',($window
     # watch for data changes and re-render
     scope.$watch 'data', (newVals, oldVals) ->
       if scope.chart?
-        scope.chart.unload() if config.data.type == 'pie'
+        scope.chart.unload()
         scope.chart.load
           columns: newVals
       else
