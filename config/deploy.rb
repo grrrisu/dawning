@@ -4,7 +4,7 @@ set :repo_url, 'git@github.com:grrrisu/dawning.git'
 set :rvm_ruby_version, File.read(".ruby-version").strip
 
 # Default value for :log_level is :debug
-# set :log_level, :debug
+set :log_level, :info
 
 set :linked_files, %w{config/mongoid.yml config/secrets.yml config/level.yml}
 set :linked_dirs, %w{log tmp/pids tmp/sockets public/system public/assets}
@@ -20,7 +20,7 @@ set :linked_dirs, %w{log tmp/pids tmp/sockets public/system public/assets}
 
 set :ssh_options, {
   user: "grrrisu",
-  forward_agent: true,
+  forward_agent: true
 }
 
 namespace :deploy do
