@@ -13,9 +13,24 @@ set :ssh_options, {
   forward_agent: true
 }
 
+before 'deploy:symlink:shared', 'deploy:upload_config_files'
 after 'deploy:publishing', 'deploy:restart'
 
 namespace :deploy do
+
+  desc "upload config files"
+  task :upload_config_files do
+    on roles(:all) do |host|
+      {'mongoid_production.yml' => 'mongoid.yml',
+       'secrets.yml' => 'secrets.yml',
+       'thin/production.yml' => 'thin/production.yml',
+       'level.yml' => 'level.yml'
+       }.each do |local_file, remote_file|
+        upload! File.expand_path("../#{local_file}", __FILE__), "#{shared_path}/config/#{remote_file}"
+        info "Host #{host} (#{host.roles.to_a.join(', ')}):\t#{capture(:uptime)}"
+      end
+    end
+  end
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
