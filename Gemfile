@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1.1'
+gem 'rails', '~> 4.2.1'
+gem 'responders'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
@@ -65,6 +66,7 @@ group :test, :development do
   gem "jasminerice", :github => 'bradphelan/jasminerice' # wait until ready for rails4
   gem "better_errors"
   gem "binding_of_caller"
+  gem 'web-console'
   gem 'pry-rails'
   gem 'byebug'
   gem 'simplecov', '~> 0.9.1', :require => false
@@ -72,7 +74,7 @@ end
 
 group :test do
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'capybara', '2.4.1'
+  gem 'capybara', '~> 2.4.1'
   gem 'poltergeist'
   gem 'selenium-webdriver', '>=2.45.0.dev3' # fixs issue: arguments[0] is undefined
   gem 'database_cleaner'
