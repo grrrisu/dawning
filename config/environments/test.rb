@@ -31,4 +31,7 @@ Dawning::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # rack lock leads to deadlocks in websocket
+  config.middleware.delete "Rack::Lock"
 end
