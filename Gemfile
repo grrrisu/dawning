@@ -21,7 +21,7 @@ gem 'pretty_formatter'
 gem 'Simulator', :require => 'sim', :github => 'grrrisu/Simulator' # :path => '../Simulator'
 gem 'uuid'
 
-gem 'sass-rails',   '~> 4.0.1'
+gem 'sass-rails'
 gem 'coffee-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -58,11 +58,10 @@ group :development do
   gem 'bullet'
   gem 'rails_best_practices'
   gem 'smusher', :require => false
-  gem 'rubocop', :require => false
 end
 
 group :test, :development do
-  gem "rspec-rails", '~> 3.1.0'
+  gem "rspec-rails", '~> 3.2.0'
   gem "jasminerice", :github => 'bradphelan/jasminerice' # wait until ready for rails4
   gem "better_errors"
   gem "binding_of_caller"
@@ -74,9 +73,9 @@ end
 
 group :test do
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'capybara', '~> 2.4.1'
+  gem 'capybara'
   gem 'poltergeist'
-  gem 'selenium-webdriver', '>=2.45.0.dev3' # fixs issue: arguments[0] is undefined
+  gem 'selenium-webdriver', '>=2.45.0'
   gem 'database_cleaner'
   gem 'launchy'
   gem "codeclimate-test-reporter", :require => false
