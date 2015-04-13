@@ -10,7 +10,7 @@ A game about emergence
 Requirements
 --
 
-* Ruby 2.1.2
+* Ruby 2.2.1
 
 * MongoDB[http://www.mongodb.org/] ~> 2.0.4
 
