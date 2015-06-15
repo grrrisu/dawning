@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Navigation
 
-  protect_from_forgery
+  protect_from_forgery with: :exception
 
   before_filter :require_login, except: [:not_authenticated]
 
