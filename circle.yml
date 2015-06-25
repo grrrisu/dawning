@@ -8,3 +8,6 @@ database:
     - mv config/level_example.yml config/level.yml
     - mkdir tmp
     - mkdir tmp/sockets
+test:
+  override:
+    - bundle exec rake spec
