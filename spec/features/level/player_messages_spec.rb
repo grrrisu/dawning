@@ -19,9 +19,7 @@ describe "player messages" do
 
   it "should return init_map" do
     expect(player_connection).to receive(:send_message).with(
-      :init_map, hash_including(world: {height: 15, width: 15},
-                                headquarter: hash_including(x: hq.x, y: hq.y, pawns: instance_of(Array))
-                               )
+      :init_map, hash_including(headquarter: hash_including(x: hq.x, y: hq.y, pawns: instance_of(Array))                )
     )
     player_connection.forward_message player_id: '123',
       action: 'init_map', params: {}

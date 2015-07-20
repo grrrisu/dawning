@@ -19,12 +19,12 @@ module Player
     def init_map
       if @world_view.world
         {
-          world: { width: @world_view.world.width, height: @world_view.world.height },
           headquarter:
           {
             id: @headquarter.id,
             x: @headquarter.x,
             y: @headquarter.y,
+            type: @headquarter.type,
             pawns:
               @headquarter.pawns.map do |pawn|
                 {id: pawn.id, type: pawn.type, x: pawn.x, y: pawn.y}

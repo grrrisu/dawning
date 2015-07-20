@@ -3,6 +3,7 @@ class Pawn
 
   attr_accessor :id, :x, :y, :type
 
+  default_attr :type, 'base'
   default_attr :view_radius, 1
 
   def self.id_count
@@ -23,12 +24,11 @@ class Pawn
   def initialize x, y
     Pawn.add(self)
     @x, @y       = x, y
-    @tpye        = 'base'
   end
 
   # the value that is returned to the view
   def view_value
-    self.class.name.underscore
+    {type: type, id: id}
   end
 
 end
