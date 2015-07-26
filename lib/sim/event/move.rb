@@ -37,7 +37,7 @@ module Event
 
     def check_movement
       headquarter.within_influence_area(x,y) do
-        move_pawn(pawn, x, y) unless world[x,y].key?(:pawn)
+        move_pawn(pawn, x, y) unless field_occupied?
       end
     end
 
@@ -48,6 +48,10 @@ module Event
       else
         answer
       end
+    end
+
+    def field_occupied?
+      world[x,y].key?(:pawn)
     end
 
     def move_pawn pawn, x, y
