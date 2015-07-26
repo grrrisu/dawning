@@ -3,7 +3,7 @@ class Game.MapController
   constructor: (@dispatcher) ->
     @bindEvents()
 
-  init_map: =>
+  initMap: =>
     @dispatcher.trigger 'init_map'
 
   view: (request_data) =>
@@ -28,7 +28,8 @@ class Game.MapController
         alert('done')
 
   render_client: (message) =>
-    window.client.render(message)
+    initData = JSON.parse(message);
+    Game.main.stage.map.loadData(initData);
 
   render_map: (message) =>
     window.client.map.render_map(message)

@@ -23,11 +23,14 @@ class Game.Map
 
   init: (callback) =>
     @mapLayer.init();
-    @data.initMap (initData) =>
-      @setCenter(initData.headquarter.x, initData.headquarter.y);
-      @moveToCenter(initData.headquarter.x, initData.headquarter.y);
-      @data.setupData () =>
-        callback(initData);
+    Game.main.mapController.initMap();
+
+  loadData: (initData) =>
+    console.log("hx #{initData.headquarter.x} hy #{initData.headquarter.y}")
+    @setCenter(initData.headquarter.x, initData.headquarter.y);
+    @moveToCenter(initData.headquarter.x, initData.headquarter.y);
+    @data.setupData () =>
+      Game.main.dataLoaded(initData);
 
   setCenter: (centerX, centerY) =>
     @centerX = centerX;
