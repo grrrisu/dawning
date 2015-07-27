@@ -2,8 +2,7 @@ class MapsController < ApplicationController
   navigation :map
 
   before_filter :get_running_level
-  before_filter :prepare_map_images, only: :show
-
+  
   # setup html for map
   def show
     authorize! :show, @level
