@@ -1,9 +1,12 @@
 class Game.Main
 
   constructor: (element_id, level_id) ->
-    @assets    = new Game.Assets();
-    @apiCaller = new Game.ApiCaller();
-    @stage     = new Game.Stage(element_id);
+    @assets         = new Game.Assets();
+    @apiCaller      = new Game.ApiCaller();
+    @dispatcher     = new Game.Websocket(level_id);
+    @mapController  = new Game.MapController(@dispatcher);
+    @chatController = new Game.ChatController(@dispatcher);
+    @stage          = new Game.Stage(element_id);
 
   init: () =>
     @assets.load(@assetsLoaded);

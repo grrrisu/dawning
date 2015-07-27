@@ -20,5 +20,5 @@
 
 :coffee
   $ () ->
-    Game.main = new Game.Main('map');
+    Game.main = new Game.Main('map', "#{@level.id}");
     Game.main.init();
