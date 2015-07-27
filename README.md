@@ -28,7 +28,7 @@ https://github.com/grrrisu/dawning
 
 * Bootstrap via gem
 * Fontawesome via gem
-* Kinetic via vendor
+* Pixi via vendor
 * Sugar via vendor
 * Angular via vendor
 * D3 via vendor

@@ -2,18 +2,23 @@
   Map
 .row
   .col-md-8{style: 'text-align: center'}
-    #matrix
-      #pawns
+    %canvas#map(width="750" height="520" style="width: 750px; height: 520px")
   .col-md-4
     #controls
       %h4 Controls
       %ul
         %li
+          = link_to "Zoom In", "#", id: "zoom-in"
+        %li
+          = link_to "Zoom Out", "#", id: "zoom-out"
+        %li
           = link_to "center view", "#", id: "center_view"
 
-    = render 'chat'
+    = render 'maps/chat'
 
-    = render 'field'
+    = render 'maps/field'
 
-:javascript
-  var image_sources = #{images_with_asset_path(@images).to_json};
+:coffee
+  $ () ->
+    Game.main = new Game.Main('map');
+    Game.main.init();

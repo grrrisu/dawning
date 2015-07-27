@@ -30,7 +30,7 @@ private
   end
 
   def show_map?
-    navigation_active? [:map]
+    navigation_active?([:map]) || navigation_active?([:admin, :test_map])
   end
 
 end
