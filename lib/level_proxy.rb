@@ -1,15 +1,20 @@
 class LevelProxy
 
   def self.create name
-    @levels ||= {}
-    @uuid   ||= UUID.new
+    @uuid ||= UUID.new
     unless @levels[name]
-      id = @uuid.generate
-      @levels[id] = new(id, name)
-      @levels[id].launch
+      level = new(@uuid.generate, name)
+      addLevel id, level
+      level.launch
+      level
     else
       raise ArgumentError, "level with name [#{name}] already exists!"
     end
+  end
+
+  def self.add_level id, level
+    @levels ||= {}
+    @levels[id] = level
   end
 
   def self.levels
