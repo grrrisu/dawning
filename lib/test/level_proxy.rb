@@ -8,8 +8,20 @@ class Test::LevelProxy
     @player = Test::PlayerProxy.new
   end
 
+  def players
+    [@player]
+  end
+
   def id
     ID
+  end
+
+  def name
+    NAME
+  end
+
+  def state
+    :running
   end
 
   def find_player user_id
