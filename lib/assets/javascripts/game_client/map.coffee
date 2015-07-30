@@ -46,13 +46,13 @@ class Game.Map
 
     width = size;
     if fieldData.x < @data.rx
-      width = @data.rx - fieldData.x;
+      width = (fieldData.x + size) - @data.rx;
     else if fieldData.x + size > @data.rx + @fieldWidth
       width = (@data.rx + @fieldWidth) - fieldData.x
 
     height = size
     if fieldData.y < @data.ry
-      height = @data.ry - fieldData.y;
+      height = (fieldData.y + size) - @data.ry;
     else if fieldData.y + size > @data.ry + @fieldHeight
       height = (@data.ry + @fieldHeight) - fieldData.y
 

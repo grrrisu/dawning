@@ -17,7 +17,8 @@ class Test::PlayerProxy
   end
 
   def view message
-    json = JSON.load(File.read(Rails.root.join('spec', 'fixtures', 'view.json')))
+    template = Tilt.new Rails.root.join('spec', 'fixtures', 'view.json.erb').to_s
+    json = JSON.load template.render(message)
     receive_message action: 'view', answer: json
   end
 
