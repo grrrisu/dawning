@@ -25,12 +25,39 @@ class Game.Map
     @mapLayer.init();
     Game.main.mapController.initMap();
 
-  loadData: (initData) =>
+  initDataLoaded: (initData) =>
     console.log("hx #{initData.headquarter.x} hy #{initData.headquarter.y}")
     @setCenter(initData.headquarter.x, initData.headquarter.y);
     @moveToCenter(initData.headquarter.x, initData.headquarter.y);
-    @data.setupData () =>
-      Game.main.dataLoaded(initData);
+    headquarter = new Game.Headquarter(initData, this);
+    Game.main.dataLoaded(headquarter);
+
+  loadFieldData: () =>
+    @data.loadData () =>
+
+  dataReceived: (data) =>
+    @data.addDataSet(data);
+    @updateFields(data);
+
+  updateFields: (fieldData) =>
+    x = [fieldData.x, @data.rx].max() - @data.rx;
+    y = [fieldData.y, @data.ry].max() - @data.ry;
+    size = 10;
+
+    width = size;
+    if fieldData.x < @data.rx
+      width = @data.rx - fieldData.x;
+    else if fieldData.x + size > @data.rx + @fieldWidth
+      width = (@data.rx + @fieldWidth) - fieldData.x
+
+    height = size
+    if fieldData.y < @data.ry
+      height = @data.ry - fieldData.y;
+    else if fieldData.y + size > @data.ry + @fieldHeight
+      height = (@data.ry + @fieldHeight) - fieldData.y
+
+    @removeFields(x, x + width, y, y + height);
+    @createFields(x, x + width, y, y + height);
 
   setCenter: (centerX, centerY) =>
     @centerX = centerX;
@@ -68,9 +95,6 @@ class Game.Map
     rx = Math.floor(-ax / (@fieldSize * @scale));
     ry = Math.floor(-ay / (@fieldSize * @scale));
     return {rx: rx, ry: ry};
-
-  create: () =>
-    @createFields(0, @fieldWidth, 0, @fieldHeight);
 
   createFields: (startX, endX, startY, endY) =>
     @data.eachField startX, endX, startY, endY, (rx, ry) =>

@@ -7,16 +7,18 @@ class Test::PlayerProxy
   end
 
   def receive_message message
-    Rails.logger.debug("sending to browser #{message[:action]}")
+    Rails.logger.debug("sending #{message[:action]} to browser")
     websocket.send_message message[:action], message[:answer]
   end
 
   def init_map message = nil
-    json = File.read(Rails.root.join('spec', 'fixtures', 'init_map.json'))
+    json = JSON.load(File.read(Rails.root.join('spec', 'fixtures', 'init_map.json')))
     receive_message action: 'init_map', answer: json
   end
 
   def view message
+    json = JSON.load(File.read(Rails.root.join('spec', 'fixtures', 'view.json')))
+    receive_message action: 'view', answer: json
   end
 
   def move message

@@ -7,16 +7,6 @@ class Game.MapData
     @dataWidth  = Math.round(fieldWidth / 10);
     @dataHeight = Math.round(fieldHeight / 10);
 
-  setupData: (callback) =>
-    @dataLoadedCallback = callback;
-    @dataToLoad = (@dataWidth + 2) * (@dataHeight + 2);
-    @loadData(@setupDataLoaded);
-
-  setupDataLoaded: () =>
-    @dataToLoad -= 1;
-    if @dataToLoad == 0
-      @dataLoadedCallback();
-
   currentView: () =>
     return [
       [@dataX - 10, @dataX + (@dataWidth + 1) * 10 - 1],
@@ -34,24 +24,21 @@ class Game.MapData
              dataSet.y < @dataY - 10 ||
              dataSet.y2 > @dataY + (@dataHeight + 1) * 10;
 
-  loadData: (callback) =>
+  loadData: () =>
     for x in [-10..(@dataWidth * 10)] by 10
       for y in [-10..(@dataHeight * 10)] by 10
         px = x + @dataX;
         py = y + @dataY;
 
         unless @isDataSetLoaded(px, py)
-          Game.main.apiCaller.get "/spec/fixtures/map_#{px}_#{py}.json", (data) =>
-            @addDataSet(data);
-            if callback?
-              callback();
+          request_view = {x: px, y: py, width: 10, height: 10};
+          Game.main.mapController.view(request_view);
 
   isDataSetLoaded: (x, y) =>
     @dataSets.any (dataSet) ->
       dataSet.x == x && dataSet.y == y
 
   addDataSet: (data) =>
-    data = JSON.parse(data);
     data['x2'] = data.x + data['view'][0].length - 1;
     data['y2'] = data.y + data['view'].length - 1;
     @dataSets.push(data);

@@ -23,4 +23,4 @@ class Game.Stage
     requestAnimationFrame(@update);
 
   create: () =>
-    @map.create();
+    @map.loadFieldData();

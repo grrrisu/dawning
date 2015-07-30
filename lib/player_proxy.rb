@@ -16,7 +16,7 @@ class PlayerProxy < Sim::Net::PlayerProxy
 
   def message_received message
     if websocket
-      Rails.logger.debug("sending to browser #{message[:action]}")
+      Rails.logger.debug("sending #{message[:action]} to browser")
       websocket.send_message message[:action], message[:answer]
     else
       Rails.logger.warn("could not send message #{message} to browser as websocket is not yet available")

@@ -28,11 +28,10 @@ class Game.MapController
         alert('done')
 
   render_client: (message) =>
-    initData = JSON.parse(message);
-    Game.main.stage.map.loadData(initData);
+    Game.main.stage.map.initDataLoaded(message);
 
   render_map: (message) =>
-    window.client.map.render_map(message)
+    Game.main.stage.map.dataReceived(message);
 
   update_map: (message) =>
     window.client.map.update_map(message)
