@@ -39,8 +39,8 @@ class Game.MapData
       dataSet.x == x && dataSet.y == y
 
   addDataSet: (data) =>
-    data['x2'] = data.x + data['view'][0].length - 1;
-    data['y2'] = data.y + data['view'].length - 1;
+    data['x2'] = data.x + data['view'][0].length;
+    data['y2'] = data.y + data['view'].length;
     @dataSets.push(data);
 
   getVegetation: (rx, ry) =>

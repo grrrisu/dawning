@@ -42,7 +42,7 @@ class Game.Map
   updateFields: (fieldData) =>
     x = [fieldData.x, @data.rx].max() - @data.rx;
     y = [fieldData.y, @data.ry].max() - @data.ry;
-    size = 10;
+    size = fieldData.view.length;
 
     width = size;
     if fieldData.x < @data.rx
