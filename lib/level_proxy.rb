@@ -1,10 +1,12 @@
 class LevelProxy
 
   def self.create name
+    @levels ||= {}
     @uuid ||= UUID.new
     unless @levels[name]
-      level = new(@uuid.generate, name)
-      addLevel id, level
+      id = @uuid.generate
+      level = new(id, name)
+      add_level id, level
       level.launch
       level
     else
@@ -13,7 +15,6 @@ class LevelProxy
   end
 
   def self.add_level id, level
-    @levels ||= {}
     @levels[id] = level
   end
 
