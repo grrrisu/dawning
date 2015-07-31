@@ -39,7 +39,7 @@ group :development do
   gem 'guard-rspec', :require => false
   # guard-jasmine needs PhantomJS
   # see http://code.google.com/p/phantomjs/wiki/BuildInstructions#Mac_OS_X
-  #gem 'guard-jasmine', :require => false
+  gem 'guard-jasmine', :require => false
   gem 'growl', :require => false
   gem 'rb-fsevent', '~> 0.9.1', :require => false
 
