@@ -425,10 +425,21 @@
       {
         "x": 25,
         "y": 55,
+        <% if fetch(:x) == 30 && fetch(:y) == 50 %>
+        "vegetation": {
+          "type": 1,
+          "size": 250
+        },
+        "pawn": {
+          "type": "headquarter",
+          "id": "123"
+        }
+        <% else %>
         "vegetation": {
           "type": 5,
           "size": 250
         }
+        <% end %>
       },
       {
         "x": 26,
@@ -437,6 +448,12 @@
           "type": 5,
           "size": 250
         }
+        <% if fetch(:x) == 30 && fetch(:y) == 50 %>
+        ,"pawn": {
+          "type": "base",
+          "id": "125"
+        }
+        <% end %>
       },
       {
         "x": 27,
@@ -510,6 +527,12 @@
           "type": 13,
           "size": 650
         }
+        <% if fetch(:x) == 20 && fetch(:y) == 50 %>
+        ,"pawn": {
+          "type": "base",
+          "id": "124"
+        }
+        <% end %>
       }
     ],
     [

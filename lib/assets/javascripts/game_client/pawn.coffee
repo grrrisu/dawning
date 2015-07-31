@@ -9,7 +9,6 @@ class Game.Pawn
     @map = map;
     @sprite = @initSprite();
 
-
   initSprite: () =>
     @sprite = Game.main.assets.getPawnSprite(@type);
     @sprite.interactive = true;

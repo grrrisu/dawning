@@ -10,9 +10,11 @@ class Game.ScaleController
 
   zoomOut: () =>
     @zoom(@scale - 0.1);
+    return false;
 
   zoomIn: () =>
     @zoom(@scale + 0.1);
+    return false;
 
   zoom: (scale) =>
     @scale = scale;
@@ -20,9 +22,11 @@ class Game.ScaleController
 
   zoomInAnim: () =>
     @animZoom(-0.01, 10);
+    return false;
 
   zoomOutAnim: () =>
     @animZoom(0.01, 10);
+    return false;
 
   animZoom: (step, counter) =>
     if counter > 0

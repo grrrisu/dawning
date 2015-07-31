@@ -44,20 +44,23 @@ class Game.Map
     y = [fieldData.y, @data.ry].max() - @data.ry;
     size = fieldData.view.length;
 
-    width = size;
-    if fieldData.x < @data.rx
-      width = (fieldData.x + size) - @data.rx;
-    else if fieldData.x + size > @data.rx + @fieldWidth
-      width = (@data.rx + @fieldWidth) - fieldData.x
+    if (fieldData.x + size >= @data.rx && fieldData.x < @data.rx + @fieldWidth) && (fieldData.y + size >= @data.ry && fieldData.y < @data.ry + @fieldHeight)
 
-    height = size
-    if fieldData.y < @data.ry
-      height = (fieldData.y + size) - @data.ry;
-    else if fieldData.y + size > @data.ry + @fieldHeight
-      height = (@data.ry + @fieldHeight) - fieldData.y
+      width = size;
+      if fieldData.x < @data.rx
+        width = (fieldData.x + size) - @data.rx;
+      else if fieldData.x + size > @data.rx + @fieldWidth
+        width = (@data.rx + @fieldWidth) - fieldData.x
 
-    @removeFields(x, x + width, y, y + height);
-    @createFields(x, x + width, y, y + height);
+      height = size
+      if fieldData.y < @data.ry
+        height = (fieldData.y + size) - @data.ry;
+      else if fieldData.y + size > @data.ry + @fieldHeight
+        height = (@data.ry + @fieldHeight) - fieldData.y
+
+      console.log("within x:#{x} w:#{width} y:#{y} h:#{height}")
+      @removeFields(x, x + width, y, y + height);
+      @createFields(x, x + width, y, y + height);
 
   setCenter: (centerX, centerY) =>
     @centerX = centerX;
@@ -173,7 +176,7 @@ class Game.Map
     @setDimensions();
     @moveToCenter(center[0], center[1]);
     @data.updateData();
-    @create();
+    @createFields(0, @fieldWidth, 0, @fieldHeight);
 
   clearFields: () =>
     @fields.each (field) =>
