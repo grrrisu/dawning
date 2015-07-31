@@ -19,7 +19,7 @@ class Game.Map
   setDimensions: () =>
     @fieldWidth  = Math.floor(@viewportWidth / (@fieldSize * @scale)) + 2;
     @fieldHeight = Math.floor(@viewportHeight / (@fieldSize * @scale)) + 2;
-    @data.setDataDimensions(@fieldWidth, @fieldHeight)
+    @data.setDataDimensions(@fieldWidth, @fieldHeight);
 
   init: (callback) =>
     @mapLayer.init();
@@ -58,9 +58,10 @@ class Game.Map
       else if fieldData.y + size > @data.ry + @fieldHeight
         height = (@data.ry + @fieldHeight) - fieldData.y
 
-      console.log("within x:#{x} w:#{width} y:#{y} h:#{height}")
       @removeFields(x, x + width, y, y + height);
       @createFields(x, x + width, y, y + height);
+
+
 
   setCenter: (centerX, centerY) =>
     @centerX = centerX;
@@ -144,7 +145,6 @@ class Game.Map
 
   center: () =>
     # move to headquarter position or init rx, ry for admin
-
 
   withinRadius: (dx, dy, radius, border) =>
     border = 1 unless border?

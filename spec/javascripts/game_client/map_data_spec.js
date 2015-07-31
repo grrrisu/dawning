@@ -2,7 +2,7 @@ describe("MapData", function() {
 
   beforeEach(function() {
     data =
-    `{
+    {
       "x": 25,
       "y": 50,
       "view":
@@ -44,7 +44,7 @@ describe("MapData", function() {
           }
         ]
       ]
-    }`;
+    };
 
     mapData = new Game.MapData();
     mapData.addDataSet(data);
@@ -53,9 +53,11 @@ describe("MapData", function() {
   describe("getter and setter", function() {
 
     it("should set dimensions", function() {
+      console.log(mapData.dataSets);
+
       dataSet = mapData.dataSets[0]
-      expect(dataSet['x2']).toEqual(26);
-      expect(dataSet['y2']).toEqual(51);
+      expect(dataSet['x2']).toEqual(27);
+      expect(dataSet['y2']).toEqual(52);
     });
 
     it("should get vegetation", function() {

@@ -39,7 +39,7 @@ group :development do
   gem 'guard-rspec', :require => false
   # guard-jasmine needs PhantomJS
   # see http://code.google.com/p/phantomjs/wiki/BuildInstructions#Mac_OS_X
-  gem 'guard-jasmine', :require => false
+  #gem 'guard-jasmine', :require => false
   gem 'growl', :require => false
   gem 'rb-fsevent', '~> 0.9.1', :require => false
 
@@ -62,7 +62,7 @@ end
 
 group :test, :development do
   gem "rspec-rails", '~> 3.2.0'
-  gem "jasminerice", :github => 'bradphelan/jasminerice' # wait until ready for rails4
+  gem "jasmine-rails"
   gem "better_errors"
   gem "binding_of_caller"
   gem 'web-console'
