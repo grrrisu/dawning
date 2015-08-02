@@ -13,7 +13,6 @@ class Game.Pawn
     @sprite = Game.main.assets.getPawnSprite(@type);
     @sprite.interactive = true;
     @sprite.buttonMode = true;
-    @sprite.anchor.set(0.5);
 
     @sprite
       # events for drag start
@@ -68,8 +67,8 @@ class Game.Pawn
 
   snapToGrid: (ax, ay) =>
     fieldSize = @map.fieldSize;
-    rx = Math.round((ax - (0.5 * fieldSize)) / fieldSize);
-    ry = Math.round((ay - (0.5 * fieldSize)) / fieldSize);
-    ax = (rx + 0.5) * fieldSize;
-    ay = (ry + 0.5) * fieldSize;
+    rx = Math.round(ax / fieldSize);
+    ry = Math.round(ay / fieldSize);
+    ax = rx * fieldSize;
+    ay = ry * fieldSize;
     return {ax: ax, ay: ay, rx: rx, ry: ry};

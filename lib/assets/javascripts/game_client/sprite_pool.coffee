@@ -7,7 +7,9 @@ class Game.SpritePool
 
   createSprite: (image) =>
     texture = PIXI.Texture.fromImage(image);
-    return new PIXI.Sprite(texture);
+    sprite = new PIXI.Sprite(texture);
+    sprite.anchor.set(0.5);
+    return sprite;
 
   getSprite: (image) =>
     if @sprites[image].length == 0

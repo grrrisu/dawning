@@ -92,8 +92,8 @@ class Game.Map
     @data.setDataPosition(rposition.rx, rposition.ry);
 
   centerToAbsolutePosition: (centerX, centerY) =>
-    ax = -(0.5 + centerX) * (@fieldSize * @scale) + @viewportWidth / 2;
-    ay = -(0.5 + centerY) * (@fieldSize * @scale) + @viewportHeight / 2;
+    ax = -centerX * (@fieldSize * @scale) + @viewportWidth / 2;
+    ay = -centerY * (@fieldSize * @scale) + @viewportHeight / 2;
     return[ax, ay];
 
   toCenterPosition: () =>

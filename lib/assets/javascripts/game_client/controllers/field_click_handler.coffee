@@ -19,8 +19,8 @@ class Game.FieldClickHandler
     @prevField = field
 
   toRelativePosition: (ax, ay) =>
-    rx = Math.floor(ax / @map.fieldSize);
-    ry = Math.floor(ay / @map.fieldSize);
+    rx = Math.round(ax / @map.fieldSize);
+    ry = Math.round(ay / @map.fieldSize);
     return {rx: rx, ry: ry};
 
   drawBorder: () =>
@@ -33,8 +33,8 @@ class Game.FieldClickHandler
 
   moveBorder: (field) =>
     fieldSize = @map.fieldSize;
-    @graphics.position.x = field.rx * fieldSize - 1
-    @graphics.position.y = field.ry * fieldSize - 1
+    @graphics.position.x = field.rx * fieldSize - fieldSize / 2
+    @graphics.position.y = field.ry * fieldSize - fieldSize / 2
     @showBorder();
 
   toggleBorder: () =>

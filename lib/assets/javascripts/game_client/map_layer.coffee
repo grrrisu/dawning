@@ -41,25 +41,19 @@ class Game.MapLayer
   setFlora: (data, parent, field) =>
     sprite = Game.main.assets.getFloraSprite(data.type);
     field.setFloraSprite(sprite);
-    @centerSprite(sprite);
     parent.addChild(sprite);
 
   setFauna: (data, parent, field) =>
     sprite = Game.main.assets.getFaunaSprite(data.type);
     field.setFaunaSprite(sprite);
-    @centerSprite(sprite);
     parent.addChild(sprite);
 
   setPawn: (data, x, y, parent, field) =>
     sprite = Game.main.assets.getPawnSprite(data.type, data.id);
     field.setPawnSprite(sprite);
-    sprite.position.x = (x + 0.5) * @fieldSize;
-    sprite.position.y = (y + 0.5) * @fieldSize;
+    sprite.position.x = x * @fieldSize;
+    sprite.position.y = y * @fieldSize;
     parent.addChild(sprite);
-
-  centerSprite: (sprite) =>
-    sprite.position.x = (@fieldSize - sprite.width ) / 2;
-    sprite.position.y = (@fieldSize - sprite.height ) / 2;
 
   mapMovedTo: (ax, ay) =>
     @ax = ax;

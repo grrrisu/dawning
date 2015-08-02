@@ -50,7 +50,9 @@ class Game.Assets
       pawn = @pawns.getPawn(id)
       return pawn if pawn?
 
-    @getSprite(type);
+    sprite = @getSprite(type);
+    sprite.anchor.set(0.5);
+    return sprite;
 
   returnSprite: (sprite) =>
     if sprite.interactive == false
