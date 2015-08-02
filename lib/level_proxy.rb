@@ -1,9 +1,8 @@
 class LevelProxy
 
   def self.create name
-    @levels ||= {}
     @uuid ||= UUID.new
-    unless @levels[name]
+    unless level_by_name(name)
       id = @uuid.generate
       level = new(id, name)
       add_level id, level
@@ -14,7 +13,14 @@ class LevelProxy
     end
   end
 
+  def self.level_by_name name
+    @levels ||= {}
+    @levels.find {|id, level| level.name == name }
+  end
+
+
   def self.add_level id, level
+    @levels ||= {}
     @levels[id] = level
   end
 
