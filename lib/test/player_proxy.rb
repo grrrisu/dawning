@@ -12,7 +12,8 @@ class Test::PlayerProxy
   end
 
   def init_map message = nil
-    json = JSON.load(File.read(Rails.root.join('spec', 'fixtures', 'init_map.json')))
+    # init_map for member or init_map_admin for admin
+    json = JSON.load(File.read(Rails.root.join('spec', 'fixtures', 'init_map_admin.json')))
     receive_message action: 'init_map', answer: json
   end
 

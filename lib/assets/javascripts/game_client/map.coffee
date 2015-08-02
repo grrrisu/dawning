@@ -26,11 +26,17 @@ class Game.Map
     Game.main.mapController.initMap();
 
   initDataLoaded: (initData) =>
-    console.log("hx #{initData.headquarter.x} hy #{initData.headquarter.y}")
-    @setCenter(initData.headquarter.x, initData.headquarter.y);
-    @moveToCenter(initData.headquarter.x, initData.headquarter.y);
-    headquarter = new Game.Headquarter(initData, this);
+    if initData.headquarter?
+      console.log("hx #{initData.headquarter.x} hy #{initData.headquarter.y}")
+      @setAndMoveToCenter(initData.headquarter.x, initData.headquarter.y)
+      headquarter = new Game.Headquarter(initData, this);
+    else
+      @setAndMoveToCenter(initData.world.x, initData.world.y)
     Game.main.dataLoaded(headquarter);
+
+  setAndMoveToCenter: (rx, ry) =>
+    @setCenter(rx, ry);
+    @moveToCenter(rx, ry);
 
   loadFieldData: () =>
     @data.loadData () =>

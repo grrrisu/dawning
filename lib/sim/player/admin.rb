@@ -9,7 +9,7 @@ module Player
 
     def init_map
       if @world
-        { world: { width: @world.width, height: @world.height } }
+        { center: { x: @world.width / 2 , y: @world.height / 2 } }
       else
         false
       end
