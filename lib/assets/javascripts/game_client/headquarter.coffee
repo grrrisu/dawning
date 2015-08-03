@@ -7,3 +7,8 @@ class Game.Headquarter extends Game.Pawn
   createPawns: (data, map) =>
     data.map (pawn_data) =>
       new Game.Pawn(pawn_data, map);
+
+  getPawn: (id) =>
+    return this if @id == id;
+    @pawns.find (pawn) =>
+      return pawn.id == id;

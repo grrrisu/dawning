@@ -62,8 +62,21 @@ class Game.Pawn
     @dragging = false;
     newPosition = @snapToGrid(@sprite.position.x, @sprite.position.y);
     @sprite.position.set(newPosition.ax, newPosition.ay);
-    @x = newPosition.rx;
-    @y = newPosition.ry;
+    Game.main.mapController.move({pawn_id: @id, x: newPosition.rx, y: newPosition.ry});
+
+  movementReceived: (rx, ry) =>
+    x = [@x, rx].min();
+    y = [@y, ry].min();
+    width = [@x, rx].max() - x + 1;
+    height = [@y, ry].max() - y + 1;
+    Game.main.mapController.update_view( {x: x, y: y, width: width, height: height} )
+    @setPosition(rx, ry);
+
+  setPosition: (rx, ry) =>
+    @x = rx;
+    @y = ry;
+    fieldSize = @map.fieldSize;
+    @sprite.position.set(@x * fieldSize, @y * fieldSize);
 
   snapToGrid: (ax, ay) =>
     fieldSize = @map.fieldSize;

@@ -7,5 +7,6 @@ WebsocketRails::EventMap.describe do
   subscribe :init_map,            to: MapEventsController, with_method: :init_map
   subscribe :view,                to: MapEventsController, with_method: :view
   subscribe :move,                to: MapEventsController, with_method: :move
+  subscribe :update_view,         to: MapEventsController, with_method: :update_view
 
 end

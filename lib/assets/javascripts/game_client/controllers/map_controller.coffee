@@ -4,13 +4,16 @@ class Game.MapController
     @bindEvents()
 
   initMap: =>
-    @dispatcher.trigger 'init_map'
+    @dispatcher.trigger 'init_map';
 
   view: (request_data) =>
-    @dispatcher.trigger 'view', request_data
+    @dispatcher.trigger 'view', request_data;
+
+  update_view: (request_data) =>
+    @dispatcher.trigger 'update_view', request_data;
 
   move: (request_data) =>
-    @dispatcher.trigger 'move', request_data
+    @dispatcher.trigger 'move', request_data;
 
   bindEvents: =>
     @dispatcher.bind 'init_map', @render_client
@@ -37,12 +40,8 @@ class Game.MapController
     Game.main.stage.map.updateMap(message)
 
   render_pawn: (message) =>
-    headquarter = window.client.headquarter
-    if headquarter.id == message['pawn_id']
-      headquarter.update(message)
+    pawn = Game.main.headquarter.getPawn(message.pawn_id);
+    if pawn?
+      pawn.movementReceived(message.x, message.y);
     else
-      pawn = headquarter.findPawn(message['pawn_id'])
-      if pawn?
-        pawn.update(message)
-      else
-        console.log("can not update pawn #{message['pawn_id']}, pawn not found")
+      console.log("can not find pawn #{message.panw_id}");

@@ -23,12 +23,13 @@ class Test::PlayerProxy
     receive_message action: 'view', answer: json
   end
 
-  def update_view message_received
+  def update_view message
     json = JSON.load(File.read(Rails.root.join('spec', 'fixtures', 'update_view.json')))
     receive_message action: 'update_view', answer: json
   end
 
   def move message
+    receive_message action: 'move', answer: message
   end
 
 end
