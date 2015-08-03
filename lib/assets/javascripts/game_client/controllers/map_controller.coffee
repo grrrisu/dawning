@@ -34,7 +34,7 @@ class Game.MapController
     Game.main.stage.map.dataReceived(message);
 
   update_map: (message) =>
-    window.client.map.update_map(message)
+    Game.main.stage.map.updateMap(message)
 
   render_pawn: (message) =>
     headquarter = window.client.headquarter

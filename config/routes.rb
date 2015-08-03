@@ -1,6 +1,6 @@
 Dawning::Application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
-  
+
   root to: "home#index"
 
   get '/login', to: 'sessions#new', as: :login
@@ -26,7 +26,9 @@ Dawning::Application.routes.draw do
 
   namespace :admin do
     resource :launch_panel, only: [:show]
-    resource :test_map, only: [:show], controller: '/maps', defaults: { level_id: Test::LevelProxy::NAME }
+    resource :test_map, only: [:show], controller: '/maps', defaults: { level_id: Test::LevelProxy::ID } do
+      get :update_view, controller: '/admin/test_maps'
+    end
     namespace :api do
       namespace :v1 do
         resources :config_files, defaults: {format: 'json'}, only: [:index]

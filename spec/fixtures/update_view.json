@@ -1,0 +1,29 @@
+{
+  "x": 32,
+  "y": 56,
+  "view": [
+    [
+      {
+        "x": 32,
+        "y": 56,
+        "vegetation": {
+          "type": 8,
+          "size": 440
+        }
+      },
+      {
+        "x": 33,
+        "y": 56,
+        "vegetation": {
+          "type": 5,
+          "size": 240
+        },
+        "fauna": {
+          "type": "gazelle",
+          "health": 50,
+          "age": 0
+        }
+      }
+    ]
+  ]
+}

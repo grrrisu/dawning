@@ -3,6 +3,8 @@ class Test::LevelProxy
   ID = '123'
   NAME = 'admin_test_level'
 
+  attr_reader :player
+
   def initialize
     ::LevelProxy.add_level('123', self)
     @player = Test::PlayerProxy.new

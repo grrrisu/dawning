@@ -43,6 +43,13 @@ class Game.MapData
     data['y2'] = data.y + data['view'].length;
     @dataSets.push(data);
 
+  updateFields: (data) =>
+    rx = data.x;
+    ry = data.y;
+    data.view.each (row, dy) =>
+      row.each (field, dx) =>
+        @setField(rx + dx, ry + dy, field);
+
   getVegetation: (rx, ry) =>
     field = @getField(rx, ry)
     if field?
@@ -71,6 +78,14 @@ class Game.MapData
     dataSet = @_getDataSet(rx, ry);
     if dataSet?
       return dataSet['view'][ry - dataSet.y][rx - dataSet.x];
+    else
+      console.log("no data set for #{rx}, #{ry}");
+      return null;
+
+  setField: (rx, ry, field) ->
+    dataSet = @_getDataSet(rx, ry);
+    if dataSet?
+      dataSet['view'][ry - dataSet.y][rx - dataSet.x] = field;
     else
       console.log("no data set for #{rx}, #{ry}");
       return null;

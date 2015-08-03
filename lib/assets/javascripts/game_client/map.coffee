@@ -67,7 +67,12 @@ class Game.Map
       @removeFields(x, x + width, y, y + height);
       @createFields(x, x + width, y, y + height);
 
-
+  updateMap: (data) =>
+    @data.updateFields(data);
+    x = data.x - @data.rx
+    y = data.y - @data.ry
+    @removeFields(x, x + data.view[0].length, y, y + data.view.length);
+    @createFields(x, x + data.view[0].length, y, y + data.view.length);
 
   setCenter: (centerX, centerY) =>
     @centerX = centerX;
