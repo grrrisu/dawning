@@ -26,9 +26,7 @@ Dawning::Application.routes.draw do
 
   namespace :admin do
     resource :launch_panel, only: [:show]
-    resource :test_map, only: [:show], controller: '/maps', defaults: { level_id: Test::LevelProxy::ID } do
-      get :update_view, controller: '/admin/test_maps'
-    end
+    resource :test_map, only: [:show, :update]
     namespace :api do
       namespace :v1 do
         resources :config_files, defaults: {format: 'json'}, only: [:index]
