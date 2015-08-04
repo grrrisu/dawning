@@ -7,6 +7,7 @@ class Game.MapController
     @dispatcher.trigger 'init_map';
 
   view: (request_data) =>
+    request_data['current_view'] = Game.main.stage.map.data.currentView();
     @dispatcher.trigger 'view', request_data;
 
   update_view: (request_data) =>

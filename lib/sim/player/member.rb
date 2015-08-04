@@ -41,8 +41,8 @@ module Player
       view_params x, y, width, height
     end
 
-    def view x, y, width, height
-      super
+    def view x, y, width, height, current_view
+      self.current_view = current_view
       view_params x, y, width, height
     end
 

@@ -8,10 +8,12 @@ class Game.MapData
     @dataHeight = Math.round(fieldHeight / 10);
 
   currentView: () =>
-    return [
-      [@dataX - 10, @dataX + (@dataWidth + 1) * 10 - 1],
-      [@dataY - 10, @dataY + (@dataHeight + 1) * 10 - 1]
-    ];
+    return {
+      x: @dataX - 10,
+      y: @dataY - 10,
+      width: (@dataWidth + 2) * 10,
+      height: (@dataHeight + 2) * 10
+    }
 
   updateData: () =>
     @removeData();

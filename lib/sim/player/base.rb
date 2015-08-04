@@ -5,8 +5,8 @@ module Player
       [:init_map, :view, :update_view]
     end
 
-    def view x, y, width, height
-      self.current_view_dimension = Hashie::Mash.new x: x, y: y, width: width, height: height
+    def current_view= value
+      self.current_view_dimension = Hashie::Mash.new x: value[:x], y: value[:y], width: value[:width], height: value[:height]
     end
 
     def overlap_current_view? other

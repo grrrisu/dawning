@@ -77,8 +77,10 @@ describe("MapData", function() {
       mapData.setDataPosition(33, 47);
       mapData.setDataDimensions(33, 11);
       currentView = mapData.currentView();
-      expect(currentView[0]).toEqual([20, 69]);
-      expect(currentView[1]).toEqual([40, 69]);
+      expect(currentView.x).toEqual(20);
+      expect(currentView.y).toEqual(40);
+      expect(currentView.width).toEqual(50);
+      expect(currentView.height).toEqual(30);
     });
 
   });
