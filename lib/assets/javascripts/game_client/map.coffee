@@ -31,7 +31,7 @@ class Game.Map
       @setAndMoveToCenter(initData.headquarter.x, initData.headquarter.y)
       headquarter = new Game.Headquarter(initData, this);
     else
-      @setAndMoveToCenter(initData.world.x, initData.world.y)
+      @setAndMoveToCenter(initData.center.x, initData.center.y)
     Game.main.dataLoaded(headquarter);
 
   setAndMoveToCenter: (rx, ry) =>
