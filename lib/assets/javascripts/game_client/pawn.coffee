@@ -69,7 +69,12 @@ class Game.Pawn
     y = [@y, ry].min();
     width = [@x, rx].max() - x + 1;
     height = [@y, ry].max() - y + 1;
-    Game.main.mapController.update_view( {x: x, y: y, width: width, height: height} )
+    Game.main.mapController.update_view({
+      x: x - @view_radius,
+      y: y - @view_radius,
+      width: width + 2 * @view_radius,
+      height: height + 2 * @view_radius
+    })
     @setPosition(rx, ry);
 
   setPosition: (rx, ry) =>

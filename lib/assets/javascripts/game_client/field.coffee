@@ -12,8 +12,7 @@ class Game.Field
     @vegetationSprite = sprite;
 
   removeVegetationSprite: (mapLayer) =>
-    mapLayer.layer.removeChild(@vegetationSprite);
-    @returnSprite(@vegetationSprite);
+    @remove_from_parent(@vegetationSprite);
     @vegetationSprite = null;
 
   setFloraSprite: (sprite) =>
