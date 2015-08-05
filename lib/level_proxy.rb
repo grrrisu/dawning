@@ -33,9 +33,7 @@ class LevelProxy
   end
 
   def self.find id
-    if @levels
-      @levels[id] or raise ArgumentError, "level with id #{id} not found!"
-    end
+    @levels && @levels[id]
   end
 
   def self.delete id

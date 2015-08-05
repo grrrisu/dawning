@@ -30,4 +30,29 @@ class Test::LevelProxy
     @player
   end
 
+  def state
+    :stopped
+  end
+
+  def remove
+    ::LevelProxy.delete ID
+  end
+
+  def as_json
+    {
+      id: ID,
+      name: NAME,
+      state: state,
+      config_file: nil,
+      world: {
+        height: 100,
+        width: 50
+      },
+      players: 0,
+      time_unit: nil,
+      sim_loop: nil,
+      event_queue: nil
+    }
+  end
+
 end
