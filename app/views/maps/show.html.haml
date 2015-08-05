@@ -13,8 +13,8 @@
           = link_to "Zoom Out", "#", id: "zoom-out"
         %li
           = link_to "center view", "#", id: "center_view"
-        - if @level.id == Test::LevelProxy::ID
-          = render 'maps/test_level'
+      - if @level.id == Test::LevelProxy::ID
+        = render 'maps/test_level'
 
     = render 'maps/chat'
 
