@@ -9,5 +9,6 @@ database:
     - mkdir tmp
     - mkdir tmp/sockets
 test:
-  post:
+  override:
+    - RAILS_ENV=test bundle exec rake spec
     - RAILS_ENV=test bundle exec rake spec:javascript
