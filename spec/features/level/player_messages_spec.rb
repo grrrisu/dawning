@@ -38,7 +38,9 @@ describe "player messages" do
       :view, hash_including(x: hq.x - 2, y: hq.y - 2, view: instance_of(Sim::Matrix))
     )
     player_connection.forward_message player_id: '123',
-      action: 'view', params: {x: hq.x - 2, y: hq.y - 2, width: 5, height: 5}
+      action: 'view', params: { x: hq.x - 2, y: hq.y - 2, width: 5, height: 5,
+                                current_view: {x: hq.x - 4, x: hq.y - 4, width: 15, height: 15}
+                              }
   end
 
 end
