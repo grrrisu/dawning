@@ -8,3 +8,6 @@ database:
     - mv config/level_example.yml config/level.yml
     - mkdir tmp
     - mkdir tmp/sockets
+post:
+  test:
+    - RAILS_ENV=test bundle exec rake spec:javascript
