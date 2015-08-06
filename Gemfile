@@ -79,6 +79,10 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem "codeclimate-test-reporter", :require => false
+
+  # check if this is still needed for phantomjs 2.0
+  source 'https://rails-assets.org'
+  gem 'rails-assets-bind-polyfill'
 end
 
 group :staging, :production do
