@@ -48,6 +48,15 @@
       padding: 15px;
     }
 
+    .panel-action-section {
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #aaa;
+      padding: 0px 15px 15px 15px;
+      .btn {
+        margin-top: 15px;
+      }
+    }
+
     .panel-section-bottom  {
       border-bottom: none;
     }
