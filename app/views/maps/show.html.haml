@@ -6,13 +6,19 @@
   .col-md-4
     #controls
       %h4 Controls
-      %ul
+      %ul.fa-ul
         %li
-          = link_to "Zoom In", "#", id: "zoom-in"
+          = link_to "#", id: "zoom-in" do
+            %i.fa.fa-li.fa-search-plus
+            Zoom In
         %li
-          = link_to "Zoom Out", "#", id: "zoom-out"
+          = link_to "#", id: "zoom-out" do
+            %i.fa.fa-li.fa-search-minus
+            Zoom Out
         %li
-          = link_to "center view", "#", id: "center_view"
+          = link_to "#", id: "center_view" do
+            %i.fa.fa-li.fa-dot-circle-o
+            Center View
       - if @level.id == Test::LevelProxy::ID
         = render 'maps/test_level'
 
