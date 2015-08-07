@@ -4,23 +4,7 @@
   .col-md-8{style: 'text-align: center'}
     %canvas#map(width="750" height="520" style="width: 750px; height: 520px")
   .col-md-4
-    #controls
-      %h4 Controls
-      %ul.fa-ul
-        %li
-          = link_to "#", id: "zoom-in" do
-            %i.fa.fa-li.fa-search-plus
-            Zoom In
-        %li
-          = link_to "#", id: "zoom-out" do
-            %i.fa.fa-li.fa-search-minus
-            Zoom Out
-        %li
-          = link_to "#", id: "center_view" do
-            %i.fa.fa-li.fa-dot-circle-o
-            Center View
-      - if @level.id == Test::LevelProxy::ID
-        = render 'maps/test_level'
+    = render 'maps/controls'
 
     = render 'maps/chat'
 
