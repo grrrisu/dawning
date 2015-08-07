@@ -22,15 +22,6 @@ class Game.MapController
     @dispatcher.bind 'update_view', @update_map
     @dispatcher.bind 'move', @render_pawn
 
-    $('#center_view').on 'click', (e) =>
-      e.preventDefault()
-      window.client.viewport.center()
-
-    $('#create_new_world').on 'click', (e) =>
-      e.preventDefault()
-      window.client.api.get '/world', () =>
-        alert('done')
-
   render_client: (message) =>
     Game.main.stage.map.initDataLoaded(message);
 

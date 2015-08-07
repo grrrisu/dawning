@@ -1,11 +1,12 @@
 class Game.Map
 
   constructor: (stage, options) ->
-    @mapLayer         = new Game.MapLayer(stage, this);
-    @drag_handler     = new Game.MapDragHandler(@mapLayer.layer, this);
-    @scaleController  = new Game.ScaleController(this);
-    @data             = new Game.MapData();
-    @fields           = [];
+    @mapLayer             = new Game.MapLayer(stage, this);
+    @drag_handler         = new Game.MapDragHandler(@mapLayer.layer, this);
+    @scaleController      = new Game.ScaleController(this);
+    @centerMapController  = new Game.CenterMapController(this);
+    @data                 = new Game.MapData();
+    @fields               = [];
 
     @fieldSize      = options['fieldSize'] + 1; # +1 border
     @viewportWidth  = options['width'];
@@ -154,9 +155,6 @@ class Game.Map
         @createFields(0, @fieldWidth, 0, Math.abs(deltaY));
         @removeFields(0, @fieldWidth, @fieldHeight, @fieldHeight - deltaY);
 
-  center: () =>
-    # move to headquarter position or init rx, ry for admin
-
   withinRadius: (dx, dy, radius, border) =>
     border = 1 unless border?
     return false if dx > radius || dy > radius
@@ -185,7 +183,11 @@ class Game.Map
     @scale = newScale;
     @mapLayer.scale(newScale);
     @setDimensions();
-    @moveToCenter(center[0], center[1]);
+    @center(center[0], center[1]);
+
+  center: (rx, ry) =>
+    @removeFields(0, @fieldWidth, 0, @fieldHeight);
+    @moveToCenter(rx, ry);
     @data.updateData();
     @createFields(0, @fieldWidth, 0, @fieldHeight);
 
