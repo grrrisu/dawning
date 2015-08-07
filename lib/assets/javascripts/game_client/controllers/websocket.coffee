@@ -1,7 +1,7 @@
 class Game.Websocket
 
   constructor: (@level_id)->
-    @dispatcher = new WebSocketRails($('#chat').data('uri'), true)
+    @dispatcher = new WebSocketRails($('#websocket').data('uri'), true)
     @dispatcher.on_error = (data) =>
       console.log("ERROR: #{data}");
     @dispatcher.on_close = (data) =>

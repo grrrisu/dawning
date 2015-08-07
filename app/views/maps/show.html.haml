@@ -1,14 +1,34 @@
 %legend
   Map
 .row
+  #websocket{'data-uri' => websocket_url}
   .col-md-8{style: 'text-align: center'}
     %canvas#map(width="750" height="520" style="width: 750px; height: 520px")
   .col-md-4
-    = render 'maps/controls'
+    #map-sidebar.panel-group
+      .panel
+        .panel-heading
+          %h4.panel-title
+            = link_to "Controls", "#controls", data: {toggle: "collapse", parent:"#map-sidebar"}
+        #controls.panel-collapse.collapse.in
+          .panel-body
+            = render 'maps/controls'
 
-    = render 'maps/chat'
+      .panel
+        .panel-heading
+          %h4.panel-title
+            = link_to "Chat", "#chat", data: {toggle: "collapse", parent:"#map-sidebar"}
+        #chat.panel-collapse.collapse
+          .panel-body
+            = render 'maps/chat'
 
-    = render 'maps/field'
+      .panel
+        .panel-heading
+          %h4.panel-title
+            = link_to "Field", "#field", data: {toggle: "collapse", parent:"#map-sidebar"}
+        #field.panel-collapse.collapse
+          .panel-body
+            = render 'maps/field'
 
 :coffee
   $ () ->
