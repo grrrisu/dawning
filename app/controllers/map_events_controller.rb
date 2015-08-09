@@ -17,6 +17,12 @@ class MapEventsController < WebsocketRails::BaseController
     end
   end
 
+  def update_view
+    rescue_block do
+      @player.send_message 'update_view', message
+    end
+  end
+
   def move
     rescue_block do
       @player.send_message 'move', message

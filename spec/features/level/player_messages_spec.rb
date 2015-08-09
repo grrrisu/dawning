@@ -19,9 +19,7 @@ describe "player messages" do
 
   it "should return init_map" do
     expect(player_connection).to receive(:send_message).with(
-      :init_map, hash_including(world: {height: 15, width: 15},
-                                headquarter: hash_including(x: hq.x, y: hq.y, pawns: instance_of(Array))
-                               )
+      :init_map, hash_including(headquarter: hash_including(x: hq.x, y: hq.y, pawns: instance_of(Array))                )
     )
     player_connection.forward_message player_id: '123',
       action: 'init_map', params: {}
@@ -40,7 +38,9 @@ describe "player messages" do
       :view, hash_including(x: hq.x - 2, y: hq.y - 2, view: instance_of(Sim::Matrix))
     )
     player_connection.forward_message player_id: '123',
-      action: 'view', params: {x: hq.x - 2, y: hq.y - 2, width: 5, height: 5}
+      action: 'view', params: { x: hq.x - 2, y: hq.y - 2, width: 5, height: 5,
+                                current_view: {x: hq.x - 4, x: hq.y - 4, width: 15, height: 15}
+                              }
   end
 
 end

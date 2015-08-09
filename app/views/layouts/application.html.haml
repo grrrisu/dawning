@@ -10,6 +10,7 @@
     = csrf_meta_tag
     = yield :javascript
     = javascript_include_tag "application"
+    = javascript_include_tag "bind-polyfill" if Rails.env.test?
     = javascript_include_tag "game_client" if show_map?
     //%base{:href => "/admin"}
   %body
@@ -22,5 +23,3 @@
       = yield :second_section
       .push
     = render 'shared/footer'
-
-

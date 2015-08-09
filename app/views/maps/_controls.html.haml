@@ -1,0 +1,16 @@
+#controls
+  %ul.fa-ul
+    %li
+      = link_to "#", id: "zoom-in" do
+        %i.fa.fa-li.fa-search-plus
+        Zoom In
+    %li
+      = link_to "#", id: "zoom-out" do
+        %i.fa.fa-li.fa-search-minus
+        Zoom Out
+    %li
+      = link_to "#", id: "center_view" do
+        %i.fa.fa-li.fa-dot-circle-o
+        Center View
+  - if @level.id == Test::LevelProxy::ID
+    = render 'maps/test_level'

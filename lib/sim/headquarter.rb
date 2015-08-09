@@ -4,6 +4,7 @@ class Headquarter < Pawn
 
   attr_accessor :pawns, :view
 
+  default_attr :type, 'headquarter'
   default_attr :view_radius, 2
 
   def initialize x, y

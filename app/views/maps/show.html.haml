@@ -1,19 +1,36 @@
 %legend
   Map
 .row
+  #websocket{'data-uri' => websocket_url}
   .col-md-8{style: 'text-align: center'}
-    #matrix
-      #pawns
+    %canvas#map(width="750" height="520" style="width: 750px; height: 520px")
   .col-md-4
-    #controls
-      %h4 Controls
-      %ul
-        %li
-          = link_to "center view", "#", id: "center_view"
+    #map-sidebar.panel-group
+      .panel
+        .panel-heading
+          %h4.panel-title
+            = link_to "Controls", "#controls", data: {toggle: "collapse", parent:"#map-sidebar"}
+        #controls.panel-collapse.collapse.in
+          .panel-body
+            = render 'maps/controls'
 
-    = render 'chat'
+      .panel
+        .panel-heading
+          %h4.panel-title
+            = link_to "Chat", "#chat", data: {toggle: "collapse", parent:"#map-sidebar"}
+        #chat.panel-collapse.collapse
+          .panel-body
+            = render 'maps/chat'
 
-    = render 'field'
+      .panel
+        .panel-heading
+          %h4.panel-title
+            = link_to "Field", "#field", data: {toggle: "collapse", parent:"#map-sidebar"}
+        #field.panel-collapse.collapse
+          .panel-body
+            = render 'maps/field'
 
-:javascript
-  var image_sources = #{images_with_asset_path(@images).to_json};
+:coffee
+  $ () ->
+    Game.main = new Game.Main('map', "#{@level.id}");
+    Game.main.init();

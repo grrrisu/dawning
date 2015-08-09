@@ -19,15 +19,16 @@ module Player
     def init_map
       if @world_view.world
         {
-          world: { width: @world_view.world.width, height: @world_view.world.height },
           headquarter:
           {
             id: @headquarter.id,
             x: @headquarter.x,
             y: @headquarter.y,
+            type: @headquarter.type,
+            view_radius: @headquarter.view_radius,
             pawns:
               @headquarter.pawns.map do |pawn|
-                {id: pawn.id, type: pawn.type, x: pawn.x, y: pawn.y}
+                {id: pawn.id, type: pawn.type, x: pawn.x, y: pawn.y, view_radius: pawn.view_radius}
               end
           }
         }
@@ -40,8 +41,8 @@ module Player
       view_params x, y, width, height
     end
 
-    def view x, y, width, height
-      super
+    def view x, y, width, height, current_view
+      self.current_view = current_view
       view_params x, y, width, height
     end
 

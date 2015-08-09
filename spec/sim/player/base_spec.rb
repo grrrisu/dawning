@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Player::Base do
 
-  let(:player)      { Player::Base.new('id', 'level') }
-  let(:view_params) { {x: 2, y: 5, width: 4, height: 5} }
+  let(:player)        { Player::Member.new('id', 'level') }
+  let(:current_view)  { {x: 2, y: 5, width: 4, height: 5} }
 
-  before(:each) { player.view(*view_params.values) }
+  before(:each) { player.current_view = current_view }
 
   it "should overlap if self" do
     expect(player.overlap_current_view? player.current_view_dimension).to eq(true)

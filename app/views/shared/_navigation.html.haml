@@ -24,6 +24,7 @@
               %b.caret
             %ul.dropdown-menu
               = navigation_item 'Launch Panel', [:admin, :launch_panel], admin_launch_panel_path, data: {:'no-turbolink' => true}
+              = navigation_item 'Test Map', [:admin, :test_map], admin_test_map_path, data: {:'no-turbolink' => true}
 
     -if current_user
       .navbar-text.navbar-right

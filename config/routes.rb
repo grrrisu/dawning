@@ -1,4 +1,6 @@
 Dawning::Application.routes.draw do
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+
   root to: "home#index"
 
   get '/login', to: 'sessions#new', as: :login
@@ -24,6 +26,7 @@ Dawning::Application.routes.draw do
 
   namespace :admin do
     resource :launch_panel, only: [:show]
+    resource :test_map, only: [:show, :update]
     namespace :api do
       namespace :v1 do
         resources :config_files, defaults: {format: 'json'}, only: [:index]

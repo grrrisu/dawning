@@ -5,7 +5,7 @@ describe "enter level" do
   include_context "level"
 
   let!(:level)      { running_level }
-  let(:level_page)  { Levels::IndexPage.new}
+  let(:level_page)  { Levels::IndexPage.new }
 
   before :each do
     logged_in_user
@@ -20,7 +20,7 @@ describe "enter level" do
     level_page.enter level
 
     expect(page).to have_content('Map')
-    expect(page).to have_selector('#pawns')
+    expect(page).to have_selector('#map')
   end
 
 end

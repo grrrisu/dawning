@@ -2,19 +2,23 @@ require 'spec_helper'
 
 describe Headquarter do
 
-  before(:each) do
-    @headquarter = Headquarter.build(x: 5, y: 5)
+  let(:headquarter) { Headquarter.build(x: 5, y: 5) }
+
+  it "view value" do
+    value = headquarter.view_value
+    expect(value[:type]).to be == 'headquarter'
+    expect(value[:id]).to be_instance_of(Fixnum)
   end
 
   describe "create view" do
 
     before(:each) do
-      @headquarter.pawns << Pawn.build(x: 4, y: 5)
+      headquarter.pawns << Pawn.build(x: 4, y: 5)
       config  = {world: {height: 10, width: 10}}
       world   = World.new(11).build(config)
       @view   = View.new(world, 0, 0, world.width, world.height)
-      @view.unfog(@headquarter)
-      @headquarter.pawns.each {|pawn| @view.unfog(pawn) }
+      @view.unfog(headquarter)
+      headquarter.pawns.each {|pawn| @view.unfog(pawn) }
     end
 
     it "with size of 11" do

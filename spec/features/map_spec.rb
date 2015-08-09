@@ -10,14 +10,14 @@ describe "map" do
   it "user sees map" do
     user_joined_level(user, level)
     visit level_map_path(level.id)
-    expect(page).to have_selector('#pawns canvas')
+    expect(page).to have_selector('#map')
   end
 
   it "admin sees map" do
     logged_in_admin
     visit admin_launch_panel_path
     click_link 'Enter'
-    expect(page).to have_selector('#pawns canvas')
+    expect(page).to have_selector('#map')
   end
 
 end

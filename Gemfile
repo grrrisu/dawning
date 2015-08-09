@@ -62,7 +62,7 @@ end
 
 group :test, :development do
   gem "rspec-rails", '~> 3.2.0'
-  gem "jasminerice", :github => 'bradphelan/jasminerice' # wait until ready for rails4
+  gem "jasmine-rails"
   gem "better_errors"
   gem "binding_of_caller"
   gem 'web-console'
@@ -79,6 +79,10 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem "codeclimate-test-reporter", :require => false
+
+  # check if this is still needed for phantomjs 2.0
+  source 'https://rails-assets.org'
+  gem 'rails-assets-bind-polyfill'
 end
 
 group :staging, :production do

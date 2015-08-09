@@ -9,7 +9,7 @@ module Player
 
     def init_map
       if @world
-        { world: { width: @world.width, height: @world.height } }
+        { center: { x: @world.width / 2 , y: @world.height / 2 } }
       else
         false
       end
@@ -19,8 +19,8 @@ module Player
       view_params x, y, width, height
     end
 
-    def view x, y, width, height
-      super
+    def view x, y, width, height, current_view
+      self.current_view = current_view
       view_params x, y, width, height
     end
 

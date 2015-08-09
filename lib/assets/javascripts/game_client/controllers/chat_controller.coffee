@@ -44,7 +44,7 @@ class Game.ChatController
 
   appendMessage: (message) ->
     messageTemplate = @template(message)
-    $('#chat').append messageTemplate
+    $('#conversation').append messageTemplate
     messageTemplate.slideDown 140
 
   shiftMessageQueue: =>
