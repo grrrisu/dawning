@@ -2,6 +2,6 @@
 languages:
   Ruby: true
   JavaScript: true
-  CoffeeScript: true
+  # CoffeeScript: true
 # exclude_paths:
 # - "foo/bar.rb"

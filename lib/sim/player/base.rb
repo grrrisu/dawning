@@ -6,7 +6,7 @@ module Player
     end
 
     def current_view= value
-      self.current_view_dimension = Hashie::Mash.new x: value[:x], y: value[:y], width: value[:width], height: value[:height]
+      self.current_view_dimension = Hashie::Mash.new value
     end
 
     def overlap_current_view? other
