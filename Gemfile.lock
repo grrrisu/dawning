@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/grrrisu/Simulator.git
-  revision: d433fc8675b656e3a85c54599d6e611219a9a33b
+  revision: 4270c3555a501d2a5a94884efd0d7692941bc479
   specs:
-    Simulator (0.3.3)
+    Simulator (0.3.4)
       activesupport (>= 4.0.2)
       celluloid (~> 0.13)
       celluloid-io (~> 0.15)
@@ -139,7 +139,7 @@ GEM
     em-synchrony (1.0.4)
       eventmachine (>= 1.0.0.beta.1)
     erubis (2.7.0)
-    eventmachine (1.0.7)
+    eventmachine (1.0.8)
     execjs (2.5.2)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -242,7 +242,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.6.1)
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.8.0)
     mongoid (4.0.2)
       activemodel (~> 4.0)
       moped (~> 2.0.0)
@@ -260,7 +260,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
     newrelic_rpm (3.12.0.288)
-    nio4r (1.1.0)
+    nio4r (1.1.1)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     notiffany (0.0.6)

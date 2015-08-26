@@ -1,15 +1,21 @@
 development:
+  process_name: dawning-simulator
   root_path:
   log_file: log/level.log
   log_level: DEBUG
-  socket_file: tmp/sockets/players.sock
+  level_socket_file: tmp/sockets/level.sock
+  player_socket_file: tmp/sockets/players.sock
 test:
+  process_name: dawning-simulator
   root_path:
   log_file: log/level_test.log
   log_level: DEBUG
-  socket_file: tmp/sockets/players.sock
+  level_socket_file: tmp/sockets/level.sock
+  player_socket_file: tmp/sockets/players.sock
 production:
+  process_name: dawning-simulator
   root_path:
   log_file: log/level.log
   log_level: INFO
-  socket_file: tmp/sockets/players.sock
+  level_socket_file: tmp/sockets/level.sock
+  player_socket_file: tmp/sockets/players.sock
