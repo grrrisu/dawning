@@ -40,7 +40,6 @@ class Vegetation < Sim::Object
 
   def changed_area
     #inc :size, delta_size
-    $stderr.print "+"
     Hashie::Mash.new(x: field.x, y: field.y, width: 1, height: 1)
   end
 

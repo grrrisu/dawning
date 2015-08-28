@@ -13,12 +13,8 @@ class Level < Sim::Level
   attr_reader :world, :dropzone
 
   def create config
-    #$stderr.puts '******* BEGIN CREATING *********'
-
     @world =    World.build(config[:world])
     @dropzone = Builder::Dropzone.new(@world, config[:dropzones])
-
-    #$stderr.puts '******* END CREATING *********'
     true
   end
 
