@@ -1,10 +1,6 @@
 module Player
   class Base < Sim::Player
 
-    def direct_actions
-      [:init_map, :view, :update_view]
-    end
-
     def current_view= value
       self.current_view_dimension = Hashie::Mash.new value
     end
