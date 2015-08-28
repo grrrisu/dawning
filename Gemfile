@@ -81,8 +81,7 @@ group :test do
   gem "codeclimate-test-reporter", :require => false
 
   # check if this is still needed for phantomjs 2.0
-  source 'https://rails-assets.org'
-  gem 'rails-assets-bind-polyfill'
+  gem 'rails-assets-bind-polyfill', source: 'https://rails-assets.org'
 end
 
 group :staging, :production do

@@ -502,7 +502,7 @@ DEPENDENCIES
   pry-rails
   rack-mini-profiler
   rails (~> 4.2.2)
-  rails-assets-bind-polyfill
+  rails-assets-bind-polyfill!
   rails_best_practices
   rb-fsevent (~> 0.9.1)
   rb-readline
@@ -524,6 +524,3 @@ DEPENDENCIES
   web-console
   websocket-rails
   wirble
-
-BUNDLED WITH
-   1.10.5
