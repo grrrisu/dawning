@@ -23,7 +23,7 @@ class Headquarter < Pawn
     if View.within_radius(dx, dy, view_radius * 1.5)
       yield
     else
-      $stderr.puts "movement[#{dx},#{dy}] not within influence area[#{view_radius}, #{x}, #{y}] "
+      puts "movement[#{dx},#{dy}] not within influence area[#{view_radius}, #{x}, #{y}] "
     end
   end
 
