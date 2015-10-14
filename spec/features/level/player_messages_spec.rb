@@ -39,7 +39,7 @@ describe "player messages" do
     )
     player_connection.forward_message player_id: '123',
       action: 'view', params: { x: hq.x - 2, y: hq.y - 2, width: 5, height: 5,
-                                current_view: {x: hq.x - 4, x: hq.y - 4, width: 15, height: 15}
+                                current_view: {x: hq.x - 4, y: hq.y - 4, width: 15, height: 15}
                               }
   end
 

@@ -76,7 +76,7 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'selenium-webdriver', '>=2.45.0'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '1.4.1'
   gem 'launchy'
   gem "codeclimate-test-reporter", :require => false
 
