@@ -149,7 +149,7 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
-    faye-websocket (0.10.1)
+    faye-websocket (0.10.0)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     ffi (1.9.10)
@@ -486,6 +486,7 @@ DEPENDENCIES
   coffee-rails
   database_cleaner (= 1.4.1)
   factory_girl_rails (~> 4.0)
+  faye-websocket (= 0.10.0)
   font-awesome-sass
   gravtastic
   growl
@@ -528,3 +529,6 @@ DEPENDENCIES
   web-console
   websocket-rails
   wirble
+
+BUNDLED WITH
+   1.10.6

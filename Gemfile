@@ -8,6 +8,7 @@ gem 'jquery-turbolinks'
 gem 'haml-rails'
 gem 'simple_form', '~> 3.0.0'
 gem 'websocket-rails'
+gem 'faye-websocket', '0.10.0' # 0.10.1 confilicts with websocket-rails
 
 gem "mongoid", "~> 4.0.0"
 gem 'thin'
