@@ -10,10 +10,6 @@ class PlayerProxy < Sim::Net::PlayerProxy
     connect_to_players_server(Rails.root.join('tmp', 'sockets', 'players.sock').to_s)
   end
 
-  def send_message action, params = {}
-    @sim_connection.send_object player_id: id, action: action, params: params
-  end
-
   def message_received message
     if websocket
       Rails.logger.debug("sending #{message[:action]} to browser")
