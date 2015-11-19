@@ -24,6 +24,8 @@ Dawning::Application.routes.draw do
     resource :map, only: [:show]
   end
 
+  resource :dungeon, only: [:show]
+
   namespace :admin do
     resource :launch_panel, only: [:show]
     resource :test_map, only: [:show, :update]
