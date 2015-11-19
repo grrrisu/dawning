@@ -54,6 +54,10 @@ GEM
       builder
       multi_json
     arel (6.0.3)
+    babel-source (5.8.34)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -407,6 +411,10 @@ GEM
       spring (>= 0.9.1)
     sprockets (3.4.0)
       rack (> 1, < 3)
+    sprockets-es6 (0.8.2)
+      babel-source (>= 5.8.11)
+      babel-transpiler
+      sprockets (>= 3.0.0)
     sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -521,6 +529,7 @@ DEPENDENCIES
   sorcery
   spring
   spring-commands-rspec
+  sprockets-es6
   therubyracer
   thin
   turbolinks
@@ -529,6 +538,3 @@ DEPENDENCIES
   web-console
   websocket-rails
   wirble
-
-BUNDLED WITH
-   1.10.6
