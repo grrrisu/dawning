@@ -419,6 +419,9 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sprockets-traceur (0.0.1)
+      sprockets
+      traceur-rb
     sshkit (1.7.1)
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
@@ -438,6 +441,7 @@ GEM
     tilt (2.0.1)
     timers (4.0.4)
       hitimes
+    traceur-rb (0.0.4)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -530,6 +534,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   sprockets-es6
+  sprockets-traceur
   therubyracer
   thin
   turbolinks

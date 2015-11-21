@@ -17,7 +17,7 @@ Dawning.Game = class Game {
 
   preload(){
     this.game.load.audio('rainforest', 'audio/rainforest_ambience.mp3');
-    this.game.load.audio('footsteps', 'audio/footsteps_dry_wheat.mp3');
+    //this.game.load.audio('footsteps', 'audio/footsteps_dry_wheat.mp3');
 
     this.map.preload();
   }
@@ -28,11 +28,11 @@ Dawning.Game = class Game {
     //this.fog.create();
     this.map.create();
 
-    this.foodScore = this.game.add.text(0, 0, "Food: 0", { font: "32px Arial", fill: "#ffffff", align: "center" });
+    this.foodScore = this.game.add.text(20, 20, "Food: 0", { font: "32px Arial", fill: "#ffffff", align: "center" });
     this.foodScore.fixedToCamera = true;
 
     var backgroundSound = this.game.add.audio('rainforest', 0.1, true); // key, volume, loop
-    var footstepsSound  = this.game.add.audio('footsteps', 1.0,  true);
+    //var footstepsSound  = this.game.add.audio('footsteps', 1.0,  true);
     backgroundSound.play();
   }
 

@@ -25,6 +25,7 @@ gem 'uuid'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem "sprockets-es6", require: 'sprockets/es6'
+gem 'sprockets-traceur'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', :platform => :ruby

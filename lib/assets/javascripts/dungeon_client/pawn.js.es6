@@ -9,7 +9,7 @@ Dawning.Pawn = class Pawn {
   }
 
   preload(){
-    this.game.load.atlasJSONHash('pawn', 'images/walk.png', 'images/walk.json');
+    this.game.load.atlasJSONHash('pawn', 'images/dungeon/walk.png', 'images/dungeon/walk.json');
   }
 
   createMan(x, y, dataX, dataY) {
