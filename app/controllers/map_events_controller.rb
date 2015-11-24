@@ -1,4 +1,4 @@
-class MapEventsController < WebsocketRails::BaseController
+class MapEventsController < BaseEventsController
   include ActionView::Helpers::SanitizeHelper
 
   before_filter :sanitize_message
@@ -42,13 +42,6 @@ private
     rescue_block do
       message.each {|key, value| message[key] = sanitize(value) if value.instance_of? String }
     end
-  end
-
-  def rescue_block
-    yield
-  rescue Exception => exception
-    Rails.logger.error exception.message
-    Rails.logger.error exception.backtrace.join('\n')
   end
 
 end

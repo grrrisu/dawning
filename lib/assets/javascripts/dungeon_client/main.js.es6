@@ -1,5 +1,5 @@
 import { Dawning } from './namespace';
-import { Data } from './data/maps';
+import { Websocket } from './controllers/websocket';
 import { InputHandler} from './inputHandler';
 import { Fog } from './fog';
 import { Thing } from './thing';

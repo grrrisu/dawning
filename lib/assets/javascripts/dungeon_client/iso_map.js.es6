@@ -39,10 +39,15 @@ Dawning.IsoMap = class IsoMap {
 
     this.game.load.image('leopard', 'images/dungeon/leopard@2x.png');
 
-    this.mapData.createData(Dawning.Data.map3);
     this.rabbitBuilder.preload();
     this.leopardBuilder.preload();
     this.pawnBuilder.preload();
+  }
+
+  createFromData(data){
+    console.log("map data received");
+    this.mapData.createData(data);
+    this.create();
   }
 
   create() {

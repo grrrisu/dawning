@@ -13,6 +13,7 @@ Dawning.Game = class Game {
     this.foodCollected = 0;
     this.map = new Dawning.IsoMap(this, options);
     //this.fog = new Dawning.Fog(this, this.map.mapSize);
+    this.websocket = new Dawning.Websocket(this);
   }
 
   preload(){
@@ -23,10 +24,11 @@ Dawning.Game = class Game {
   }
 
   create(){
+    this.websocket.trigger('init_dugeon');
+
     this.game.world.setBounds(0, 0, 3 * this.map.mapSize, 3 * this.map.mapSize);
 
     //this.fog.create();
-    this.map.create();
 
     this.foodScore = this.game.add.text(20, 20, "Food: 0", { font: "32px Arial", fill: "#ffffff", align: "center" });
     this.foodScore.fixedToCamera = true;
