@@ -24,7 +24,7 @@ Dawning.Game = class Game {
   }
 
   create(){
-    this.websocket.trigger('init_dugeon');
+    this.websocket.trigger('init_dungeon');
 
     this.game.world.setBounds(0, 0, 3 * this.map.mapSize, 3 * this.map.mapSize);
 
@@ -48,15 +48,16 @@ Dawning.Game = class Game {
   }
 
   collectBanana(man, banana) {
+    var position = {isoX: man.isoX, isoY: man.isoY}
     switch (banana.frame) {
       case 5:
-        this.incFood(10);
+        this.incFood(10, position);
         break;
       case 7:
-        this.incFood(25);
+        this.incFood(25, position);
         break;
       case 9:
-        this.incFood(60);
+        this.incFood(60, position);
         break;
     }
     banana.animations.play('empty');
@@ -68,9 +69,11 @@ Dawning.Game = class Game {
     leopard.body.velocity.x = 0;
     leopard.body.velocity.y = 0;
     console.log("GAME OVER!");
+    this.websocket.trigger('game_over', {totalFood: this.foodCollected, position: {isoX: man.isoX, isoY: man.isoY}})
   }
 
-  incFood(amount){
+  incFood(amount, position){
+    this.websocket.trigger('food_collected', {food: amount, position: position})
     this.foodCollected += amount;
     this.foodScore.text = 'Food: ' + this.foodCollected;
   }

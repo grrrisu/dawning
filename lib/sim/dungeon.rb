@@ -1,5 +1,15 @@
 class Dungeon
 
+  Banana1 = 10
+  Banana2 = 25
+  Banana3 = 60
+
+  attr_reader :field_size
+
+  def initialize
+    @field_size = 65
+  end
+
   def fields
     [
       ['X', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', 'X'],
@@ -28,6 +38,10 @@ class Dungeon
       ['X', '3', '.', 'X', '.', '.', '.', '.', '1', '.', 'X', '1', '.', '.', 'X', 'R', '.', '.', '.', '.', 'X', '2', 'X', '3', 'X'],
       ['X', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', 'X'],
     ]
+  end
+
+  def total_food
+    Banana1 * 13 + Banana2 * 8 + Banana3 * 7 # = 750
   end
 
 end
