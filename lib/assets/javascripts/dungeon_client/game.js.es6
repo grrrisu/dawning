@@ -28,14 +28,17 @@ Dawning.Game = class Game {
 
     this.game.world.setBounds(0, 0, 3 * this.map.mapSize, 3 * this.map.mapSize);
 
-    //this.fog.create();
-
-    this.foodScore = this.game.add.text(20, 20, "Food: 0", { font: "32px Arial", fill: "#ffffff", align: "center" });
-    this.foodScore.fixedToCamera = true;
-
     var backgroundSound = this.game.add.audio('rainforest', 0.1, true); // key, volume, loop
     //var footstepsSound  = this.game.add.audio('footsteps', 1.0,  true);
     backgroundSound.play();
+  }
+
+  createFromData(data){
+    //this.fog.create();
+    this.map.createFromData(data);
+
+    this.foodScore = this.game.add.text(20, 20, "Food: 0", { font: "32px Arial", fill: "#ffffff", align: "center" });
+    this.foodScore.fixedToCamera = true;
   }
 
   update(){

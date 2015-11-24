@@ -150,10 +150,12 @@ Dawning.IsoMap = class IsoMap {
   }
 
   update(){
-    this.collisionDetection();
-    this.inputHandler.moveWithCursor(this.man);
-    this.topologicalSort();
-    this.man.update();
+    if(this.man) {
+      this.collisionDetection();
+      this.inputHandler.moveWithCursor(this.man);
+      this.topologicalSort();
+      this.man.update();
+    }
   }
 
   positionChanged(){

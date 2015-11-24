@@ -7,7 +7,21 @@ class Dungeon
   attr_reader :field_size
 
   def initialize
+    @players    = {}
     @field_size = 65
+  end
+
+  def self.instance
+    @instance ||= new
+  end
+
+  def find_player user_id
+    @players[user_id]
+  end
+
+  def add_player player
+    @players[player.user.id] = player
+    player.food_points = 0
   end
 
   def fields
@@ -42,6 +56,18 @@ class Dungeon
 
   def total_food
     Banana1 * 13 + Banana2 * 8 + Banana3 * 7 # = 750
+  end
+
+  def food_collected message, player
+    player.food_points += message[:food]
+    puts "player has #{player.food_points}"
+    if player.food_points == total_food
+      puts "WIN!!! all available food collected"
+    end
+  end
+
+  def game_over message, player
+    puts "GAME OVER!!! food collected: #{player.food_points}"
   end
 
 end

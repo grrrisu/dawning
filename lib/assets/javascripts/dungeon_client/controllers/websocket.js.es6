@@ -21,7 +21,7 @@ Dawning.Websocket = class Websocket {
 
   bindEvents(){
     this.dispatcher.bind('init_dungeon', (data) => {
-      this.game.map.createFromData(data);
+      this.game.createFromData(data);
     });
   }
 
