@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     navigation :user_ranking
-    @users = User.active.asc(:created_at).page(params[:page])
+    @users = User.ranked.page(params[:page])
   end
 
   def show

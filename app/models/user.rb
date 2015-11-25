@@ -6,6 +6,7 @@ class User
   field :name, type: String
   field :role, type: String
   field :notification, type: Boolean, default: true
+  field :points, type: Integer, default: 0
 
   has_many :authentications, dependent: :delete
 
@@ -26,6 +27,8 @@ class User
   scope :active, -> { where(activation_state: 'active').excludes(username: 'admin') }
 
   scope :to_be_notified, -> { active.excludes(notification: false) }
+
+  scope :ranked, -> { active.desc(:points).asc(:created_at) }
 
   def notification_needs_email
     unless new_record?

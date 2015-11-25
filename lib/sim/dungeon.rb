@@ -63,11 +63,20 @@ class Dungeon
     puts "player has #{player.food_points}"
     if player.food_points == total_food
       puts "WIN!!! all available food collected"
+      save_points player
     end
   end
 
   def game_over message, player
     puts "GAME OVER!!! food collected: #{player.food_points}"
+    save_points player
+  end
+
+  def save_points player
+    if player.user.points < player.food_points
+      player.user.points = player.food_points
+      player.user.save!
+    end
   end
 
 end
