@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Dungeon, focus: true do
+describe Dungeon do
 
-  let(:dungeon) { Dungeon.new }
+  let(:dungeon) { Dungeon.new.load }
 
   it "should return fields" do
     expect(dungeon.fields).to be_instance_of Array

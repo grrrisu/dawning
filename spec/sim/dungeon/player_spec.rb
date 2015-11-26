@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Dungeon::Player, focus: true do
+describe Dungeon::Player do
 
   let(:user)    { User.new }
   let(:player)  { Dungeon::Player.new(user) }
