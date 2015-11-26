@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/grrrisu/Simulator.git
-  revision: a50e473e1999502641d0c24dda0a697a8d5e0608
+  revision: e6962f91e57bfbed7544c3d6bb0c97d4d2b15d9d
   specs:
     Simulator (0.3.4)
       activesupport (>= 4.2.4)

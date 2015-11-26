@@ -1,4 +1,4 @@
-class Dungeon
+class Dungeon < Sim::Matrix
 
   Banana1 = 10
   Banana2 = 25
@@ -11,20 +11,8 @@ class Dungeon
     @field_size = 65
   end
 
-  def self.instance
-    @instance ||= new
-  end
-
-  def find_player user_id
-    @players[user_id]
-  end
-
-  def add_player player
-    @players[player.user.id] = player
-    player.food_points = 0
-  end
-
-  def fields
+  def load
+    self.matrix =
     [
       ['X', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', 'X'],
       ['X', '2', '.', 'X', '.', '.', '.', '.', 'X', '.', '.', '.', '.', '.', '.', '.', 'x', 'X', '.', '.', '.', '.', 'X', 'x', 'X'],
@@ -52,31 +40,70 @@ class Dungeon
       ['X', '3', '.', 'X', '.', '.', '.', '.', '1', '.', 'X', '1', '.', '.', 'X', 'R', '.', '.', '.', '.', 'X', '2', 'X', '3', 'X'],
       ['X', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', 'X'],
     ]
+    self
   end
 
-  def total_food
-    Banana1 * 13 + Banana2 * 8 + Banana3 * 7 # = 750
+  def self.instance
+    @instance ||= new
+  end
+
+  def find_player user_id
+    @players[user_id]
+  end
+
+  def add_player player
+    @players[player.user.id] = player
+    player.food_points = 0
+  end
+
+  def map_position iso_x, iso_y
+    [
+      (iso_x / field_size.to_f).floor,
+      (iso_y / field_size.to_f).floor
+    ]
+  end
+
+  def total_food_points
+    inject(0) do |total, field|
+      total += food_points_for field
+    end
+  end
+
+  def food_points_at x, y
+    food_points_for self[x, y]
+  end
+
+  def collect_food_at x, y
+    food = food_points_at x, y
+    if food > 0
+      self[x, y] = '0'
+    end
+    food
+  end
+
+  def food_points_for field
+    case field
+    when '1' then Banana1
+    when '2' then Banana2
+    when '3' then Banana3
+    else 0
+    end
   end
 
   def food_collected message, player
-    player.food_points += message[:food]
+    position = map_position message[:position][:isoX], message[:position][:isoY]
+    player.food_points += collect_food_at(*position)
     puts "player has #{player.food_points}"
-    if player.food_points == total_food
+    if player.food_points == total_food_points
       puts "WIN!!! all available food collected"
-      save_points player
+      player.save_points
     end
+    player.food_points
   end
 
   def game_over message, player
     puts "GAME OVER!!! food collected: #{player.food_points}"
-    save_points player
-  end
-
-  def save_points player
-    if player.user.points < player.food_points
-      player.user.points = player.food_points
-      player.user.save!
-    end
+    player.save_points
   end
 
 end

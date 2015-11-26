@@ -186,9 +186,11 @@ Dawning.IsoMap = class IsoMap {
     // this.floorGroup.forEach( (tile) => {
     //   this.game.debug.body(tile, 'rgba(189, 221, 235, 0.6)', false);
     // });
-    // this.isoGroup.forEach( (tile) => {
-    //   this.game.debug.body(tile, 'rgba(189, 221, 235, 0.6)', false);
-    // });
+    // if (this.isoGroup){
+    //   this.isoGroup.forEach( (tile) => {
+    //     this.game.debug.body(tile, 'rgba(189, 221, 235, 0.6)', false);
+    //   });
+    // }
   }
 
   isWall(x, y){

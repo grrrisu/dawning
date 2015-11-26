@@ -8,5 +8,11 @@ class Dungeon
       @user = user
     end
 
+    def save_points
+      if user.points < food_points
+        user.update_attribute(:points, food_points)
+      end
+    end
+
   end
 end

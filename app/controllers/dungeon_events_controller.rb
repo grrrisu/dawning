@@ -5,14 +5,15 @@ class DungeonEventsController < BaseEventsController
   def init_dungeon
     rescue_block do
       logger.info 'init_dungeon'
-      connection.send_message :init_dungeon, dungeon.fields
+      connection.send_message :init_dungeon, dungeon.load.fields
     end
   end
 
   def food_collected
     rescue_block do
       logger.info "food collected #{message}"
-      dungeon.food_collected(message, @player)
+      total_food_points = dungeon.food_collected(message, @player)
+      connection.send_message :food_collected, total_food_points
     end
   end
 

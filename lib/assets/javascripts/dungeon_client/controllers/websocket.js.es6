@@ -23,6 +23,10 @@ Dawning.Websocket = class Websocket {
     this.dispatcher.bind('init_dungeon', (data) => {
       this.game.createFromData(data);
     });
+
+    this.dispatcher.bind('food_collected', (data) => {
+      this.game.updateFoodCollected(data);
+    });
   }
 
 }

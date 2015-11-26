@@ -51,18 +51,8 @@ Dawning.Game = class Game {
   }
 
   collectBanana(man, banana) {
-    var position = {isoX: man.isoX, isoY: man.isoY}
-    switch (banana.frame) {
-      case 5:
-        this.incFood(10, position);
-        break;
-      case 7:
-        this.incFood(25, position);
-        break;
-      case 9:
-        this.incFood(60, position);
-        break;
-    }
+    var position = {isoX: banana.isoX, isoY: banana.isoY};
+    this.websocket.trigger('food_collected', {position: position});
     banana.animations.play('empty');
   }
 
@@ -75,9 +65,8 @@ Dawning.Game = class Game {
     this.websocket.trigger('game_over', {totalFood: this.foodCollected, position: {isoX: man.isoX, isoY: man.isoY}})
   }
 
-  incFood(amount, position){
-    this.websocket.trigger('food_collected', {food: amount, position: position})
-    this.foodCollected += amount;
+  updateFoodCollected(data){
+    this.foodCollected  = data;
     this.foodScore.text = 'Food: ' + this.foodCollected;
   }
 
