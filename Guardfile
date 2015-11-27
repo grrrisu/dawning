@@ -21,7 +21,7 @@ guard :rspec, cmd: 'bundle exec spring rspec' do
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
 end
 
-guard :jasmine, all_on_start: false, cmd: 'rake spec:javascript', server: :thin, server_mount: '/specs', server_env: :test do
+guard :jasmine, all_on_start: false, cmd: 'bundle exec rake spec:javascript', server: :thin, server_mount: '/specs', server_env: :test do
   watch(%r{spec/javascripts/spec\.(js\.coffee|js|coffee)$}) { 'spec/javascripts' }
   watch(%r{spec/javascripts/.+_spec\.(js\.coffee|js|coffee)$})
   watch(%r{spec/javascripts/fixtures/.+$})

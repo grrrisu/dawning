@@ -72,6 +72,9 @@ group :test, :development do
   gem 'pry-rails'
   gem 'byebug'
   gem 'simplecov', '~> 0.9.1', :require => false
+
+  # check if this is still needed for phantomjs 2.0
+  gem 'rails-assets-bind-polyfill', source: 'https://rails-assets.org'
 end
 
 group :test do
@@ -82,9 +85,6 @@ group :test do
   gem 'database_cleaner', '1.4.1'
   gem 'launchy'
   gem "codeclimate-test-reporter", :require => false
-
-  # check if this is still needed for phantomjs 2.0
-  gem 'rails-assets-bind-polyfill', source: 'https://rails-assets.org'
 end
 
 group :staging, :production do
