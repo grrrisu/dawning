@@ -5,8 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :require_login, except: [:not_authenticated]
 
-  helper_method :show_map?
-
   check_authorization
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -27,10 +25,6 @@ private
     else
       render json: { location: login_path, alert: "Please login first." }, status: 403
     end
-  end
-
-  def show_map?
-    navigation_active?([:map]) || navigation_active?([:admin, :test_map])
   end
 
 end
