@@ -1,7 +1,6 @@
 - content_for :javascript do
-  = javascript_include_tag 'phaser'
-  = javascript_include_tag 'phaser-plugin-isometric'
-  
+  = javascript_include_tag "dungeon_client"
+
 %legend
   Dungeon
 .row
@@ -9,5 +8,3 @@
   .col-md-8{style: 'text-align: center'}
     #game
   .col-md-4
-
-= javascript_include_tag "dungeon_client"
