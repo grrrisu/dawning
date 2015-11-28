@@ -94,14 +94,12 @@ class Dungeon < Sim::Matrix
     position = map_position message[:position][:isoX], message[:position][:isoY]
     player.food_points += collect_food_at(*position)
     if player.food_points == total_food_points
-      logger.info "WIN!!! all available food collected"
       player.save_points
     end
     player.food_points
   end
 
   def game_over message, player
-    logger.info "GAME OVER!!! food collected: #{player.food_points}"
     player.save_points
   end
 
