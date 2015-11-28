@@ -7,7 +7,7 @@ class Admin::Api::V1::LevelsController < ApplicationController
   respond_to :json
 
   def index
-    data = LevelProxy.levels.map(&:as_json)
+    data = LevelManager.instance.levels.map(&:as_json)
     respond_with data
   end
 
@@ -16,7 +16,7 @@ class Admin::Api::V1::LevelsController < ApplicationController
   end
 
   def create
-    level = LevelProxy.create params[:level][:name]
+    level = LevelManager.instance.create params[:level][:name]
     render json: level.as_json
   end
 
@@ -56,7 +56,7 @@ class Admin::Api::V1::LevelsController < ApplicationController
 private
 
   def find_level
-    unless @level = LevelProxy.find(params[:id])
+    unless @level = LevelManager.instance.find(params[:id])
       render json: {error: "Level with id #{params[:id]} not found"}, status: 404
     end
   end

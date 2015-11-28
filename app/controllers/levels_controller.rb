@@ -5,7 +5,7 @@ class LevelsController < ApplicationController
 
   def index
     authorize! :index, LevelProxy
-    @levels = LevelProxy.active
+    @levels = LevelManager.instance.actives
   end
 
   def join
@@ -25,7 +25,7 @@ class LevelsController < ApplicationController
 private
 
   def find_level
-    @level =  LevelProxy.find params[:id]
+    @level =  LevelManager.instance.find params[:id]
     redirect_to levels_path unless @level
   end
 

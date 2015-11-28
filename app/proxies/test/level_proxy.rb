@@ -6,7 +6,7 @@ class Test::LevelProxy
   attr_reader :player
 
   def initialize
-    ::LevelProxy.add_level('123', self)
+    LevelManager.instance.add_level('123', self)
     @player = Test::PlayerProxy.new
   end
 
@@ -35,7 +35,7 @@ class Test::LevelProxy
   end
 
   def remove
-    ::LevelProxy.delete ID
+    LevelManager.instance.delete ID
   end
 
   def as_json

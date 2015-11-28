@@ -32,7 +32,7 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do
-    LevelProxy.levels.each do |level|
+    LevelManager.instance.levels.each do |level|
       # check if connection is not a RSpec double
       if level.connection.instance_of?(Sim::Net::ParentConnection)
         level.stop rescue nil

@@ -14,8 +14,8 @@ describe LevelProxy do
 
     it "should create and launch" do
       expect {
-        LevelProxy.create('test')
-      }.to change{LevelProxy.levels.size}.by(1)
+        LevelManager.instance.create('test')
+      }.to change{LevelManager.instance.levels.size}.by(1)
     end
 
     it "should launch level" do
@@ -31,11 +31,11 @@ describe LevelProxy do
 
     before :each do
       level.instance_variable_set('@connection', connection)
-      LevelProxy.instance_variable_set('@levels', {level.id => level})
+      LevelManager.instance.instance_variable_set('@levels', {level.id => level})
     end
 
     it "should find level" do
-      expect(LevelProxy.find(level.id)).to eq(level)
+      expect(LevelManager.instance.find(level.id)).to eq(level)
     end
 
     it "should build a level" do
@@ -89,7 +89,7 @@ describe LevelProxy do
       level.instance_variable_set('@state', :stopped)
       expect {
         level.remove
-      }.to change{LevelProxy.levels.size}.by(-1)
+      }.to change{LevelManager.instance.levels.size}.by(-1)
       expect(level.state).to eq(:destroyed)
     end
 

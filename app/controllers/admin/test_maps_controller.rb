@@ -17,7 +17,7 @@ class Admin::TestMapsController < ApplicationController
 private
 
   def get_level
-    unless @level = LevelProxy.find(Test::LevelProxy::ID)
+    unless @level = LevelManager.instance.find(Test::LevelProxy::ID)
       @level = Test::LevelProxy.new
     end
   end

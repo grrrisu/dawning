@@ -1,47 +1,5 @@
 class LevelProxy
 
-  def self.create name
-    @uuid ||= UUID.new
-    unless level_by_name(name)
-      id = @uuid.generate
-      level = new(id, name)
-      add_level id, level
-      level.launch
-      level
-    else
-      raise ArgumentError, "level with name [#{name}] already exists!"
-    end
-  end
-
-  def self.level_by_name name
-    @levels ||= {}
-    @levels.find {|id, level| level.name == name }
-  end
-
-
-  def self.add_level id, level
-    @levels ||= {}
-    @levels[id] = level
-  end
-
-  def self.levels
-    @levels.try(:values) || []
-  end
-
-  def self.active
-    levels.reject {|level| [:launched, :destroyed].include? level.state}
-  end
-
-  def self.find id
-    @levels && @levels[id]
-  end
-
-  def self.delete id
-    @levels.delete id
-  end
-
-  # --- Instance Methods ----
-
   attr_reader :id, :name, :state, :players, :connection, :config_file
 
   def initialize id, name
@@ -77,7 +35,7 @@ class LevelProxy
     @connection.send_action action, params
   rescue Errno::EPIPE
     Rails.logger.error "level [#{id}] is corrupt -> removing"
-    LevelProxy.delete id
+    LevelManager.instance.delete id
   end
 
   # --- states ---
@@ -121,7 +79,7 @@ class LevelProxy
 
   def remove
     if @state == :stopped
-      LevelProxy.delete @id
+      LevelManager.instance.delete @id
       @state = :destroyed
     else
       raise ArgumentError, "level must be in state stopped but is in '#{@state}'"

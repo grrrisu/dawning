@@ -2,7 +2,7 @@ RSpec.shared_context "level" do
 
   def launched_level name = nil
     name = "test-level" if name.blank?
-    LevelProxy.create name
+    LevelManager.instance.create name
   end
 
   def built_level name = nil, config = nil
