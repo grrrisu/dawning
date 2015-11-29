@@ -34,6 +34,10 @@ h1, h2, h3 {
 
 .main-section {
   padding: $container-padding 35px;
+
+  @media (max-width: $screen-sm-min) {
+    padding: $container-padding 5px;
+  }
 }
 
 a:hover {

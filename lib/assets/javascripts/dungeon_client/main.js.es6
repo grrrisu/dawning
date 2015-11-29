@@ -11,10 +11,16 @@ import { Visability} from './visability';
 import { IsoMap } from './iso_map';
 import { Game } from './game';
 
+var game_container = document.getElementById('game');
+var height = 600;
+if (game_container.offsetWidth < 700){
+  height = 475;
+}
+
 Dawning.dungeon = new Dawning.Game(
   {
-    width: 1200,
-    heidht: 600,
+    width: game_container.offsetWidth,
+    height: height,
     element: 'game',
     size: 25,
     fieldSize: 65
