@@ -12,9 +12,9 @@ import { IsoMap } from './iso_map';
 import { Game } from './game';
 
 var game_container = document.getElementById('game');
-var height = 600;
-if (game_container.offsetWidth < 700){
-  height = 475;
+var height = window.innerHeight - 10;
+if(height > 700) {
+  height = 700;
 }
 
 Dawning.dungeon = new Dawning.Game(
