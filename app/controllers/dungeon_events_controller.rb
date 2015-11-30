@@ -5,7 +5,8 @@ class DungeonEventsController < BaseEventsController
   def init_dungeon
     rescue_block do
       logger.info 'init_dungeon'
-      connection.send_message :init_dungeon, dungeon.load.fields
+      dungeon.reset
+      connection.send_message :init_dungeon, dungeon.fields
     end
   end
 

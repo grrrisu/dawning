@@ -47,6 +47,13 @@ class Dungeon < Sim::Matrix
     @instance ||= new
   end
 
+  def reset
+    @players.each do |_, player|
+      player.food_points = 0
+    end
+    load
+  end
+
   def find_player user_id
     @players[user_id]
   end
