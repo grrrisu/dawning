@@ -43,7 +43,7 @@ Dawning.InputHandler = class InputHandler {
   }
 
   moveWithMouse(pawn, speed){
-    if (this.game.input.mousePointer.isDown || this.game.input.mousePointer.onHold) {
+    if (this.game.input.mousePointer.isDown || this.game.input.pointer1.isDown) {
       this.game.iso.unproject(this.game.input.activePointer.position, this.mousePos);
       if(Math.abs(pawn.man.isoX - this.mousePos.x) > Math.abs(pawn.man.isoY - this.mousePos.y)){
         if(pawn.man.isoX > this.mousePos.x){
