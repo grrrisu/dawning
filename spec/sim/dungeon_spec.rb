@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe Dungeon do
 
-  let(:dungeon) { Dungeon.new.load }
+  let(:config)  { {data_file: 'jungle_data.json'} }
+  let(:builder) { Builder::Dungeon.new(config)}
+  let(:dungeon) { builder.create }
 
   it "should return fields" do
     expect(dungeon.fields).to be_instance_of Array

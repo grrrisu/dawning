@@ -1,0 +1,5 @@
+time_unit: 60
+sim_loop:
+  duration: 3
+dungeon:
+  data_file: 'jungle_data.json'

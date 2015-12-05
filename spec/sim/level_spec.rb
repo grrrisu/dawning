@@ -11,4 +11,10 @@ describe Level do
     expect(level.world.size).to eq([50, 100])
   end
 
+  it "should create a dungeon" do
+    config = {dungeon: {data_file: 'test_data.json'}}
+    level.create(config)
+    expect(level.dungeon.size).to eq([5,5])
+  end
+
 end

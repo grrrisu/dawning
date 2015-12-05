@@ -10,12 +10,24 @@ require_relative 'setup'
 # * bot dropzone 1    (80 - 99)
 class Level < Sim::Level
 
-  attr_reader :world, :dropzone
+  attr_reader :world, :dropzone, :dungeon
 
   def create config
+    if config[:world]
+      create_world config
+    elsif config[:dungeon]
+      create_dungeon config
+    end
+    true
+  end
+
+  def create_world config
     @world =    World.build(config[:world])
     @dropzone = Builder::Dropzone.new(@world, config[:dropzones])
-    true
+  end
+
+  def create_dungeon config
+    @dungeon = Builder::Dungeon.new(config[:dungeon]).create
   end
 
   def load
