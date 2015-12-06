@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Dungeon do
 
-  let(:config)  { {data_file: 'jungle_data.json'} }
+  let(:config)  { {data_file: 'default/jungle_dungeon.json'} }
   let(:builder) { Builder::Dungeon.new(config)}
   let(:dungeon) { builder.create }
 

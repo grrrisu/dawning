@@ -16,7 +16,7 @@ module Builder
     end
 
     def load_data file_name
-      path = File.join(__dir__, '..', '..', '..', 'config', 'levels', 'dungeons', file_name)
+      path = File.join(__dir__, '..', '..', '..', 'config', 'levels', file_name)
       data = JSON.load(File.open(path))
       dungeon.matrix = data['fields']
     end

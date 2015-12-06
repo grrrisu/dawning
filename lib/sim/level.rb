@@ -13,11 +13,7 @@ class Level < Sim::Level
   attr_reader :world, :dropzone, :dungeon
 
   def create config
-    if config[:world]
-      create_world config
-    elsif config[:dungeon]
-      create_dungeon config
-    end
+    create_world config
     true
   end
 
