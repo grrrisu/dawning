@@ -31,13 +31,13 @@ Dawning.IsoMap = class IsoMap {
 	  // set the middle of the world in the middle of the screen
 	  this.game.iso.anchor.setTo(0.5, 0);
 
-    this.game.load.image('field', 'images/dungeon/iso_field.png');
-    this.game.load.image('grass', 'images/dungeon/iso_grass.png');
-    //this.game.load.image('grass', 'images/grass2.png');
+    this.game.load.image('field', '/images/dungeon/iso_field.png');
+    this.game.load.image('grass', '/images/dungeon/iso_grass.png');
+    //this.game.load.image('grass', '/images/grass2.png');
 
-    this.game.load.atlasJSONHash('tree', 'images/dungeon/trees.png', 'images/dungeon/trees.json');
+    this.game.load.atlasJSONHash('tree', '/images/dungeon/trees.png', '/images/dungeon/trees.json');
 
-    this.game.load.image('leopard', 'images/dungeon/leopard@2x.png');
+    this.game.load.image('leopard', '/images/dungeon/leopard@2x.png');
 
     this.rabbitBuilder.preload();
     this.leopardBuilder.preload();

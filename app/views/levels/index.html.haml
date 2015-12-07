@@ -21,6 +21,9 @@
                 %i.fa.fa-arrow-right
                 Join
             - else
+              = link_to level_dungeon_path(level.id), class: 'btn btn-wide btn-warning', id: "dungeon_#{level.id}", data: {'no-turbolink' => true} do
+                %i.fa.fa-th
+                Dungeon
               - if level.state == :running
                 = link_to level_map_path(level.id), class: 'btn btn-wide btn-warning', id: "enter_#{level.id}", data: {'no-turbolink' => true} do
                   %i.fa.fa-sign-in

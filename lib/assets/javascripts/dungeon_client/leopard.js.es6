@@ -11,7 +11,7 @@ Dawning.Leopard = class Leopard extends Dawning.Thing {
   }
 
   preload(){
-    this.game.load.audio('roaring', 'audio/Mountain_Lion.mp3');
+    this.game.load.audio('roaring', '/audio/Mountain_Lion.mp3');
   }
 
   create(){

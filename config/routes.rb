@@ -22,9 +22,8 @@ Dawning::Application.routes.draw do
       delete :leave
     end
     resource :map, only: [:show]
+    resource :dungeon, only: [:show]
   end
-
-  resource :dungeon, only: [:show]
 
   namespace :admin do
     resource :launch_panel, only: [:show]

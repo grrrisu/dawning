@@ -17,7 +17,6 @@
       - else
         = navigation_item 'Account', :account, edit_user_path(current_user)
         = navigation_item 'Levels', :levels, levels_path
-        = navigation_item 'Dungeon', [:dungeon], dungeon_path, data: {:'no-turbolink' => true}
         - if current_user.admin?
           %li.dropdown{class: subnavigation_active?(:admin) && 'active'}
             = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do

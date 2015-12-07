@@ -17,7 +17,7 @@ Dawning.Game = class Game {
   }
 
   preload(){
-    this.game.load.audio('rainforest', 'audio/rainforest_ambience.mp3');
+    this.game.load.audio('rainforest', '/audio/rainforest_ambience.mp3');
     //this.game.load.audio('footsteps', 'audio/footsteps_dry_wheat.mp3');
 
     this.map.preload();

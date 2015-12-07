@@ -9,7 +9,7 @@ Dawning.Rabbit = class Rabbit {
   }
 
   preload(){
-    this.game.load.image('rabbit', 'images/dungeon/rabbit@2x.png');
+    this.game.load.image('rabbit', '/images/dungeon/rabbit@2x.png');
   }
 
   createRabbit(group, x, y, dataX, dataY){
