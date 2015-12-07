@@ -21,12 +21,12 @@ class Dungeon < Sim::Matrix
     end
   end
 
-  def find_player user_id
-    @players[user_id]
+  def find_player player_id
+    @players[player_id]
   end
 
   def add_player player
-    @players[player.user.id] = player
+    @players[player.id] = player
     player.food_points = 0
   end
 

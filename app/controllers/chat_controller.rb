@@ -22,9 +22,9 @@ class ChatController < WebsocketRails::BaseController
 
   def user_msg(event, msg)
     broadcast_message event, {
-      username:  current_user.username,
-      received:   Time.now.to_s(:short),
-      msg_body:   ERB::Util.html_escape(msg)
+      username: current_user.username,
+      received: Time.now.to_s(:short),
+      msg_body: ERB::Util.html_escape(msg)
     }
   end
 

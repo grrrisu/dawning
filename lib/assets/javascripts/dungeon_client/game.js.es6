@@ -35,7 +35,7 @@ Dawning.Game = class Game {
 
   createFromData(data){
     //this.fog.create();
-    this.map.createFromData(data);
+    this.map.createFromData(data['fields']);
 
     this.foodScore = this.game.add.text(20, 20, "Food: 0", { font: "32px Arial", fill: "#ffffff", align: "center" });
     this.foodScore.fixedToCamera = true;

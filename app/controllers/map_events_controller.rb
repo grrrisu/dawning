@@ -31,13 +31,6 @@ class MapEventsController < BaseEventsController
 
 private
 
-  def find_player
-    rescue_block do
-      level_id = message.delete('level_id')
-      @player = LevelManager.instance.find(level_id).try(:find_player, current_user.id) or raise "no player found for level #{params[:level_id]} and user #{current_user}"
-    end
-  end
-
   def sanitize_message
     rescue_block do
       message.each {|key, value| message[key] = sanitize(value) if value.instance_of? String }

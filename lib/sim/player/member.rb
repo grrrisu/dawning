@@ -5,6 +5,7 @@ module Player
 
     attr_accessor :headquarter
     attr_reader   :world, :world_view
+    attr_accessor :food_points
 
     def place view, headquarter
       @world_view   = view
@@ -54,21 +55,15 @@ module Player
     # --- FIXME extract dungeon ---
 
     def init_dungeon
-      puts 'sim container init_dungeon 1'
-      puts 'sim container init_dungeon 1a'
       create_dungeon unless level.dungeon
-      puts 'sim container init_dungeon 2'
       level.dungeon.add_player self
-      puts 'sim container init_dungeon 3'
-      level.dungeon.fields
+      {fields: level.dungeon.fields}
     end
 
   private
 
     def create_dungeon config = nil
-      puts 'create_dungeon 1'
       config ||= {dungeon: {data_file: 'default/jungle_dungeon.json'}}
-      puts 'create_dungeon 2'
       level.create_dungeon config
     end
 
