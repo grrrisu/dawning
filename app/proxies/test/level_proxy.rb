@@ -22,10 +22,6 @@ class Test::LevelProxy
     NAME
   end
 
-  def state
-    :running
-  end
-
   def find_player user_id
     @player
   end
