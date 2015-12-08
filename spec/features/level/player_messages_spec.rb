@@ -66,6 +66,18 @@ describe "player messages" do
       expect(level.dungeon.find_player('123')).to eq(player)
     end
 
+    it "should collect food" do
+      config  = {dungeon: {data_file: 'test/dungeon_data.json'}}
+      dungeon = level.create_dungeon config
+      player.food_points = 0
+      expect(player_connection).to receive(:send_message).with(
+        :food_collected, Dungeon::Banana2
+      )
+      player_connection.forward_message player_id: '123', action: 'food_collected', params: {
+        position: {isoX: 2 * dungeon.field_size + 10, isoY: 1 * dungeon.field_size + 10}
+      }
+    end
+
   end
 
 end

@@ -55,17 +55,17 @@ module Player
     # --- FIXME extract dungeon ---
 
     def init_dungeon
-      create_dungeon unless level.dungeon
+      level.create_dungeon unless level.dungeon
       level.dungeon.add_player self
+      self.food_points = 0
       {fields: level.dungeon.fields}
     end
 
-  private
-
-    def create_dungeon config = nil
-      config ||= {dungeon: {data_file: 'default/jungle_dungeon.json'}}
-      level.create_dungeon config
+    def food_collected position
+      level.dungeon.food_collected position, self
     end
+
+  private
 
     def view_params x, y, width, height
       {

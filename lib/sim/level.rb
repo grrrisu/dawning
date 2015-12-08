@@ -22,7 +22,8 @@ class Level < Sim::Level
     @dropzone = Builder::Dropzone.new(@world, config[:dropzones])
   end
 
-  def create_dungeon config
+  def create_dungeon config = nil
+    config ||= {dungeon: {data_file: 'default/jungle_dungeon.json'}}
     @dungeon = Builder::Dungeon.new(config[:dungeon]).create
   end
 

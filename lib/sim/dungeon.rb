@@ -15,12 +15,6 @@ class Dungeon < Sim::Matrix
     @instance ||= new
   end
 
-  def reset
-    @players.each do |_, player|
-      player.food_points = 0
-    end
-  end
-
   def find_player player_id
     @players[player_id]
   end
@@ -64,12 +58,12 @@ class Dungeon < Sim::Matrix
     end
   end
 
-  def food_collected message, player
-    position = map_position message[:position][:isoX], message[:position][:isoY]
+  def food_collected position, player
+    position = map_position position[:isoX], position[:isoY]
     player.food_points += collect_food_at(*position)
-    if player.food_points == total_food_points
-      player.save_points
-    end
+    # if player.food_points == total_food_points
+    #   player.save_points
+    # end
     player.food_points
   end
 
