@@ -24,19 +24,4 @@ class DungeonEventsController < BaseEventsController
     end
   end
 
-  private
-
-  def dungeon
-    @dungeon ||= Dungeon.instance
-  end
-
-  def get_player
-    rescue_block do
-      unless @player = dungeon.find_player(current_user.id)
-        @player = Dungeon::Player.new(current_user)
-        dungeon.add_player(@player)
-      end
-    end
-  end
-
 end

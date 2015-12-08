@@ -5,9 +5,9 @@ class Test::LevelProxy
 
   attr_reader :player
 
-  def initialize
+  def initialize user
     LevelManager.instance.add_level('123', self)
-    @player = Test::PlayerProxy.new
+    @player = Test::PlayerProxy.new user
   end
 
   def players

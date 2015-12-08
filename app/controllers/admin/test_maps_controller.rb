@@ -18,7 +18,7 @@ private
 
   def get_level
     unless @level = LevelManager.instance.find(Test::LevelProxy::ID)
-      @level = Test::LevelProxy.new
+      @level = Test::LevelProxy.new current_user
     end
   end
 

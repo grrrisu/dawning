@@ -10,7 +10,7 @@ class LevelsController < ApplicationController
 
   def join
     authorize! :join, @level
-    @level.add_player current_user.id
+    @level.add_player current_user
     redirect_to levels_path
   end
 

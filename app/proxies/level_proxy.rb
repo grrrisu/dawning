@@ -19,13 +19,13 @@ class LevelProxy
 
   # --- players ---
 
-  def add_player user_id, options = {}
-    unless find_player(user_id)
-      player = PlayerProxy.new options
+  def add_player user, options = {}
+    unless find_player(user.id)
+      player = PlayerProxy.new user, options
       player.connect_to_players_server(Rails.root.join(level_configuration[:player_socket_file]).to_s)
-      @players[user_id] = player
+      @players[user.id] = player
     else
-      raise ArgumentError, "user [#{user_id}] has already been added to this level [#{id}]"
+      raise ArgumentError, "user [#{user.id}] has already been added to this level [#{id}]"
     end
   end
 

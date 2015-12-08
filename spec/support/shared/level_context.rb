@@ -19,7 +19,7 @@ RSpec.shared_context "level" do
   end
 
   def user_joined_level user, level
-    level.add_player user.id
+    level.add_player user
   end
 
 end

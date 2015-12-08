@@ -41,7 +41,7 @@ class Admin::Api::V1::LevelsController < ApplicationController
   end
 
   def join
-    @level.add_player current_user.id, role: :admin unless @level.find_player(current_user.id)
+    @level.add_player current_user, role: :admin unless @level.find_player(current_user.id)
     render json: {success: true}
   end
 
