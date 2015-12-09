@@ -12,15 +12,30 @@ class PlayerProxy < Sim::Net::PlayerProxy
   end
 
   def message_received message
-    if websocket
+    # ignore message {:player_id=>"123", :registered=>true}
+    if message[:action]
+      process_return_message message
       Rails.logger.debug("sending #{message[:action]} to browser")
       websocket.send_message message[:action], message[:answer]
-    else
-      Rails.logger.warn("could not send message #{message} to browser as websocket is not yet available")
     end
   end
 
+  def food_collected message
+    binding.pry
+    user.save_points message['food_points']
+  end
+
+  def game_over message
+    user.save_points message['food_points']
+  end
+
 private
+
+  def process_return_message message
+    if respond_to?(message[:action].to_sym)
+      send message[:action], message[:answer]
+    end
+  end
 
   def allowed_role role
     case role

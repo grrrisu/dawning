@@ -44,6 +44,12 @@ class User
     role == 'admin'
   end
 
+  def save_points food_points
+    if points < food_points
+      update_attribute(:points, food_points)
+    end
+  end
+
 private
 
   def set_default_role

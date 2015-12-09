@@ -64,7 +64,7 @@ class Dungeon < Sim::Matrix
     # if player.food_points == total_food_points
     #   player.save_points
     # end
-    player.food_points
+    {food_points: player.food_points}
   end
 
   def game_over message, player
