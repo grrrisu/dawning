@@ -11,6 +11,6 @@ WebsocketRails::EventMap.describe do
 
   subscribe :init_dungeon,        to: DungeonEventsController, with_method: :init_dungeon
   subscribe :food_collected,      to: DungeonEventsController, with_method: :food_collected
-  subscribe :game_over,           to: DungeonEventsController, with_method: :game_over
+  subscribe :attacked,            to: DungeonEventsController, with_method: :attacked
 
 end

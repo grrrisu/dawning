@@ -61,12 +61,11 @@ Dawning.Game = class Game {
     man.kill();
     leopard.body.velocity.x = 0;
     leopard.body.velocity.y = 0;
-    console.log("GAME OVER!");
-    this.websocket.trigger('game_over', {totalFood: this.foodCollected, position: {isoX: man.isoX, isoY: man.isoY}})
+    this.websocket.trigger('attacked', {totalFood: this.foodCollected, position: {isoX: man.isoX, isoY: man.isoY}})
   }
 
-  updateFoodCollected(data){
-    this.foodCollected  = data;
+  updateFoodCollected(food_points){
+    this.foodCollected  = food_points;
     this.foodScore.text = 'Food: ' + this.foodCollected;
   }
 

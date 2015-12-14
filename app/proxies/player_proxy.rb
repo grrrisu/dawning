@@ -11,20 +11,22 @@ class PlayerProxy < Sim::Net::PlayerProxy
     super(UUID.new.generate, role)
   end
 
+  # callback for incoming player messages from the sim container
+  #
+  # ignores register message {:player_id=>"123", :registered=>true}
   def message_received message
-    # ignore message {:player_id=>"123", :registered=>true}
     if message[:action]
-      process_return_message message
       Rails.logger.debug("sending #{message[:action]} to browser")
       websocket.send_message message[:action], message[:answer]
+      process_return_message message
     end
   end
 
-  def food_collected message
+  def update_food_points message
     user.save_points message['food_points']
   end
 
-  def game_over message
+  def dungeon_end message
     user.save_points message['food_points']
   end
 

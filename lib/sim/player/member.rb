@@ -54,6 +54,7 @@ module Player
 
     # --- FIXME extract dungeon ---
 
+    # incoming and outgoing message
     def init_dungeon
       level.create_dungeon unless level.dungeon
       level.dungeon.add_player self
@@ -61,8 +62,24 @@ module Player
       {fields: level.dungeon.fields}
     end
 
+    # incoming message
     def food_collected position
-      level.dungeon.food_collected position, self
+      level.dungeon.async.food_collected position, self
+    end
+
+    # incoming message
+    def attacked food_points, position
+      level.dungeon.async.attacked food_points, position, self
+    end
+
+    # outgoing message
+    def update_food_points food_points
+      connection.send_message :update_food_points, { food_points: food_points }
+    end
+
+    # outgoing message
+    def dungeon_end food_points, rank
+      connection.send_message :dungeon_end, { food_points: food_points, rank: rank }
     end
 
   private

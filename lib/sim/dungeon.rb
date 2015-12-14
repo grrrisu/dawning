@@ -1,4 +1,6 @@
 class Dungeon < Sim::Matrix
+  include Celluloid
+  include Celluloid::Logger
 
   Banana1 = 10
   Banana2 = 25
@@ -32,7 +34,7 @@ class Dungeon < Sim::Matrix
   end
 
   def total_food_points
-    inject(0) do |total, field|
+    @total_food_points ||= inject(0) do |total, field|
       total += food_points_for field
     end
   end
@@ -59,16 +61,19 @@ class Dungeon < Sim::Matrix
   end
 
   def food_collected position, player
+    info "food_collected at [#{position[:isoX]}, #{position[:isoY]}]"
     position = map_position position[:isoX], position[:isoY]
     player.food_points += collect_food_at(*position)
-    # if player.food_points == total_food_points
-    #   player.save_points
-    # end
-    {food_points: player.food_points}
+    if player.food_points == total_food_points
+      player.dungeon_end player.food_points, 1
+    else
+      player.update_food_points player.food_points
+    end
   end
 
-  def game_over message, player
-    player.save_points
+  def attacked food_points, position, player
+    info "attacked at [#{position[:isoX]}, #{position[:isoY]}]"
+    player.dungeon_end player.food_points, 0
   end
 
 end

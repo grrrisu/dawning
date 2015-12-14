@@ -17,10 +17,10 @@ class DungeonEventsController < BaseEventsController
     end
   end
 
-  def game_over
+  def attacked
     rescue_block do
-      logger.info "game over #{message}"
-      dungeon.game_over(message, @player)
+      logger.info "attacked #{message}"
+      @player.send_message 'attacked', message
     end
   end
 

@@ -32,9 +32,18 @@ Dawning.Websocket = class Websocket {
       this.game.createFromData(data);
     });
 
-    this.dispatcher.bind('food_collected', (data) => {
-      this.game.updateFoodCollected(data);
+    this.dispatcher.bind('update_food_points', (data) => {
+      this.game.updateFoodCollected(data.food_points);
     });
+
+    this.dispatcher.bind('dungeon_end', (data) => {
+      this.game.updateFoodCollected(data.food_points);
+      if(data.rank == 1) {
+        console.log("YOU WIN!!!");
+      } else if (data.rank == 0){
+        console.log("GAME OVER!!!");
+      }
+    })
   }
 
 }
