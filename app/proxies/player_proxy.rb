@@ -21,7 +21,6 @@ class PlayerProxy < Sim::Net::PlayerProxy
   end
 
   def food_collected message
-    binding.pry
     user.save_points message['food_points']
   end
 
