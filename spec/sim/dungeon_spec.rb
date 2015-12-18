@@ -20,7 +20,7 @@ describe Dungeon do
     expect(dungeon.map_position(121, 66)).to be == [1,1]
   end
 
-  it "should reset dungeon", focus: true do
+  it "should reset dungeon" do
     dungeon[1,1] = '0'
     player = Dungeon::Player.new(User.new(id: 123))
     dungeon.add_player(player)
