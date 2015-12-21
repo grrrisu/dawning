@@ -7,7 +7,6 @@ class PlayerProxy < Sim::Net::PlayerProxy
   def initialize options
     role = options[:role] || :player
     super(UUID.new.generate, role)
-    connect_to_players_server(Rails.root.join('tmp', 'sockets', 'players.sock').to_s)
   end
 
   def message_received message

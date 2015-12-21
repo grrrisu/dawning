@@ -1,6 +1,6 @@
 class LevelProxy
 
-  attr_reader :id, :name, :state, :players, :connection, :config_file
+  attr_reader :id, :name, :state, :players, :connection, :config_file, :level_configuration
 
   def initialize id, name
     @id         = id
@@ -9,11 +9,20 @@ class LevelProxy
     @players    = {}    # maps user_id to player_proxy
   end
 
+  def level_configuration
+    unless @level_configuration
+      file_name = Rails.root.join('config', 'level.yml')
+      configuration = YAML.load(File.open(file_name)).deep_symbolize_keys
+      @level_configuration = configuration[Rails.env.to_sym]
+    end
+  end
+
   # --- players ---
 
   def add_player user_id, options = {}
     unless find_player(user_id)
       player = PlayerProxy.new options
+      player.connect_to_players_server(Rails.root.join(level_configuration[:player_socket_file]).to_s)
       @players[user_id] = player
     else
       raise ArgumentError, "user [#{user_id}] has already been added to this level [#{id}]"
