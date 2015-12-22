@@ -59,7 +59,7 @@ describe "player messages" do
 
     it "should build dungeon" do
       expect(player_connection).to receive(:send_message).with(
-        :init_dungeon, fields: instance_of(Array)
+        :init_dungeon, fields: instance_of(Sim::Matrix)
       )
       fields = player_connection.forward_message player_id: '123', action: 'init_dungeon', params: {}
       expect(level.dungeon).to be_instance_of(Dungeon::Actor)
@@ -74,7 +74,7 @@ describe "player messages" do
     it "should collect food" do
       player.food_points = 0
       expect(player_connection).to receive(:send_message).with(
-        :update_food_points, {food_points: Dungeon::Map::Banana2}
+        :update_food_points, {food_points: Dungeon::Fruit::Banana2}
       )
       player_connection.forward_message player_id: '123', action: 'food_collected', params: {
         position: {isoX: x_for_banana_2, isoY: y_for_banana_2}
@@ -82,7 +82,7 @@ describe "player messages" do
     end
 
     it "should win game" do
-      player.food_points = dungeon.map.total_food_points - Dungeon::Map::Banana2
+      player.food_points = dungeon.map.total_food_points - Dungeon::Fruit::Banana2
       expect(player_connection).to receive(:send_message).with(
         :dungeon_end, {food_points: dungeon.map.total_food_points, rank: 1}
       )

@@ -125,8 +125,10 @@ Dawning.IsoMap = class IsoMap {
   }
 
   createFruit(x, y, dataX, dataY, type) {
-    var fruit = this.game.add.isoSprite(x, y, 0, 'tree', 'palm_'+type+'.png', this.isoGroup);
-    fruit.animations.add('empty', [(parseInt(type) * 2 + 4)], 60, false, true);
+    let palm_type = Math.abs(type);
+    let fruit = this.game.add.isoSprite(x, y, 0, 'tree', `palm_${palm_type}.png`, this.isoGroup);
+    fruit.animations.add('empty', [(parseInt(palm_type) * 2 + 4)], 60, false, true);
+    if(type < 0) fruit.animations.play('empty');
     this.fruits.push(fruit);
     this.game.physics.isoArcade.enable(fruit);
     fruit.body.immovable = true;

@@ -1,14 +1,19 @@
 module Dungeon
   class Map < Sim::Matrix
 
-    Banana1 = 10
-    Banana2 = 25
-    Banana3 = 60
-
     attr_reader :field_size
 
-    def initialize
+    def initialize size
+      super
       @field_size = 65
+    end
+
+    def as_json
+      json_map = Sim::Matrix.new width, height, '.'
+      each_field_with_index do |field, x, y|
+        json_map[x, y] = field.as_json if field
+      end
+      json_map
     end
 
     def position iso_x, iso_y
@@ -29,19 +34,19 @@ module Dungeon
     end
 
     def collect_food_at x, y
-      food = food_points_at x, y
-      if food > 0
-        self[x, y] = '0'
+      fruit = self[x,y]
+      if fruit.instance_of?(Dungeon::Fruit)
+        fruit.collect
+      else
+        0
       end
-      food
     end
 
     def food_points_for field
-      case field
-      when '1' then Banana1
-      when '2' then Banana2
-      when '3' then Banana3
-      else 0
+      if field.instance_of? Dungeon::Fruit
+        field.capacity
+      else
+        0
       end
     end
 

@@ -3,14 +3,10 @@ module Dungeon
     include Celluloid
     include Celluloid::Logger
 
-    extend Forwardable
-    def_delegators :@map, :fields
-
-    attr_reader :map
+    attr_accessor :map
 
     def initialize
       @players    = {}
-      @map        = Map.new
     end
 
     def self.instance

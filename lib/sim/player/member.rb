@@ -59,7 +59,7 @@ module Player
       level.create_dungeon unless level.dungeon
       level.dungeon.add_player self
       self.food_points = 0
-      {fields: level.dungeon.fields}
+      {fields: level.dungeon.map.as_json}
     end
 
     # incoming message

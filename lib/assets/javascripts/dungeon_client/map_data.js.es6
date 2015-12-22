@@ -82,9 +82,8 @@ Dawning.MapData = class MapData {
   }
 
   parseFruit(fruit){
-    if (fruit == '1' || fruit == '2' || fruit == '3'){
-      return fruit;
-    }
+    let value = parseInt(fruit);
+    if(value) return value;
   }
 
   parseWall(wall){
