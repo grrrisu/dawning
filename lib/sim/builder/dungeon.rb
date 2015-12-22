@@ -10,7 +10,8 @@ module Builder
     end
 
     def create
-      self.dungeon = ::Dungeon.new
+      # TODO a superivsor should do that
+      self.dungeon = ::Dungeon::Actor.new
       load_data @config[:data_file]
       dungeon
     end
@@ -18,7 +19,7 @@ module Builder
     def load_data file_name
       path = File.join(__dir__, '..', '..', '..', 'config', 'levels', file_name)
       data = JSON.load(File.open(path))
-      dungeon.matrix = data['fields']
+      dungeon.map.matrix = data['fields']
     end
 
   end

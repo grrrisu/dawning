@@ -54,15 +54,15 @@ describe "player messages" do
 
     let(:dungeon_config) { {dungeon: {data_file: 'test/dungeon_data.json'}} }
     let(:dungeon)        { level.create_dungeon dungeon_config }
-    let(:x_for_banana_2) { 2 * dungeon.field_size + 10 }
-    let(:y_for_banana_2) { 1 * dungeon.field_size + 10 }
+    let(:x_for_banana_2) { 2 * dungeon.map.field_size + 10 }
+    let(:y_for_banana_2) { 1 * dungeon.map.field_size + 10 }
 
     it "should build dungeon" do
       expect(player_connection).to receive(:send_message).with(
         :init_dungeon, fields: instance_of(Array)
       )
       fields = player_connection.forward_message player_id: '123', action: 'init_dungeon', params: {}
-      expect(level.dungeon).to be_instance_of(Dungeon)
+      expect(level.dungeon).to be_instance_of(Dungeon::Actor)
     end
 
     it "should add player" do
@@ -74,7 +74,7 @@ describe "player messages" do
     it "should collect food" do
       player.food_points = 0
       expect(player_connection).to receive(:send_message).with(
-        :update_food_points, {food_points: Dungeon::Banana2}
+        :update_food_points, {food_points: Dungeon::Map::Banana2}
       )
       player_connection.forward_message player_id: '123', action: 'food_collected', params: {
         position: {isoX: x_for_banana_2, isoY: y_for_banana_2}
@@ -82,9 +82,9 @@ describe "player messages" do
     end
 
     it "should win game" do
-      player.food_points = dungeon.total_food_points - Dungeon::Banana2
+      player.food_points = dungeon.map.total_food_points - Dungeon::Map::Banana2
       expect(player_connection).to receive(:send_message).with(
-        :dungeon_end, {food_points: dungeon.total_food_points, rank: 1}
+        :dungeon_end, {food_points: dungeon.map.total_food_points, rank: 1}
       )
       player_connection.forward_message player_id: '123', action: 'food_collected', params: {
         position: {isoX: x_for_banana_2, isoY: y_for_banana_2}

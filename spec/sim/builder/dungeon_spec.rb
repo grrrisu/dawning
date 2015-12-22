@@ -6,13 +6,13 @@ describe Builder::Dungeon do
   let(:builder) { Builder::Dungeon.new(config) }
 
   it "should create a dungeon" do
-    expect(builder.create).to be_instance_of(::Dungeon)
+    expect(builder.create).to be_instance_of(::Dungeon::Actor)
   end
 
   it "should load data" do
-    builder.dungeon = ::Dungeon.new
+    builder.dungeon = ::Dungeon::Actor.new
     builder.load_data 'test/dungeon_data.json'
-    expect(builder.dungeon.size).to be == [5,5]
+    expect(builder.dungeon.map.size).to be == [5,5]
   end
 
 end
