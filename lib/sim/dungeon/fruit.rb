@@ -15,17 +15,18 @@ module Dungeon
     end
 
     def collect
+      points = @food_points
       @food_points = 0
-      @capacity
+      points
     end
 
     def as_json
       json_capacity = case @capacity
-        when Banana1 then '1'
-        when Banana2 then '2'
-        when Banana3 then '3'
+        when Banana1 then 1
+        when Banana2 then 2
+        when Banana3 then 3
       end
-      capacity == food_points ? json_capacity : -json_capacity
+      capacity == food_points ? json_capacity.to_s : (-json_capacity).to_s
     end
 
   end
