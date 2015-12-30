@@ -43,6 +43,7 @@ module Builder
       when '3' then ::Dungeon::Fruit.build capacity: ::Dungeon::Fruit::Banana3
       when 'R' then ::Dungeon::Rabbit.build
       when 'L' then ::Dungeon::Leopard.build
+      when 'H' then ::Dungeon::Headquarter.build
       end
     end
 

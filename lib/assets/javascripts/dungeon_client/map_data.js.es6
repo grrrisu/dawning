@@ -87,7 +87,7 @@ Dawning.MapData = class MapData {
   }
 
   parseWall(wall){
-    if (wall == 'X' || wall == 'x'){
+    if (wall == 'X' || wall == 'x' || wall == 'H'){
       return wall;
     }
   }

@@ -36,6 +36,7 @@ Dawning.IsoMap = class IsoMap {
     //this.game.load.image('grass', '/images/grass2.png');
 
     this.game.load.atlasJSONHash('tree', '/images/dungeon/trees.png', '/images/dungeon/trees.json');
+    this.game.load.image('hut', '/images/dungeon/hut.png');
 
     this.game.load.image('leopard', '/images/dungeon/leopard@2x.png');
 
@@ -90,7 +91,7 @@ Dawning.IsoMap = class IsoMap {
   }
 
   createFloor(x, y, dataX, dataY){
-    var floorTile = this.game.add.isoSprite(x + 40, y + 40, 1, 'grass', 0, this.floorGroup);
+    var floorTile = this.game.add.isoSprite(x + 40, y + 40, 0, 'grass', 0, this.floorGroup);
     floorTile.anchor.set(0.5);
 
     var darkenColors = [0xffffff, 0xdddddd, 0xddffff, 0xffddff, 0xffffdd];
@@ -108,6 +109,8 @@ Dawning.IsoMap = class IsoMap {
       tree = this.game.add.isoSprite(x, y, 0, 'tree', 'jungle_tree_'+num+'.png', this.isoGroup);
     } else if(type == 'x'){
       tree = this.game.add.isoSprite(x, y, 0, 'tree', 'bush_1.png', this.isoGroup);
+    } else if(type == 'H'){
+      tree = this.game.add.isoSprite(x + 30, y + 30, 0, 'hut', 0, this.isoGroup);
     }
     var darkenColors = [0xffffff, 0xdddddd, 0xddffff, 0xffddff, 0xffffdd];
     var tintColor = this.game.rnd.integerInRange(0, 4);
