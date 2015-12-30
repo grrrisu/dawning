@@ -8,7 +8,7 @@ class ChatController < WebsocketRails::BaseController
   def client_connected
     connection_store[:user] = { username: current_user.username }
     broadcast_user_list
-  rescue Exception => e
+  rescue StandardError => e
     Rails.logger.error(e.message)
   end
 
@@ -16,7 +16,7 @@ class ChatController < WebsocketRails::BaseController
     Rails.logger.debug("client_disconnected")
     connection_store[:user] = nil
     broadcast_user_list
-  rescue Exception => e
+  rescue StandardError => e
     Rails.logger.error(e.message)
   end
 

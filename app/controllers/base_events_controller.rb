@@ -2,7 +2,7 @@ class BaseEventsController < WebsocketRails::BaseController
 
   def rescue_block
     yield
-  rescue Exception => exception
+  rescue StandardError => exception
     Rails.logger.error exception.message
     #Rails.logger.error exception.backtrace.join('\n')
     raise

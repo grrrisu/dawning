@@ -89,8 +89,8 @@ class Level < Sim::Level
 
   def terminal_command command
     instance_eval(command).inspect
-  rescue Exception => e
-    e.message
+  rescue StandardError => e
+    puts e.message
   end
 
 end

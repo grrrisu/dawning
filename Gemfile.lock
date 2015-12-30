@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/grrrisu/Simulator.git
-  revision: 813109f0ec119aecf416ab5938d6617248bd9cf5
+  revision: df23997249c4e45d91e805b19fbfcc0caa2651e0
   specs:
     Simulator (0.3.4)
       activesupport (>= 4.2.4)
@@ -245,7 +245,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.6.2)
     mini_portile2 (2.0.0)
-    minitest (5.8.2)
+    minitest (5.8.3)
     mongoid (4.0.2)
       activemodel (~> 4.0)
       moped (~> 2.0.0)
@@ -263,7 +263,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
     newrelic_rpm (3.14.0.305)
-    nio4r (1.1.1)
+    nio4r (1.2.0)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.8)
