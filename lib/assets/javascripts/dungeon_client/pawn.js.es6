@@ -28,6 +28,8 @@ Dawning.Pawn = class Pawn {
     this.man.animations.add('walk_up', [22,23,24,25,26,27,23], 8, true, true);
     this.man.animations.add('waving', ['waving_1@2x.png','waving_2@2x.png','waving_3@2x.png','waving_2@2x.png','waving_3@2x.png','waving_2@2x.png','waving_3@2x.png','waving_2@2x.png','waving_1@2x.png','standing_right@2x.png'], 3, false, false);
 
+    this.position = {x: dataX, y: dataY};
+    
     this.wave();
     //this.game.time.events.add(2000, this.wave, this);
 
