@@ -110,7 +110,8 @@ Dawning.IsoMap = class IsoMap {
     } else if(type == 'x'){
       tree = this.game.add.isoSprite(x, y, 0, 'tree', 'bush_1.png', this.isoGroup);
     } else if(type == 'H'){
-      tree = this.game.add.isoSprite(x + 30, y + 30, 0, 'hut', 0, this.isoGroup);
+      // FIXME have HQ as own thing
+      tree = this.game.add.isoSprite(x + 25, y + 25, 0, 'hut', 0, this.isoGroup);
     }
     var darkenColors = [0xffffff, 0xdddddd, 0xddffff, 0xffddff, 0xffffdd];
     var tintColor = this.game.rnd.integerInRange(0, 4);
@@ -122,8 +123,10 @@ Dawning.IsoMap = class IsoMap {
     this.game.physics.isoArcade.enable(tree);
     tree.body.immovable = true;
     tree.body.collideWorldBounds = true;
-    tree.body.widthX = this.fieldSize;
-    tree.body.widthY = this.fieldSize;
+    if(type == 'X' || type == 'x'){
+      tree.body.widthX = this.fieldSize;
+      tree.body.widthY = this.fieldSize;
+    }
     this.mapData.addObstacle(tree, dataX, dataY);
   }
 
