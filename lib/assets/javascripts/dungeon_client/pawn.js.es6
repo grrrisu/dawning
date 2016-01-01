@@ -12,7 +12,7 @@ Dawning.Pawn = class Pawn {
     this.game.load.atlasJSONHash('pawn', '/images/dungeon/walk.png', '/images/dungeon/walk.json');
   }
 
-  createMan(x, y, dataX, dataY) {
+  createMan(x, y, dataX, dataY, pawn_id) {
     this.man = this.game.add.isoSprite(x + this.padding, y + this.padding, 0, 'pawn', 'standing_right@2x.png', this.map.isoGroup);
     this.man.anchor.set(0.5);
     this.man.resolution = 2;
@@ -28,8 +28,9 @@ Dawning.Pawn = class Pawn {
     this.man.animations.add('walk_up', [22,23,24,25,26,27,23], 8, true, true);
     this.man.animations.add('waving', ['waving_1@2x.png','waving_2@2x.png','waving_3@2x.png','waving_2@2x.png','waving_3@2x.png','waving_2@2x.png','waving_3@2x.png','waving_2@2x.png','waving_1@2x.png','standing_right@2x.png'], 3, false, false);
 
-    this.position = {x: dataX, y: dataY};
-    
+    this.position  = {x: dataX, y: dataY};
+    this.pawn_id = pawn_id;
+
     this.wave();
     //this.game.time.events.add(2000, this.wave, this);
 
@@ -40,6 +41,13 @@ Dawning.Pawn = class Pawn {
     this.game.camera.follow(this.man);
     this.visibleArea(dataX, dataY);
     return this;
+  }
+
+  move(x, y){
+    this.map.mapData.getField(this.position.x, this.position.y).pawn = null;
+    this.position = {x: x, y: y};
+    this.map.mapData.getField(x,y).pawn = this;
+    this.map.dawning.websocket.trigger('pawn_moved', {player_id: this.pawn_id, position: this.position});
   }
 
   wave(){

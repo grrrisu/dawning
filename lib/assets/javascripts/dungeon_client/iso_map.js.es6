@@ -47,11 +47,11 @@ Dawning.IsoMap = class IsoMap {
 
   createFromData(data){
     console.log("map data received");
-    this.mapData.createData(data);
-    this.create();
+    this.mapData.createData(data.fields);
+    this.create(data);
   }
 
-  create() {
+  create(data) {
     this.leopardBuilder.create();
 
     this.floorGroup = this.game.add.group();
@@ -68,7 +68,7 @@ Dawning.IsoMap = class IsoMap {
     this.visability.lowlightAll();
 
     var pos = this.mapPosition(12, 12);
-    this.man = this.pawnBuilder.createMan(pos.x, pos.y, 12, 12);
+    this.man = this.pawnBuilder.createMan(pos.x, pos.y, 12, 12, data.pawn_id);
     this.inputHandler.create();
   }
 

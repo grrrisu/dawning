@@ -19,10 +19,7 @@ Dawning.InputHandler = class InputHandler {
     if (pawn.position.x != x || pawn.position.y != y){
       this.map.positionChanged();
       pawn.visibleArea(x, y);
-      this.map.mapData.getField(pawn.position.x, pawn.position.y).pawn = null;
-      pawn.position = {x: x, y: y};
-      this.map.mapData.getField(x,y).pawn = pawn;
-
+      pawn.move(x, y);
       this.map.leopardBuilder.update();
     }
   }

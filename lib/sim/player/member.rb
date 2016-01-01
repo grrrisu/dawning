@@ -58,7 +58,7 @@ module Player
     def init_dungeon
       level.create_dungeon unless level.dungeon
       level.dungeon.add_player(self) unless level.dungeon.find_player(id)
-      {food_points: food_points, fields: level.dungeon.map.as_json}
+      {pawn_id: 123, food_points: food_points, fields: level.dungeon.map.as_json}
     end
 
     # incoming message
