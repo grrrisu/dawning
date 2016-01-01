@@ -47,7 +47,7 @@ Dawning.Pawn = class Pawn {
     this.map.mapData.getField(this.position.x, this.position.y).pawn = null;
     this.position = {x: x, y: y};
     this.map.mapData.getField(x,y).pawn = this;
-    this.map.dawning.websocket.trigger('pawn_moved', {player_id: this.pawn_id, position: this.position});
+    this.map.dawning.websocket.trigger('pawn_moved', {pawn_id: this.pawn_id, position: this.position});
   }
 
   wave(){

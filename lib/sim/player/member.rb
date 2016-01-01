@@ -71,6 +71,10 @@ module Player
       level.dungeon.async.attacked food_points, position, self
     end
 
+    def dungeon_move pawn_id, position
+
+    end
+
     # outgoing message
     def update_food_points food_points
       connection.send_message :update_food_points, { food_points: food_points }

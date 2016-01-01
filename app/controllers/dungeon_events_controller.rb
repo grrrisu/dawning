@@ -24,4 +24,11 @@ class DungeonEventsController < BaseEventsController
     end
   end
 
+  def pawn_moved
+    rescue_block do
+      logger.info "pawn moved"
+      @player.send_message 'dungeon_move', message
+    end
+  end
+
 end
