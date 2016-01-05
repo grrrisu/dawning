@@ -59,7 +59,7 @@ describe "player messages" do
 
     it "should build dungeon" do
       expect(player_connection).to receive(:send_message).with(
-        :init_dungeon, food_points: 0, fields: instance_of(Sim::Matrix)
+        :init_dungeon, pawn_id: 123, food_points: 0, fields: instance_of(Sim::Matrix)
       )
       fields = player_connection.forward_message player_id: '123', action: 'init_dungeon', params: {}
       expect(level.dungeon).to be_instance_of(Dungeon::Actor)
