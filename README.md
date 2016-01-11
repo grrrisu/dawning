@@ -18,7 +18,7 @@ Requirements
 
 * PhantomJS - [Install](https://github.com/teampoltergeist/poltergeist#installing-phantomjs)
 
-* ```npm install -g babel-preset-es2015```
+* ```npm install babel-preset-es2015```
 
 Code
 ---
