@@ -1,7 +1,5 @@
 module Dungeon
-  class Rabbit
-
-    include Sim::Buildable
+  class Rabbit < Moveable
 
     def as_json
       'R'

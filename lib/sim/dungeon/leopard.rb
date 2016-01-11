@@ -1,7 +1,5 @@
 module Dungeon
-  class Leopard
-
-    include Sim::Buildable
+  class Leopard < Moveable
 
     def as_json
       'L'

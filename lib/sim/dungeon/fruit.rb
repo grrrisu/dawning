@@ -1,11 +1,9 @@
 module Dungeon
-  class Fruit
+  class Fruit < Thing
 
     Banana1 = 10
     Banana2 = 25
     Banana3 = 60
-
-    include Sim::Buildable
 
     default_attr :capacity, Banana1
     attr_reader :food_points

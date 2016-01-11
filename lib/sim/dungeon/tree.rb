@@ -1,7 +1,5 @@
 module Dungeon
-  class Tree
-
-    include Sim::Buildable
+  class Tree < Thing
 
     default_attr :blocks_visability, true
 

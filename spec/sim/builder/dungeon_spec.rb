@@ -20,28 +20,28 @@ describe Builder::Dungeon do
     let (:dungeon) { builder.create }
 
     it "should create a tree" do
-      tree = dungeon.map[0,0]
+      tree = dungeon.map[0,0].first
       expect(tree.blocks_visability).to be true
     end
 
     it "should create a bush" do
-      tree = dungeon.map[1,0]
+      tree = dungeon.map[1,0].first
       expect(tree.blocks_visability).to be false
     end
 
     it "should create a fruit" do
-      fruit = dungeon.map[2,1]
+      fruit = dungeon.map[2,1].first
       expect(fruit.capacity).to be == ::Dungeon::Fruit::Banana2
     end
 
     it "should create a rabbit" do
-      rabbit = dungeon.map[1,3]
+      rabbit = dungeon.map[1,3].first
       expect(rabbit).to be_instance_of(::Dungeon::Rabbit)
     end
 
     it "should create a leopard" do
-      rabbit = dungeon.map[2,3]
-      expect(rabbit).to be_instance_of(::Dungeon::Leopard)
+      leopard = dungeon.map[2,3].first
+      expect(leopard).to be_instance_of(::Dungeon::Leopard)
     end
 
   end

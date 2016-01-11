@@ -24,7 +24,7 @@ describe Dungeon::Map do
   end
 
   it "should return an array ready for json" do
-    json_data = JSON.load File.open(Rails.root.join('config', 'levels', 'default', 'jungle_dungeon.json'))
+    json_data = JSON.load File.open(Rails.root.join('spec', 'fixtures', 'jungle_dungeon.json'))
     json_map  = dungeon.map.as_json
     expect(json_data['fields']).to be == json_map.fields
   end

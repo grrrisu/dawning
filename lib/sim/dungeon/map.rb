@@ -5,13 +5,14 @@ module Dungeon
 
     def initialize size
       super
+      set_each_field_with_index {|x, y| Array.new }
       @field_size = 65
     end
 
     def as_json
       json_map = Sim::Matrix.new width, height, '.'
       each_field_with_index do |field, x, y|
-        json_map[x, y] = field.as_json if field
+        json_map[x, y] = field.as_json if field.any?
       end
       json_map
     end
@@ -34,8 +35,7 @@ module Dungeon
     end
 
     def collect_food_at x, y
-      fruit = self[x,y]
-      if fruit.instance_of?(Dungeon::Fruit)
+      if fruit = get_fruit(self[x,y])
         fruit.collect
       else
         0
@@ -43,11 +43,15 @@ module Dungeon
     end
 
     def food_points_for field
-      if field.instance_of? Dungeon::Fruit
-        field.capacity
+      if fruit = get_fruit(field)
+        fruit.capacity
       else
         0
       end
+    end
+
+    def get_fruit field
+      field.detect {|thing| thing.instance_of? Dungeon::Fruit}
     end
 
   end

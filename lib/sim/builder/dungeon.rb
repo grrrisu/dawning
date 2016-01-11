@@ -25,26 +25,32 @@ module Builder
     def create_map data
       map = ::Dungeon::Map.new(data.size)
       populate_map map, data
+      create_pawn
       map
     end
 
     def populate_map map, data
-      map.set_each_field_with_index do |x, y|
-        setField data[y][x]
+      map.each_field_with_index do |field, x, y|
+        field.push create_thing(data, x, y)
       end
     end
 
-    def setField field_data
+    def create_thing data, x, y
+      field_data = data[y][x]
       case field_data
       when 'X' then ::Dungeon::Tree.build
       when 'x' then ::Dungeon::Tree.build blocks_visability: false
       when '1' then ::Dungeon::Fruit.build capacity: ::Dungeon::Fruit::Banana1
       when '2' then ::Dungeon::Fruit.build capacity: ::Dungeon::Fruit::Banana2
       when '3' then ::Dungeon::Fruit.build capacity: ::Dungeon::Fruit::Banana3
-      when 'R' then ::Dungeon::Rabbit.build
-      when 'L' then ::Dungeon::Leopard.build
+      when 'R' then ::Dungeon::Rabbit.build x: x, y: y
+      when 'L' then ::Dungeon::Leopard.build x: x, y: y
       when 'H' then ::Dungeon::Headquarter.build
       end
+    end
+
+    def create_pawn
+      ::Dungeon::Pawn.build x: 12, y: 12
     end
 
   end

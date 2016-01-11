@@ -1,8 +1,8 @@
 module Dungeon
-  class Headquarter < Thing
+  class Pawn < Moveable
 
     def as_json
-      'H'
+      'P'
     end
 
   end
