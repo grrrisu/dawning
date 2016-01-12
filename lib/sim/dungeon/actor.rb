@@ -38,5 +38,9 @@ module Dungeon
       player.dungeon_end player.food_points, 0
     end
 
+    def player_moved pawn, position
+      info "pawn [#{pawn.id}] moved to #{position}"
+    end
+
   end
 end

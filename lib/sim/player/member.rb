@@ -5,7 +5,8 @@ module Player
 
     attr_accessor :headquarter
     attr_reader   :world, :world_view
-    attr_accessor :food_points
+
+    attr_accessor :food_points, :pawns
 
     def place view, headquarter
       @world_view   = view
@@ -56,9 +57,19 @@ module Player
 
     # incoming and outgoing message
     def init_dungeon
+      p 1
       level.create_dungeon unless level.dungeon
-      level.dungeon.add_player(self) unless level.dungeon.find_player(id)
-      {pawn_id: 123, food_points: food_points, fields: level.dungeon.map.as_json}
+      p 2
+      unless level.dungeon.find_player(id)
+        p 3
+        level.dungeon.add_player(self)
+        p 4
+        builder = Builder::Pawn.new(level.dungeon)
+        p 5
+        @pawns << builder.place
+      end
+      p 6
+      {pawn_id: @pawns.first.id, food_points: food_points, fields: level.dungeon.map.as_json}
     end
 
     # incoming message
@@ -72,7 +83,11 @@ module Player
     end
 
     def dungeon_move pawn_id, position
-
+      if pawn = pawns.detect {|pawn| pawn.id == pawn_id}
+        level.dungeon.async.player_moved pawn, position
+      else
+        puts "ERROR: no pawn #{pawn_id} for player #{player.id}"
+      end
     end
 
     # outgoing message

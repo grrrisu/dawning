@@ -25,7 +25,7 @@ module Builder
     def create_map data
       map = ::Dungeon::Map.new(data.size)
       populate_map map, data
-      create_pawn
+      #create_pawn
       map
     end
 
