@@ -25,13 +25,14 @@ module Builder
     def create_map data
       map = ::Dungeon::Map.new(data.size)
       populate_map map, data
-      #create_pawn
       map
     end
 
     def populate_map map, data
       map.each_field_with_index do |field, x, y|
-        field.push create_thing(data, x, y)
+        if thing = create_thing(data, x, y)
+          field.push(thing)
+        end
       end
     end
 
@@ -47,10 +48,6 @@ module Builder
       when 'L' then ::Dungeon::Leopard.build x: x, y: y
       when 'H' then ::Dungeon::Headquarter.build
       end
-    end
-
-    def create_pawn
-      ::Dungeon::Pawn.build x: 12, y: 12
     end
 
   end

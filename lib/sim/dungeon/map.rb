@@ -54,5 +54,29 @@ module Dungeon
       field.detect {|thing| thing.instance_of? Dungeon::Fruit}
     end
 
+    def blocks_visability? x, y
+      self[x,y].any? {|thing| thing.blocks_visability }
+    end
+
+    def ray_cast x:, y:, radius:
+      number_of_rays = 96;
+      yield_fields = []
+      number_of_rays.times do |i|
+        prev_landing_x, prev_landing_y = nil, nil
+        ray_angle = (Math::PI * 2 / number_of_rays) * i
+        (radius + 1).times do |j|
+          landing_x = (x - j * Math.cos(ray_angle)).round;
+          landing_y = (y - j * Math.sin(ray_angle)).round;
+
+          unless yield_fields.include? [landing_x, landing_y]
+            yield landing_x, landing_y
+            yield_fields << [landing_x, landing_y]
+          end
+
+          break if blocks_visability? landing_x, landing_y
+        end
+      end
+    end
+
   end
 end

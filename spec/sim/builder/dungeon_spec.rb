@@ -19,6 +19,11 @@ describe Builder::Dungeon do
 
     let (:dungeon) { builder.create }
 
+    it "should leave an empty array" do
+      free = dungeon.map[2,0]
+      expect(free).to be_empty
+    end
+
     it "should create a tree" do
       tree = dungeon.map[0,0].first
       expect(tree.blocks_visability).to be true

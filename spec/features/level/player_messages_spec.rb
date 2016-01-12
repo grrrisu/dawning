@@ -53,9 +53,13 @@ describe "player messages" do
   describe 'dungeon' do
 
     let(:dungeon_config) { {dungeon: {data_file: 'test/dungeon_data.json'}} }
-    let(:dungeon)        { level.create_dungeon dungeon_config }
+    let!(:dungeon)        { level.create_dungeon dungeon_config }
     let(:x_for_banana_2) { 2 * dungeon.map.field_size + 10 }
     let(:y_for_banana_2) { 1 * dungeon.map.field_size + 10 }
+
+    after :each do
+      dungeon.reset_players
+    end
 
     it "should build dungeon" do
       expect(player_connection).to receive(:send_message).with(

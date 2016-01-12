@@ -17,7 +17,6 @@ Dawning.IsoMap = class IsoMap {
     this.leopardBuilder = new Dawning.Leopard(this);
     this.pawnBuilder = new Dawning.Pawn(this);
     this.inputHandler = new Dawning.InputHandler(this);
-    console.log(options);
   }
 
   preload() {

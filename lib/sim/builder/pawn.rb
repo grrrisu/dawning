@@ -10,11 +10,15 @@ module Builder
     end
 
     def place
-      p 10
-      pawn = Dungeon::Pawn.build x: 12, y: 12
-      p 11
-      dungeon[12, 12] << pawn
-      p 12
+      pawn = build_pawn
+      pawn.id = 123
+      pawn
+    end
+
+    def build_pawn
+      x, y = dungeon.map.width / 2, dungeon.map.height / 2
+      pawn = ::Dungeon::Pawn.build x: x, y: y
+      dungeon.map[x, y] << pawn
       pawn
     end
 

@@ -29,12 +29,12 @@ describe Dungeon::Map do
     expect(json_data['fields']).to be == json_map.fields
   end
 
-  it "should return only fields visible from a position", focus: true do
+  it "should return only fields visible from a position" do
     visible_fields = []
-    dungeon.map.ray_cast(x: 12, y: 12, radius: 3) do |field|
-      visible_fields << field
+    dungeon.map.ray_cast(x: 12, y: 12, radius: 3) do |x,y|
+      visible_fields << [x,y]
     end
-    expect(visible_fields.size).to be == 270
+    expect(visible_fields.count).to be == 28
   end
 
 end

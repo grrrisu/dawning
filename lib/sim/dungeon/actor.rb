@@ -6,7 +6,7 @@ module Dungeon
     attr_accessor :map
 
     def initialize
-      @players    = {}
+      reset_players
     end
 
     def self.instance
@@ -20,6 +20,11 @@ module Dungeon
     def add_player player
       @players[player.id] = player
       player.food_points = 0
+      player.pawns = []
+    end
+
+    def reset_players
+      @players = {}
     end
 
     def food_collected position, player

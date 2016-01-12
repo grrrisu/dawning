@@ -57,18 +57,12 @@ module Player
 
     # incoming and outgoing message
     def init_dungeon
-      p 1
       level.create_dungeon unless level.dungeon
-      p 2
       unless level.dungeon.find_player(id)
-        p 3
         level.dungeon.add_player(self)
-        p 4
         builder = Builder::Pawn.new(level.dungeon)
-        p 5
         @pawns << builder.place
       end
-      p 6
       {pawn_id: @pawns.first.id, food_points: food_points, fields: level.dungeon.map.as_json}
     end
 
