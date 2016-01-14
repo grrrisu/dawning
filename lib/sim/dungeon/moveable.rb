@@ -1,6 +1,8 @@
 module Dungeon
   class Moveable < Thing
 
+    attr_reader :x, :y
+
     def initialize x, y
       set_position x, y
     end

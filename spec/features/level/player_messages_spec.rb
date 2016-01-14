@@ -106,6 +106,17 @@ describe "player messages" do
       }
     end
 
+    it "should move pawn" do
+      pawn = Dungeon::Pawn.build(x: 2, y: 2)
+      pawn.id = 456
+      player.pawns = [pawn]
+      player_connection.forward_message player_id: '123', action: 'dungeon_move', params: {
+        pawn_id: pawn.id, position: {x: 3, y: 2}
+      }
+      expect(dungeon.map[2,2]).to be_empty
+      expect(dungeon.map[3,2].first).to be_instance_of(Dungeon::Pawn)
+    end
+
   end
 
 end

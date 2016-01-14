@@ -43,8 +43,14 @@ module Dungeon
       player.dungeon_end player.food_points, 0
     end
 
-    def player_moved pawn, position
-      info "pawn [#{pawn.id}] moved to #{position}"
+    def player_moved pawn, x, y
+      info "pawn [#{pawn.id}] moved to #{x} #{y}"
+      if (pawn.x - x).abs > 0 ||  (pawn.y - y).abs > 0
+        warn "pawn moved too far [#{pawn.x}, #{pawn.y}] to position[#{x}, #{y}]"
+      end
+      map[pawn.x, pawn.y].delete(pawn)
+      map[x, y] << pawn
+      pawn.set_position x, y
     end
 
   end
