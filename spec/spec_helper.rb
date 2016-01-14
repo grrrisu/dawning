@@ -11,6 +11,9 @@ require 'rspec/rails'
 require Rails.root.join('spec', 'support', 'page_objects', 'application_page')
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+require 'logger'
+Celluloid.logger = ::Logger.new(Rails.root.join 'log', 'level_test_celluloid.log')
+
 RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
@@ -42,7 +45,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    Celluloid.logger = nil
+    #Celluloid.logger = nil
   end
 
   # If true, the base class of anonymous controllers will be inferred

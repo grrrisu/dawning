@@ -17,7 +17,7 @@ module Builder
       @flora_fauna_buidler.create_fauna ::Animal, config[:fauna] if config[:fauna]
 
       add_objects_to_sim_loop
-      puts "world created after #{Time.now - start_time}"
+      Celluloid.logger.info "world created after #{Time.now - start_time}"
       @world
     end
 
