@@ -7,7 +7,7 @@ class Test::LevelProxy
 
   def initialize user
     LevelManager.instance.add_level('123', self)
-    @player = Test::PlayerProxy.new user
+    @player = Test::PlayerProxy.new
   end
 
   def players
