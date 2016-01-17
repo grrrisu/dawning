@@ -4,7 +4,7 @@ module Dungeon
     attr_accessor :id
 
     def as_json
-      'P'
+      { pawn_id: id, type: self.class.name }
     end
 
   end

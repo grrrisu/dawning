@@ -45,7 +45,7 @@ module Dungeon
 
     def player_moved pawn, x, y
       info "pawn [#{pawn.id}] moved to #{x} #{y}"
-      if (pawn.x - x).abs > 0 ||  (pawn.y - y).abs > 0
+      if (pawn.x - x).abs > 1 ||  (pawn.y - y).abs > 1
         warn "pawn moved too far [#{pawn.x}, #{pawn.y}] to position[#{x}, #{y}]"
       end
       map[pawn.x, pawn.y].delete(pawn)

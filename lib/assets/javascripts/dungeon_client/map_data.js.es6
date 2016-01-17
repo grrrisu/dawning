@@ -24,7 +24,7 @@ Dawning.MapData = class MapData {
           fruit: this.parseFruit(data[y][x]),
           herbivor: data[y][x] == 'R',
           predator: data[y][x] == 'L',
-          pawn: false,
+          pawn: this.parsePawn(data[y][x][0], x, y),
           visible: false,
           wasVisible: false,
           floors: [],
@@ -89,6 +89,14 @@ Dawning.MapData = class MapData {
   parseWall(wall){
     if (wall == 'X' || wall == 'x' || wall == 'H'){
       return wall;
+    }
+  }
+
+  parsePawn(data, x, y){
+    if(typeof(data) == 'object' && data.type == 'Dungeon::Pawn'){
+      return data;
+    } else {
+      return false;
     }
   }
 

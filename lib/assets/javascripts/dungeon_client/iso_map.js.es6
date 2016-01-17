@@ -47,10 +47,10 @@ Dawning.IsoMap = class IsoMap {
   createFromData(data){
     console.log("map data received");
     this.mapData.createData(data.fields);
-    this.create(data);
+    this.create();
   }
 
-  create(data) {
+  create() {
     this.leopardBuilder.create();
 
     this.floorGroup = this.game.add.group();
@@ -66,8 +66,6 @@ Dawning.IsoMap = class IsoMap {
     this.createFields();
     this.visability.lowlightAll();
 
-    var pos = this.mapPosition(12, 12);
-    this.man = this.pawnBuilder.createMan(pos.x, pos.y, 12, 12, data.pawn_id);
     this.inputHandler.create();
   }
 
@@ -84,6 +82,9 @@ Dawning.IsoMap = class IsoMap {
           this.leopardBuilder.createLeopard(pos.x, pos.y, x, y);
         } else if(field.herbivor){
           this.rabbitBuilder.createRabbit(this.herbivors, pos.x, pos.y, x, y);
+        } else if(field.pawn){
+          console.log(pos.x, pos.y, x, y, field);
+          this.man = this.pawnBuilder.createMan(pos.x, pos.y, x, y, field.pawn.pawn_id);
         }
       }
     });

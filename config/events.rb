@@ -10,6 +10,7 @@ WebsocketRails::EventMap.describe do
   subscribe :update_view,         to: MapEventsController, with_method: :update_view
 
   subscribe :init_dungeon,        to: DungeonEventsController, with_method: :init_dungeon
+  subscribe :pawn_moved,          to: DungeonEventsController, with_method: :pawn_moved
   subscribe :food_collected,      to: DungeonEventsController, with_method: :food_collected
   subscribe :attacked,            to: DungeonEventsController, with_method: :attacked
 
