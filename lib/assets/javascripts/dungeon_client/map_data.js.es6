@@ -122,7 +122,8 @@ Dawning.MapData = class MapData {
 
   blocksVisability(x, y){
     return this.fieldProperty(x, y, true, function(field){
-      return field.wall == 'X';
+      if (field.wall === undefined) return false;
+      return field.wall[0] == 'X';
     });
   }
 

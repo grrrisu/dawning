@@ -39,7 +39,6 @@ Dawning.Pawn = class Pawn {
     this.man.body.collideWorldBounds = true;
 
     this.game.camera.follow(this.man);
-    this.visibleArea(dataX, dataY);
     return this;
   }
 
@@ -57,14 +56,14 @@ Dawning.Pawn = class Pawn {
   update(){
   }
 
-  visibleArea(pawnX, pawnY) {
+  visibleArea() {
     this.map.visability.setAllInvisible();
-    this.map.mapData.rayCast({x: pawnX, y: pawnY}, 5, (x, y) => {
+    this.map.mapData.rayCast({x: this.position.x, y: this.position.y}, 5, (x, y) => {
       if(!this.map.visability.isVisible(x, y)){
         this.map.visability.setVisible(x, y, true);
       }
     });
-    this.lookBehindObstacles(pawnX, pawnY);
+    this.lookBehindObstacles(this.position.x, this.position.y);
     this.map.visability.lowlightPreviousVisibles();
   }
 

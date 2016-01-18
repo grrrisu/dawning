@@ -66,6 +66,8 @@ Dawning.IsoMap = class IsoMap {
     this.createFields();
     this.visability.lowlightAll();
 
+    this.man.visibleArea();
+
     this.inputHandler.create();
   }
 
@@ -83,7 +85,6 @@ Dawning.IsoMap = class IsoMap {
         } else if(field.herbivor){
           this.rabbitBuilder.createRabbit(this.herbivors, pos.x, pos.y, x, y);
         } else if(field.pawn){
-          console.log(pos.x, pos.y, x, y, field);
           this.man = this.pawnBuilder.createMan(pos.x, pos.y, x, y, field.pawn.pawn_id);
         }
       }
