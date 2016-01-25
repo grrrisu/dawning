@@ -31,4 +31,11 @@ class DungeonEventsController < BaseEventsController
     end
   end
 
+  def animal_moved
+    rescue_block do
+      logger.info "animal moved #{message.inspect}"
+      @player.send_message 'dungeon_animal_move', message
+    end
+  end
+
 end

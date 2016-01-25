@@ -38,6 +38,19 @@ Dawning.Leopard = class Leopard extends Dawning.Thing {
     });
   }
 
+  positionChanged(leopard){
+    let rpos = this.map.relativePosition(leopard.isoX - this.padding, leopard.isoY - this.padding);
+    let x = Math.round(rpos.x);
+    let y = Math.round(rpos.y);
+    this.updatePosition(leopard, x, y, this.map);
+  }
+
+  notifyNewPosition(sprite, x, y){
+    this.map.dawning.websocket.trigger('animal_moved', {position: {x: x, y: y}});
+  }
+
+  // ---- move to server ----
+
   think(leopard){
     if (!leopard.moving){
       var rpos = this.map.relativePosition(leopard.isoX - this.padding, leopard.isoY - this.padding);
