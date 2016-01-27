@@ -7,6 +7,7 @@ module Builder
 
     def initialize config
       @config = config
+      @uuid   = UUID.new
     end
 
     def create
@@ -45,9 +46,16 @@ module Builder
       when '2' then ::Dungeon::Fruit.build capacity: ::Dungeon::Fruit::Banana2
       when '3' then ::Dungeon::Fruit.build capacity: ::Dungeon::Fruit::Banana3
       when 'R' then ::Dungeon::Rabbit.build x: x, y: y
-      when 'L' then ::Dungeon::Leopard.build x: x, y: y
+      when 'L' then create_leopard x, y
       when 'H' then ::Dungeon::Headquarter.build
       end
+    end
+
+    def create_leopard x, y
+      leopard = ::Dungeon::Leopard.build x: x, y: y
+      leopard.uuid = @uuid.generate
+      dungeon.animals[leopard.uuid] = leopard
+      leopard
     end
 
   end

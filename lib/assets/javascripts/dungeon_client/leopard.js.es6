@@ -50,7 +50,7 @@ Dawning.Leopard = class Leopard extends Dawning.Thing {
   }
 
   notifyNewPosition(sprite, x, y){
-    this.map.dawning.websocket.trigger('animal_moved', {position: {x: x, y: y}});
+    this.map.dawning.websocket.trigger('animal_moved', {uuid: sprite.uuid, position: {x: x, y: y}});
   }
 
   // ---- move to server ----

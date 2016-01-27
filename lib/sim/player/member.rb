@@ -76,12 +76,18 @@ module Player
       level.dungeon.async.attacked food_points, position, self
     end
 
+    # incoming message
     def dungeon_move pawn_id, position
       if pawn = pawns.detect {|pawn| pawn.id == pawn_id}
         level.dungeon.async.player_moved pawn, position[:x], position[:y]
       else
         puts "ERROR: no pawn #{pawn_id} for player #{id}"
       end
+    end
+
+    # incoming message
+    def dungeon_animal_move uuid, position
+      level.dungeon.animal_moved uuid, position[:x], position[:y]
     end
 
     # outgoing message

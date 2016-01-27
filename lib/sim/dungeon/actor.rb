@@ -3,9 +3,10 @@ module Dungeon
     include Celluloid
     include Celluloid::Logger
 
-    attr_accessor :map
+    attr_accessor :map, :animals
 
     def initialize
+      @animals = {}
       reset_players
     end
 
@@ -51,6 +52,16 @@ module Dungeon
       map[pawn.x, pawn.y].delete(pawn)
       map[x, y] << pawn
       pawn.set_position x, y
+    end
+
+    def animal_moved uuid, x, y
+      if animal = animals[uuid]
+        map[animal.x, animal.y].delete(animal)
+        map[x, y] << animal
+        animal.set_position x, y
+      else
+        raise ArgumentError, "no animal found with uuid [#{uuid}]"
+      end
     end
 
   end
