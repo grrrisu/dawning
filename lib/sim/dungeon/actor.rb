@@ -49,16 +49,12 @@ module Dungeon
       if (pawn.x - x).abs > 1 ||  (pawn.y - y).abs > 1
         warn "pawn moved too far [#{pawn.x}, #{pawn.y}] to position[#{x}, #{y}]"
       end
-      map[pawn.x, pawn.y].delete(pawn)
-      map[x, y] << pawn
-      pawn.set_position x, y
+      map.move pawn, to: [x, y]
     end
 
     def animal_moved uuid, x, y
       if animal = animals[uuid]
-        map[animal.x, animal.y].delete(animal)
-        map[x, y] << animal
-        animal.set_position x, y
+        map.move animal, to: [x, y]
       else
         raise ArgumentError, "no animal found with uuid [#{uuid}]"
       end

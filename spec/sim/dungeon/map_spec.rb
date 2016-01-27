@@ -37,4 +37,20 @@ describe Dungeon::Map do
     expect(visible_fields.count).to be == 28
   end
 
+  describe 'move' do
+
+    it "should move thing to another position" do
+      animal = dungeon.animals.values.first
+      expect(animal.x).to be 22
+      expect(animal.y).to be 8
+
+      dungeon.map.move animal, to: [12, 12]
+      expect(dungeon.map[ 8, 22]).to_not include(animal)
+      expect(dungeon.map[12, 12]).to include(animal)
+      expect(animal.x).to be 12
+      expect(animal.y).to be 12
+    end
+
+  end
+
 end

@@ -58,6 +58,13 @@ module Dungeon
       self[x,y].any? {|thing| thing.blocks_visability }
     end
 
+    def move thing, to: position
+      x, y = to[0], to[1]
+      self[thing.x, thing.y].delete(thing)
+      self[x, y] << thing
+      thing.set_position x, y
+    end
+
     def ray_cast x:, y:, radius:
       number_of_rays = 96;
       yield_fields = []
