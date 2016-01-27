@@ -81,7 +81,7 @@ Dawning.IsoMap = class IsoMap {
         if(field.fruit){
           this.createFruit(pos.x, pos.y, x, y, field.fruit);
         } else if(field.predator){
-          this.leopardBuilder.createLeopard(pos.x, pos.y, x, y);
+          this.leopardBuilder.createLeopard(pos.x, pos.y, x, y, field.predator.uuid);
         } else if(field.herbivor){
           this.rabbitBuilder.createRabbit(this.herbivors, pos.x, pos.y, x, y);
         } else if(field.pawn){

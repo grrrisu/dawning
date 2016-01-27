@@ -8,6 +8,7 @@ Dawning.Leopard = class Leopard extends Dawning.Thing {
     this.game = map.game;
     this.padding = 25;
     this.speed = 100;
+    this.leopards = {};
   }
 
   preload(){
@@ -19,8 +20,8 @@ Dawning.Leopard = class Leopard extends Dawning.Thing {
     this.timer = this.game.time.create(false);
   }
 
-  createLeopard(isoX, isoY, dataX, dataY){
-    var leopard = this.game.add.isoSprite(isoX + this.padding, isoY + this.padding, 0, 'leopard', 0, this.map.isoGroup);
+  createLeopard(isoX, isoY, dataX, dataY, uuid){
+    let leopard = this.game.add.isoSprite(isoX + this.padding, isoY + this.padding, 0, 'leopard', 0, this.map.isoGroup);
     this.map.predators.push(leopard);
 
     this.game.physics.isoArcade.enable(leopard);
@@ -30,6 +31,9 @@ Dawning.Leopard = class Leopard extends Dawning.Thing {
     leopard.anchor.set(0.5);
     leopard.scale.setTo(0.8);
     this.setPosition(leopard, dataX, dataY, this.map);
+
+    leopard.uuid = uuid;
+    this.leopards[uuid] = leopard;
   }
 
   update(){

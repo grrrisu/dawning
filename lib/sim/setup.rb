@@ -1,6 +1,7 @@
 require 'bundler'
 Bundler.setup(:default, ENV['SIM_ENV'])
 require 'sim'
+require 'uuid'
 
 require_relative 'event/bot_move'
 require_relative 'event/move'

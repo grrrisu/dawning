@@ -23,7 +23,7 @@ Dawning.MapData = class MapData {
           wall: this.parseWall(data[y][x]),
           fruit: this.parseFruit(data[y][x]),
           herbivor: data[y][x] == 'R',
-          predator: data[y][x] == 'L',
+          predator: this.parseLeopard(data[y][x][0], x, y),
           pawn: this.parsePawn(data[y][x][0], x, y),
           visible: false,
           wasVisible: false,
@@ -92,8 +92,16 @@ Dawning.MapData = class MapData {
     }
   }
 
+  parseLeopard(data, x, y){
+    if (typeof(data) == 'object' && data.type.includes('Dungeon::Leopard')) {
+      return data;
+    } else {
+      return false;
+    }
+  }
+
   parsePawn(data, x, y){
-    if(typeof(data) == 'object' && data.type == 'Dungeon::Pawn'){
+    if (typeof(data) == 'object' && data.type.includes('Dungeon::Pawn')) {
       return data;
     } else {
       return false;
