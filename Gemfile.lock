@@ -417,10 +417,10 @@ GEM
       babel-source (>= 5.8.11)
       babel-transpiler
       sprockets (>= 3.0.0)
-    sprockets-rails (3.0.0)
-      actionpack (>= 4.0)
-      activesupport (>= 4.0)
-      sprockets (>= 3.0.0)
+    sprockets-rails (2.3.3)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      sprockets (>= 2.8, < 4.0)
     sprockets-traceur (0.0.1)
       sprockets
       traceur-rb
@@ -536,6 +536,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   sprockets-es6
+  sprockets-rails (~> 2.3.3)
   sprockets-traceur
   therubyracer
   thin
