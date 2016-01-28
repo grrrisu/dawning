@@ -38,7 +38,8 @@ Dawning.Leopard = class Leopard extends Dawning.Thing {
 
   update(){
     this.map.predators.forEach((leopard) => {
-      this.think(leopard);
+      //this.think(leopard);
+      this.positionChanged(leopard)
     });
   }
 

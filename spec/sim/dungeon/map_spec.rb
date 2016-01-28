@@ -29,12 +29,26 @@ describe Dungeon::Map do
     expect(json_data['fields']).to be == json_map.fields
   end
 
-  it "should return only fields visible from a position" do
-    visible_fields = []
-    dungeon.map.ray_cast(x: 12, y: 12, radius: 3) do |x,y|
-      visible_fields << [x,y]
+  describe 'ray_cast' do
+
+    it "should return only fields visible from a position" do
+      visible_fields = []
+      dungeon.map.ray_cast(x: 12, y: 12, radius: 2) do |x,y|
+        expect { dungeon.map[x, y] }.to_not raise_error
+        visible_fields << [x,y]
+      end
+      expect(visible_fields.count).to be == 21
     end
-    expect(visible_fields.count).to be == 28
+
+    it "should ignore fields beyond world border" do
+      visible_fields = []
+      dungeon.map.ray_cast(x: 23, y: 12, radius: 2) do |x,y|
+        expect { dungeon.map[x, y] }.to_not raise_error
+        visible_fields << [x,y]
+      end
+      expect(visible_fields.count).to be == 18
+    end
+
   end
 
   describe 'move' do

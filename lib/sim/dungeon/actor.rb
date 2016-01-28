@@ -50,6 +50,7 @@ module Dungeon
         warn "pawn moved too far [#{pawn.x}, #{pawn.y}] to position[#{x}, #{y}]"
       end
       map.move pawn, to: [x, y]
+      trigger_animals
     end
 
     def animal_moved uuid, x, y
@@ -57,6 +58,12 @@ module Dungeon
         map.move animal, to: [x, y]
       else
         raise ArgumentError, "no animal found with uuid [#{uuid}]"
+      end
+    end
+
+    def trigger_animals
+      @animals.values.each do |animal|
+        animal.think(map)
       end
     end
 

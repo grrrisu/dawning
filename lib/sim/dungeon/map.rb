@@ -55,6 +55,7 @@ module Dungeon
     end
 
     def blocks_visability? x, y
+      return true unless within_bounderies?(x, y)
       self[x,y].any? {|thing| thing.blocks_visability }
     end
 
@@ -76,13 +77,17 @@ module Dungeon
           landing_y = (y - j * Math.sin(ray_angle)).round;
 
           unless yield_fields.include? [landing_x, landing_y]
-            yield landing_x, landing_y
+            yield landing_x, landing_y if within_bounderies?(landing_x, landing_y)
             yield_fields << [landing_x, landing_y]
           end
 
           break if blocks_visability? landing_x, landing_y
         end
       end
+    end
+
+    def within_bounderies? x, y
+      (0...width) === x && (0...height) === y
     end
 
   end
