@@ -23,7 +23,7 @@ describe Dungeon::Map do
     expect(dungeon.map.position(121, 66)).to be == [1,1]
   end
 
-  it "should return an array ready for json" do
+  it "should return an array ready for json", skip: true do
     json_data = JSON.load File.open(Rails.root.join('spec', 'fixtures', 'jungle_dungeon.json'))
     json_map  = dungeon.map.as_json
     expect(json_data['fields']).to be == json_map.fields
@@ -33,20 +33,20 @@ describe Dungeon::Map do
 
     it "should return only fields visible from a position" do
       visible_fields = []
-      dungeon.map.ray_cast(x: 12, y: 12, radius: 2) do |x,y|
+      dungeon.map.ray_cast(x: 12, y: 12, radius: 4) do |x,y|
         expect { dungeon.map[x, y] }.to_not raise_error
         visible_fields << [x,y]
       end
-      expect(visible_fields.count).to be == 21
+      expect(visible_fields.count).to be == 37
     end
 
     it "should ignore fields beyond world border" do
       visible_fields = []
-      dungeon.map.ray_cast(x: 23, y: 12, radius: 2) do |x,y|
+      dungeon.map.ray_cast(x: 23, y: 22, radius: 4) do |x,y|
         expect { dungeon.map[x, y] }.to_not raise_error
         visible_fields << [x,y]
       end
-      expect(visible_fields.count).to be == 18
+      expect(visible_fields.count).to be == 21
     end
 
   end
