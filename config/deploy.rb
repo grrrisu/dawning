@@ -1,9 +1,10 @@
 set :application, 'dawning'
 set :repo_url, 'git@github.com:grrrisu/dawning.git'
 
-set :rvm_ruby_version, File.read(".ruby-version").strip
-
 set :log_level, :info
+
+set :rbenv_type, :system
+set :rbenv_ruby, '2.3.1'
 
 set :linked_files, %w{config/mongoid.yml config/secrets.yml config/level.yml config/thin/production.yml}
 set :linked_dirs, %w{log tmp/pids tmp/sockets public/system public/assets}
@@ -13,7 +14,7 @@ set :ssh_options, {
   forward_agent: true
 }
 
-before 'deploy:symlink:shared', 'deploy:upload_config_files'
+before 'deploy:check:linked_files', 'deploy:upload_config_files'
 after 'deploy:publishing', 'deploy:restart'
 
 namespace :deploy do
