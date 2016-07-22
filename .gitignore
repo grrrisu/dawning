@@ -21,3 +21,4 @@
 .DS_Store
 config/level.yml
 .byebug_history
+db/dump/**
