@@ -1,4 +1,4 @@
-@adminModule = angular.module('admin', ['ngRoute', 'levelModule'])
+@adminModule = angular.module('admin', ['ngRoute', 'levelModule', 'templates'])
 
 adminModule.config(['$httpProvider', '$routeProvider', '$locationProvider', ($httpProvider, $routeProvider, $locationProvider) ->
   authToken = $("meta[name=\"csrf-token\"]").attr("content")

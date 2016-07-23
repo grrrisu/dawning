@@ -7,6 +7,7 @@
 //= require angular-resource
 //= require angular-route
 //= require angular-sanitize
+//= require angular-rails-templates
 
 //= require d3
 //= require c3

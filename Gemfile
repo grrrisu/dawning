@@ -22,15 +22,13 @@ gem 'pretty_formatter'
 gem 'Simulator', :require => 'sim', :github => 'grrrisu/Simulator' # :path => '../Simulator'
 gem 'uuid'
 
-gem 'sprockets', '3.5.2'
-gem 'sprockets-rails', '~> 2.3.3'
+gem 'sprockets-rails'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem "sprockets-es6", require: 'sprockets/es6'
 gem 'sprockets-traceur'
+gem 'angular-rails-templates'
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer', :platform => :ruby
 gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap-sass', "~> 3.2.0.2"
 gem "font-awesome-sass"
