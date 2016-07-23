@@ -22,6 +22,7 @@ gem 'pretty_formatter'
 gem 'Simulator', :require => 'sim', :github => 'grrrisu/Simulator' # :path => '../Simulator'
 gem 'uuid'
 
+gem 'sprockets', '3.5.2'
 gem 'sprockets-rails', '~> 2.3.3'
 gem 'sass-rails'
 gem 'coffee-rails'
