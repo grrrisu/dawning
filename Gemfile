@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.2'
+gem 'rails', '~> 4.2.8'
 gem 'responders'
 gem 'jquery-rails'
 gem 'turbolinks'
@@ -64,7 +64,7 @@ group :development do
 end
 
 group :test, :development do
-  gem "rspec-rails", '~> 3.2.0'
+  gem "rspec-rails"
   gem "jasmine-rails"
   gem "better_errors"
   gem "binding_of_caller"
