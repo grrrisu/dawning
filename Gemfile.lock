@@ -529,7 +529,7 @@ DEPENDENCIES
   rb-fsevent (~> 0.9.1)
   rb-readline
   responders
-  rspec-rails (~> 3.5.0)
+  rspec-rails
   sass-rails
   selenium-webdriver (>= 2.45.0)
   simple_form (~> 3.0.0)
